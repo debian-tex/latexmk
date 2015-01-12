@@ -1,0 +1,37 @@
+This is the Debian package for Latexmk. It was created by
+Florian Ragwitz <rafl@debian.org> on Mon, 12 Jun 2006 00:53:53 +0200
+
+It was downloaded from http://www.phys.psu.edu/~collins/software/latexmk-jcc/.
+
+The upstream authors are:
+
+  David J. Musliner and The University of Michigan
+  Evan McLean
+  John Collins
+
+Copyright 1992 by David J. Musliner and The University of Michigan.
+  (original version)
+
+Copyright Evan McLean
+  (modifications up to version 2)
+
+Copyright John Collins 1998-2004
+
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+
+
+On Debian GNU/Linux systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.

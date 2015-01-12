@@ -1,0 +1,56 @@
+latexmk (1:4.41-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/patches/rc_system_files.patch: refresh.
+  * debian/control: Update Standards-Version.
+
+ -- OHURA Makoto <ohura@debian.org>  Mon, 12 Jan 2015 16:24:19 +0900
+
+latexmk (1:4.39-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control:
+    - Update Standards-Version.
+    - Drop dependency on dpatch.
+    - Suggest ghostscipt instead of gs-common. (Closes: #649700)
+
+ -- OHURA Makoto <ohura@debian.org>  Wed, 07 May 2014 22:53:56 +0900
+
+latexmk (1:4.37-1) unstable; urgency=low
+
+  * New upstream release (Closes: #693126)
+  * Switch source package to new 3.0 (quilt) format.
+  * Use dh command in debian/rules.
+  * debian/docs: Install upstream README and documents.
+
+ -- OHURA Makoto <ohura@debian.org>  Sat, 16 Nov 2013 23:19:23 +0900
+
+latexmk (1:4.24-1) unstable; urgency=low
+
+  * New upstream release (Closes: #564199).
+  * debian/control: Update Standards-Version.
+
+ -- OHURA Makoto <ohura@debian.org>  Sat, 11 Jun 2011 22:09:09 +0900
+
+latexmk (1:4.13a-1) unstable; urgency=low
+
+  * New upstream release
+  * New maintainer. (Closes: #523193)
+  * debian/control:
+    - Update Standards-Version.
+    - Drop dependency on an obsolete package: tetex-bin.
+    - Add dependency on ${misc:Depends} for debhelper.
+
+ -- OHURA Makoto <ohura@debian.org>  Sun, 14 Mar 2010 17:10:22 +0900
+
+latexmk (307a-2) unstable; urgency=low
+
+  * Support texlive (Closes: #377051).
+
+ -- Florian Ragwitz <rafl@debian.org>  Tue, 31 Oct 2006 12:40:34 +0100
+
+latexmk (307a-1) unstable; urgency=low
+
+  * Initial release. (Closes: #344562)
+
+ -- Florian Ragwitz <rafl@debian.org>  Mon, 12 Jun 2006 00:43:25 +0200

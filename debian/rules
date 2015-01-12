@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+#export DH_OPTIONS=-v
+
+%:
+	dh  $@
+
+override_dh_install:
+	dh_install
+	install -m755 $(CURDIR)/latexmk.pl    $(CURDIR)/debian/latexmk/usr/bin/latexmk
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGES
