@@ -1,4 +1,4 @@
-.TH LATEXMK 1L "1 January 2015" ""
+.TH LATEXMK 1 "25 January 2018" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -42,7 +42,7 @@ updated figure file it can automatically generate a file in
 encapsulated postscript or another suitable format for reading by
 LaTeX.
 .PP
-\fILatexmk\fR has two different previewing options.  In the simple
+\fILatexmk\fR has two different previewing options.  With the simple
 \fB-pv\fR option, a dvi, postscript or pdf previewer is automatically
 run after generating the dvi, postscript or pdf version of the
 document.  The type of file to view is selected according to
@@ -53,14 +53,14 @@ The second previewing option is the powerful \fB-pvc\fR option
 continuously, regularly monitoring all the source files to see if any
 have changed.  Every time a change is detected, \fIlatexmk\fR runs all
 the programs necessary to generate a new version of the document.  A
-good previewer (like \fIgv\fR) will then automatically update its
+good previewer will then automatically update its
 display.  Thus the user can simply edit a file and, when the changes
 are written to disk, \fIlatexmk\fR completely automates the cycle of
-updating the .dvi (and possibly the .ps and .pdf) file, and refreshing
+updating the .dvi (and/or the .ps and .pdf) file, and refreshing
 the previewer's display.  It's not quite WYSIWYG, but usefully close.
 .PP
 For other previewers, the user may have to manually make the previewer
-update its display, which can be (some versions of \fIxdvi\fR and
+update its display, which can be (e.g., with some versions of \fIxdvi\fR and
 \fIgsview\fR) as simple as forcing a redraw of its display.
 .PP
 \fILatexmk\fR has the ability to print a banner in gray diagonally
@@ -71,17 +71,16 @@ generated dvi and postscript files.  (See the options \fB-dF\fR and
 \fI$ps_filter\fR configuration variables.)  These capabilities are
 leftover from older versions of \fIlatexmk\fR.  More flexibility can
 be obtained in current versions, since the command strings for running
-latex, pdflatex, etc can now be configured to run multiple commands.
-This also extends the possibility of postprocessing generated files to
-pdf files.
-files.
+\fIlatex\fR, \fIpdflatex\fR, etc can now be configured to run multiple
+commands. 
+This also extends the possibility of postprocessing generated files.
 .PP
 \fILatexmk\fR is highly configurable, both from the command line and
 in configuration files, so that it can accommodate a wide variety of
 user needs and system configurations.  Default values are set
 according to the operating system, so \fIlatexmk\fR often works 
 without special configuration on MS-Windows, cygwin, Linux, OS-X, and
-other UNIX systems (notably Solaris).
+other UNIX systems.
 .PP
 A very annoying complication handled very reliably by \fIlatexmk\fR,
 is that LaTeX is a multiple pass system.  On each run, LaTeX reads in
@@ -91,7 +90,7 @@ LaTeX suffices, and often the log file contains a message about the
 need for another pass.  However, there is a wide variety of add-on
 macro packages to LaTeX, with a variety of behaviors.  The result is
 to break simple-minded determinations of how many runs are needed and
-of which programs.  In its new version, \fIlatexmk\fR has a highly
+of which programs.  \fILatexmk\fR has a highly
 general and efficient solution to these issues.  The solution involves
 retaining between runs information on the source files, and a symptom
 is that \fIlatexmk\fR generates an extra file (with extension
@@ -106,7 +105,7 @@ In general the command line to invoke \fIlatexmk\fR has the form
 All options can be introduced by single or double "-" characters,
 e.g., "latexmk -help" or "latexmk --help".
 
-\fBNote 1\fR: In addition to the options in the list below,
+\fBNote 1\fR: \fBIn addition to the options in the list below,
 \fIlatexmk\fR recognizes almost all the options recognized by the
 \fIlatex\fR, \fIpdflatex\fR programs (and their relatives) in their 
 current TeXLive and MiKTeX implementations.  Some of the options for
@@ -123,19 +122,17 @@ information.
 \fBNote 2\fR: In this documentation, the program \fIpdflatex\fR is often
 referred to.  Users of programs like \fIlualatex\fR and \fIxelatex\fR
 should know that from \fIlatexmk\fR's point of view, these other
-programs behave like \fIpdflatex\fR, i.e., they make a pdf file from a
+programs behave very like \fIpdflatex\fR, i.e., they make a pdf file from a
 tex file, etc.  So whenever \fIpdflatex\fR is mentioned without
 mention of the other programs, the statements apply equally to
 \fIlualatex\fR, \fIxelatex\fR, and any other similar programs.
 \fILatexmk\fR can be easily configured to use whichever of these
 programs is needed.  See the documentation for the following options:
-\fB-pdflatex="COMMAND"\fR,
-\fB-lualatex\fR, and
-\fB-xelatex\fR,
+\fB-pdflua\fR, \fB-pdfxe\fR, \fB-lualatex\fR, and \fB-xelatex\fR,
 and also see the documentation for the 
-\fI$pdflatex\fR configuration variable.
-At present \fIlatexmk\fR cannot do automatic detection of which
-program is to be used.
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR configuration variables.
+At present \fIlatexmk\fR does not do automatic detection of which
+program is to be used.  
  
 
 \fBDefinitions of options and arguments\fR
@@ -148,17 +145,16 @@ with a ".tex" extension.  This behavior can be changed: see the
 description concerning the \fI@default_files\fR variable in the
 section "List of configuration variables usable in initialization
 files". 
-.PP
+
 If a file is specified without an extension, then the ".tex" extension
 is automatically added, just as LaTeX does.  Thus, if you specify:
 
 	latexmk foo
 
 then \fIlatexmk\fR will operate on the file "foo.tex".  
+
 .TP
-
 .B -auxdir=FOO or -aux-directory=FOO
-
 Sets the directory for auxiliary output files of (pdf)latex 
 (.aux, .log etc).  This
 achieves its effect by the \fB-aux-directory\fR option of (pdf)latex,
@@ -171,24 +167,33 @@ configuration variables of \fIlatexmk\fR.  In particular, see the
 documentation of \fI$out_dir\fR for some complications on what
 directory names are suitable.
 
-.TP
+If you also use the \fB-cd\fR option, and the specified auxiliary output
+directory is a relative path, then the path is interpreted relative to
+the document directory.
 
+.TP
 .B -bibtex 
 When the source file uses bbl files for bibliography, run bibtex or
 biber as needed to regenerate the bbl files.  
 
 This property can also be configured by setting the \fI$bibtex_use\fR
-variable to 2 in a configuration file
+variable to 2 in a configuration file.
+
 .TP
 .B -bibtex-
-Never run bibtex or biber.  
+Never run bibtex or biber.  Also, always treat .bbl files as precious,
+i.e., do not delete them in a cleanup operation. 
 
 A common use for this option is when a document comes from an external
 source, complete with its bbl file(s), and the user does not have the
 corresponding bib files available.  In this situation use of the
 \fB-bibtex-\fR option will prevent \fIlatexmk\fR from trying to run
 \fIbibtex\fR or \fIbiber\fR, which would result in overwriting of the
-bbl files. 
+bbl files.
+
+This property can also be configured by setting the \fI$bibtex_use\fR
+variable to 0 in a configuration file.
+
 .TP
 .B -bibtex-cond
 When the source file uses bbl file(s) for the bibliography, run
@@ -197,7 +202,21 @@ only if the
 relevant bib file(s) exist.  Thus when the bib files are not
 available, \fIbibtex\fR or \fIbiber\fR is not run, thereby avoiding
 overwriting of 
-the bbl file(s).  This is the default setting.
+the bbl file(s).
+Also, always treat .bbl files as precious,
+i.e., do not delete them in a cleanup operation.
+
+This is the default setting.
+It can also be configured by setting the \fI$bibtex_use\fR
+variable to 1 in a configuration file.
+
+The reason for using this setting is that sometimes a .bbl file is
+available containing the bibliography for a document, but the .bib
+file is not available.  An example would be for a scientific journal
+where authors submit .tex and .bbl files, but not the original .bib
+file.  In that case, running \fIbibtex\fR or \fIbiber\fR would not
+work, and the .bbl file should be treated as a user source file, and
+not as a file that can be regenerated on demand.
 
 (Note that it is possible for \fIlatexmk\fR to decide that the bib
 file does not exist, even though the bib file does exist and
@@ -210,6 +229,19 @@ problem should not arise, since \fIlatexmk\fR uses the \fIkpsewhich\fR
 program to do the search, and \fIkpsewhich\fR should use the same
 search path as \fIbibtex\fR and \fIbiber\fR.  If this problem arises, use the
 \fB-bibtex\fR option when invoking \fIlatexmk\fR.)
+
+.TP
+.B -bibtex-cond1
+The same as \fB-bibtex-cond1\fR except that .bbl files are only
+treated as precious if one or more bibfiles fails to exist.
+
+Thus if all the bib files exist, \fIbibtex\fR or \fIbiber\fR is run to
+generate .bbl files as needed, and then it is appropriate to delete
+the bbl files in a cleanup operation since they can be re-generated.
+
+This property can also be configured by setting the \fI$bibtex_use\fR
+variable to 1.5 in a configuration file.
+
 .TP
 .B -bm <message>
 A banner message to print diagonally across each page when converting
@@ -218,11 +250,13 @@ the command line so be careful with quoting spaces and such.
 
 Note that if the \fB-bm\fR option is specified, the \fB-ps\fR option is
 assumed.
+
 .TP
 .B -bi <intensity>
 How dark to print the banner message.  A decimal number between 0 and 1.
 0 is black and 1 is white.  The default is 0.95, which is OK unless your
 toner cartridge is getting low.
+
 .TP
 .B -bs <scale>
 A decimal number that specifies how large the banner message will be
@@ -230,10 +264,12 @@ printed.  Experimentation is necessary to get the right scale for your
 message, as a rule of thumb the scale should be about equal to 1100
 divided by the number of characters in the message.  The default is 220.0
 which is just right for 5 character messages.
+
 .TP 
 .B -commands
 List the commands used by \fIlatexmk\fR for processing files, and then
 exit. 
+
 .TP 
 .B -c
 Clean up (remove) all regeneratable files generated by \fIlatex\fR and
@@ -248,12 +284,23 @@ removed.
 This cleanup is instead of a regular make.  See the \fB-gg\fR option
 if you want to do a cleanup then a make.
 
-If \fI$bibtex_use\fR is set to 0 or 1, bbl files are counted as
-non-regeneratable. 
+\fITreatment of .bbl files:\fR If \fI$bibtex_use\fR is set to 0 or 1,
+bbl files are always treated as non-regeneratable.  If
+\fI$bibtex_use\fR is set to 1.5, bbl files are counted as
+non-regeneratable conditionally: If the bib file exists, then bbl
+files are regeneratable, and are deleted in a clean up.  But if
+\fI$bibtex_use\fR is 1.5 and a bib file doesn't exist, then the bbl
+files are treated as non-regeneratable and hence are not deleted.
 
-If \fI$cleanup_includes_cusdep_generated\fR is nonzero, regeneratable
+In contrast, if \fI$bibtex_use\fR is set to 2, bbl files are always
+treated as regeneratable, and are deleted in a cleanup.
+
+\fITreatment of files generated by custom dependencies:\fRIf
+\fI$cleanup_includes_cusdep_generated\fR is nonzero, regeneratable
 files are considered as including those generated by custom
-dependencies and are also deleted.  Otherwise these files are not deleted.
+dependencies and are also deleted.  Otherwise these files are not
+deleted.
+
 .TP 
 .B -C
 Clean up (remove) all regeneratable files generated by \fIlatex\fR and
@@ -264,16 +311,18 @@ in the \fI$clean_full_ext\fR configuration variable.
 This cleanup is instead of a regular make.  See the \fB-gg\fR option
 if you want to do a cleanup than a make.
 
-If \fI$bibtex_use\fR is set to 0 or 1, bbl files are counted as
-non-regeneratable. 
+See the \fB-c\fR option for the specification of whether or not .bbl
+files are treated as non-regeneratable or regeneratable. 
 
 If \fI$cleanup_includes_cusdep_generated\fR is nonzero, regeneratable
 files are considered as including those generated by custom
 dependencies and are also deleted.  Otherwise these files are not deleted.
+
 .TP 
 .B -CA
 (Obsolete).  Now equivalent to the \fB-C\fR option.  See that option
 for details. 
+
 .TP 
 .B -cd
 Change to the directory containing the main source file before processing
@@ -283,6 +332,7 @@ relative to the source file.
 This option is particularly useful when \fIlatexmk\fR is invoked from
 a GUI configured to invoke \fIlatexmk\fR with a full pathname for the
 source file.
+
 .TP 
 .B -cd-
 Do NOT change to the directory containing the main source file before processing
@@ -294,10 +344,12 @@ This is the default behavior and corresponds to the behavior of the
 behavior when \fIlatexmk\fR is invoked by a GUI configured to invoke
 \fIlatexmk\fR with a full pathname for the source file.  See the
 \fB-cd\fR option.
+
 .TP 
 .B -CF
 Remove the file containing the database of source file information,
 before doing the other actions requested.
+
 .TP 
 .B -d
 Set draft mode.  This prints the banner message "DRAFT" across your
@@ -310,8 +362,9 @@ specifying:
 
 Note that if the \fB-d\fR option is specified, the \fB-ps\fR option is
 assumed.
+
 .TP
-.B  -deps 
+.B -deps 
 Show a list of dependent files after processing.  This is in the form
 of a dependency list of the form used by the \fImake\fR program, and
 it is therefore suitable for use in a Makefile.  It gives an overall
@@ -331,24 +384,29 @@ the \fB-deps\fR option is very similar in its purpose and results to
 the \fB-M\fR option to \fIgcc\fR.  (In fact, \fIlatexmk\fR also has
 options \fB-M\fR, \fB-MF\fR, and \fB-MP\fR options that behave like
 those of \fIgcc\fR.)
+
 .TP
-.B  -dependents
+.B -dependents
 Equivalent to \fB-deps\fR.
+
 .TP
-.B   -deps-  
+.B -deps-  
 Do not show a list of dependent files after processing.  (This is the
 default.) 
+
 .TP
-.B  -dependents-
+.B -dependents-
 Equivalent to \fB-deps-\fR.
+
 .TP
-.B   -deps-out=FILENAME  
+.B -deps-out=FILENAME  
 Set the filename to which the list of dependent files is written.  If
 the FILENAME argument is omitted or set to "-", then the output is
 sent to stdout. 
 
 Use of this option also turns on the output of the list of dependent
 files after processing.
+
 .TP
 .B -dF
 Dvi file filtering.  The argument to this option is a filter which will
@@ -359,25 +417,30 @@ be performed on this filtered dvi file.
 Example usage: To use dviselect to select only the even pages of the dvi file:
 
 	latexmk -dF "dviselect even" foo.tex
+
 .TP
 .B -diagnostics
 Print detailed diagnostics during a run.  This may help for debugging
 problems or to understand \fIlatexmk\fR's behavior in difficult
 situations. 
+
 .TP
 .B -dvi
 Generate dvi version of document.
+
 .TP
 .B -dvi-
 Turn off generation of dvi version of document.  (This may get
 overridden, if some other file is made (e.g., a .ps file) that is
 generated from the dvi file, or if no generated file at all is
 requested.) 
+
 .TP
 .B -e <code>
 Execute the specified initialization code before processing.  The code
 is \fIPerl\fR code of the same form as is used in \fIlatexmk\fR's
-initialization files -- for more details, see the information on the
+initialization files.  For more details,
+see the information on the
 \fB-r\fR option, and the section about "Configuration/initialization
 (RC) files".  The code is typically a sequence of assignment
 statements separated by semicolons.
@@ -392,11 +455,11 @@ they appear on the command line.
 Some care is needed to deal with proper quoting of special characters
 in the code on the command line.  For example, suppose you want
 to set the latex command to use its -shell-escape option, then under
-UNIX/LINUX you could use the line
+UNIX/Linux you could use the line
 
 	latexmk -e '$latex=q/latex %O -shell-escape %S/' file.tex
 
-Note that the single quotes block normal UNIX/LINUX command shells
+Note that the single quotes block normal UNIX/Linux command shells
 from treating the characters inside the quotes as special.
 (In this example, the q/.../ construct is a
 \fIPerl\fR idiom equivalent to using 
@@ -414,7 +477,13 @@ or
 
 	latexmk -e "$latex='latex %O -shell-escape %S'" file.tex
 
-The last two examples will NOT work with UNIX/LINUX command shells.
+The last two examples will NOT work with UNIX/Linux command shells.
+
+(\fINote\fR: the above examples show are to show how to use the
+\fB-e\fR to specify initialization code to be executed.  But the
+particular effect can be achieved also by the use of the \fB-latex\fR
+option with less problems in dealing with quoting.)
+
 .TP
 .B -f
 Force \fIlatexmk\fR to continue document processing despite errors.
@@ -434,6 +503,7 @@ this by an option that is passed to the program, e.g., by
 Turn off the forced processing-past-errors such as is set by the
 \fB-f\fR option.  This could be used to override a setting in a
 configuration file.
+
 .TP
 .B -g
 Force \fIlatexmk\fR to process document fully, even under situations
@@ -441,16 +511,20 @@ where \fIlatexmk\fR would normally decide that no changes in the
 source files have occurred since the previous run. 
 This option is useful, for example, if you change some options and
 wish to reprocess the files.
+
 .TP
 .B -g-
 Turn off \fB-g\fR.
+
 .TP
 .B -gg
 "Super go mode" or "clean make": clean out generated files as if
 \fB-C\fR had been given, and then do a regular make.
+
 .TP
 .B -h, -help
 Print help information.
+
 .TP
 .B -jobname=STRING
 Set the basename of output files(s) to STRING, instead of the default,
@@ -467,9 +541,11 @@ Run in landscape mode, using the landscape mode for the previewers and
 the dvi to postscript converters.  This option is not normally needed
 nowadays, since current previewers normally determine this information
 automatically. 
+
 .TP
 .B -l-
 Turn off \fB-l\fR.
+
 .TP
 .B -latex="COMMAND"
 This sets the string specifying the command to run latex, and is
@@ -484,34 +560,55 @@ operating system and the command-line shell you are using, you may
 need to change the single quotes to double quotes (or something
 else). 
 
-To set the command for running pdflatex (rather than the command for
-latex) see the \fB-pdflatex\fR option.
+To set the command for running \fIpdflatex\fR (rather than the command for
+\fIlatex\fR) see the \fB-pdflatex\fR option.
 
-Note that the effect of this option can also be achieved by using
-the \fB-e\fR option with a suitable line of Perl code to set the
-\fI$latex\fR variable.  See the explanation of the \fB-e\fR option.
+.TP
+.B -logfilewarninglist
+.B -logfilewarnings
+After a run of \fI(pdf)latex\fR, give a list of warnings about
+undefined citations and references (unless silent mode is on).
+
+See also the \fI$silence_logfile_warnings\fR configuration variable.
+
+.TP
+.B -logfilewarninglist-
+.B -logfilewarnings-
+After a run of \fI(pdf)latex\fR, do not give a list of warnings about
+undefined citations and references.  (Default)
+
+See also the \fI$silence_logfile_warnings\fR configuration variable.
+
 .TP
 .B -lualatex
-Use lualatex.  That is, use lualatex to process the source file(s) to
-pdf (in place of pdflatex).  This option is exactly equivalent to
-specifying the following sequence of options: 
+Use \fIlualatex\fR.  That is, use \fIlualatex\fR to process the source file(s) to
+pdf.  The generation of dvi and postscript files is turned off.
 
-     -pdflatex="lualatex %O %S" -pdf -dvi- -ps-
+This option is equivalent to using the following set of options
+
+     -pdflua -dvi- -ps-
+
+(\fINote\fR: Note that the method of implementation of this option,
+but not its intended effect, differ from some earlier versions of
+\fIlatexmk\fR.)
 
 .TP
 .B -M
 Show list of dependent files after processing.  This is equivalent to
 the \fB-deps\fR option.
+
 .TP
 .B -MF file
 If a list of dependents is made, the \fB-MF\fR specifies the file to
 write it to. 
+
 .TP
 .B -MP
-If a list of dependents is made, includes phony target for each source
+If a list of dependents is made, include a phony target for each source
 file.  If you use the dependents list in a Makefile, the dummy rules
-work around errors make gives if you remove header files without
-updating the Makefile to match.
+work around errors the program \fImake\fR gives if you remove header
+files without updating the Makefile to match.
+
 .TP
 .B -new-viewer
 When in continuous-preview mode, always start a new viewer to view the
@@ -521,21 +618,17 @@ not start a new one if a previous previewer is running.  However, its
 test sometimes fails (notably if there is an already-running previewer
 that is viewing a file of the same name as the current file, but in a
 different directory).  This option turns off the default behavior.
+
 .TP
 .B -new-viewer-
 The inverse of the \fB-new-viewer\fR option.  It puts \fIlatexmk\fR
 in its normal behavior that in preview-continuous mode it checks for
 an already-running previewer.  
+
 .TP
 .B -nobibtex
-Never run bibtex or biber.
+Never run bibtex or biber.  Equivalent to the \fB-bibtex-\fR option.
 
-A common use for this option is when a document comes from an external
-source, complete with its bbl file(s), and the user does not have the
-corresponding bib files available.  In this situation use of the
-\fB-nobibtex\fR option will prevent \fIlatexmk\fR from trying to run
-\fIbibtex\fR or \fIbiber\fR, which would result in overwriting of the
-bbl files. 
 .TP
 .B -norc
 Turn off the automatic reading of initialization (rc) files.
@@ -544,8 +637,8 @@ N.B. Normally the initialization files are read and obeyed, and then
 command line options are obeyed in the order they are encountered.
 But \fB-norc\fR is an exception to this rule: it is acted on first,
 no matter where it occurs on the command line.
-.TP
 
+.TP
 .B -outdir=FOO or -output-directory=FOO
 
 Sets the directory for the output files of (pdf)latex.  This achieves
@@ -560,8 +653,11 @@ configuration variables of \fIlatexmk\fR.  In particular, see the
 documentation of \fI$out_dir\fR for some complications on what
 directory names are suitable.
 
-.TP
+If you also use the \fB-cd\fR option, and the specified output
+directory is a relative path, then the path is interpreted relative to
+the document directory.
 
+.TP
 .B -p
 Print out the document.  By default the file to be printed is
 the first in the list postscript, pdf, dvi that is being made.
@@ -570,7 +666,7 @@ But you can use the
 can configure this in a start up file (by setting the
 \fI$print_type\fR variable).  
 
-However, printing is enabled by default only under UNIX/LINUX systems,
+However, printing is enabled by default only under UNIX/Linux systems,
 where the default is to use the lpr command and only on postscript
 files.  In general, the correct
 behavior for printing very much depends on your system's software.  In
@@ -582,31 +678,60 @@ to see how to set the commands for printing.
 
 This option is incompatible with the \fB-pv\fR and \fB-pvc\fR options,
 so it turns them off. 
-.TP
 
+.TP
 .B -pdf
 Generate pdf version of document using \fIpdflatex\fR.  (If you wish
 to use \fIlualatex\fR or \fIxelatex\fR, you can use whichever of the
-options \fB-lualatex\fR or \fB-xelatex\fR applies.)  To configure
+options \fB-pdflua\fR, \fB-pdfxe\fR, \fB-lualatex\fR or \fB-xelatex\fR
+applies.)  To configure 
 \fIlatexmk\fR to have such behavior by default, see the section on 
 "Configuration/initialization (rc) files".
 
 .TP
 .B -pdfdvi
 Generate pdf version of document from the dvi file, by default using dvipdf.
+
+.TP
+.B -pdflua
+Generate pdf version of document using \fIlualatex\fR.
+
 .TP
 .B -pdfps
 Generate pdf version of document from the ps file, by default using
-ps2pdf. 
+\fIps2pdf\fR. 
+
+.TP
+.B -pdfxe
+Generate pdf version of document using \fIxelatex\fR.  Note that to
+optimize processing time, \fIlatexmk\fR uses \fIxelatex\fR to generate
+an xdv file rather than a pdf file directly.  Only after possibly
+multiple runs to generate a fully up-to-date xdv does \fIlatexmk\fR
+then call \fIxdvipdfmx\fR to generate the final pdf file.
+
+(\fINote:\fR When the document includes large graphics files,
+especially png files, the last step can be quite time consuming, even
+when the creation of the xdv file by \fIxelatex\fR is fast.  So the
+use of the intermediate xdv file can result in substantial gains in
+procesing time, since the pdf file is produced once rather than on
+every run of \fIxelatex\fR.)
+
 .TP
 .B -pdf-
 Turn off generation of pdf version of document.  
 (This can be used to override a setting in a configuration file.
 It may get overridden if some other option requires the generation of
 a pdf file.)
+
+If after all options have been processed, pdf generation is still
+turned off, then generation of a dvi file will be turned on, and then
+the program used to compiled a document will be \fIlatex\fR (or, more
+precisely, whatever program is configured to be used in the
+\fI$latex\fR configuration variable).
+
 .TP
 .B -pdflatex="COMMAND"
-This sets the string specifying the command to run pdflatex, and is
+This sets the string specifying the command to run \fIpdflatex\fR, and is
 typically used to add desired options.  Since the string normally
 contains spaces, it should be quoted, e.g.,
 
@@ -618,23 +743,9 @@ operating system and the command-line shell you are using, you may
 need to change the single quotes to double quotes (or something
 else). 
 
-This option can also be used to set a program to be used instead of
-the standard \fIpdflatex\fR program, e.g., 
-
-     latexmk -pdf -pdflatex="lualatex %O %S"  foo.tex
-
-to use \fIlualatex\fR or
-
-     latexmk -pdf -pdflatex="xelatex %O %S"  foo.tex
-
-to use \fIxelatex\fR.
-
 To set the command for running \fIlatex\fR (rather than the command
 for \fIpdflatex\fR) see the \fB-latex\fR option.
 
-Note that the effect of this option can also be achieved by using
-the \fB-e\fR option with a suitable line of Perl code to set the
-\fI$pdflatex\fR variable. See the explanation of the \fB-e\fR option.
 .TP
 .B -print=dvi, -print=ps, -print=pdf, -print=auto,
 Define which kind of file is printed.  This option also ensures that
@@ -645,15 +756,18 @@ The (default) case
 the set of files that is being made.  The first in the list
 postscript, pdf, dvi that is among the files to be made is the one
 used for print out.
+
 .TP
 .B -ps
 Generate postscript version of document.
+
 .TP
 .B -ps-
 Turn off generation of postscript version of document.
 This can be used to override a setting in a configuration file.
 (It may get overridden by some other option that requires a postscript
 file, for example a request for printing.)
+
 .TP
 .B -pF
 Postscript file filtering.  The argument to this option is a filter
@@ -672,6 +786,7 @@ or
 Whether to use single or double quotes round the "psnup -2" will
 depend on your command interpreter, as used by the particular version
 of perl and the operating system on your computer.
+
 .TP
 .B -pv
 Run file previewer.  If the \fB-view\fR option is used, this will select
@@ -682,9 +797,11 @@ order dvi, ps, pdf (low to high).
 If no file type has been selected, the dvi previewer will be used.
 This option is incompatible with the \fB-p\fR and \fB-pvc\fR options,
 so it turns them off.
+
 .TP
 .B -pv-
 Turn off \fB-pv\fR.
+
 .TP
 .B -pvc
 Run a file previewer and continually update the .dvi, .ps, and/or .pdf
@@ -711,11 +828,11 @@ read.)  Many other previewers will need a manual update.
 \fBImportant note\fR: the acroread program on MS-Windows locks the pdf file,
 and prevents new versions being written, so it is a bad idea to use
 acroread to view pdf files in preview-continuous mode.  
-It is better to use a different viewer: SumatraPDF and gsview are
-good possibilities. 
+It is better to use a different viewer: \fISumatraPDF\fR and
+\fIgsview\fR are good possibilities. 
 
 There are some other methods for arranging an update, notably useful
-for many versions of xdvi and xpdf.  These are best set in
+for many versions of \fIxdvi\fR and \fIxpdf\fR.  These are best set in
 \fIlatexmk\fR's configuration; see below. 
 
 Note that if \fIlatexmk\fR dies or is stopped by the user, the
@@ -724,12 +841,30 @@ the \fB-pvc\fR option will not fork new previewers, but \fIlatexmk\fR
 will normally use the existing previewer.  (At least this will happen
 when \fIlatexmk\fR is running under an operating system where it knows
 how to determine whether an existing previewer is running.)
+
 .TP
 .B -pvc-
 Turn off \fB-pvc\fR.
+
+.TP
+.B -pvctimeout
+Do timeout in pvc mode after period of inactivity, which is 30 min. by
+default.  Inactivity means a period when \fIlatexmk\fR has detected no
+file changes and hence has not taken any actions like compiling the
+document. 
+
+.TP
+.B -pvctimeout-
+Don't do timeout in pvc mode after inactivity.
+
+.TP
+.B -pvctimeoutmins=<time>
+Set period of inactivity in \fIminutes\fR for pvc timeout.
+
 .TP
 .B -quiet
 Same as -silent
+
 .TP
 .B -r <rcfile>
 Read the specified initialization file ("RC file") before processing.
@@ -753,33 +888,39 @@ initialization code directly on \fIlatexmk\fR's command line.  An
 error results in \fIlatexmk\fR stopping.  Multiple instances of the
 \fB-r\fR and \fB-e\fR options can be used, and they are executed in
 the order they appear on the command line.
+
 .TP
-.B  -recorder
-Use the -recorder option with \fIlatex\fR and \fIpdflatex\fR.  In
+.B -recorder
+Give the -recorder option with \fIlatex\fR and \fIpdflatex\fR.  In
 (most) modern versions of these programs, this results in a file of
 extension \fI.fls\fR containing a list of the files that these
 programs have read and written.  \fILatexmk\fR will then use this file
 to improve its detection of source files and generated files after a
-run of \fIlatex\fR or \fIpdflatex\fR.
+run of \fIlatex\fR or \fIpdflatex\fR.  This is the default setting of
+\fIlatexmk\fR, unless overridden in an initialization file.
 
 For further information, see the documentation for the \fI$recorder\fR
 configuration variable.
+
 .TP
-.B  -recorder-
-Do not use the -recorder option with \fIlatex\fR and \fIpdflatex\fR. 
+.B -recorder-
+Do not supply the -recorder option with \fIlatex\fR and \fIpdflatex\fR.
+
 .TP
-.B  -rules 
+.B -rules 
 Show a list of \fIlatemk\fR's rules and dependencies after processing.
+
 .TP
-.B   -rules-  
+.B -rules-  
 Do not show a list of \fIlatexmk\fR's rules and dependencies after
 processing.  (This is the default.)
+
 .TP
 .B -showextraoptions
 Show the list of extra \fIlatex\fR and \fIpdflatex\fR options that
-\fIlatexmk\fR recognizes.  These are options for the \fIlatex\fR and
-\fIpdflatex\fR that \fIlatexmk\fR recognizes, but simply passes
-through to these programs when they are run.  These options are
+\fIlatexmk\fR recognizes, but that it simply passes
+through to the programs \fIlatex\fR, \fIpdflatex\fR, etc  when they
+are run.  These options are 
 (currently) a combination of those allowed by the TeXLive and MiKTeX
 implementations.  (If a particular option is given to \fIlatexmk\fR
 but is not handled by the particular implementation of \fIlatex\fR or
@@ -808,48 +949,46 @@ documentation.  These options are:
 \fB-output-directory=DIR\fR, \fB-quiet\fR, and \fB-recorder\fR.
 
 .TP
-.B -logfilewarninglist
-.B -logfilewarnings
-After a run of (pdf)latex, give a list of warnings about
-undefined citations and references (unless silent mode is on).
-
-See also the $silence_logfile_warnings configuration variable.
-
-.TP
-.B -logfilewarninglist-
-.B -logfilewarnings-
-After a run of (pdf)latex, do not give a list of warnings about
-undefined citations and references.  (Default)
-
-See also the $silence_logfile_warnings configuration variable.
-
-.TP
 .B -silent
 Run commands silently, i.e., with options that reduce the amount of
 diagnostics generated.  For example, with the default settings, the
-command "latex -interaction=batchmode" is used for latex.
+command "latex -interaction=batchmode" is used for \fI(pdf)latex\fR
+and friends.
 
 See also the \fB-logfilewarninglist\fR and \fB-logfilewarninglist-\fR
 options. 
 
 Also reduce the number of informational messages that \fIlatexmk\fR
-generates. 
+itself generates. 
 
 To change the options used to make the commands run silently, you need
 to configure \fIlatexmk\fR with changed values of its configuration
 variables, the relevant ones being \fI$bibtex_silent_switch\fR,
 \fI$biber_silent_switch\fR, \fI$dvipdf_silent_switch\fR, 
-\fI$dvips_silent_switch\fR, \fI$latex_silent_switch\fR, 
-\fI$makeindex_silent_switch\fR, and \fI$pdflatex_silent_switch\fR.
+\fI$dvips_silent_switch\fR, \fI$latex_silent_switch\fR,
+\fI$lualatex_silent_switch\fR
+\fI$makeindex_silent_switch\fR, \fI$pdflatex_silent_switch\fR,
+and \fI$xelatex_silent_switch\fR
+
+.TP
+.B -time
+Show CPU time used.
+See also the configuration variable \fI$show_time\fR.
+
+.TP
+.B -time-
+Do not show CPU time used.
+See also the configuration variable \fI$show_time\fR.
+
 .TP
 .B -use-make
 When after a run of \fIlatex\fR or \fIpdflatex\fR, there are warnings
 about missing files (e.g., as requested by the LaTeX \\input, \\include,
-and \\includgraphics), \fIlatexmk\fR tries to make them by a custom
+and \\includgraphics commands), \fIlatexmk\fR tries to make them by a custom
 dependency. If no relevant custom dependency with an appropriate
-source file is found, and if the -use-make option is set, then
-\fIlatexmk\fR will try as a resort using the make program to try to
-make the missing files.
+source file is found, and if the \fB-use-make\fR option is set, then
+as a last resort \fIlatexmk\fR will try to use the \fImake\fR program
+to try to make the missing files.
 
 Note that the filename may be specified without an extension, e.g.,
 by \\includegraphics{drawing} in a LaTeX file.  In that case,
@@ -859,28 +998,61 @@ appropriate \fIpdflatex\fR).
 
 See also the documentation for the \fI$use_make_for_missing_files\fR
 configuration variable. 
+
 .TP
 .B -use-make-
 Do not use the make program to try to make missing files.  (Default.)
+
 .TP
 .B -v, -version
 Print version number of \fIlatexmk\fR.
+
 .TP
 .B -verbose
 Opposite of \fB-silent\fR.  This is the default setting.
+
 .TP
-.B -view=default, -view=dvi, -view=ps, -view=pdf
+.B -view=default, -view=dvi, -view=ps, -view=pdf, -view=none
 Set the kind of file used when previewing is requested (e.g., by the
 \fB-pv\fR or \fB-pvc\fR switches).  The default is to view the "highest"
-kind of requested file (in the order dvi, ps, pdf).  
+kind of requested file (in the low-to-high order dvi, ps, pdf).  
+
+Note the possibility \fB-view=none\fR where no viewer is opened at
+all.  One example of is use is in conjunction with the \fB-pvc\fR
+option, when you want \fIlatexmk\fR to do a compilation automatically
+whenever source file(s) change, but do not want a previewer to be opened.
+
 .TP
+.B -Werror
+This causes \fIlatexmk\fR to return a non-zero status code if any of
+the files processed gives a warning about problems with citations or
+references (i.e., undefined citations or references or about multiply
+defined references).  This is \fBafter\fR \fIlatexmk\fR has completed
+all the runs it needs to try and resolve references and citations.
+Thus \fB-Werror\fR causes \fIlatexmk\fR to treat such warnings as
+errors, but only when they occur on the last run of (pdf)latex and
+only after processing is complete.  Also can be set by the
+configuration variable \fI$warnings_as_errors\fR. 
 
+.TP
 .B -xelatex
-Use xelatex.  That is, use xelatex to process the source file(s) to
-pdf (in place of pdflatex).  This option is exactly equivalent to
-specifying the following sequence of options: 
+Use \fIxelatex\fR.  That is, use \fIxelatex\fR to process the source file(s) to
+pdf.  The generation of dvi and postscript files is turned off.
 
-     -pdflatex="xelatex %O %S" -pdf -dvi- -ps-
+This option is equivalent to using the following set of options
+
+     -pdfxe -dvi- -ps-
+
+[\fINote\fR: Note that the method of implementation of this option,
+but not its intended primary effect, differ from some earlier versions
+of \fIlatexmk\fR. \fILatexmk\fR first uses \fIxelatex\fR to make an
+xdv file, and does all the extra runs needed (including those of
+\fIbibtex\fR, etc).  Only after that does it make the pdf file from
+the xdv file, using \fIxdvipdfmx\fR.  This procedure can result in
+considerable savings in run time, since the xdv-to-pdf conversion is
+quite time-consuming when large graphics files are used in the
+document.]
+
 
 .PP
 \fBCompatibility between options\fR
@@ -906,7 +1078,7 @@ each of these options turns the others off.
 					uses.  After any changes rerun latex
 					the appropriate number of times and
 					remake the postscript file.  If latex
-					encounters an error, latexmk will
+					encounters an error, \fIlatexmk\fR will
 					keep running, watching for
 					source file changes.
 
@@ -914,8 +1086,9 @@ each of these options turns the others off.
 					.pdf, .ps & .bbl files\fR
 
 
-.SH HOW TO CHANGE THE WAY LATEXMK BEHAVES, DEALING WITH PROBLEMS, ETC
+.SH DEALING WITH ERRORS, PROBLEMS, ETC
 
+.PP
 Some possibilities:
 
 a. If you get a strange error, do look carefully at the output that is
@@ -926,23 +1099,32 @@ user to diagnose problems.  \fILatexmk\fR does repeat some messages at
 the end of a run that it thinks would otherwise be easy to miss in the
 middle of other output. 
 
-b. If \fIlatexmk\fR doesn't do things the way you would like, the
-first step in finding out what to do is to look in this documentation
-at the list of command line options and then at the sections on
-configuration/initialization files.  A lot of \fIlatexmk\fR's behavior
-is configurable to deal with particular situations.  (But there is a
-lot of reading.)
+b. Generally, remember that \fIlatexmk\fR does its work by running
+other programs.  Your first priority in dealing with errors should be
+to examine what went wrong with the individual programs.  Then you
+need to correct the causes of errors in the runs of these programs.
+(Often these come from errors in the source document, but they could
+also be about missing LaTeX packages, etc.)
 
-c. Further tricks can involve replacing the standard commands that
-\fIlatexmk\fR by other commands or scripts.
+c. If \fIlatexmk\fR doesn't run the programs the way you would like,
+then you need to look in this documentation at the list of command
+line options and then at the sections on configuration/initialization
+files.  A lot of \fIlatexmk\fR's behavior is configurable to deal with
+particular situations.  (But there is a lot of reading!)
 
-d. For possible examples of code for use in an RC file, see the
+\fIThe remainder of these notes consists of ideas for dealing with more
+difficult situations.\fR
+
+d. Further tricks can involve replacing the standard commands that
+\fIlatexmk\fR runs by other commands or scripts.
+
+e. For possible examples of code for use in an RC file, see the
 directory example_rcfiles in the distribution of \fIlatexmk\fR (e.g.,
-at http://www.ctan.org/tex-archive/support/latexmk/example_rcfiles).
+at http://mirror.ctan.org/support/latexmk/example_rcfiles).
 Even if these examples don't do what you want, they may provide
 suitable inspiration.
 
-e. There's a useful trick that can be used when you are \fIlualatex\fR
+f. There's a useful trick that can be used when you use \fIlualatex\fR
 instead of \fIpdflatex\fR (and in some related situations).  The
 problem is that \fIlatexmk\fR won't notice a dependency on a file,
 bar.baz say, that is input by the lua code in your document instead of
@@ -960,13 +1142,15 @@ implying that the file bar.baz was read.  (At present I don't know a
 way of doing this automatically.)  Of course, if the file has a
 different name, change bar.baz to the name of your file.
 
-f. Look on tex.stackexchange, i.e., at
+g. See also the section \fBADVANCED CONFIGURATION: Some extra resources\fR.
+
+h. Look on tex.stackexchange, i.e., at
 http://tex.stackexchange.com/questions/tagged/latexmk  Someone may
 have already solved your problem.
 
-g. Ask a question at tex.stackexchange.com.
+i. Ask a question at tex.stackexchange.com.
 
-h. Or ask me (the author of \fIlatexmk\fR).  My e-mail is at the end
+j. Or ask me (the author of \fIlatexmk\fR).  My e-mail is at the end
 of this documentation.
 
 
@@ -981,29 +1165,49 @@ system RC file, in the following order, and reads the first it finds:
    "/opt/local/share/latexmk/LatexMk",
    "/usr/local/share/latexmk/LatexMk",
    "/usr/local/lib/latexmk/LatexMk".
-   On a MS-WINDOWS system it looks for "C:\\latexmk\\LatexMk".
+   On a MS-Windows system it looks for "C:\\latexmk\\LatexMk".
    On a cygwin system (i.e., a MS-Windows system in which Perl is
-that of cygwin), \fIlatexmk\fR reads for the first it finds of
+that of cygwin), \fIlatexmk\fR reads the first it finds of
    "/cygdrive/c/latexmk/LatexMk",
    "/opt/local/share/latexmk/LatexMk",
    "/usr/local/share/latexmk/LatexMk",
    "/usr/local/lib/latexmk/LatexMk".
-   In addition, it then tries the same set of locations, but with the
+   
+In addition, it then tries the same set of locations, but with the
 file name replaced "LatexMk" replaced by "latexmkrc". 
 .PP
-2) The user's RC file, "$HOME/.latexmkrc", if it exists.  Here $HOME
+2) The user's RC file, if it exists.  This can be in one of two
+places.  The traditional one is ".latexmkrc" in the user's home
+directory.  The other possibility is "latexmk/latexmkrc" in the user's
+XDG configuration home directory.  The actual file read is the first
+of "$XDG_CONFIG_HOME/latexmk/latexmkrc" or "$HOME/.latexmkrc" which
+exists.  (See
+https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+for details on the XDG Base Directory Specification.)
+
+Here $HOME
 is the user's home directory.  [\fILatexmk\fR determines the user's
 home directory as follows:  It is the value of the environment variable
 HOME, if this variable exists, which normally is the case on UNIX-like
-systems (including LINUX and OS-X).  Otherwise the environment
+systems (including Linux and OS-X).  Otherwise the environment
 variable USERPROFILE is used, if it exists, which normally is the case
-on MS-Windows systems. Otherwise a blank string is used instead of $HOME.]
+on MS-Windows systems. Otherwise a blank string is used instead of
+$HOME, in which case \fIlatexmk\fR does not look for an RC file in
+it.]
+
+$XDG_CONFIG_HOME is the value of the environment variable
+XDG_CONFIG_HOME if it exists.  If this environment variable does not
+exist, but $HOME is non-blank, then $XDG_CONFIG_HOME is set to the
+default value of $HOME/.config.  Otherwise $XDG_CONFIG_HOME is blank,
+and \fIlatexmk\fR does not look for an RC file under it.
+
 .PP
 3) The RC file in the current working directory.  This file can be
 named either "latexmkrc" or ".latexmkrc", and the first of these to be
 found is used, if any.
 .PP
-4) Any RC file(s) specified on the command line with the \fB-r\fR option.
+4) Any RC file(s) specified on the command line with the \fB-r\fR
+option.
 .PP
 Each RC file is a sequence of \fIPerl\fR commands.  Naturally, a user can use
 this in creative ways.  But for most purposes, one simply uses a
@@ -1022,8 +1226,8 @@ overridden by later options on the command line.  There is also the
 
 \fI
 For possible examples of code for in an RC file, see the directory
-example_rcfiles in the distribution of latexmk (e.g., at
-http://www.ctan.org/tex-archive/support/latexmk/example_rcfiles).
+example_rcfiles in the distribution of \fIlatexmk\fR (e.g., at
+http://mirror.ctan.org/support/latexmk/example_rcfiles).
 \fR
 
 .SH HOW TO SET VARIABLES IN INITIALIZATION FILES
@@ -1068,6 +1272,8 @@ Some of the variables set the commands that \fIlatexmk\fR uses for
 carrying out its work, for example to generate a dvi file from a tex
 file or to view a postscript file.  This section describes some
 important features of how the commands are specified.
+(Note\ that some of the possibilities listed here do not apply to
+the \fI$kpsewhich\fR variable; see its documentation.)
 
 \fBPlaceholders\fR:  Supposed you wanted \fIlatexmk\fR to use the
 command elatex in place of the regular latex command, and suppose
@@ -1080,8 +1286,9 @@ The two items starting with the % character are placeholders.  These
 are substituted by appropriate values before the command is run.  Thus
 %S will be replaced by the source file that elatex will be applied to,
 and %O will be replaced by any options that \fIlatexmk\fR has decided
-to use for this command.  (E.g., if you used the -silent option it
-would replace %O by "-interaction=batchmode".)
+to use for this command.  (E.g., if you used the \fB-silent\fR option in the
+invocation of \fIlatexmk\fR,  it results in the replacement of %O by
+"-interaction=batchmode".) 
 
 The available placeholders are:
 .TP
@@ -1112,7 +1319,10 @@ Name of directory for auxiliary output files (see the configuration
 variable \fI$aux_dir\fR).  A directory separation character ('/') is
 appended if \fI$aux_dir\fR is non-empty and does not end in a suitable
 character, with suitable characters being those appropriate to UNIX
-and MS-Windows, i.e., ':', '/' and '\\'. 
+and MS-Windows, i.e., ':', '/' and '\\'.   Note that if after
+initialization,  \fI$out_dir\fR is set, but \fI$aux_dir\fR is not set
+(i.e., it is blank), then \fIlatexmk\fR sets \fI$aux_dir\fR to the
+same value \fI$out_dir\fR. 
 .TP
 .B %Z
 Name of directory for output files (see the configuration
@@ -1122,17 +1332,13 @@ character, with suitable characters being those appropriate to UNIX
 and MS-Windows, i.e., ':', '/' and '\\'. 
 .PP
 If for some reason you need a literal % character in your string not
-subject to the above rules, use a pair of these characters.  Thus with
-the command specification $ps_previewer = 'latex -ad=%%Sfile.ad %S',
-the %%S will become %S when the command is executed, but the %S will
-be replaced by the source filename, which in this case would be the
-name of a postscript file to be viewed. 
+subject to the above rules, use "%%".
 .PP
 Appropriate quoting will be applied to the filename substitutions, so
 you mustn't supply them yourself even if the names of your files have
 spaces in them.  (But if your TeX filenames have spaces in them,
 beware that many versions of the TeX program cannot correctly handle
-filenames containing spaces.)  In case latexmk's quoting does not work
+filenames containing spaces.)  In case \fIlatexmk\fR's quoting does not work
 correctly on your system, you can turn it off -- see the documentation
 for the variable \fI$quote_filenames\fR.
 .PP
@@ -1173,7 +1379,7 @@ command, you need to precede the command name with "start ", as in
 This will be translated to whatever is appropriate for your operating
 system.
 
-Notes: (1) In some circumstances, \fIlatex\fR will always run a
+Notes: (1) In some circumstances, \fIlatexmk\fR will always run a
 command detached.  This is the case for a previewer in preview
 continuous mode, since otherwise previewing continuously makes no
 sense.  (2) This precludes the possibility of running a command named
@@ -1193,14 +1399,15 @@ should be enclosed in double quotes, as in
      $pdf_previewer = 'start "c:/Program Files/SumatraPDF (x86)/SumatraPDF.exe" %O %S';
 
 .PP
-(Note about the above example: Forward slashes are equivalent to
-backslashes in filenames under MS-Windows, provided that the filename
+(Note about the above example: Under MS-Windows forward slashes are
+equivalent to backslashes in a filename under almost all circumstances,
+provided that the filename 
 is inside double quotes.  It is easier to use forward slashes in
 examples like the one above, since then one does not have to worry
 about the rules for dealing with forward slashes in strings in the
 Perl language.)
 
-\fBCommand names under Cygwin\fR: If latexmk is executed by Cygwin's
+\fBCommand names under Cygwin\fR: If \fIlatexmk\fR is executed by Cygwin's
 Perl, \fI be particularly certain that pathnames in commands have
 \fBforward\fI slashes\fR not the usual backslashes for the separator
 of pathname components.  See the above examples.  Backslashes often
@@ -1214,7 +1421,7 @@ command 'start' by itself:
 .PP
      $dvi_previewer = 'start %S';
 .PP
-Under recent versions of MS-Windows, this will cause to be run
+Under MS-Windows, this will cause to be run
 whatever program the system has associated with dvi files.  (The same
 applies for a postscript viewer and a pdf viewer.)  But note that this
 trick is not always suitable for the pdf previwer, if your system has
@@ -1250,6 +1457,10 @@ specification starting with "internal", as in
          return system 'latex', @args;
      }
 .PP
+For some of the more exotic possibilities that then become available,
+see the section "ADVANCED CONFIGURATION: Some extra resources and
+advanced tricks". Also see some of the examples in the directory
+\fIexample_rcfiles\fR in the \fIlatexmk\fR distribution.
 
 \fBAdvanced tricks\fR: Normally one specifies a single command for the
 commands invoked by \fIlatexmk\fR.  Naturally, if there is some
@@ -1258,9 +1469,12 @@ situation, you can write a script (or batch file) to do the
 processing, and then configure \fIlatexmk\fR to use your script in
 place of the standard program.
 
+You can also use a Perl subroutine instead of a script -- see above.
+This is generally the most flexible and portable solution.
+
 It is also possible to configure \fIlatexmk\fR to run multiple
-commands.  For example, if when running pdflatex to generate a pdf
-file from a tex file you need to run another program after pdflatex to
+commands.  For example, if when running \fIpdflatex\fR to generate a pdf
+file from a tex file you need to run another program after \fIpdflatex\fR to
 perform some extra processing, you could do something like:
 
      $pdflatex = 'pdflatex --shell-escape %O %S; pst2pdf_for_latexmk %B';
@@ -1287,18 +1501,44 @@ Default values are indicated in brackets.
 .B $always_view_file_via_temporary [0]
 Whether ps and pdf files are initially to be made in a temporary
 directory and then moved to the final location.  (This applies to
-dvips, dvipdf, and ps2pdf operations, and the filtering operators on
-dvi and ps files.  It does not apply to pdflatex, unfortunately.)
+\fIdvips\fR, \fIdvipdf\fR, and \fIps2pdf\fR operations, and the
+filtering operators on dvi and ps files.  It does not apply to
+\fIpdflatex\fR, unfortunately, since \fIpdflatex\fR provides no way of
+specifying a chosen name for the output file.)
 
 This use of a temporary file solves a problem that the making of these
-files can occupy a substantial time.  If a viewer sees that the file
-has changed, it reads the new file, and this can cause havoc if the
-program writing the file has not yet finished its work.
+files can occupy a substantial time.  If a viewer (notably \fIgv\fR)
+sees that the file has changed, it may read the new file before
+the program writing the file has not yet finished its work, which  can
+cause havoc.
 
 See the \fI$pvc_view_file_via_temporary\fR variable for a setting that
 applies only if preview-continuous mode (-pvc option) is used.  See
 \fI$tmpdir\fR for the setting of the directory where the temporary
 file is created. 
+
+.TP
+.B $analyze_input_log_always [1]
+
+After a run of latex (etc), always analyze .log for input files in the
+<...> and (...) constructions.  Otherwise, only do the analysis when
+fls file doesn't exist or is out of date.
+
+Under normal circumstances, the data in the fls file is reliable, and
+the test of the log file gets lots of false positives; usually
+$analyze_input_log_always is best set to zero.  But the test of the
+log file is needed at least in the following situation: When a user
+needs to persuade latexmk that a certain file is a source file, and
+latexmk doesn't otherwise find it.  Then the user can write code that
+causes a line with (...) to be written to log file.  One important
+case is for lualatex, which doesn't always generate lines in the .fls
+file for input lua files.  (The situation with lualatex is HIGHLY
+version dependent, e.g., there was a big change between TeXLive 2016
+and TeXLive 2017.)
+
+To keep backward compatibility with older versions
+of latexmk, the default is to set
+$analyze_input_log_always to 1.
 
 .TP
 .B $auto_rc_use [1]
@@ -1311,7 +1551,6 @@ automatic reading of the later RC files.
 
 This variable does not affect the reading of RC files specified on the
 command line by the \fB-r\fR option.
-
 .TP
 .B $aux_dir [""]
 The directory in which auxiliary files (aux, log, etc) are to be
@@ -1321,13 +1560,16 @@ which is the directory to which general output files are to be
 written. 
 
 \fBImportant note\fR:  The effect of \fI$aux_dir\fR, if different from
-\fI$out_dir\fR, is achieved by giving (pdf)latex the
+\fI$out_dir\fR, is achieved by giving \fI(pdf)latex\fR the
 \fB-aux-directory\fR.  Currently (Dec. 2011 and later) this only works on the
-MiKTeX version of (pdf)latex.
+MiKTeX version of \fI(pdf)latex\fR.
 
 See also the documentation of \fI$out_dir\fR for some complications on
 what directory names are suitable.
 
+If you also use the \fB-cd\fR option, and \fI$out_dir\fR (or \fI$aux_dir\fR) contains a
+relative path, then the path is interpreted relative to the document
+directory.
 .TP
 .B $banner [0]
 If nonzero, the banner message is printed across each page when
@@ -1335,7 +1577,7 @@ converting the dvi file to postscript.  Without modifying the variable
 \fI$banner_message\fR, this is equivalent to specifying the \fB-d\fR
 option.
 
-Note that if \fB$banner\fR is nonzero, the \fB$postscript_mode\fR is
+Note that if \fI$banner\fR is nonzero, the \fI$postscript_mode\fR is
 assumed and the postscript file is always generated, even if it is newer
 than the dvi file.
 .TP
@@ -1367,7 +1609,7 @@ the current directory is set.  The format of the directory names
 depends on your operating system, of course.  Examples for setting
 this variable are:
 
-        @BIBINPUTS = ( ".", "C:\\bibfiles" );
+        @BIBINPUTS = ( ".", "C:\\\\bibfiles" );
         @BIBINPUTS = ( ".", "\\\\server\\bibfiles" );
         @BIBINPUTS = ( ".", "C:/bibfiles" );
         @BIBINPUTS = ( ".", "//server/bibfiles" );
@@ -1389,28 +1631,42 @@ the kpsewhich command, you may need to set the variable \fI@BIBINPUTS\fR.
 The biber processing program.
 .TP
 .B $biber_silent_switch ["--onlylog"]
-\fBSwitch(es)\fR for the biber processing program when silent mode is on.
+Switch(es) for the biber processing program when silent mode is on.
 .TP
 .B $bibtex ["bibtex %O %S"]
 The BibTeX processing program.
 .TP
 .B $bibtex_silent_switch ["-terse"]
-\fBSwitch(es)\fR for the BibTeX processing program when silent mode is on.
+Switch(es) for the BibTeX processing program when silent mode is on.
 .TP
 .B $bibtex_use [1]
-Under what conditions to run BibTeX or biber.  When \fIlatexmk\fR discovers
-from the log file that one (or more) BibTeX/biber-generated bibliographies
-are used, it can run BibTeX or biber whenever it appears necessary to
-regenerate the bbl file(s) from their source bib database file(s).  
-
+Under what conditions to run \fIbibtex\fR or \fIbiber\fR.  When
+\fIlatexmk\fR discovers
+from the log file that one (or more)
+\fIbibtex\fR/\fIbiber\fR-generated bibliographies 
+are used, it can run \fIbibtex\fR or \fIbiber\fR whenever it appears
+necessary to regenerate the bbl file(s) from their source bib database
+file(s).
 But sometimes, the bib file(s) are not available (e.g., for a document
 obtained from an external archive), but the bbl files are provided.
-In that case use of BibTeX or biber will result in incorrect
-overwriting of the precious bbl files.  The variable \fI$bibtex_use\fR
-controls whether this happens.  Its possible values are: 0: never use
-BibTeX or biber.  1: only use BibTeX or biber if the bib files exist.
-2: run BibTeX or biber whenever it appears necessary to update the bbl
-files, without testing for the existence of the bib files.
+In that case use of \fIbibtex\fR or \fIbiber\fR will result in
+incorrect overwriting of the precious bbl files.  The variable
+\fI$bibtex_use\fR controls whether this happens, and also controls
+whether or not .bbl files are deleted in a cleanup operation.
+
+The possible values of \fI$bibtex_use\fR are:
+  0: never use BibTeX or biber; 
+never delete .bbl files in a cleanup.
+  1: only use \fIbibtex\fR or \fIbiber\fR if the bib files exist;
+never delete .bbl files in a cleanup.
+  1.5: only use \fIbibtex\fR or \fIbiber\fR if the bib files exist;
+conditionally delete .bbl files in a cleanup (i.e., delete them only
+when the bib files all exist). 
+  2: run \fIbibtex\fR or \fIbiber\fR whenever it appears necessary to
+update the bbl 
+files, without testing for the existence of the bib files;
+always delete .bbl files in a cleanup.
+ 
 .TP
 .B $cleanup_includes_cusdep_generated [0]
 If nonzero, specifies that cleanup also deletes files that are
@@ -1452,7 +1708,6 @@ in an initialization file will imply that when a clean-up operation is
 specified, not only is the standard set of files deleted, but also
 files of the form FOO.out, FOO-blx.bib, and %R-figures*.log, where FOO
 stands for the basename of the file being processed (as in FOO.tex).
-
 .TP
 .B $clean_full_ext [""]
 Extra extensions of files for \fIlatexmk\fR to remove when the \fB-C\fR
@@ -1462,25 +1717,35 @@ etc files are to be cleaned-up.
 More general patterns are allowed, as for \fI$clean_ext\fR.
 
 .TP
-.B $compiling_cmd [undefined], $failure_cmd [undefined], $success_cmd [undefined]
+.B $compiling_cmd [""], $failure_cmd [""], $warning_cmd [""], $success_cmd [""]
 
 These variables specify commands that are executed at certain points
 of compilations during preview-continuous mode.  One motivation for
-their existance is to allow convenient visual indications of
+their existance is to allow very useful convenient visual indications of
 compilation status even when the window receiving the screen output of
-the compilation is hidden.
+the compilation is hidden. 
 
 The commands are executed at the following points:
-$compiling_cmd at the start of compilation, $success_cmd at the end of
-a successful compilation, and $failure_cmd at the end of an
-unsuccessful compilation.  If any of above variables is undefined (the
-default situation) or blank, then the corresponding command is not
-executed.  
+\fI$compiling_cmd\fR at the start of compilation, \fI$success_cmd\fR
+at the end of a completely successful compilation, \fI$failure_cmd\fR
+at the end of an unsuccessful compilation, \fI$warning_cmd\fR at the
+of an otherwise successful compilation that gives warnings about
+undefined citations or references or about multiply defined
+references. If any of above variables is undefined or blank (the
+default situation), then the corresponding command is not executed.
 
-An example of a typical setting of these variables is as follows
+However, when \fI$warning_cmd\fR is not set, then in the case of a
+compilation with warnings about references or citations, but with no
+other error, one or other of \fI$success_cmd\fR or \fI$failure_cmd\fR
+is used (if it is set) according to the setting of
+\fI$warnings_as_errors\fR.
+
+An example of a simple setting of these variables is as follows
 
     $compiling_cmd = "xdotool search --name \\"%D\\" set_window --name \\"%D compiling\\"";
     $success_cmd   = "xdotool search --name \\"%D\\" set_window --name \\"%D OK\\"";
+    $warning_cmd   = "xdotool search --name \\"%D\\" ".
+                     "set_window --name \\"%D CITE/REF ISSUE\\"";
     $failure_cmd   = "xdotool search --name \\"%D\\" set_window --name \\"%D FAILURE\\"";
 
 These assume that the program \fIxdotool\fR is installed, that the
@@ -1498,20 +1763,56 @@ can useful, since the user does not have to keep shifting attention to
 the (possibly hidden) compilation window to know the status of the
 compilation.
 
+More complicated situations can best be handled by defining a Perl
+subroutine to invoke the necessary commands, and using the "internal"
+keyword in the definitions to get the subroutine to be invoked.  (See
+the section Format of Command Specifications for how to do this.)
+
+Naturally, the above settings that invoke the \fIxdotool\fR program
+are only applicable when the X-Window system is used for the relevant
+window(s).  For other cases, you will have to find what software
+solutions are available.  
+
 .TP
 .B @cus_dep_list [()]
 Custom dependency list -- see section on "Custom Dependencies".
+.TP
+.B @default_excluded_files [()]
+When \fIlatexmk\fR is invoked with no files specified on the command
+line, then, by default, it will process all files in the current
+directory with the extension .tex.  (In general, it will process the
+files specified in the \fI@default_files\fR variable.)
 
+But sometimes you want to exclude particular files from this default
+list.  In that case you can specify the excluded files in the array
+\fI@default_excluded_files\fR.  For example if you wanted to process
+all .tex files with the exception of common.tex, which is a not a
+standard alone LaTeX file but a file input by some or all of the
+others, you could do
+
+     @default_files = ("*.tex");
+
+     @default_excluded_files = ("common.tex");
+
+If you have a variable or large number of files to be processed, this
+method saves you from having to list them in detail in
+\fI@default_files\fR and having to update the list every time you
+change the set of files to be processed.
+
+Notes: 1. This variable has no effect except when no files are
+specified on the \fIlatexmk\fR command line.  2. Wildcards are allowed
+in \fI@default_excluded_files\fR.
 .TP
 .B @default_files [("*.tex")]
 Default list of files to be processed.  
 
-Normally, if no filenames are specified on the command line,
+If no filenames are specified on the command line,
 \fIlatexmk\fR processes all tex files specified in the \fI@default_files\fR
 variable, which by default is set to all tex files ("*.tex") in the
 current directory.  This is a convenience: just run \fIlatexmk\fR and
 it will process an appropriate set of files.  But sometimes you want
-only some of these files to be processed.  In this case you set the
+only some of these files to be processed.  In this case you can list
+the files to be processed by setting
 \fI@default_files\fR in an initialization file
 (e.g., the file "latexmkrc" in the current directory).  Then if no
 files are specified on the command line then the files you specify by
@@ -1529,6 +1830,9 @@ Note that more than file may be given, and that the default extension
 is ".tex".  Wild cards are allowed.  The parentheses are because
 \fI@default_files\fR is an array variable, i.e., a sequence of
 filename specifications is possible.
+
+If you want \fIlatexmk\fR to process all .tex files with a few
+exceptions, see the \fI@default_excluded_files\fR array variable.
 .TP
 .B $dependents_phony [0]
 If a list of dependencies is output, this variable determines whether
@@ -1567,9 +1871,9 @@ is a prerequisite, then $dvi_mode will be set to 1.
 .TP
 .B $dvi_previewer ["start xdvi %O %S" under UNIX]
 The command to invoke a dvi-previewer.
-[Default is "start" under MS-WINDOWS; under more recent versions of
-Windows, this will cause to be run whatever command the system has
-associated with .dvi files.]
+[Under MS-Windows the default is "start"; then \fIlatexmk\fR arranges to
+use the MS-Windows \fIstart\fR program, which will cause to be run
+whatever command the system has associated with .dvi files.]
 
 \fBImportant note\fR: Normally you will want to have a previewer run
 detached, so that \fIlatexmk\fR doesn't wait for the previewer to
@@ -1580,13 +1884,12 @@ appropriate to the operating system).  But sometimes letting
 \fIlatexmk\fR do the detaching is not appropriate (for a variety of
 non-trivial reasons), so you should put the "start " bit in
 yourself, whenever it is needed.
-
 .TP
 .B $dvi_previewer_landscape ["start xdvi %O %S"]
 The command to invoke a dvi-previewer in landscape mode.
-[Default is "start" under MS-WINDOWS; under more recent versions of
-Windows, this will cause to be run whatever command the system has
-associated with .dvi files.] 
+[Under MS-Windows the default is "start"; then \fIlatexmk\fR arranges to
+use the MS-Windows \fIstart\fR program, which will cause to be run
+whatever command the system has associated with .dvi files.]
 .TP
 .B $dvipdf ["dvipdf %O %S %D"]
 Command to convert dvi to pdf file.  A common reconfiguration is to
@@ -1605,24 +1908,25 @@ Switch(es) for dvipdf program when silent mode is on.
 N.B. The standard dvipdf program runs silently, so adding the silent
 switch has no effect, but is actually innocuous.  But if an
 alternative program is used, e.g., dvipdfmx, then the silent switch
-has an effect.  The default setting is correct for dvipdfm and dvipdfmx.
+has an effect.  The default setting is correct for \fIdvipdfm\fR and
+\fIdvipdfmx\fR.
 .TP
 .B $dvips ["dvips %O -o %D %S"]
 The program to used as a filter to convert a .dvi file to a .ps file.  
 If pdf is going to be generated from pdf, then the value of the
-$dvips_pdf_switch -- see below -- will be included in the options
-substituted for "%O".
+\fI$dvips_pdf_switch\fR variable -- see below -- will be included in
+the options substituted for "%O".
 .TP
 .B $dvips_landscape ["dvips -tlandscape %O -o %D %S"]
 The program to used as a filter to convert a .dvi file to a .ps file
 in landscape mode.
 .TP
 .B $dvips_pdf_switch ["-P pdf"]
-Switch(es) for dvips program when pdf file is to be generated from
-ps file. 
+Switch(es) for \fIdvips\fR program when pdf file is to be generated
+from ps file. 
 .TP
 .B $dvips_silent_switch ["-q"]
-Switch(es) for dvips program when silent mode is on.
+Switch(es) for \fIdvips\fR program when silent mode is on.
 .TP
 .B $dvi_update_command [""]
 When the dvi previewer is set to be updated by running a command, this
@@ -1640,9 +1944,9 @@ the \fI$ps_update_method\fR variables.
 viewer's window or may mean a more serious action.
     2 => Send the signal, whose number is in the variable
 \fI$dvi_update_signal\fR.  The default value under UNIX is
-suitable for xdvi. 
+suitable for \fIxdvi\fR. 
     3 => Viewer cannot do an update, because it locks the file. (As with
-acroread under MS-Windows.)
+\fIacroread\fR under MS-Windows.)
     4 => run a command to do the update.  The command is specified by
 the variable \fI$dvi_update_command\fR.   
 
@@ -1653,15 +1957,68 @@ example of updating by command.
 The number of the signal that is sent to the dvi viewer when it is
 updated by sending a signal -- see the information on the variable
 \fI$dvi_update_method\fR.  The default value is the one appropriate
-for xdvi on a UNIX system.
+for \fIxdvi\fR on a UNIX system.
 .TP
 .B $failure_cmd [undefined]
-See the documentation for $compiling_cmd.
+See the documentation for \fI$compiling_cmd\fR.
 .TP
 .B $fdb_ext ["fdb_latexmk"]
 The extension of the file which \fIlatexmk\fR generates to contain a
 database of information on source files.  You will not normally need
 to change this.
+.TP
+.B $filetime_causality_threshold [5]; $filetime_offset_report_threshold [30]. \fR(Units of seconds.)
+
+These variables control how \fIlatexmk\fR deals with the following
+issue, which can affect the use of files that are on a remote
+filesystem (network share) instead of being on a file system local to
+the computer running \fIlatexmk\fR.  Almost users will not have to
+worry about these settings, and can ignore the following explanation.
+
+In almost all situations, \fIlatexmk\fR does not need to use the time
+stamps of the files it works with.  However, there are a couple of
+situations when it needs to know whether a certain file was created in
+the current run of a program (e.g., \fI(pdf)latex\fR) or is a leftover
+file from a previous run. It does this by comparing the modification
+time of the file with the system time just before the program was
+started. If the modification time is earlier than when the program was
+started, the file is a leftover file, which \fIlatexmk\fR treats as if
+it were not created.  If the filetime is at least the program start
+time, then it can be assumed that the file was created in the current
+run.
+
+Unfortunately, this test can fail if the file is on a remote system,
+since its system time is not necessarily synchronized with that of the
+local system; the timestamps on the remote files are set by the remote
+system, not the local system.  Generally, modern operating systems
+regularly synchronize their time with a server, so the
+non-synchronization is mostly small (a second or so, or a few
+seconds).  But even a small difference can mess up \fIlatexmk\fR's
+test.
+
+\fILatexmk\fR measures the time difference between the time on the two
+systems and compensates for this.  But the measurement (in a
+system-independent way) is only accurate to a second or two.  So
+\fIlatexmk\fR allows for a threshold on the difference between file
+and system time before it concludes that a file is a leftover file
+from a previous run. The configuration variable
+\fI$filetime_causality_theshhold\fR, which in units of seconds,
+specifies this threshold.  Luckily high precision is not needed.  The
+previous run is normally the previous run in a human run-edit-run
+cycle, and is at least many seconds back.  A few seconds is therefore
+appropriate for the threshold, \fI$filetime_causality_theshhold\fR; it
+should be non-negative always, and should be bigger than 2 if a remote
+filesystem or network share is used.
+
+If the difference in system times on the two systems is large, it
+normally indicates that at least one of the systems is misconfigured.
+The variable \fI$filetime_offset_report_threshold\fR specifies the
+smallest size of the difference (or offset) in seconds between the
+times of the local and remote system beyond which the offset is
+reported.  This is reported at the point in the \fIlatexmk\fR's
+progress that it measures the offset. The report is made if silent
+mode is used and diagnostic mode is not on.
+
 .TP
 .B $force_mode [0]
 If nonzero, continue processing past minor \fIlatex\fR errors 
@@ -1745,8 +2102,8 @@ to be ignored.
 
 It may happen that a pattern to be ignored is specified in, for
 example, in a system or user initialization file, and you wish to
-remove this in a file read later.  To do this, you use Perl's delete
-function, e.g.,
+remove this in a file that is read later.  To do this, you use Perl's
+delete function, e.g.,
 
     delete $hash_calc_ignore_pattern{'eps'};
 
@@ -1754,15 +2111,33 @@ function, e.g.,
 .B $kpsewhich ["kpsewhich %S"]
 The program called to locate a source file when the name alone is not
 sufficient.  Most filenames used by \fIlatexmk\fR have sufficient path
-information to be found directly.  But sometimes, notably 
-when .bib files are found from the log file of a bibtex or biber run,
-the name of 
-the file, but not its path is known.  The program specified by
-$kpsewhich is used to find it.  
+information to be found directly.  But sometimes, notably when a .bib
+or a .bst file is found from the log file of a \fIbibtex\fR or
+\fIbiber\fR run, only the base name of the file is known, but not its
+path. The program specified by \fI$kpsewhich\fR is used to find it.
+
+(\fIFor advanced users:\fR Because of the different way in which
+\fIlatexmk\fR uses the command specified in \fI$kpsewhich\fR, some of
+the possibilities listed in the FORMAT OF COMMAND SPECIFICATIONS do
+not apply.  The \fIinternal\fR and \fIstart\fR keywords are not
+available. A simple command specification with possible options and
+then "%S" is all that is guaranteed to work.  Note that for other
+commands, "%S" is substituted by a single source file. In contrast,
+for \fI$kpsewhich\fR, "%S" may be substituted by a long list of
+space-separated filenames, each of which is quoted.  The result on
+STDOUT of running the command is then piped to \fIlatexmk\fR.)
 
 See also the \fI@BIBINPUTS\fR variable for another way that \fIlatexmk\fR
 also uses to try to locate files; it applies only in the case of .bib
 files.
+.TP
+.B $kpsewhich_show [0]
+Whether to show diagnostics about invocations of \fIkpsewhich\fR: the
+command line use to invoke it and the results.  These diagnostics are
+shown if \fI$kpsewhich_show\fR is non-zero or if diagnostics mode is
+on.  (But in the second case, lots of other diagnostics are also
+shown.)  Without these diagnostics there is nothing visible in
+\fIlatexmk\fR's screen output about invocations of \fIkpsewhich\fR.
 .TP
 .B $landscape_mode [0]
 If nonzero, run in landscape mode, using the landscape mode previewers and
@@ -1777,13 +2152,13 @@ but also specify options to the program.  E.g.,
 	$latex = "latex --src-specials";
 .TP
 .B %latex_input_extensions
-This variable specifies the extensions tried by latexmk when it finds
+This variable specifies the extensions tried by \fIlatexmk\fR when it finds
 that a LaTeX run resulted in an error that a file has not been found,
 and the file is given without an extension.  This typically happens when
 LaTeX commands of the form \\input{file} or \\includegraphics{figure},
 when the relevant source file does not exist.
 
-In this situation, latexmk searches for custom dependencies to make
+In this situation, \fIlatexmk\fR searches for custom dependencies to make
 the missing file(s), but restricts it to the extensions specified by
 the variable %latex_input_extensions.  The default extensions 
 are 'tex' and 'eps'.
@@ -1803,11 +2178,10 @@ removes the extension 'tex' from latex_input_extensions
 
 add the extension 'asdf to latex_input_extensions.  (Naturally with
 such an extension, you should have made an appropriate custom
-dependency for latexmk, and should also have done the appropriate
+dependency for \fIlatexmk\fR, and should also have done the appropriate
 programming in the LaTeX source file to enable the file to be read.
 The standard extensions are handled by LaTeX and its graphics/graphicx
-packages. 
-
+packages.)
 .TP
 .B $latex_silent_switch ["-interaction=batchmode"]
 Switch(es) for the LaTeX processing program when silent mode is on.
@@ -1819,16 +2193,16 @@ initialization file
   $latex_silent_switch = "-interaction=batchmode -c-style-errors";
 
 .TP
-.B $lpr ["lpr  %O %S" under UNIX/LINUX, \(dqNONE lpr\(dq under MS-WINDOWS]
+.B $lpr ["lpr  %O %S" under UNIX/Linux, \(dqNONE lpr\(dq under MS-Windows]
 The command to print postscript files.
 
-Under MS-Windows (unlike UNIX/LINUX), there is no standard program for
+Under MS-Windows (unlike UNIX/Linux), there is no standard program for
 printing files.  But there are ways you can do it.  For example, if
-you have gsview installed, you could use it with the option "/p":
+you have \fIgsview\fR installed, you could use it with the option "/p":
 
     $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
 
-If gsview is installed in a different directory, you will need to make
+If \fIgsview\fR is installed in a different directory, you will need to make
 the appropriate change.  Note the combination of single and double
 quotes around the name.  The single quotes specify that this is a
 string to be assigned to the configuration variable \fI$lpr\fR.  The double
@@ -1843,20 +2217,44 @@ The printing program to print dvi files.
 .B $lpr_pdf ["NONE lpr_pdf"]
 The printing program to print pdf files.
 
-Under MS-Windows you could set this to use gsview, if it is installed,
+Under MS-Windows you could set this to use \fIgsview\fR, if it is installed,
 e.g.,
 
     $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
 
-If gsview is installed in a different directory, you will need to make
+If \fIgsview\fR is installed in a different directory, you will need to make
 the appropriate change.  Note the double quotes around the name: this
 is necessary because one part of the command name ("Program Files")
 contains a space which would otherwise be misinterpreted. 
+.TP
+.B $lualatex ["lualatex %O %S"]
+The LaTeX processing program that is to be used when the \fIlualatex\fR
+program is called for (e.g., by the option \fB-lualatex\fR.
+.TP
+.B %lualatex_input_extensions
+This variable specifies the extensions tried by \fIlatexmk\fR when it finds
+that a \fIlualatex\fR run resulted in an error that a file has not been found,
+and the file is given without an extension.  This typically happens when
+LaTeX commands of the form \\input{file} or \\includegraphics{figure},
+when the relevant source file does not exist.
 
+In this situation, \fIlatexmk\fR searches for custom dependencies to make
+the missing file(s), but restricts it to the extensions specified by
+the variable %pdflatex_input_extensions.  The default extensions 
+are 'tex', 'pdf', 'jpg, and 'png'.
+
+See details of the \fI%latex_input_extensions\fR for other information
+that equally applies to \fI%lualatex_input_extensions\fR.
+.TP
+.B $lualatex_silent_switch  ["-interaction=batchmode"]
+Switch(es) for the \fIlualatex\fR program (specified in the variable
+\fI$lualatex\fR) when silent mode is on.
+
+See details of the \fI$latex_silent_switch\fR for other information
+that equally applies to \fI$lualatex_silent_switch\fR.
 .TP
 .B $make ["make"]
 The make processing program.
-
 .TP
 .B $makeindex ["makeindex %O -o %D %S"]
 The index processing program.
@@ -1883,12 +2281,12 @@ character, which is the character used by Unix-like systems.
 
 For many programs under MS-Windows, both "\\" and "/" are acceptable
 as the directory separator character.  But some programs only accept
-"\\".  So for safety \fIlatexmk\fR makes a translation, by default.
+"\\" on the command line.  So for safety \fIlatexmk\fR makes a
+translation, by default.
 It is conceivable that under certain situations this is undesirable,
 so the configuration can be changed.  (A possible example might be
 when some of the software is implemented using Cygwin, which provides
-an Unix-like environment inside MS-Windows.)
-
+a Unix-like environment inside MS-Windows.)
 .TP
 .B $new_viewer_always [0]
 This variable applies to \fIlatexmk\fR \fBonly\fR in
@@ -1898,15 +2296,19 @@ same file, and if one is running will not start a new one.  If
 \fI$new_viewer_always\fR is non-zero, this check will be skipped, and
 \fIlatexmk\fR will behave as if no viewer is running.
 .TP
-
 .B $out_dir [""]
-The directory in which output files are to be written by a run of
+If non-blank, this variable specifies the directory in which output
+files are to be written by a run of 
 (pdf)latex.  See also the variable \fI$aux_dir\fR.  
 
 The effect of this variable (when non-blank) is achieved by using the
 \fB-output-directory\fR option of (pdf)latex.  This exists in the
 usual current (Dec. 2011 and later) implementations of TeX, i.e., MiKTeX and
 TeXLive. But it may not be present in other versions.
+
+If you also use the \fB-cd\fR option, and \fI$out_dir\fR (or \fI$aux_dir\fR) contains a
+relative path, then the path is interpreted relative to the document
+directory.
 
 Commonly, the directory specified for output files is a subdirectory
 of the current working directory.  However, if you specify some other
@@ -1920,101 +2322,70 @@ TeX system that try to prevent malicious or errant TeX documents from
 incorrectly messing with a user's files.  If for \fI$out_dir\fR or
 \fI$aux_dir\fR you really do need to specify an absolute pathname
 (e.g., "/tmp/foo") or a path (e.g., "../output") that includes a
-higher-level directory, then you need to disable the security measures
-(and assume any risks).  This can be done by temporarily setting the
-operating system's environment variable openout_any to "a" (as in
+higher-level directory, and you need to use \fImakeindex\fR or
+\fIbibtex\fR, then you need to disable the security measures
+(and assume any risks).  One way of doing this is to temporarily set an
+operating system environment variable openout_any to "a" (as in
 "all"), to override the default "paranoid" setting.
 .TP
-
 .B $pdf_mode [0]
 If zero, do NOT generate a pdf version of the document.
-If equal to 1, generate a pdf version of the document using pdflatex.  
+If equal to 1, generate a pdf version of the document using \fIpdflatex\fR,
+using the command specified by the \fI$pdflatex\fR variable.  
 If equal to 2, generate a pdf version of the document from the ps
 file, by using the command specified by the \fI$ps2pdf\fR variable.  
 If equal to 3, generate a pdf version of the document from the dvi
 file, by using the command specified by the \fI$dvipdf\fR variable.  
+If equal to 4, generate a pdf version of the document using \fIlualatex\fR,
+using the command specified by the \fI$lualatex\fR variable.
+If equal to 5, generate a pdf version (and an xdv version) of the
+document using \fIxelatex\fR, using the commands specified by the
+\fI$xelatex\fR and \fIxdvipdfmx\fR variables.
 
-Equivalent to the \fB-pdf-\fR, \fB-pdf\fR, \fB-pdfdvi\fR, 
-\fB-pdfps\fR options.
+In \fI$pdf_mode\fR=2, it is ensured that dvi and ps files are also made.
+In \fI$pdf_mode\fR=3, it is ensured that a dvi file is also made.
 .TP
-
 .B $pdflatex ["pdflatex %O %S"]
 The LaTeX processing program in a version that makes a pdf file instead
 of a dvi file.
 
-An example of the use of this variable is to arrange for 
-\fIlualatex\fR, \fIxelatex\fR or some similar program
-to be used instead of \fIpdflatex\fR.  
-Note that \fIlualatex\fR and \fIxelatex\fR only produce .pdf files
-(and not .dvi), so to use them you will also need to turn on
-production of .pdf files, and to turn off the production of .dvi
-(and .ps) files, either by command line options or by suitable
-settings in a configuration file. Thus to use \fIlualatex\fR, the
-following settings are appropriate:
-
-     $pdflatex = "lualatex %O %S";
-     $pdf_mode = 1; $postscript_mode = $dvi_mode = 0;
-
-To use \fIxelatex\fR, the corresponding settings are:
-
-     $pdflatex = "xelatex %O %S";
-     $pdf_mode = 1; $postscript_mode = $dvi_mode = 0;
-
-Another use of the same variable is to add certain options to the
+An example use of this variable is to add certain options to the
 command line for the program, e.g.,
 
      $pdflatex = "pdflatex --shell-escape %O %S";
 
-
+(In some earlier versions of \fIlatexmk\fR, you needed to use an assignment
+to \fI$pdflatex\fR to allow the use of \fIlualatex\fR or \fIxelatex\fR
+instead of \fIpdflatex\fR.  There are now separate configuration
+variables for the use of \fIlualatex\fR or \fIxelatex\fR.  See
+\fI$lualatex\fR and \fI$xelatex\fR.)
 .TP
 .B %pdflatex_input_extensions
-This variable specifies the extensions tried by latexmk when it finds
-that a pdflatex run resulted in an error that a file has not been found,
+This variable specifies the extensions tried by \fIlatexmk\fR when it finds
+that a \fIpdflatex\fR run resulted in an error that a file has not been found,
 and the file is given without an extension.  This typically happens when
 LaTeX commands of the form \\input{file} or \\includegraphics{figure},
 when the relevant source file does not exist.
 
-In this situation, latexmk searches for custom dependencies to make
+In this situation, \fIlatexmk\fR searches for custom dependencies to make
 the missing file(s), but restricts it to the extensions specified by
 the variable %pdflatex_input_extensions.  The default extensions 
 are 'tex', 'pdf', 'jpg, and 'png'.
 
-(For Perl experts: %pdflatex_input_extensions is a hash whose keys are
-the extensions.  The values are irrelevant.)  Two subroutines are
-provided for manipulating this and the related variable
-%latex_input_extensions, add_input_ext and remove_input_ext.  They
-are used as in the following examples are possible lines in an
-initialization file:
-
-    remove_input_ext( 'pdflatex', 'tex' );
-
-removes the extension 'tex' from pdflatex_input_extensions
-
-    add_input_ext( 'pdflatex', 'asdf' );
-
-add the extension 'asdf to pdflatex_input_extensions.  (Naturally with
-such an extension, you should have made an appropriate custom
-dependency for latexmk, and should also have done the appropriate
-programming in the LaTeX source file to enable the file to be read.
-The standard extensions are handled by pdflatex and its graphics/graphicx
-packages.)
-
+See details of the \fI%latex_input_extensions\fR for other information
+that equally applies to \fI%pdflatex_input_extensions\fR.
 .TP
 .B $pdflatex_silent_switch  ["-interaction=batchmode"]
-Switch(es) for the pdflatex program (specified in the variable
-\fI$pdflatex\fR when silent mode is on.
+Switch(es) for the \fIpdflatex\fR program (specified in the variable
+\fI$pdflatex\fR) when silent mode is on.
 
-If you use MikTeX, you may prefer the results if you configure the
-options to include -c-style-errors, e.g., by the following line in an
-initialization file
-
-  $latex_silent_switch = "-interaction=batchmode -c-style-errors";
-
+See details of the \fI$latex_silent_switch\fR for other information
+that equally applies to \fI$pdflatex_silent_switch\fR.
 .TP
 .B $pdf_previewer ["start acroread %O %S"]
 The command to invoke a pdf-previewer.
 
-On MS-WINDOWS, the default is changed to "cmd /c start """; under more recent versions of
+On MS-Windows, the default is changed to "cmd /c start """; under more recent versions of
 Windows, this will cause to be run whatever command the system has
 associated with .pdf files.  But this may be undesirable if this
 association is to \fIacroread\fR -- see the notes in the explanation
@@ -2030,7 +2401,7 @@ if acroread is used as the pdf previewer, and it is
 actually viewing a pdf file, the pdf file cannot be updated.  Thus
 makes acroread a bad choice of previewer if you use \fIlatexmk\fR's
 previous-continuous mode (option \fB-pvc\fR) under MS-windows.
-This problem does not occur if, for example, SumatraPDF or gsview is
+This problem does not occur if, for example, \fISumatraPDF\fR or \fIgsview\fR is
 used to view pdf files.
 
 \fBImportant note\fR: Normally you will want to have a previewer run
@@ -2042,7 +2413,6 @@ appropriate to the operating system).  But sometimes letting
 \fIlatexmk\fR do the detaching is not appropriate (for a variety of
 non-trivial reasons), so you should put the "start " bit in
 yourself, whenever it is needed.
-
 .TP
 .B $pdf_update_command [""]
 When the pdf previewer is set to be updated by running a command, this
@@ -2072,20 +2442,21 @@ The first setting arranges for the xpdf program to be used in its
 "remote server mode", with the server name specified as the rootname
 of the TeX file.  The second setting arranges for updating to be done
 in response to a command, and the third setting sets the update command.
-
 .TP
 .B $pdf_update_signal [Under UNIX: SIGHUP, which is a system-dependent value]
 The number of the signal that is sent to the pdf viewer when it is
 updated by sending a signal -- see the information on the variable
 \fI$pdf_update_method\fR.  The default value is the one appropriate
-for gv on a UNIX system.
+for \fIgv\fR on a UNIX system.
 .TP
 .B $pid_position[1 under UNIX, -1 under MS-Windows]     
 The variable \fI$pid_position\fR is used to
 specify which word in lines of the output from \fI$pscmd\fR
 corresponds to the process ID.  The first word in the line is numbered
 0.  The default value of 1 (2nd word in line) is correct for Solaris
-2.6 and Linux.  Setting the variable to -1 is used to indicate that
+2.6, Linux, and OS-X with their default settings of \fI$pscmd\fR.
+
+Setting the variable to -1 is used to indicate that
 \fI$pscmd\fR is not to be used.
 .TP
 .B $postscript_mode [0]
@@ -2109,7 +2480,8 @@ Which previewer is run depends on the other settings, see the command
 line options \fB-view=\fR, and the variable \fI$view\fR.  
 .TP
 .B $printout_mode [0]
-If nonzero, print the document using \fIlpr\fR.  Equivalent to the
+If nonzero, print the document using the command specified in the
+\fI$lpr\fR variable.  Equivalent to the
 \fB-p\fR option.  This is recommended \fBnot\fR to be set from an RC
 file, otherwise you could waste lots of paper.
 .TP
@@ -2130,11 +2502,10 @@ one process.  See the \fI$pid_position\fR variable for how the process
 number is determined.
 
 The default for \fIpscmd\fR is "NONE" under MS-Windows and cygwin
-(i.e., the command is not used), "ps --width 200 -f -u $ENV{USER}"
-under linux, "ps -ww -u $ENV{USER}" under darwin (Macintosh OS-X), and
-"ps -f -u $ENV{USER}" under other operating systems (including other
-flavors of UNIX).  In these specifications "$ENV{USER}" is substituted
-by the username.
+(i.e., the command is not used), "ps -ww -u $ENV{USER}" under 
+OS-X, and 
+"ps -f -u $ENV{USER}" under other operating systems (including Linux).
+In these specifications "$ENV{USER}" is substituted by the username.
 .TP
 .B $ps2pdf ["ps2pdf  %O %S %D"]
 Command to convert ps to pdf file.  
@@ -2144,19 +2515,19 @@ The postscript file filter to be run on the newly produced postscript
 file before other processing.  Equivalent to specifying the \fB-pF\fR
 option.
 .TP
-.B $ps_previewer ["start gv %O %S", but "start %O %S" under MS-WINDOWS]
-The command to invoke a ps-previewer.  (The default under MS-WINDOWS
+.B $ps_previewer ["start gv %O %S", but "start %O %S" under MS-Windows]
+The command to invoke a ps-previewer.  (The default under MS-Windows
 will cause to be run whatever command the system has associated 
 with .ps files.)
 
-Note that gv could be used with the -watch option updates its display
+Note that \fIgv\fR could be used with the -watch option updates its display
 whenever the postscript file changes, whereas ghostview does not.
-However, different versions of gv have slightly different ways of
+However, different versions of \fIgv\fR have slightly different ways of
 writing this option.  You can configure this variable appropriately.
 
 \fBWARNING\fR: Linux systems may have installed one (or more) versions
-of gv under different names, e.g., ggv, kghostview, etc, but perhaps
-not one called gv.  
+of \fIgv\fR under different names, e.g., \fIggv\fR, \fIkghostview\fR,
+etc, but perhaps not one actually called \fIgv\fR.
 
 \fBImportant note\fR: Normally you will want to have a previewer run
 detached, so that \fIlatexmk\fR doesn't wait for the previewer to
@@ -2169,7 +2540,7 @@ non-trivial reasons), so you should put the "start " bit in
 yourself, whenever it is needed.
 
 .TP
-.B $ps_previewer_landscape ["start gv -swap %O %S", but "start %O %S" under MS-WINDOWS]
+.B $ps_previewer_landscape ["start gv -swap %O %S", but "start %O %S" under MS-Windows]
 The command to invoke a ps-previewer in landscape mode.
 .TP
 .B $ps_update_command [""]
@@ -2185,18 +2556,27 @@ that for the value 4, to run a command to do the update, the command
 is specified by the variable \fI$ps_update_command\fR, and for the
 value 2, to specify update by signal, the signal is specified by
 \fI$ps_update_signal\fR.)
-
 .TP
 .B $ps_update_signal [Under UNIX: SIGHUP, which is a system-dependent value]
 The number of the signal that is sent to the pdf viewer when it is
 updated by sending a signal -- see \fI$ps_update_method\fR.  The
 default value is the one appropriate for gv on a UNIX system.
+.TP
+.B $pvc_timeout [0]
+If this variable is nonzero, there will be a  timeout in pvc mode
+after a period of inactivity.  Inactivity means a period when
+\fIlatexmk\fR has detected no file changes and hence has not taken any
+actions like compiling the document. The period of inactivity is in
+the variable $pvc_timeout_mins.
 
+.TP
+.B $pvc_timeout_mins [30]
+The period of inactivity, in minutes, after which pvc mode times out.
+This is used if \fI$pvc_timeout\fR is nonzero.
 .TP
 .B $pvc_view_file_via_temporary [1]
 The same as \fI$always_view_file_via_temporary\fR, except that it only
 applies in preview-continuous mode (-pvc option).
-
 .TP
 .B $quote_filenames [1]
 This specifies whether substitutions for placeholders in command
@@ -2204,15 +2584,15 @@ specifications (as in \fI$pdflatex\fR) are surrounded by double
 quotes.  If this variable is 1 (or any other value Perl regards as
 true), then quoting is done.  Otherwise quoting is omitted.  
 
-The quoting method used by latexmk is tested to work correctly under
+The quoting method used by \fIlatexmk\fR is tested to work correctly under
 UNIX systems (including Linux and Mac OS-X) and under MS-Windows.  It
 allows the use of filenames containing special characters, notably
-spaces.  (But note that many versions of LaTeX and PdfLaTeX cannot
-correctly deal with TeX files whose names contain spaces.  Latexmk's
+spaces.  (But note that many versions of \fIlatex\fR and \fIpdflatex\fR cannot
+correctly deal with TeX files whose names contain spaces.  \fILatexmk\fR's
 quoting only ensures that such filenames are correctly treated by the
 operating system in passing arguments to programs.)
 .TP
-.B $recorder [0]
+.B $recorder [1]
 Whether to use the \fB-recorder\fR option to \fIlatex\fR and
 \fIpdflatex\fR. Use of this option results in a file of extension
 \fI.fls\fR containing a list of the files that these programs have
@@ -2232,7 +2612,6 @@ Document.fls.  However, some implementations instead produce files
 named for the program, i.e., latex.fls or pdflatex.fls.  In this
 second case, \fIlatexmk\fR copies the latex.fls or pdflatex.fls to a
 file with the basename of the main LaTeX document, e.g., Document.fls.
-
 .TP
 .B $search_path_separator [See below for default]
 The character separating paths in the environment variables TEXINPUTS,
@@ -2240,12 +2619,12 @@ BIBINPUTS, and BSTINPUTS.  This variable is mainly used by
 \fIlatexmk\fR when the \fB-outdir\fR, \fB-output-directory\fR,
 \fB-auxdir\fR, and/or \fB-aux-directory\fR options are used.  In that
 case \fIlatexmk\fR needs to communicate appropriately modified search
-paths to $\fIbibtex\fR, \fIdvipdf\fR, \fIdvips\fR, and
+paths to \fIbibtex\fR, \fIdvipdf\fR, \fIdvips\fR, and
 \fI(pdf)latex\fR.  
 
 [Comment to technically savvy readers: \fI(pdf)latex\fR doesn't
-actually need the modified search path, because it corrects it
-internally.  But, surprisingly, \fIdvipdf\fR and \fIdvips\fR do,
+actually need the modified search path.  But, surprisingly,
+\fIdvipdf\fR and \fIdvips\fR do, 
 because sometimes graphics files get generated in the output or aux
 directories.] 
 
@@ -2258,7 +2637,9 @@ you'll need to find out what is needed, and set
 \fI$search_path_separator\fR explicitly.  (The same goes, of course,
 for unusual operating systems that are not in the MSWin, Linux, OS-X,
 Unix collection.)
-
+.TP
+.B $show_time [0]
+Whether to show CPU time used.
 .TP
 .B $silence_logfile_warnings [0]
 Whether after a run of (pdf)latex to summarize warnings in the log
@@ -2274,12 +2655,10 @@ warnings.  The command line options
 
 Note that multiple occurrences for the same undefined object on the
 same page and same line will be compressed to a single warning.
-
 .TP
 .B $silent [0]
 Whether to run silently.  Setting $silent to 1 has the same effect as
 the \fB-quiet\fR of \fB-silent\fR options on the command line.
-
 .TP
 .B $sleep_time [2]
 The time to sleep (in seconds) between checking for source file
@@ -2297,11 +2676,9 @@ For backward compatibility, if you choose to set
 \fI$texfile_search\fR, it is a string of space-separated filenames, and
 then \fIlatexmk\fR replaces \fI@default_files\fR with the filenames in
 \fI$texfile_search\fR to which is added "*.tex".
-
 .TP
 .B $success_cmd [undefined]
 See the documentation for $compiling_cmd.
-
 .TP
 .B $tmpdir [See below for default]
 Directory to store temporary files that \fIlatexmk\fR may generate while
@@ -2334,25 +2711,109 @@ possible values are "default", "dvi", "ps", "pdf".  The value
 of "default" means that the "highest" of the kinds of file generated is
 to be used (among dvi, ps and pdf).
 
+.TP
+.B $warnings_as_errors [0]
+Normally \fIlatexmk\fR copies the behavior of \fIlatex\fR in treating
+undefined references and citations and multiply defined references as
+conditions that give a warning but not an error.  The variable
+\fI$warnings_as_errors\fR controls whether this behavior is modified.
+
+When the variable is non-zero, \fIlatexmk\fR at the end of its run
+will return a non-zero status code to the operating system if any of
+the files processed gives a warning about problems with citations or
+references (i.e., undefined citations or references or multiply
+defined references).  This is \fBafter\fR \fIlatexmk\fR has completed
+all the runs it needs to try and resolve references and citations.
+Thus \fI$warnings_as_errors\fR being nonzero causes \fIlatexmk\fR to
+treat such warnings as errors, but only when they occur on the last
+run of (pdf)latex and only after processing is complete.  A non-zero
+value \fI$warnings_as_errors\fR can be set by the command-line option
+\fB-Werror\fR.
+
+The default behavior is normally satisfactory in the usual
+edit-compile-edit cycle.  But, for example, \fIlatexmk\fR can also be
+used as part of a build process for some bigger project, e.g., for
+creating documentation in the build of a software application.  Then
+it is often sensible to treat citation and reference warnings as
+errors that require the overall build process to be aborted.  Of
+course, since multiple runs of (pdf)latex are generally needed to
+resolve references and citations, what matters is \fInot\fR the
+warnings on the first run, but the warnings on the \fIlast\fR run;
+\fIlatexmk\fR takes this into account appropriately.
+
+In addition, when preview-continuous mode is used, a non-zero value
+for \fI$warnings_as_errors\fR changes the use of the commands
+\fI$failure_cmd\fR, \fI$warning_cmd\fR, and \fI$success_cmd\fR after a
+compliation.  If there are citation or reference warnings, but no
+other errors, the behavior is as follows. If \fI$warning_cmd\fR is
+set, it is used.  If it is not set, then then if
+\fI$warnings_as_errors\fR is non-zero and \fI$failure_cmd\fR is set,
+then \fI$failure_cmd\fR.  Otherwise \fI$success_cmd\fR is used, if it
+is set.  (The foregoing explanation is rather complicated, because
+\fIlatexmk\fR has to deal with the case that one or more of the
+commands isn't set.)
+
+.TP
+.B $xdvipdfmx ["xdvipdfmx -o %D %O %S"]
+
+The program to make a pdf file from an xdv file (used in conjunction
+with \fIxelatex\fR when \fI$pdf_mode\fR=5).
+.TP
+.B $xdvipdfmx_silent_switch ["-q"]
+Switch(es) for the \fIxdvipdfmx\fR program when silent mode is on.
+.TP
+.B $xelatex ["xelatex %O %S"]
+The LaTeX processing program of in a version that makes a pdf file instead
+of a dvi file, when the \fIxelatex\fR program is called for.  See the
+documentation of the \fB-xelatex\fR option for some special properties
+of \fIlatexmk\fR's use of \fIxelatex\fR.
+.TP
+.B %xelatex_input_extensions
+This variable specifies the extensions tried by \fIlatexmk\fR when it finds
+that an \fIxelatex\fR run resulted in an error that a file has not been found,
+and the file is given without an extension.  This typically happens when
+LaTeX commands of the form \\input{file} or \\includegraphics{figure},
+when the relevant source file does not exist.
+
+In this situation, \fIlatexmk\fR searches for custom dependencies to make
+the missing file(s), but restricts it to the extensions specified by
+the variable %xelatex_input_extensions.  The default extensions 
+are 'tex', 'pdf', 'jpg, and 'png'.
+
+See details of the \fI%latex_input_extensions\fR for other information
+that equally applies to \fI%xelatex_input_extensions\fR.
+.TP
+.B $xelatex_silent_switch  ["-interaction=batchmode"]
+Switch(es) for the \fIxelatex\fR program (specified in the variable
+\fI$xelatex\fR) when silent mode is on.
+
+See details of the \fI$latex_silent_switch\fR for other information
+that equally applies to \fI$xelatex_silent_switch\fR.
+
+
+
 .SH CUSTOM DEPENDENCIES
 .PP
 In any RC file a set of custom dependencies can be set up to convert a
 file with one extension to a file with another.  An example use of this
 would be to allow \fIlatexmk\fR to convert a \fI.fig\fR file to
-\fI.eps\fR to be included in the \fI.tex\fR file.  
+\fI.eps\fR to be included in the \fI.tex\fR file.
 
-The old method of configuring \fIlatexmk\fR was to directly manipulate
-the \fB@cus_dep_list\fR array that contains information defining the
-custom dependencies.  This method still works.  But now there are 
-subroutines that allow convenient manipulations of the custom
-dependency list.  These are
+.SS Defining a custom dependency:
+The old method of configuring \fIlatexmk\fR to use a custom dependency
+was to directly manipulate the \fI@cus_dep_list\fR array that contains
+information defining the custom dependencies.  (See the section "Old Method of
+Defining Custom Dependencies" for details.) This method still
+works, but is no longer preferred.  
+
+A better method is to use the subroutines that allow convenient
+manipulations of the custom dependency list.  These are
 
     add_cus_dep( fromextension, toextension, must, subroutine )
     remove_cus_dep( fromextension, toextension )
     show_cus_dep()
 
-The custom dependency is a list of rules, each of which is specified
-as follow:
+The arguments are as follows:
 .TP
 .B from extension:
 The extension of the file we are converting from (e.g. "fig").
@@ -2374,13 +2835,28 @@ file conversion.  The first argument to the subroutine is the base name
 of the file to be converted without any extension.  The subroutines are
 declared in the syntax of \fIPerl\fR.  The function should return 0 if
 it was successful and a nonzero number if it failed.
+
 .PP
-It is invoked whenever \fIlatexmk\fR detects that a run of
+
+Naturally \fIadd_cus_dep\fR adds a custom dependency with the
+specified from and to extensions.  If a custom dependency has been
+previously defined (e.g., in an rcfile that was read earlier), then it
+is replaced by the new one.
+
+The subroutine \fIremove_cus_dep\fR removes the specified custom
+dependency. The subroutine \fIshow_cus_dep\fR causes a list of the
+currently defined custom dependencies to be sent to the screen
+output.
+
+.SS How custom dependencies are used:
+A custom dependency rule is invoked whenever \fIlatexmk\fR detects
+that a run of 
 latex/pdflatex needs to read a file, like a graphics file, whose
 extension is the to-extension of a custom dependency.  Then
 \fIlatexmk\fR examines whether a file exists with the same name, but
 with the corresponding from-extension, as specified in the
-custom-dependency rule.  If it does, then whenever the destination
+custom-dependency rule.  If it does, then the rule is invoked whenever
+the destination 
 file (the one with the to-extension) is out-of-date with respect to
 the corresponding source file.
 
@@ -2391,11 +2867,19 @@ external program; this can be done by following the templates below,
 even by those without knowledge of the \fIPerl\fR programming language.  Of
 course, experts could do something much more elaborate.
 
-One other item in each custom-dependency rule labeled "must" above
+One other item in the specification of
+each custom-dependency rule, labeled "must" above,
 specifies how the rule should be applied when the source file fails to
 exist.
 
-A simple and typical example of code in an initialization rcfile is
+.SS Function to implement custom dependency, traditional method:
+The function that implements a custom dependency gets the information
+on the files to be processed in two ways.  The first is through its
+one argument; the argument contains the base name of the source and
+destination files.  The second way is described later.
+
+A simple and typical example of code in an initialization rcfile using
+the first method is:
 
     add_cus_dep( 'fig', 'eps', 0, 'fig2eps' );
     sub fig2eps {
@@ -2403,7 +2887,7 @@ A simple and typical example of code in an initialization rcfile is
     }
 
 The first line adds a custom dependency that converts a file with
-extension "fig", as created by the xfig program, to an encapsulated
+extension "fig", as created by the \fIxfig\fR program, to an encapsulated
 postscript file, with extension "eps".  The remaining lines define a
 subroutine that carries out the conversion.  If a rule for converting
 "fig" to "eps" files already exists (e.g., from a previously read-in
@@ -2427,7 +2911,7 @@ the return value is the value returned by the last (and only)
 statement, i.e., the invocation of system, which returns the value 0
 on success.
 
-If you use pdflatex instead of latex, then you will probably prefer to
+If you use \fIpdflatex\fR instead of latex, then you will probably prefer to
 convert your graphics files to pdf format, in which case you would
 replace the above code in an initialization file by
 
@@ -2438,7 +2922,8 @@ replace the above code in an initialization file by
 
 \fBNote 1:\fR In the command lines given in the system commands in the
 above examples, double quotes have been inserted around the file names
-(implemented by '\\"' in the Perl language).  They immunize the running
+(implemented by '\\"' \" " COMMENT TO FOOL EDITOR INTO MATCHING DOUBLE QUOTES
+in the Perl language).  They immunize the running
 of the program against special characters in filenames.  Very often
 these quotes are not necessary, i.e., they can be omitted.  But it is
 normally safer to keep them in.  Even though the rules for quoting
@@ -2450,16 +2935,27 @@ the cases I have tested.
 files are in a subdirectory and your operating system is Microsoft
 Windows.  Then the separator character for directory components can be
 either a forward slash '/' or Microsoft's more usual backward slash
-\'\\'.  Forward slashes are generated by latexmk, to maintain its
+\'\\'.  Forward slashes are generated by \fIlatexmk\fR, to maintain its
 sanity from software like MiKTeX that mixes both directory
 separators; but their correct use normally requires quoted filenames. 
 (See a log file from a run of MiKTeX (at least in v. 2.9) for an
 example of the use of both directory separators.)
 
+\fBNote 3:\fR The subroutines implementing custom dependencies in the
+examples given just have a single line invoking an external program.
+That's the usual situation.  But since the subroutines are in the Perl
+language, you can implement much more complicated processing if you
+need it.
+
+.SS Removing custom dependencies, and when you might need to do this:
 If you have some general custom dependencies defined in the system or
 user initialization file, you may find that for a particular project
 they are undesirable.  So you might want to delete the unneeded ones.
-For example, you remove any "fig" to "eps" rule by the line
+A situation where this would be desirable is where there are multiple
+custom dependencies with the same from-extension or the same
+to-extension. In that case, \fIlatexmk\fR might choose a different one
+from the one you want for a specific project.  As an example, to
+remove any "fig" to "eps" rule you would use:
 
     remove_cus_dep( 'fig', 'eps' );
 
@@ -2471,48 +2967,94 @@ line
 
 in an initialization file. 
 
-Another example of a custom dependency overcomes a limitation of
-\fIlatexmk\fR concerning index files.  The only index-file conversion
-built-in to \fIlatexmk\fR is from an ".idx" file written on one run of
-latex/pdflatex to an ".ind" file to be read in on a subsequent run.
-But with the index.sty package you can create extra indexes with
-extensions that you configure.  \fILatexmk\fR does not know how to
-deduce the extensions from the information it has.  But you can easily
-write a custom dependency.  For example if your latex file uses the
-command "\\newindex{special}{ndx}{nnd}{Special index}" you will need to
-convert files with the extension \fI.ndx\fR to \fI.nnd\fR.  The
-following lines in an initialization RC file will cause this to
-happen: 
+.SS Function implementing custom dependency, alternative methods:
+So far the examples for functions to implement custom dependencies
+have used the argument of the function to specify the base name of
+converted file.  This method has been available since very old
+versions of \fIlatexmk\fR, and many examples can be found, e.g., on
+the web.
 
-    add_cus_dep('ndx', 'nnd', 0, 'makendx2nnd');
-    sub makendx2nnd {
-        system( "makeindex -o \\"$_[0].nnd\\" \\"$_[0].ndx\\"" );
+However in later versions of \fIlatexmk\fR the internal structure of
+the implementation of its "rules" for the steps of processing,
+including custom dependencies, became much more powerful.  The
+function implementing a custom dependency is executed within a special
+context where a number of extra variables and subroutines are
+defined.  Publicly documented ones, intended to be long-term stable,
+are listed below, under the heading "Variables and subroutines for
+processing a rule". 
+
+Examples of their use is given in the following examples, concerning
+multiple index files and glossaries.
+
+The only index-file conversion built-in to \fIlatexmk\fR is from an
+".idx" file written on one run of latex/pdflatex to an ".ind" file to
+be read in on a subsequent run.  But with the index.sty package, for
+example, you can create extra indexes with extensions that you
+configure.  \fILatexmk\fR does not know how to deduce the extensions
+from the information it has.  But you can easily write a custom
+dependency.  For example if your latex file uses the command
+"\\newindex{special}{ndx}{nnd}{Special index}" you will need to get
+\fIlatexmk\fR to convert files with the extension \fI.ndx\fR to
+\fI.nnd\fR.  The most elementary method is to define a custom
+dependency as follows:
+
+    add_cus_dep( 'ndx', 'nnd', 0, 'ndx2nnd' );
+    sub ndx2nnd {
+        return system( "makeindex -o \\"$_[0].nnd\\" \\"$_[0].ndx\\"" );
     }
+    push @generated_exts, 'ndx', 'nnd';
 
-(You will need to modify this code if you use filenames
-with spaces in them, to provide correct quoting of the filenames.)
+Notice the added line compared with earlier examples.  The extra line
+gets the extensions "ndx" and "nnd" added to the list of extensions
+for generated files; then the extra index files will be deleted by
+clean-up operations
 
-Those of you with experience with Makefiles, will undoubtedly be
+But if you have yet more indexes with yet different extensions, e.g.,
+"adx" and "and", then you will need a separate function for each pair
+of extensions.  This is quite annoying.  You can use the
+\fIRun_subst\fR function to simplify the definitions to use a single
+function: 
+
+    add_cus_dep( 'ndx', 'nnd', 0, 'dx2nd' );
+    add_cus_dep( 'adx', 'and', 0, 'dx2nd' );
+    sub dx2nd {
+        return Run_subst( "makeindex -o %D %S" );
+    }
+    push @generated_exts, 'ndx', 'nnd', 'adx', 'and';
+
+You could also instead use
+
+    add_cus_dep( 'ndx', 'nnd', 0, 'dx2nd' );
+    add_cus_dep( 'adx', 'and', 0, 'dx2nd' );
+    sub dx2nd {
+        return Run_subst( $makeindex );
+    }
+    push @generated_exts, 'ndx', 'nnd', 'adx', 'and';
+
+This last example uses the command specification in \fI$makeindex\fR,
+and so any customization you have made for the standard index also
+applies to your extra indexes.
+
+Similar techniques can be applied for glossaries.
+
+Those of you with experience with Makefiles, may get
 concerned that the \fI.ndx\fR file is written during a run of
 latex/pdflatex and is always later than the \fI.nnd\fR last read in.
 Thus the \fI.nnd\fR appears to be perpetually out-of-date.  This
-situation, of circular dependencies, is endemic to latex, and
-\fIlatexmk\fR in its current version works correctly with circular
-dependencies.  It examines the contents of the files (by use of an md5
-checksum), and only does a remake when the file contents have actually
-changed.
+situation, of circular dependencies, is endemic to latex, and is one
+of the issues that \fIlatexmk\fR is programmed to overcome.  It
+examines the contents of the files (by use of a checksum), and only
+does a remake when the file contents have actually changed.
 
-Of course if you choose to write random data to the \fI.nnd\fR (or and
+Of course if you choose to write random data to the \fI.nnd\fR (or the
 \fI.aux\fR file, etc) that changes on each new run, then you will have
 a problem.  For real experts: See the \fI%hash_cal_ignore_pattern\fR
 if you have to deal with such problems.
 
-Glossaries can be dealt with similarly.
-
-.SH OLD METHOD OF DEFINING CUSTOM DEPENDENCIES
-In previous versions of \fIlatexmk\fR, the only method of defining
+.SS Old Method of Defining Custom Dependencies:
+In much older versions of \fIlatexmk\fR, the only method of defining
 custom dependencies was to directly manipulate the table of custom
-dependencies.  This is contained in the \fB@cus_dep_list\fR array.  It
+dependencies.  This is contained in the \fI@cus_dep_list\fR array.  It
 is an array of strings, and each string in the array has four items in
 it, each separated by a space, the from-extension, the to-extension,
 the "must" item, and the name of the subroutine for the custom
@@ -2524,17 +3066,104 @@ of \fI.fig\fR files to \fI.eps\fR files:
 
     push @cus_dep_list, "fig eps 0 fig2eps";
     sub fig2eps {
-        system( "fig2dev -Lps \\"$_[0].fig\\" \\"$_[0].eps\\"" );
+        return system( "fig2dev -Lps \\"$_[0].fig\\" \\"$_[0].eps\\"" );
     }
 
-This method still works, and is equivalent to the earlier code using
-the add_cus_dep subroutine, except that it doesn't delete any previous
-custom-dependency for the same conversion.  So the new method is
-preferable.
+This method still works, and is almost equivalent to the code given
+earlier that used the \fIadd_cus_dep\fR subroutine.  However, the old
+method doesn't delete any previous custom-dependency for the same
+conversion.  So the new method is preferable.
 
 
+.SH ADVANCED CONFIGURATION: Some extra resources and advanced tricks
 
-.SH USING \fIlatexmk\fR WITH \fImake\fR
+For most purposes, simple configuration for \fIlatexmk\fR along the
+lines of the examples given is sufficient.  But sometimes you need
+something harder.  In this section, I indicate some extra
+possibilities.  Generally to use these, you need to be fluent in the
+Perl language, since this is what is used in the rc files.
+
+See also the section DEALING WITH ERRORS, PROBLEMS, ETC.  See
+also the examples in the directory \fIexample_rcfiles\fR in the
+\fIlatexmk\fR distributions.  Even if none of the examples apply to
+your case, they may give you useful ideas
+
+.SS Variables and subroutines for processing a rule
+
+A step in the processing is called a rule. One possibility to
+implement the processing of a rule is by a Perl subroutine.  This is
+always the case for custom dependencies. Also, for any other rule, you
+can use a subroutine by prefixing the command specification by the
+word "internal" -- see the section FORMAT OF COMMAND SPECIFICATIONS.
+
+When you use a subroutine for processing a rule, all the possibilities
+of Perl programming are available, of course.  In addition, some of
+\fIlatexmk\fR's internal variables and subroutines are available.
+The ones listed below are intended to be available to (advanced)
+users, and their specifications will generally have stability under
+upgrades. Generally, the variables should be treated as read-only:
+Changing their values can have bad consequences, since it is liable to
+mess up the consistency of what \fIlatexmk\fR is doing.
+.TP
+.B $rule
+This variable has the name of the rule, as known to
+\fIlatexmk\fR. Note that the exact contents of this variable for a
+given rule may be dependent on the version of \fIlatexmk\fR
+.TP
+.B $$Psource
+This gives the name of the primary source file.  Note the double
+dollar signs.
+.TP
+.B $$Pdest
+This gives the name of the main output file if any.  Note the double
+dollar signs.
+.TP
+.B rdb_ensure_file( $rule, file )
+This a subroutine that ensures that the given file is among the source
+files for the specified rule.  It is typically used when, during the
+processing of a rule, it is known that a particular extra file is
+among the dependencies that \fIlatexmk\fR should know, but its default
+methods don't find the dependency. Almost always the first argument is
+the name of the rule currently being processed, so it is then
+appropriate to specify it by \fI$rule\fR.
+
+For examples of its use, see some of the files in the directory
+\fIexample_rcfiles\fR of \fIlatexmk\fR's distribution.  Currently the
+cases that use this subroutine are \fIbib2gls-latexmkrc\fR,
+\fIexceltex_latexmkrc\fR and \fItexinfo-latexmkrc\fR.  These
+illustrate typical cases where \fIlatexmk\fR's normal processing fails
+to detect certain extra source files. 
+.TP
+.B rdb_remove_files( $rule, file, ... )
+This subroutine removes one or more files from the dependency list for
+the given rule. 
+.TP
+.B rdb_list_source( $rule )
+This subroutine returns the list of source files (i.e., the dependency
+list) for the given rule. 
+.TP
+.B rdb_set_source( $rule, file, ... )
+.TP
+.B rdb_set_source( $rule, @files )
+This subroutine sets the dependency list for the given rule to be the
+specified files.  Files that are already in the list have unchanged
+information.  Files that were not in the list are added to it.  Files
+in the previous dependency list that are not in the newly specified
+list of files are removed from the dependency list.
+.TP
+.B Run_subst( command_spec )
+This subroutine runs the command specified by \fIcommand_spec\fR.  The
+specification is a string in the format listed in the section "Format
+of Command Specifications".  An important action of the
+\fIRun_subst\fR is to make substitutions of placeholders, e.g., %S and
+%D for source and destination files; these get substituted before the
+command is run.  In addition, the command after substitution is
+printed to the screen unless \fIlatexmk\fR is running in silent mode.
+
+.PP
+
+
+.SS Advanced configuration: Using \fIlatexmk\fB with \fImake\fR
 
 This section is targeted only at advanced users who use the \fImake\fR
 program for complex projects, as for software development, with the
@@ -2592,7 +3221,7 @@ project, where lines such as the above would be only be a small part
 of a larger Makefile.
 
 The above example has a pattern rule for making a .pdf file from 
-a .tex file, and it is defined to use latexmk in the obvious way.
+a .tex file, and it is defined to use \fIlatexmk\fR in the obvious way.
 There is a conventional default target named "all", with a
 prerequisite of try.pdf.  So when \fImake\fR is invoked, by default it
 makes try.pdf.  The only complication is that there may be many source
@@ -2634,7 +3263,7 @@ started with tabs.)  This example was inspired by how GNU
 \fIautomake\fR handles automatic dependency tracking of C source
 files.
 
-After each run of latexmk, dependency information is put in a file
+After each run of \fIlatexmk\fR, dependency information is put in a file
 in the .deps subdirectory.  The Makefile causes these dependency files
 to be read by \fImake\fR, which now has the full dependency
 information for each target .pdf file.  To make things less trivial it
@@ -2667,7 +3296,7 @@ Thus we now have a method by which all the subsidiary processing is
 delegated to \fImake\fR.  
 
 .SH SEE ALSO
-latex(1), bibtex(1).
+latex(1), bibtex(1), lualatex(1), pdflatex(1), xelatex(1).
 .SH BUGS
 Sometimes a viewer (gv) tries to read an updated .ps or .pdf file
 after its creation is started but before the file is complete.  Work
@@ -2676,13 +3305,13 @@ previewers and update methods.
 
 (The following isn't really a bug, but concerns features of previewers.)
 Preview continuous mode only works perfectly with certain previewers:
-Xdvi on UNIX/LINUX works for dvi files.  
-Gv on UNIX/LINUX works for both postscript and pdf.
-Ghostview on UNIX/LINUX needs a manual update (reopen); it views
+Xdvi on UNIX/Linux works for dvi files.  
+Gv on UNIX/Linux works for both postscript and pdf.
+Ghostview on UNIX/Linux needs a manual update (reopen); it views
 postscript and pdf. 
 Gsview under MS-Windows works for both postscript and pdf, 
 but only reads the updated file when its screen is refreshed.
-Acroread under UNIX/LINUX views pdf, but the file needs to be closed
+Acroread under UNIX/Linux views pdf, but the file needs to be closed
 and reopened to view an updated version.
 Under MS-Windows, acroread locks its input file and so the
 pdf file cannot be updated.  (Remedy: configure \fIlatexmk\fR to use
@@ -2694,14 +3323,14 @@ David Coppit (username david at node coppit.org) who made many useful
 suggestions that contributed to version 3, and Herbert Schulz.
 (Please note that the
 e-mail addresses are not written in their standard form to avoid being
-harvested by worms and viruses.)
+harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.41).
+(Version 4.55a).
 
 Released version can be obtained from CTAN:
-<http://www.ctan.org/tex-archive/support/latexmk/>, and from the
-author's website <http://www.phys.psu.edu/~collins/software/latexmk/>.
+<http://www.ctan.org/pkg/latexmk/>, and from the
+author's website <http://www.personal.psu.edu/jcc8/latexmk/>.
 .br
 Modifications and enhancements by Evan McLean (Version 2.0)
 .br

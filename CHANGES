@@ -460,3 +460,142 @@ From v. 4.40 to 4.41
     Keep both cases, to preserve backward compatibility.
   Change sign-on message.  Bug report info with help.
 
+From v. 4.41 to 4.42
+  Fix bugs associated with the -cd option
+  Add missfont.log and the generated synctex.gz to standard cleaned-up files
+
+From v. 4.42 to 4.43a
+  Fix problem that source files are not correctly detected under
+    MiKTeX when name of current working directory contains non-ASCII
+    characters.
+  On cleanup, synctex.gz files are deleted only by -C, not by -c.
+
+From v. 4.43a to 4.43c
+  Correct normalization of filenames, so that initial "./" is always
+  removed.  This prevents custom dependencies being run twice on the
+  same file.
+  Documentation correction on use of @BIBINPUTS.
+  Diagnostic correction.
+  Example rc file for using texinfo (thanks to Vincent Bela\"iche).
+  Additions to documentation concerning advanced configuration.
+
+From v. 4.43c to 4.44
+  Correct bug in use of %hash_calc_ignore_pattern
+    (Previously it only had its documented effect when a targetted
+    file hadn't changed in size.)
+  Correct error handling when biber finds a malformed .bcf file.
+
+From v. 4.44 to 4.45
+  Fix problem of -C not always working correctly when compilation was
+  with -pdf and clear was default. 
+  Fix bug in limiting number of passes when $max_repeat >= 10
+  Fix bug in finding id of viewer process id under OS-X
+
+From v. 4.45 to 4.46
+  Correct creation of output and aux directories to correctly handle
+  relative paths when -cd is used.
+  Minor documentation corrections.
+
+From v. 4.46 to 4.48
+  Correct documention: default value of $recorder is 1
+  Add routines rdb_list_source, rdb_set_source for manipulating
+    dependency lists of a rule.  Add these to the documentated
+    interface, in addition to the already documented rdb_ensure_file,
+    rdb_remove_files.
+  Update webpages in documentation.
+
+From v. 4.48 to 4.52
+  Optimize number of calls to kpsewhich.  This often gives a
+    considerable savings of run time when a document includes many
+    graphics files that are in a texmf tree.
+  Fix bug that if an .aux file is deleted and latexmk is run, the
+    wrong number of runs of (pdf)latex was made.
+  Fix related problem that latexmk sometimes does too few runs of
+    (pdf)latex because of the incorrect detection that a file is only
+    read after being written.
+  Implement direct support for xelatex and lualatex.  Previously these
+    programs were used by configuring the $pdflatex so that the desired
+    program is run instead of pdflatex.  There are now configuration
+    variables $xelatex and $lualatex to specify the commands used, and
+    extra command line options -pdfxe and -pdflua.
+  In the case of xelatex, considerable improvement in run time is
+    given for documents containing large graphics files.  This is
+    because compilation is made first to an xdv file instead of direct
+    to a pdf file.  Only when this file is finalized is a single
+    conversion to a pdf file made.  (This last step can be especially
+    time-consuming for documents that bring in large graphics files.)
+  Correct detection for missing graphics files with xelatex.
+  Work around LuaTeX line-wrapping bug.
+  Update documentation.
+  Minor improvements in code and diagnostics.
+
+From v. 4.52 to 4.52b
+  Fix bug introduced in 4.52 that use of bibtex wasn't always detected
+    when recorder mode is on.
+
+From v. 4.52b to 4.52c
+  Make -jobname work with -pdfxe and -pdflua.
+
+From v. 4.52c to 4.54
+  In deps_list, correct bug in identifying generated files.
+     Otherwise, generated files could have been identified as true
+     source files.
+  Remove insertion of name of deps file in list of targets in deps file.
+  Don't send to screen deps info in deps mode (unless diagnostics on).
+  Correct ordering of list of options given by -help.
+  Fix incorrect deletion of non-generated aux files.
+  Optimize away current directory string in $out_dir and $aux_dir.
+  Make compatible with future versions of Perl where File::Glob's glob
+    function won't exist.
+  Add extra value 1.5 for $bibtex_use, with corresponding option
+    -bibtex-cond1; this treats bbl files as conditionally precious in
+    cleanup operations, depending on the existence or non-exisitence
+    of bib files.
+  When running bibtex, ensure that the change in search paths is made to work
+    around deficiencies in bibtex is local and does not affect other
+    programs.
+  Collection of timing information now works in silent mode.
+  Set better default previewers for MSys.
+  Restore default of $analyze_input_log_always to 1.
+    This restores the default detection of certain constructs for dependencies
+    for input files in the .log file. See the comments on this variable in
+    latexmk.pl for details.  This works around a problem caused by a change in
+    the behavior of lualatex in TeXLive 2017; it no longer lists all input
+    files in the .fls file.  Note that latexmk.pl always examines the .log
+    file for relevant information.  The variable $analyze_input_log_always
+    only concerns whether it looks for <...> and (...) constructs.
+  Add item to @file_not_found for the particular format of generic package
+    warning about "No file", that is produced by glossaries-extra, and
+    probably other packages. 
+  Documentation improvements, especially on methods of implementing
+    custom dependencies for multiple kinds of index.
+  Document $kpsewhich_show variable.
+  Add a sample latexmkrc file for use with bib2gls and glossaries-extra. 
+
+From v. 4.54 to 4.54c
+ Work-around for when bsd_glob is not available on old installations of
+   Perl.  (Note that with these old installations, clean-up operations
+   may not work when file or directory names contain spaces.)
+
+From v. 4.54c to 4.55
+ Correct bug that $search_path_separator wasn't defined under msys.
+ Ensure that all configuration variables do have sensible default
+   definitions (which wasn't always the case previously).
+ Allow optional timeout in pvc mode after a period of inactivity.
+   (See documentation for -pvctimeout option.)
+ Compensate for problems caused by time offset between system time on
+   system running latexmk and file times on remote file system.
+   (It caused wrong behavior when a document uses biber, MiKTeX
+   is used, the aux_dir is on a remote file system, and the system
+   time on the host of the file system differs from the system time on
+   the system running latexmk.)
+
+From v. 4.55 to 4.55a
+  Add option that latexmk returns a non-zero status code when
+    the final run of (pdf)latex gives warnings about undefined
+    references or citations or about multiply defined references.
+  Implement $warning_cmd to allow a visual cue for these situations in
+    pvc mode (in addition to the current possibilities for
+    $compiling_cmd, $success_cmd and $failure_cmd).
+
+ 

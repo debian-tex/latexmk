@@ -15,12 +15,7 @@ NOTES:
    needs.  So read the comments carefully, and understand how the
    examples are working.
 
-3. Another source of examples is in Herb Schulz's distribution of
-   TexShop, at http://homepage.mac.com/herbs2, for some further
-   examples.  (The file Latexmk321jTeXShop.zip is the one you want.)
-   It shows how to use glossaries, epstopdf, pdftricks and pst-pdf.
-
-4. I have generally arranged for filenames to be quoted on command
+3. I have generally arranged for filenames to be quoted on command
    lines, e.g., 
 
        system( "makeindex -o \"$_[0].lnd\" \"$_[0].ldx\"" );

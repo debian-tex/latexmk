@@ -10,8 +10,6 @@
 # Modified from pst2pdf distributed with pdftricks.sty to use latexmk
 
 # IT REQUIRES VERSION 3.21 OR HIGHER OF latexmk
-# See http://www.phys.psu.edu/~collins/software/latexmk/versions.html
-# The version on CTAN is not yet updated
 
 # For each pdf file will only be made if the tex source is out-of-date
 # This version of pst2pdf does not clean up generated files: they are
@@ -23,6 +21,7 @@
 #      2. Put a line like the following in an initialization file for latexmk:
 #            $pdflatex = 'pdflatex %O %S; pst2pdf_for_latexmk %B';
 
+# 13 Oct 2016 John Collins: Remove outdated URL and version information
 #  1 Oct 2007 John Collins: Remove path from latexmk
 # 28 Sep 2007 Herb Schulz processing steprs of figure files changed for no rotation and better BoundingBox
 # 27 Sep 2007 John Collins

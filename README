@@ -1,5 +1,5 @@
-Latexmk, version 4.41, 1 January 2015
--------------------------------------
+Latexmk, version 4.55a, 25 January 2018
+---------------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
 document.  Essentially, it is a highly specialized cousin of the
@@ -25,7 +25,7 @@ A copy of the fast help that can be seen by doing "latexmk -h" is at
 the end of this file.
 
 Latexmk is a perl script.  It is licensed under the GNU General Public
-License.
+License v. 2.
 
 It was modified by Evan McLean from the original script called "go"
 written by David J. Musliner.  Now it is supported by
@@ -37,7 +37,7 @@ written by David J. Musliner.  Now it is supported by
             University Park PA 16802
             U.S.A.  
 
-            http://www.phys.psu.edu/~collins/
+            http://www.personal.psu.edu/jcc8/
             username jcc8 at node psu.edu
 
 The start of the script file has copyright notices and disclaimers.  It
@@ -78,20 +78,20 @@ NOTES:-
    perfectly.  Refer to $pscmd in the man page.
 
 6) Latexmk can be downloaded from the author's site at
-   http://www.phys.psu.edu/~collins/software/latexmk/
+   http://www.personal.psu.edu/jcc8/latexmk/
    This site also includes previous versions, and sometimes newer
    versions under development.
 
 7) Latexmk is archived on the CTAN tex archive --- see
-   http://www.tug.org/ctan.html.  
+   http://www.ctan.org/pkg/latexmk  
 
 8) [If for some reason you need to find the obsolete version 2, it can
    also be found on CTAN, e.g., at
-   http://ctan.org/tex-archive/obsolete/support/latexmk/] 
+   http://mirror.ctan.org/obsolete/support/latexmk/] 
 
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
-Latexmk 4.41: Automatic LaTeX document generation routine
+Latexmk 4.55a: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
@@ -101,7 +101,9 @@ Usage: latexmk [latexmk_options] [filename ...]
                  - Currently this only works with MiKTeX
    -bibtex       - use bibtex when needed (default)
    -bibtex-      - never use bibtex
-   -bibtex-cond  - use bibtex when needed, but only if the bib files exist
+   -bibtex-cond  - use bibtex when needed, but only if the bib file exists
+   -bibtex-cond1 - use bibtex when needed, but only if the bib file exists;
+                   on cleanup delete bbl file only if bib file exists
    -bm <message> - Print message across the page when converting to postscript
    -bi <intensity> - Set contrast or intensity of banner
    -bs <scale> - Set scale for banner
@@ -147,6 +149,8 @@ Usage: latexmk [latexmk_options] [filename ...]
                give list of warnings after run of (pdf)latex
    -logfilewarninglist- or -logfilewarnings- 
                do not give list of warnings after run of (pdf)latex
+   -lualatex     - use lualatex for processing files to pdf
+                   and turn dvi/ps modes off
    -M     - Show list of dependent files after processing
    -MF file - Specifies name of file to receives list dependent files
    -MP    - List of dependent files includes phony target for each source file.
@@ -162,6 +166,8 @@ Usage: latexmk [latexmk_options] [filename ...]
    -pdflatex=<program> - set program used for pdflatex.
                       (replace '<program>' by the program name)
    -pdfps - generate pdf by ps2pdf
+   -pdflua - generate pdf by lualatex
+   -pdfxe - generate pdf by xelatex
    -pdf-  - turn off pdf
    -ps    - generate postscript
    -ps-   - turn off postscript
@@ -177,6 +183,9 @@ Usage: latexmk [latexmk_options] [filename ...]
                 on force mode, so errors do not cause latexmk to stop.)
             (Side effect: turn off ordinary preview mode.)
    -pvc-  - turn off -pvc
+   -pvctimeout    - timeout in pvc mode after period of inactivity
+   -pvctimeout-   - don't timeout in pvc mode after inactivity
+   -pvctimeoutmins=<time> - set period of inactivity (minutes) for pvc timeout
    -quiet    - silence progress messages from called programs
    -r <file> - Read custom RC file
                (N.B. This file could override options specified earlier
@@ -201,10 +210,9 @@ Usage: latexmk [latexmk_options] [filename ...]
    -view=none    - no viewer is used
    -view=ps      - viewer is for ps
    -view=pdf     - viewer is for pdf
-   -lualatex     - use lualatex for processing files to pdf
-                   and turn pdf mode on, dvi/ps modes off
+   -Werror   - treat warnings from called programs as errors
    -xelatex      - use xelatex for processing files to pdf
-                   and turn pdf mode on, dvi/ps modes off
+                   and turn dvi/ps modes off
 
    filename = the root filename of LaTeX document
 

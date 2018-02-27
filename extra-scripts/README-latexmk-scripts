@@ -1,8 +1,8 @@
 Auxiliary scripts for latexmk
 =============================
 
-John Collins (collins at phys.psu.edu)
-23 Jun 2010
+John Collins (jcc8 at psu.edu)
+13 Oct 2016
 
 Latexmk can be configured to use different programs than the standard
 ones to perform its tasks.  If a user finds that the default behavior
@@ -37,7 +37,7 @@ needs you to do to make the script executable.
                     bash           (command shell)
                     acroread
                     pdfopen and pdfclose from the xpdfopen package
-                     (see http://www.tug.org/tex-archive/support/xpdfopen/)
+                     (see http://www.ctan.org/pkg/xpdfopen/)
 
     To use:
 
