@@ -8,8 +8,9 @@ latexmk (1:4.55a-0.1) UNRELEASED; urgency=medium
   * update patches
   * bump standards version, no changes necessary
   * add watch file thanks to Antonio Ospite (Closes: #748344)
+  * bump debhelper level to 11
 
- -- Norbert Preining <preining@debian.org>  Wed, 28 Feb 2018 00:17:53 +0900
+ -- Norbert Preining <preining@debian.org>  Wed, 28 Feb 2018 00:22:22 +0900
 
 latexmk (1:4.41-1) unstable; urgency=medium
 
