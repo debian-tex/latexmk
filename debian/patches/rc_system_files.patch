@@ -1,10 +1,12 @@
 Author: Florian Ragwitz <rafl@debian.org>
 Description: add /etc/LatexMk to @rc_system_files
-Index: latexmk-4.41/latexmk.pl
-===================================================================
---- latexmk-4.41.orig/latexmk.pl
-+++ latexmk-4.41/latexmk.pl
-@@ -934,7 +934,8 @@ else {
+---
+ latexmk.pl |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+--- latexmk.orig/latexmk.pl
++++ latexmk/latexmk.pl
+@@ -889,7 +889,8 @@
      @rc_system_files = ();
      foreach ( 'LatexMk', 'latexmkrc' ) {
         push @rc_system_files,
