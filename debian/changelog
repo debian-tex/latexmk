@@ -1,4 +1,4 @@
-latexmk (1:4.55a-0.1) UNRELEASED; urgency=medium
+latexmk (1:4.55a-0.1) unstable; urgency=medium
 
   * NMU due to inactivity
   * New upstream version 4.55a (Closes: #841925)
@@ -11,7 +11,7 @@ latexmk (1:4.55a-0.1) UNRELEASED; urgency=medium
   * bump debhelper level to 11
   * don't compress pdf doc file
 
- -- Norbert Preining <preining@debian.org>  Wed, 28 Feb 2018 00:27:24 +0900
+ -- Norbert Preining <preining@debian.org>  Wed, 28 Feb 2018 00:31:44 +0900
 
 latexmk (1:4.41-1) unstable; urgency=medium
 
