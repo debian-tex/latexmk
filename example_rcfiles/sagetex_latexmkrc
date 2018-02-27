@@ -1,5 +1,5 @@
 # This is to allow the use of sagetex package 
-# (http://www.ctan.org/tex-archive/macros/latex/contrib/sagetex)
+# (http://www.ctan.org/pkg/sagetex)
 # with latexmk.  Sagetex outputs a file with the extension .sage.
 # This file is to be processed by sage software (http://sagemath.org) 
 # to make a file with extension .sout.  This file is then read in by
