@@ -6,8 +6,9 @@ latexmk (1:4.55a-0.1) UNRELEASED; urgency=medium
     - multi bibs supported since long (Closes: #503910)
   * update patches
   * bump standards version, no changes necessary
+  * add watch file thanks to Antonio Ospite (Closes: #748344)
 
- -- Norbert Preining <preining@debian.org>  Wed, 28 Feb 2018 00:09:37 +0900
+ -- Norbert Preining <preining@debian.org>  Wed, 28 Feb 2018 00:14:40 +0900
 
 latexmk (1:4.41-1) unstable; urgency=medium
 
