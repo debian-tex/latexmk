@@ -1,0 +1,27 @@
+# This shows how to use Asymptote (http://asymptote.sourceforge.net/,
+# or http://www.ctan.org/tex-archive/graphics/asymptote/)
+# with latexmk.  Asymptote is a vector graphics language with a
+# processing program that generates graphics files that can be used in
+# a LaTex file.  
+#
+# A standard method of using it is with the asymptote LaTeX style file
+# (http://www.ctan.org/tex-archive/graphics/asymptote/doc/asymptote.sty)
+# The graphics drawing code is in the tex file, and applying pdflatex to
+# the tex file produces one or more files with a base name the same as
+# or related to the main tex file, but with the extension 'asy'.  The
+# .asy is processed by the program asy (part of the asymptote
+# software) to produce graphics files (which may be eps, tex, or pdf
+# files) that are used the next time pdflatex is run on the main tex
+# file.    
+#
+# Latexmk can be arranged to run asymptote (i.e., the program asy)
+# when needed, by defining the following custom dependency.  (The code
+# is to be put in one of latexmk's rc files, e.g., ~/.latexmkrc.)
+#
+
+# The following lines are taken from the documentation for V. 2.03 of
+# asymptote:
+sub asy {return system("asy \"$_[0]\"");}
+add_cus_dep("asy","eps",0,"asy");
+add_cus_dep("asy","pdf",0,"asy");
+add_cus_dep("asy","tex",0,"asy");
