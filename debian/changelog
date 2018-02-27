@@ -1,3 +1,11 @@
+latexmk (1:4.55a-0.1) UNRELEASED; urgency=medium
+
+  * NMU due to inactivity
+  * New upstream version 4.55a (Closes: #841925)
+  * update patches
+
+ -- Norbert Preining <preining@debian.org>  Wed, 28 Feb 2018 00:01:29 +0900
+
 latexmk (1:4.41-1) unstable; urgency=medium
 
   * New upstream release
