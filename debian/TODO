@@ -1,0 +1,1 @@
+- make latexmk.pdf texdoc findable by installing it into /u/s/texmf/doc
