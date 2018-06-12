@@ -61,7 +61,7 @@ DESCRIPTION
 
 
 
-                                25 January 2018                              1
+                                  25 May 2018                                1
 
 
 
@@ -127,7 +127,7 @@ LATEXMK OPTIONS AND ARGUMENTS ON COMMAND LINE
 
 
 
-                                25 January 2018                              2
+                                  25 May 2018                                2
 
 
 
@@ -193,7 +193,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                              3
+                                  25 May 2018                                3
 
 
 
@@ -259,7 +259,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                              4
+                                  25 May 2018                                4
 
 
 
@@ -325,7 +325,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                              5
+                                  25 May 2018                                5
 
 
 
@@ -334,7 +334,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              Treatment of .bbl files: If $bibtex_use is set to 0  or  1,  bbl
+              Treatment of .bbl files:  If $bibtex_use is set to 0 or  1,  bbl
               files  are  always treated as non-regeneratable.  If $bibtex_use
               is set to 1.5, bbl files are counted as non-regeneratable condi-
               tionally:  If the bib file exists, then bbl files are regenerat-
@@ -391,7 +391,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                              6
+                                  25 May 2018                                6
 
 
 
@@ -457,7 +457,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                              7
+                                  25 May 2018                                7
 
 
 
@@ -523,7 +523,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                              8
+                                  25 May 2018                                8
 
 
 
@@ -589,7 +589,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                              9
+                                  25 May 2018                                9
 
 
 
@@ -655,7 +655,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             10
+                                  25 May 2018                               10
 
 
 
@@ -721,7 +721,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             11
+                                  25 May 2018                               11
 
 
 
@@ -787,7 +787,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             12
+                                  25 May 2018                               12
 
 
 
@@ -853,7 +853,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             13
+                                  25 May 2018                               13
 
 
 
@@ -919,7 +919,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             14
+                                  25 May 2018                               14
 
 
 
@@ -985,7 +985,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             15
+                                  25 May 2018                               15
 
 
 
@@ -1051,7 +1051,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             16
+                                  25 May 2018                               16
 
 
 
@@ -1117,7 +1117,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             17
+                                  25 May 2018                               17
 
 
 
@@ -1183,7 +1183,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             18
+                                  25 May 2018                               18
 
 
 
@@ -1249,7 +1249,7 @@ EXAMPLES
 
 
 
-                                25 January 2018                             19
+                                  25 May 2018                               19
 
 
 
@@ -1315,7 +1315,7 @@ DEALING WITH ERRORS, PROBLEMS, ETC
 
 
 
-                                25 January 2018                             20
+                                  25 May 2018                               20
 
 
 
@@ -1360,28 +1360,28 @@ CONFIGURATION/INITIALIZATION (RC) FILES
        In addition, it then tries the same set of locations, but with the file
        name replaced "LatexMk" replaced by "latexmkrc".
 
+       If the environment variable LATEXMKRCSYS is set, its value is  used  as
+       the name of the system RC file, instead of any of the above.
+
        2) The user's RC file, if it exists.  This can be in one of two places.
-       The  traditional one is ".latexmkrc" in the user's home directory.  The
-       other possibility is "latexmk/latexmkrc" in the user's  XDG  configura-
-       tion  home  directory.  The actual file read is the first of "$XDG_CON-
-       FIG_HOME/latexmk/latexmkrc" or "$HOME/.latexmkrc" which  exists.   (See
+       The traditional one is ".latexmkrc" in the user's home directory.   The
+       other  possibility  is "latexmk/latexmkrc" in the user's XDG configura-
+       tion home directory.  The actual file read is the first  of  "$XDG_CON-
+       FIG_HOME/latexmk/latexmkrc"  or  "$HOME/.latexmkrc" which exists.  (See
        https://specifications.freedesktop.org/basedir-spec/basedir-spec-lat-
        est.html for details on the XDG Base Directory Specification.)
 
-       Here $HOME is the  user's  home  directory.   [Latexmk  determines  the
-       user's  home  directory as follows:  It is the value of the environment
-       variable HOME, if this variable exists, which normally is the  case  on
-       UNIX-like  systems  (including Linux and OS-X).  Otherwise the environ-
-       ment variable USERPROFILE is used, if it exists, which normally is  the
+       Here  $HOME  is  the  user's  home  directory.  [Latexmk determines the
+       user's home directory as follows:  It is the value of  the  environment
+       variable  HOME,  if this variable exists, which normally is the case on
+       UNIX-like systems (including Linux and OS-X).  Otherwise  the  environ-
+       ment  variable USERPROFILE is used, if it exists, which normally is the
        case on MS-Windows systems. Otherwise a blank string is used instead of
        $HOME, in which case latexmk does not look for an RC file in it.]
 
-       $XDG_CONFIG_HOME is the value  of  the  environment  variable  XDG_CON-
-       FIG_HOME  if  it  exists.  If this environment variable does not exist,
 
 
-
-                                25 January 2018                             21
+                                  25 May 2018                               21
 
 
 
@@ -1390,38 +1390,40 @@ CONFIGURATION/INITIALIZATION (RC) FILES
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       but $HOME is non-blank, then $XDG_CONFIG_HOME is  set  to  the  default
-       value  of  $HOME/.config.   Otherwise  $XDG_CONFIG_HOME  is  blank, and
+       $XDG_CONFIG_HOME  is  the  value  of  the environment variable XDG_CON-
+       FIG_HOME if it exists.  If this environment variable  does  not  exist,
+       but  $HOME  is  non-blank,  then $XDG_CONFIG_HOME is set to the default
+       value of  $HOME/.config.   Otherwise  $XDG_CONFIG_HOME  is  blank,  and
        latexmk does not look for an RC file under it.
 
 
-       3) The RC file in the current working  directory.   This  file  can  be
-       named  either "latexmkrc" or ".latexmkrc", and the first of these to be
+       3)  The  RC  file  in  the current working directory.  This file can be
+       named either "latexmkrc" or ".latexmkrc", and the first of these to  be
        found is used, if any.
 
        4) Any RC file(s) specified on the command line with the -r option.
 
        Each RC file is a sequence of Perl commands.  Naturally, a user can use
-       this  in  creative  ways.   But  for  most  purposes, one simply uses a
-       sequence of assignment statements that override some  of  the  built-in
-       settings  of  Latexmk.   Straightforward  cases  can be handled without
-       knowledge of the Perl language by using the examples in  this  document
+       this in creative ways.  But  for  most  purposes,  one  simply  uses  a
+       sequence  of  assignment  statements that override some of the built-in
+       settings of Latexmk.  Straightforward  cases  can  be  handled  without
+       knowledge  of  the Perl language by using the examples in this document
        as templates.  Comment lines are introduced by the "#" character.
 
-       Note  that  command  line options are obeyed in the order in which they
+       Note that command line options are obeyed in the order  in  which  they
        are written; thus any RC file specified on the command line with the -r
-       option  can  override  previous options but can be itself overridden by
-       later options on the command line.  There is also the -e option,  which
+       option can override previous options but can be  itself  overridden  by
+       later  options on the command line.  There is also the -e option, which
        allows initialization code to be specified in latexmk's command line.
 
-         For  possible  examples  of code for in an RC file, see the directory
-       example_rcfiles in the distribution of latexmk  (e.g.,  at  http://mir-
+        For possible examples of code for in an RC  file,  see  the  directory
+       example_rcfiles  in  the  distribution of latexmk (e.g., at http://mir-
        ror.ctan.org/support/latexmk/example_rcfiles).
 
 
 HOW TO SET VARIABLES IN INITIALIZATION FILES
-       The  important  variables  that  can be configured are described in the
-       section "List  of  configuration  variables  usable  in  initialization
+       The important variables that can be configured  are  described  in  the
+       section  "List  of  configuration  variables  usable  in initialization
        files".  Syntax for setting these variables is of the following forms:
 
                            $bibtex = 'bibtex %O %B';
@@ -1434,20 +1436,18 @@ HOW TO SET VARIABLES IN INITIALIZATION FILES
 
                            @default_files = ('paper', 'paper1');
 
-       for  the  setting  of an array of strings.  It is possible to append an
+       for the setting of an array of strings.  It is possible  to  append  an
        item to an array variable as follows:
 
                            push @default_files, 'paper2';
 
-       Note that simple "scalar" variables have names  that  begin  with  a  $
+       Note  that  simple  "scalar"  variables  have names that begin with a $
        character and array variables have names that begin with a @ character.
        Each statement ends with a semicolon.
 
-       Strings should be enclosed in single quotes.   (You  could  use  double
 
 
-
-                                25 January 2018                             22
+                                  25 May 2018                               22
 
 
 
@@ -1456,64 +1456,64 @@ HOW TO SET VARIABLES IN INITIALIZATION FILES
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       quotes,  as  in many programming languages.  But then the Perl program-
-       ming language brings into play some  special  rules  for  interpolating
-       variables  into  strings.  People not fluent in Perl will want to avoid
+       Strings  should  be  enclosed  in single quotes.  (You could use double
+       quotes, as in many programming languages.  But then the  Perl  program-
+       ming  language  brings  into  play some special rules for interpolating
+       variables into strings.  People not fluent in Perl will want  to  avoid
        these complications.)
 
-       You can do much more complicated things, but for this you will need  to
+       You  can do much more complicated things, but for this you will need to
        consult a manual for the Perl programming language.
 
 
 
 
 FORMAT OF COMMAND SPECIFICATIONS
-       Some  of  the variables set the commands that latexmk uses for carrying
-       out its work, for example to generate a dvi file from a tex file or  to
+       Some of the variables set the commands that latexmk uses  for  carrying
+       out  its work, for example to generate a dvi file from a tex file or to
        view a postscript file.  This section describes some important features
-       of how the commands are specified.  (Note that some of  the  possibili-
+       of  how  the commands are specified.  (Note that some of the possibili-
        ties listed here do not apply to the $kpsewhich variable; see its docu-
        mentation.)
 
        Placeholders:  Supposed you wanted latexmk to use the command elatex in
-       place  of  the  regular  latex  command,  and suppose moreover that you
-       wanted to give it the option "--shell-escape".  You could  do  this  by
+       place of the regular latex  command,  and  suppose  moreover  that  you
+       wanted  to  give  it the option "--shell-escape".  You could do this by
        the following setting:
 
             $latex = 'elatex --shell-escape %O %S';
 
-       The  two  items  starting with the % character are placeholders.  These
-       are substituted by appropriate values before the command is run.   Thus
-       %S  will be replaced by the source file that elatex will be applied to,
-       and %O will be replaced by any options that latexmk has decided to  use
+       The two items starting with the % character  are  placeholders.   These
+       are  substituted by appropriate values before the command is run.  Thus
+       %S will be replaced by the source file that elatex will be applied  to,
+       and  %O will be replaced by any options that latexmk has decided to use
        for this command.  (E.g., if you used the -silent option in the invoca-
-       tion of latexmk,  it results in the replacement  of  %O  by  "-interac-
+       tion  of  latexmk,   it  results in the replacement of %O by "-interac-
        tion=batchmode".)
 
        The available placeholders are:
 
-       %B     base  of  filename  for  current command.  E.g., if a postscript
-              file document.ps is being made from the dvi  file  document.dvi,
+       %B     base of filename for current command.   E.g.,  if  a  postscript
+              file  document.ps  is being made from the dvi file document.dvi,
               then the basename is document.
 
-       %D     destination  file  (e.g.,  the  name of the postscript file when
+       %D     destination file (e.g., the name of  the  postscript  file  when
               converting a dvi file to postscript).
 
        %O     options
 
        %R     root filename.  This is the base name for the main tex file.
 
-       %S     source file (e.g., the name of the dvi file  when  converting  a
+       %S     source  file  (e.g.,  the name of the dvi file when converting a
               dvi file to ps).
 
        %T     The name of the primary tex file.
 
-       %Y     Name of directory for auxiliary output files (see the configura-
-              tion variable $aux_dir).  A directory separation character ('/')
+       %Y
 
 
 
-                                25 January 2018                             23
+                                  25 May 2018                               23
 
 
 
@@ -1522,64 +1522,64 @@ FORMAT OF COMMAND SPECIFICATIONS
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              Name of directory for auxiliary output files (see the configura-
+              tion variable $aux_dir).  A directory separation character ('/')
               is appended if $aux_dir is non-empty and does not end in a suit-
               able character, with suitable characters being those appropriate
-              to  UNIX  and MS-Windows, i.e., ':', '/' and '\'.   Note that if
-              after initialization,  $out_dir is set, but $aux_dir is not  set
-              (i.e.,  it  is  blank),  then  latexmk sets $aux_dir to the same
+              to UNIX and MS-Windows, i.e., ':', '/' and '\'.   Note  that  if
+              after  initialization,  $out_dir is set, but $aux_dir is not set
+              (i.e., it is blank), then latexmk  sets  $aux_dir  to  the  same
               value $out_dir.
 
-       %Z     Name of directory for output files (see the configuration  vari-
-              able  $out_dir).   A  directory  separation  character  ('/') is
+       %Z     Name  of directory for output files (see the configuration vari-
+              able $out_dir).   A  directory  separation  character  ('/')  is
               appended if $out_dir is non-empty and does not end in a suitable
-              character,  with  suitable characters being those appropriate to
+              character, with suitable characters being those  appropriate  to
               UNIX and MS-Windows, i.e., ':', '/' and '\'.
 
-       If for some reason you need a literal % character in  your  string  not
+       If  for  some  reason you need a literal % character in your string not
        subject to the above rules, use "%%".
 
-       Appropriate  quoting  will be applied to the filename substitutions, so
-       you mustn't supply them yourself even if the names of your  files  have
+       Appropriate quoting will be applied to the filename  substitutions,  so
+       you  mustn't  supply them yourself even if the names of your files have
        spaces in them.  (But if your TeX filenames have spaces in them, beware
        that many versions of the TeX program cannot correctly handle filenames
-       containing  spaces.)  In case latexmk's quoting does not work correctly
-       on your system, you can turn it off -- see the  documentation  for  the
+       containing spaces.)  In case latexmk's quoting does not work  correctly
+       on  your  system,  you can turn it off -- see the documentation for the
        variable $quote_filenames.
 
-       The  distinction  between %B and %R needs a bit of care, since they are
-       often the same, but not always.  For example on a simple document,  the
+       The distinction between %B and %R needs a bit of care, since  they  are
+       often  the same, but not always.  For example on a simple document, the
        basename of a bibtex run is the same as for the texfile.  But in a doc-
-       ument with several bibliographies, the bibliography files will  have  a
-       variety  of  names.   Since  bibtex is invoked with the basename of the
-       bibliography file, the setting for the bibtex command should  therefore
+       ument  with  several bibliographies, the bibliography files will have a
+       variety of names.  Since bibtex is invoked with  the  basename  of  the
+       bibliography  file, the setting for the bibtex command should therefore
        be
 
             $bibtex = 'bibtex %O %B';
 
-       Generally,  you  should use %B rather than %R.  Similarly for most pur-
+       Generally, you should use %B rather than %R.  Similarly for  most  pur-
        poses, the name %T of the primary texfile is not a useful placeholder.
 
-       See the default values in the section "List of configuration  variables
+       See  the default values in the section "List of configuration variables
        usable in initialization files" for what is normally the most appropri-
        ate usage.
 
        If you omit to supply any placeholders whatever in the specification of
-       a  command,  latexmk will supply what its author thinks are appropriate
+       a command, latexmk will supply what its author thinks  are  appropriate
        defaults.  This gives compatibility with configuration files for previ-
        ous versions of latexmk, which didn't use placeholders.
 
-       "Detaching"  a  command: Normally when latexmk runs a command, it waits
+       "Detaching" a command: Normally when latexmk runs a command,  it  waits
        for the command to run to completion.  This is appropriate for commands
        like latex, of course.  But for previewers, the command should normally
-       run detached, so that latexmk  gets  the  previewer  running  and  then
+       run  detached,  so  that  latexmk  gets  the previewer running and then
        returns to its next task (or exits if there is nothing else to do).  To
-       achieve this effect of detaching a command, you  need  to  precede  the
-       command name with "start ", as in
+       achieve  this  effect  of  detaching a command, you need to precede the
 
 
 
-
-                                25 January 2018                             24
+                                  25 May 2018                               24
 
 
 
@@ -1588,64 +1588,64 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       command name with "start ", as in
+
             $dvi_previewer = 'start xdvi %O %S';
 
-       This  will  be translated to whatever is appropriate for your operating
+       This will be translated to whatever is appropriate for  your  operating
        system.
 
-       Notes: (1) In some circumstances, latexmk will  always  run  a  command
+       Notes:  (1)  In  some  circumstances, latexmk will always run a command
        detached.  This is the case for a previewer in preview continuous mode,
-       since otherwise previewing continuously makes no sense.  (2) This  pre-
-       cludes  the  possibility  of running a command named start.  (3) If the
-       word start occurs more than  once  at  the  beginning  of  the  command
-       string,  that is equivalent to having just one.  (4) Under cygwin, some
-       complications happen, since cygwin amounts to a complicated merging  of
-       UNIX  and  MS-Windows.   See  the  source code for how I've handled the
+       since  otherwise previewing continuously makes no sense.  (2) This pre-
+       cludes the possibility of running a command named start.   (3)  If  the
+       word  start  occurs  more  than  once  at  the beginning of the command
+       string, that is equivalent to having just one.  (4) Under cygwin,  some
+       complications  happen, since cygwin amounts to a complicated merging of
+       UNIX and MS-Windows.  See the source code  for  how  I've  handled  the
        problem.
 
        Command names containing spaces: Under MS-Windows it is common that the
        name of a command includes spaces, since software is often installed in
-       a subdirectory of "C:\Program Files".  Such  command  names  should  be
+       a  subdirectory  of  "C:\Program  Files".  Such command names should be
        enclosed in double quotes, as in
 
             $lpr_pdf  =  '"c:/Program  Files/Ghostgum/gsview/gsview32.exe"  /p
        %S';
             $pdf_previewer   =   'start   "c:/Program   Files/SumatraPDF/Suma-
        traPDF.exe" %O %S';
-            $pdf_previewer  =  'start "c:/Program Files/SumatraPDF (x86)/Suma-
+            $pdf_previewer = 'start "c:/Program  Files/SumatraPDF  (x86)/Suma-
        traPDF.exe" %O %S';
 
 
-       (Note about the above example: Under  MS-Windows  forward  slashes  are
+       (Note  about  the  above  example: Under MS-Windows forward slashes are
        equivalent to backslashes in a filename under almost all circumstances,
-       provided that the filename is inside double quotes.  It  is  easier  to
+       provided  that  the  filename is inside double quotes.  It is easier to
        use forward slashes in examples like the one above, since then one does
-       not have to worry about the rules for dealing with forward  slashes  in
+       not  have  to worry about the rules for dealing with forward slashes in
        strings in the Perl language.)
 
-       Command  names  under  Cygwin: If latexmk is executed by Cygwin's Perl,
+       Command names under Cygwin: If latexmk is executed  by  Cygwin's  Perl,
        be particularly certain that pathnames in commands have forward slashes
-       not  the  usual  backslashes  for the separator of pathname components.
-       See the above examples.  Backslashes often get  misinterpreted  by  the
+       not the usual backslashes for the  separator  of  pathname  components.
+       See  the  above  examples.  Backslashes often get misinterpreted by the
        Unix shell used by Cygwin's Perl to execute external commands.  Forward
        slashes don't suffer from this problem, and (when quoted, as above) are
        equally acceptable to MS-Windows.
 
-       Using  MS-Windows  file  associations: A useful trick under modern ver-
+       Using MS-Windows file associations: A useful trick  under  modern  ver-
        sions of MS-Windows (e.g., WinXP) is to use just the command 'start' by
        itself:
 
             $dvi_previewer = 'start %S';
 
        Under MS-Windows, this will cause to be run whatever program the system
-       has associated with dvi files.  (The  same  applies  for  a  postscript
-       viewer and a pdf viewer.)  But note that this trick is not always suit-
-       able for the pdf previwer, if your system has acroread for the  default
-       pdf viewer.  As explained elsewhere, acroread under MS-Windows does not
+       has  associated  with  dvi  files.   (The same applies for a postscript
+       viewer and a pdf viewer.)  But note  that  this  trick  is  not  always
 
 
 
-                                25 January 2018                             25
+                                  25 May 2018                               25
 
 
 
@@ -1654,7 +1654,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       work well with latex and latexmk, because acroread locks the pdf file.
+       suitable  for  the  pdf  previwer,  if your system has acroread for the
+       default pdf viewer.  As explained elsewhere, acroread under  MS-Windows
+       does  not  work well with latex and latexmk, because acroread locks the
+       pdf file.
 
        Not using a certain command: If a command is not to be run, the command
        name NONE is used, as in
@@ -1705,13 +1708,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        %B';
 
        This  definition  assumes  you  are  using  a  UNIX-like  system (which
-       includes Linux and OS-X), so that the two commands to be run are  sepa-
-       rated by the semicolon in the middle of the string.
 
 
 
-
-                                25 January 2018                             26
+                                  25 May 2018                               26
 
 
 
@@ -1719,6 +1719,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       includes Linux and OS-X), so that the two commands to be run are  sepa-
+       rated by the semicolon in the middle of the string.
 
        If you are using MS-Windows, you would replace the above line by
 
@@ -1771,13 +1774,10 @@ LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
               doesn't always generate lines in the .fls  file  for  input  lua
               files.   (The  situation  with lualatex is HIGHLY version depen-
               dent, e.g., there was a big  change  between  TeXLive  2016  and
-              TeXLive 2017.)
-
-              To  keep  backward compatibility with older versions of latexmk,
 
 
 
-                                25 January 2018                             27
+                                  25 May 2018                               27
 
 
 
@@ -1786,6 +1786,9 @@ LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              TeXLive 2017.)
+
+              To  keep  backward compatibility with older versions of latexmk,
               the default is to set $analyze_input_log_always to 1.
 
 
@@ -1838,12 +1841,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               The banner message to print across each page when converting the
               dvi file to postscript.  This is equivalent to the -bm option.
 
-       $banner_scale [220.0]
-              A decimal number that specifies how  large  the  banner  message
 
 
-
-                                25 January 2018                             28
+                                  25 May 2018                               28
 
 
 
@@ -1852,6 +1852,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       $banner_scale [220.0]
+              A decimal number that specifies how  large  the  banner  message
               will  be printed.  Experimentation is necessary to get the right
               scale for your message, as a rule of thumb the scale  should  be
               about  equal  to 1100 divided by the number of characters in the
@@ -1904,12 +1906,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               covers from the log file that one (or more)  bibtex/biber-gener-
               ated  bibliographies  are used, it can run bibtex or biber when-
               ever it appears necessary to regenerate  the  bbl  file(s)  from
-              their  source  bib  database  file(s).   But  sometimes, the bib
-              file(s) are not available (e.g., for a document obtained from an
 
 
 
-                                25 January 2018                             29
+                                  25 May 2018                               29
 
 
 
@@ -1918,6 +1918,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              their  source  bib  database  file(s).   But  sometimes, the bib
+              file(s) are not available (e.g., for a document obtained from an
               external archive), but the bbl files are provided.  In that case
               use of bibtex or biber will result in incorrect  overwriting  of
               the  precious  bbl  files.   The  variable  $bibtex_use controls
@@ -1970,12 +1972,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               be deleted, by using the place holder %R, as in commands, and it
               is also possible to use wildcards.  Thus setting
 
-                 $clean_ext = "out %R-blx.bib %R-figures*.log";
 
 
 
-
-                                25 January 2018                             30
+                                  25 May 2018                               30
 
 
 
@@ -1983,6 +1983,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+                 $clean_ext = "out %R-blx.bib %R-figures*.log";
 
               in an initialization file will imply that when a clean-up opera-
               tion  is  specified,  not  only  is  the  standard  set of files
@@ -2036,12 +2038,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               These  assume  that  the  program xdotool is installed, that the
               previewer is using an X-Window system for display, and that  the
               title  of the window contains the name of the displayed file, as
-              it normally does.  When the commands are  executed,  the  place-
-              holder  string  %D  is  replaced  by the name of the destination
 
 
 
-                                25 January 2018                             31
+                                  25 May 2018                               31
 
 
 
@@ -2050,6 +2050,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              it normally does.  When the commands are  executed,  the  place-
+              holder  string  %D  is  replaced  by the name of the destination
               file, which is the previewed file.  The above commands result in
               an appropriate string being appended to the filename in the win-
               dow title: " compiling", " OK", or " FAILURE".
@@ -2102,12 +2104,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               specified on the latexmk command line.  2. Wildcards are allowed
               in @default_excluded_files.
 
-       @default_files [("*.tex")]
-              Default list of files to be processed.
 
 
 
-                                25 January 2018                             32
+                                  25 May 2018                               32
 
 
 
@@ -2115,6 +2115,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       @default_files [("*.tex")]
+              Default list of files to be processed.
 
               If  no filenames are specified on the command line, latexmk pro-
               cesses all tex files specified in the  @default_files  variable,
@@ -2168,12 +2171,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               latex and pdflatex programs.  This variable is set  by  the  -cd
               and -cd- options on latexmk's command line.
 
-       $dvi_filter [empty]
-              The  dvi  file  filter  to be run on the newly produced dvi file
 
 
-
-                                25 January 2018                             33
+                                  25 May 2018                               33
 
 
 
@@ -2182,6 +2182,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       $dvi_filter [empty]
+              The  dvi  file  filter  to be run on the newly produced dvi file
               before other  processing.   Equivalent  to  specifying  the  -dF
               option.
 
@@ -2234,12 +2236,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               N.B.  The  standard  dvipdf program runs silently, so adding the
               silent switch has no effect, but is actually innocuous.  But  if
-              an  alternative program is used, e.g., dvipdfmx, then the silent
-              switch has an  effect.   The  default  setting  is  correct  for
 
 
 
-                                25 January 2018                             34
+                                  25 May 2018                               34
 
 
 
@@ -2248,6 +2248,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              an  alternative program is used, e.g., dvipdfmx, then the silent
+              switch has an  effect.   The  default  setting  is  correct  for
               dvipdfm and dvipdfmx.
 
        $dvips ["dvips %O -o %D %S"]
@@ -2299,13 +2301,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               variable  $dvi_update_method.   The  default  value  is  the one
               appropriate for xdvi on a UNIX system.
 
-       $failure_cmd [undefined]
-              See the documentation for $compiling_cmd.
 
 
 
 
-                                25 January 2018                             35
+                                  25 May 2018                               35
 
 
 
@@ -2313,6 +2313,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       $failure_cmd [undefined]
+              See the documentation for $compiling_cmd.
 
        $fdb_ext ["fdb_latexmk"]
               The extension of the file which latexmk generates to  contain  a
@@ -2365,13 +2368,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               bigger than 2 if a remote filesystem or network share is used.
 
               If  the  difference in system times on the two systems is large,
-              it normally indicates that at least one of the systems  is  mis-
-              configured.    The   variable  $filetime_offset_report_threshold
-              specifies the smallest size of the  difference  (or  offset)  in
 
 
 
-                                25 January 2018                             36
+                                  25 May 2018                               36
 
 
 
@@ -2380,6 +2380,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              it normally indicates that at least one of the systems  is  mis-
+              configured.    The   variable  $filetime_offset_report_threshold
+              specifies the smallest size of the  difference  (or  offset)  in
               seconds  between the times of the local and remote system beyond
               which the offset is reported.  This is reported at the point  in
               the  latexmk's  progress that it measures the offset. The report
@@ -2431,13 +2434,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The  general rule latexmk uses for determining when an extra run
               of some program is needed is that one of the  source  files  has
-              changed.   But  consider for example a latex package that causes
-              an encapsulated postscript file (an "eps" file) to be made  that
-              is  to  be read in on the next run.  The file contains a comment
 
 
 
-                                25 January 2018                             37
+                                  25 May 2018                               37
 
 
 
@@ -2446,6 +2446,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              changed.   But  consider for example a latex package that causes
+              an encapsulated postscript file (an "eps" file) to be made  that
+              is  to  be read in on the next run.  The file contains a comment
               line giving its creation date and time.  On  the  next  run  the
               time  changes,  latex  sees  that  the eps file has changed, and
               therefore reruns latex.  This causes an infinite loop,  that  is
@@ -2497,13 +2500,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               but not its path. The program specified by $kpsewhich is used to
               find it.
 
-              (For  advanced  users:  Because  of  the  different way in which
-              latexmk uses the command specified in $kpsewhich,  some  of  the
-              possibilities  listed in the FORMAT OF COMMAND SPECIFICATIONS do
 
 
 
-                                25 January 2018                             38
+                                  25 May 2018                               38
 
 
 
@@ -2512,6 +2512,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              (For  advanced  users:  Because  of  the  different way in which
+              latexmk uses the command specified in $kpsewhich,  some  of  the
+              possibilities  listed in the FORMAT OF COMMAND SPECIFICATIONS do
               not apply.  The internal and start keywords are not available. A
               simple command specification with possible options and then "%S"
               is all that is guaranteed to work.  Note  that  for  other  com-
@@ -2563,13 +2566,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               tines are provided for manipulating this and the  related  vari-
               able      %pdflatex_input_extensions,      add_input_ext     and
               remove_input_ext.  They are used as in  the  following  examples
-              are possible lines in an initialization file:
-
-                  remove_input_ext( 'latex', 'tex' );
 
 
 
-                                25 January 2018                             39
+                                  25 May 2018                               39
 
 
 
@@ -2577,6 +2577,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+              are possible lines in an initialization file:
+
+                  remove_input_ext( 'latex', 'tex' );
 
               removes the extension 'tex' from latex_input_extensions
 
@@ -2629,13 +2633,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Under MS-Windows you could set this to  use  gsview,  if  it  is
               installed, e.g.,
 
-                  $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
-
-              If  gsview  is installed in a different directory, you will need
 
 
-
-                                25 January 2018                             40
+                                  25 May 2018                               40
 
 
 
@@ -2644,6 +2644,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+                  $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
+
+              If  gsview  is installed in a different directory, you will need
               to make the appropriate change.  Note the double  quotes  around
               the name: this is necessary because one part of the command name
               ("Program Files") contains a space which would otherwise be mis-
@@ -2696,12 +2699,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               (Note that the "etc" covers a lot of  cases  where  one  run  of
               latex/pdflatex generates files to be read in on a later run.)
 
-       $MSWin_back_slash [1]
-              This  configuration  variable only has an effect when latexmk is
 
 
-
-                                25 January 2018                             41
+                                  25 May 2018                               41
 
 
 
@@ -2710,6 +2710,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       $MSWin_back_slash [1]
+              This  configuration  variable only has an effect when latexmk is
               running under MS-Windows.  It determines whether, when a command
               is  executed  under  MS-Windows, there should be substituted "\"
               for the separator character between components  of  a  directory
@@ -2761,13 +2763,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               ing with a user's files.  If for $out_dir or $aux_dir you really
               do  need to specify an absolute pathname (e.g., "/tmp/foo") or a
               path (e.g., "../output") that includes a higher-level directory,
-              and  you  need to use makeindex or bibtex, then you need to dis-
-              able the security measures (and assume any risks).  One  way  of
-              doing this is to temporarily set an operating system environment
+              and  you  need  to  use  makeindex  or  bibtex, then you need to
 
 
 
-                                25 January 2018                             42
+                                  25 May 2018                               42
 
 
 
@@ -2776,7 +2776,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              variable openout_any to "a"  (as  in  "all"),  to  override  the
+              disable the security measures (and assume any risks).   One  way
+              of doing this is to temporarily set an operating system environ-
+              ment variable openout_any to "a" (as in "all"), to override  the
               default "paranoid" setting.
 
        $pdf_mode [0]
@@ -2828,12 +2830,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               See details of the %latex_input_extensions for other information
               that equally applies to %pdflatex_input_extensions.
 
-       $pdflatex_silent_switch ["-interaction=batchmode"]
-              Switch(es)  for  the pdflatex program (specified in the variable
 
 
 
-                                25 January 2018                             43
+                                  25 May 2018                               43
 
 
 
@@ -2842,6 +2842,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       $pdflatex_silent_switch ["-interaction=batchmode"]
+              Switch(es)  for  the pdflatex program (specified in the variable
               $pdflatex) when silent mode is on.
 
               See details of the $latex_silent_switch  for  other  information
@@ -2895,11 +2897,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Note that acroread under MS-Windows (but not UNIX) locks the pdf
               file, so the default value is then 3.
 
-              Arranging to use a command to get a previewer explicitly updated
 
 
-
-                                25 January 2018                             44
+                                  25 May 2018                               44
 
 
 
@@ -2908,6 +2908,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              Arranging to use a command to get a previewer explicitly updated
               requires three variables to be set.  For example:
 
                   $pdf_previewer = "start xpdf -remote %R %O %S";
@@ -2964,8 +2965,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-
-                                25 January 2018                             45
+                                  25 May 2018                               45
 
 
 
@@ -3031,7 +3031,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             46
+                                  25 May 2018                               46
 
 
 
@@ -3097,7 +3097,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             47
+                                  25 May 2018                               47
 
 
 
@@ -3163,7 +3163,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             48
+                                  25 May 2018                               48
 
 
 
@@ -3229,7 +3229,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             49
+                                  25 May 2018                               49
 
 
 
@@ -3295,7 +3295,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             50
+                                  25 May 2018                               50
 
 
 
@@ -3361,7 +3361,7 @@ CUSTOM DEPENDENCIES
 
 
 
-                                25 January 2018                             51
+                                  25 May 2018                               51
 
 
 
@@ -3427,7 +3427,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             52
+                                  25 May 2018                               52
 
 
 
@@ -3493,7 +3493,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             53
+                                  25 May 2018                               53
 
 
 
@@ -3559,7 +3559,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             54
+                                  25 May 2018                               54
 
 
 
@@ -3625,7 +3625,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             55
+                                  25 May 2018                               55
 
 
 
@@ -3691,7 +3691,7 @@ ADVANCED CONFIGURATION: Some extra resources and advanced tricks
 
 
 
-                                25 January 2018                             56
+                                  25 May 2018                               56
 
 
 
@@ -3757,7 +3757,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             57
+                                  25 May 2018                               57
 
 
 
@@ -3823,7 +3823,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             58
+                                  25 May 2018                               58
 
 
 
@@ -3889,7 +3889,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                25 January 2018                             59
+                                  25 May 2018                               59
 
 
 
@@ -3955,7 +3955,7 @@ BUGS
 
 
 
-                                25 January 2018                             60
+                                  25 May 2018                               60
 
 
 
@@ -3979,7 +3979,7 @@ THANKS TO
 
 AUTHOR
        Current  version,  by  John  Collins  (username  jcc8 at node psu.edu).
-       (Version 4.55a).
+       (Version 4.56).
 
        Released     version     can      be      obtained      from      CTAN:
        <http://www.ctan.org/pkg/latexmk/>,   and  from  the  author's  website
@@ -4021,6 +4021,6 @@ AUTHOR
 
 
 
-                                25 January 2018                             61
+                                  25 May 2018                               61
 
 

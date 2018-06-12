@@ -1,12 +1,35 @@
 # This shows how to use the pythontex package with latexmk
+# This **present** version (1 April 2018) it only works when
+#   the operating system and the file system support symbolic
+#   links (e.g., linux, OS-X and other unix implementations with their
+#   usual file systems).  It is **not** tested on MS-Windows, but
+#   **may** work on recent versions.
+# In the future, a version of latexmk may provide better support
+#   without the restrictions.
 
-#  This version has a fudge on the latex and pdflatex commands that
-#  allows the pythontex custom dependency to work even when $out_dir
-#  is used to set the output directory.  Without the fudge (done by
-#  trickery symbolic links) the custom dependency for using pythontex
-#  will not be detected.
+# This version also has a restriction that on initial runs pythontex
+#   is not invoked.  Later runs after a modification of the source
+#   file in the invoked python code do trigger the invocation of
+#   pythontex. The planned future enhancements of latexmk should
+#   remedy this.
 
+# This latexmkrc is an example of a style of configuration that may be
+#    useful for other packages.
+
+# This version has a fudge on the latex and pdflatex commands that
+#    allows the pythontex custom dependency to work even when $out_dir
+#    is used to set the output directory.  Without the fudge (done by
+#    trickery with symbolic links) the custom dependency for using
+#    pythontex will not be detected.
+
+push @generated_exts, 'pytxcode';
 add_cus_dep('pytxcode', 'tex', 0, 'pythontex');
+
+$latex = 'internal mylatex %R %Z latex %O %S';
+$pdflatex = 'internal mylatex %R %Z pdflatex %O %S';
+$lualatex = 'internal mylatex %R %Z lualatex %O %S';
+$xelatex = 'internal mylatex %R %Z xelatex -no-pdf %O %S';
+
 sub pythontex {
     # This subroutine is a fudge, because it from latexmk's point of
     # view, it makes the main .tex file depend on the .pytxcode file.
@@ -17,9 +40,6 @@ sub pythontex {
     return system("pythontex.py \"$_[0]\"") ;
 }
 
-
-$pdflatex = 'internal mylatex %R %Z pdflatex %O %S';
-$latex = 'internal mylatex %R %Z latex %O %S';
 sub mylatex {
    my $root = shift;
    my $dir_string = shift;
@@ -44,5 +64,3 @@ sub mylatex {
    }
    return system @_;
 }
-
-
