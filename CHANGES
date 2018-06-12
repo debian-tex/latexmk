@@ -573,22 +573,22 @@ From v. 4.52c to 4.54
   Add a sample latexmkrc file for use with bib2gls and glossaries-extra. 
 
 From v. 4.54 to 4.54c
- Work-around for when bsd_glob is not available on old installations of
-   Perl.  (Note that with these old installations, clean-up operations
-   may not work when file or directory names contain spaces.)
+  Work-around for when bsd_glob is not available on old installations of
+    Perl.  (Note that with these old installations, clean-up operations
+    may not work when file or directory names contain spaces.)
 
 From v. 4.54c to 4.55
- Correct bug that $search_path_separator wasn't defined under msys.
- Ensure that all configuration variables do have sensible default
-   definitions (which wasn't always the case previously).
- Allow optional timeout in pvc mode after a period of inactivity.
-   (See documentation for -pvctimeout option.)
- Compensate for problems caused by time offset between system time on
-   system running latexmk and file times on remote file system.
-   (It caused wrong behavior when a document uses biber, MiKTeX
-   is used, the aux_dir is on a remote file system, and the system
-   time on the host of the file system differs from the system time on
-   the system running latexmk.)
+  Correct bug that $search_path_separator wasn't defined under msys.
+  Ensure that all configuration variables do have sensible default
+    definitions (which wasn't always the case previously).
+  Allow optional timeout in pvc mode after a period of inactivity.
+    (See documentation for -pvctimeout option.)
+  Compensate for problems caused by time offset between system time on
+    system running latexmk and file times on remote file system.
+    (It caused wrong behavior when a document uses biber, MiKTeX
+    is used, the aux_dir is on a remote file system, and the system
+    time on the host of the file system differs from the system time on
+    the system running latexmk.)
 
 From v. 4.55 to 4.55a
   Add option that latexmk returns a non-zero status code when
@@ -598,4 +598,26 @@ From v. 4.55 to 4.55a
     pvc mode (in addition to the current possibilities for
     $compiling_cmd, $success_cmd and $failure_cmd).
 
+From v. 4.55a to 4.56
+  Correct parsing of biber's log file.
+  Implement $warning_cmd.
+  Deal correctly with situation that files reported in the .fls file
+    as INPUT or OUTPUT files no longer exist at end of run. These
+    files aren't true source files or generated files from latexmk's
+    point of view.  Such cases can arise from a bug in the TeX
+    engine (as with lualatex in TeXLive 2016/2017).  They can also
+    arise when temporary files are created, read and deleted during
+    a run (as with the minted package).
+  Update example latexmrc file for pythontex.
+  Better error message when .bib file(s) not found.
+  Better handling and diagnostics when names of expected and actual
+    names of .log disagree.
+  In particular, there is some automatic reconfiguration when .log
+    file is not in expected place (e.g., because $aux_dir is different
+    to $out_dir, but TeXLive is used, so -aux-directory option for TeX
+    engines isn't supported).
+  Fix problem of .bib files sometimes not being found by bibtex when
+    latexmk runs under msys and -outputdirectory is specified.
+  Add use of environment variable LATEXMKRCSYS to specify system rc
+    file.
  

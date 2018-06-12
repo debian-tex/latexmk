@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "25 January 2018" ""
+.TH LATEXMK 1 "25 May 2018" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -284,7 +284,7 @@ removed.
 This cleanup is instead of a regular make.  See the \fB-gg\fR option
 if you want to do a cleanup then a make.
 
-\fITreatment of .bbl files:\fR If \fI$bibtex_use\fR is set to 0 or 1,
+\fITreatment of .bbl files: \fR If \fI$bibtex_use\fR is set to 0 or 1,
 bbl files are always treated as non-regeneratable.  If
 \fI$bibtex_use\fR is set to 1.5, bbl files are counted as
 non-regeneratable conditionally: If the bib file exists, then bbl
@@ -1172,9 +1172,12 @@ that of cygwin), \fIlatexmk\fR reads the first it finds of
    "/opt/local/share/latexmk/LatexMk",
    "/usr/local/share/latexmk/LatexMk",
    "/usr/local/lib/latexmk/LatexMk".
-   
+
 In addition, it then tries the same set of locations, but with the
-file name replaced "LatexMk" replaced by "latexmkrc". 
+file name replaced "LatexMk" replaced by "latexmkrc".
+
+If the environment variable LATEXMKRCSYS is set, its value is used as
+the name of the system RC file, instead of any of the above.
 .PP
 2) The user's RC file, if it exists.  This can be in one of two
 places.  The traditional one is ".latexmkrc" in the user's home
@@ -3326,7 +3329,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.55a).
+(Version 4.56).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the

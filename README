@@ -1,5 +1,5 @@
-Latexmk, version 4.55a, 25 January 2018
----------------------------------------
+Latexmk, version 4.56, 25 May 2018
+----------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
 document.  Essentially, it is a highly specialized cousin of the
@@ -91,7 +91,7 @@ NOTES:-
 
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
-Latexmk 4.55a: Automatic LaTeX document generation routine
+Latexmk 4.56: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
