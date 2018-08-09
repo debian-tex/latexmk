@@ -1,11 +1,14 @@
 latexmk (1:4.59-0.1) unstable; urgency=medium
 
-  * NMU
+  * NMU (Closes: #891636)
   * add vcs and homepage fields
   * New upstream version 4.59
   * Adapt patches to new upstream
+  * Bug cleanup
+    - glossaries are supported "in later versions", the manual page
+      contains examples (Closes: #473424)
 
- -- Norbert Preining <preining@debian.org>  Thu, 09 Aug 2018 11:40:24 +0900
+ -- Norbert Preining <preining@debian.org>  Thu, 09 Aug 2018 11:47:47 +0900
 
 latexmk (1:4.56-0.1) unstable; urgency=medium
 
