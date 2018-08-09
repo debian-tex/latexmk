@@ -1,0 +1,12 @@
+---
+ latexmk.pl |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- latexmk.git.orig/latexmk.pl
++++ latexmk.git/latexmk.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl -w
+ 
+ # ?? Still need to fix bcf error issue.
+ # Don't keep looping after error

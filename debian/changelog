@@ -8,8 +8,9 @@ latexmk (1:4.59-0.1) unstable; urgency=medium
     - glossaries are supported "in later versions", the manual page
       contains examples (Closes: #473424)
   * adjust default viewer to use see (Closes: #447792)
+  * fix shebang line for new Perl policy
 
- -- Norbert Preining <preining@debian.org>  Thu, 09 Aug 2018 12:00:54 +0900
+ -- Norbert Preining <preining@debian.org>  Thu, 09 Aug 2018 13:53:46 +0900
 
 latexmk (1:4.56-0.1) unstable; urgency=medium
 
