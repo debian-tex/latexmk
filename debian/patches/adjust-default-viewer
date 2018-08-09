@@ -1,0 +1,39 @@
+---
+ latexmk.pl |   14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+--- latexmk.git.orig/latexmk.pl
++++ latexmk.git/latexmk.pl
+@@ -956,13 +956,15 @@
+     #         cannot be updated.  (acroread under MSWIN)
+     #    4 => Run command to update.  Command in $dvi_update_command, 
+     #    $ps_update_command, $pdf_update_command.
+-    $dvi_previewer  = 'start xdvi %O %S';
+-    $dvi_previewer_landscape = 'start xdvi -paper usr %O %S';
++    $dvi_previewer  = 'start see %O %S';
++    $dvi_previewer_landscape = 'start see %O %S';
+     if ( defined $dvi_update_signal ) { 
+         $dvi_update_method = 2;  # xdvi responds to signal to update
+     } else {
+         $dvi_update_method = 1;  
+     }
++	# lets hope dvi viewer updates automatically
++	$dvi_update_method = 0;
+ #    if ( defined $ps_update_signal ) { 
+ #        $ps_update_method = 2;  # gv responds to signal to update
+ #        $ps_previewer  = 'start gv -nowatch';
+@@ -975,10 +977,10 @@
+     # Turn off the fancy options for gv.  Regular gv likes -watch etc
+     #   GNU gv likes --watch etc.  User must configure
+     $ps_update_method = 0;  # gv -watch watches the ps file
+-    $ps_previewer  = 'start gv %O %S';
+-    $ps_previewer_landscape  = 'start gv -swap %O %S';
+-    $pdf_previewer = 'start acroread %O %S';
+-    $pdf_update_method = 1;  # acroread under unix needs manual update
++    $ps_previewer  = 'start see %O %S';
++    $ps_previewer_landscape  = 'start see %O %S';
++    $pdf_previewer = 'start see %O %S';
++    $pdf_update_method = 0;  # let us hope that the selected viewer does automatic updates
+     $lpr = 'lpr %O %S';         # Assume lpr command prints postscript files correctly
+     $lpr_dvi =
+         'NONE $lpr_dvi variable is not configured to allow printing of dvi files';
