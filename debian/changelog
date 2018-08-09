@@ -1,3 +1,12 @@
+latexmk (1:4.59-0.1) unstable; urgency=medium
+
+  * NMU
+  * add vcs and homepage fields
+  * New upstream version 4.59
+  * Adapt patches to new upstream
+
+ -- Norbert Preining <preining@debian.org>  Thu, 09 Aug 2018 11:40:24 +0900
+
 latexmk (1:4.56-0.1) unstable; urgency=medium
 
   * NMU due to inactivity
