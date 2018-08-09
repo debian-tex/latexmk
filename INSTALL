@@ -1,6 +1,6 @@
             INSTALLING latexmk
             ==================
-      (Version 4.56, 25 May 2018)
+      (Version 4.59, 7 August 2018)
 
             John Collins
             Physics Department
@@ -76,7 +76,7 @@ distribution.
 In the case of MiKTeX, the other standard distribution for MS-Windows,
 the main difference from TeXLive as regards latexmk is that you may
 need to install a distribution of Perl. A standard default
-installation should enable
+installation of Perl should enable latexmk to work.
 
 
 Installing on UNIX/LINUX/OS-X
@@ -219,7 +219,11 @@ NOTE: If you are using TeXLive 2009 or later, you can install latexmk
 simply by using the TeXLive package manager.  In fact, depending on
 how much of TeXLive you have already installed, latexmk may already
 have been installed.  In that case you don't normally need to bother
-with the manual installation explained below.  
+with the manual installation explained below.
+
+Similarly if you have MiKTeX, you can install latexmk by using
+MiKTeX's package manager.  But to allow latexmk to work, you will also
+need to install a distribution of Perl if you haven't done so already.
 
 1.  Make sure you have working installations of Perl and TeX/LaTeX,
     complete with viewers for dvi and/or postscript files.  You will
