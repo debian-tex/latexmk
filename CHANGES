@@ -645,3 +645,9 @@ From v. 4.57 to 4.59
   Only give warning about differing expected and output filenames when
     the extensions differ.  All other cases gave only false positives.
   Do better to ensure xelatex gets its -no-pdf option.
+
+From v. 4.59 to 4.60
+  Add -pdfxelatex and -pdflualatex options to set commands for
+    xelatex and lualatex (in analogy with -pdflatex and -latex.
+  Correct bug that use of --gg option with -deps-file option 
+    did not create deps file.
