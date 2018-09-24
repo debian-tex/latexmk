@@ -121,8 +121,8 @@ use warnings;
 
 $my_name = 'latexmk';
 $My_name = 'Latexmk';
-$version_num = '4.59';
-$version_details = "$My_name, John Collins, 7 August 2018";
+$version_num = '4.60';
+$version_details = "$My_name, John Collins, 21 September 2018";
 
 use Config;
 use File::Basename;
@@ -222,7 +222,11 @@ else {
 ##
 ## 12 Jan 2012 STILL NEED TO DOCUMENT some items below
 ##
-##  7 Aug 2018 John Collins  V. 4.59
+## 21 Sep 2018 John Collins  Fix bug that --gg with --deps-file doesn't
+##                             create deps file.
+##  3 Sep 2018 John Collins  -pdfxelatex and -pdflualatex options
+##  3 Sep 2018 John Collins  V. 4.60
+##  7 Aug 2018 John Collins  V. 4.59  Released on CTAN
 ##  1 Aug 2018 John Collins  Correct sub rdb_find_source_file.
 ## 30 Jul 2018 John Collins  Change handling of warnings for a difference 
 ##                             between actual and expected output filenames
@@ -1701,6 +1705,7 @@ while ($_ = $ARGV[0])
   elsif (/^-pdf-$/)  { $pdf_mode = 0; }
   elsif (/^-pdfdvi$/){ $pdf_mode = 3; }
   elsif (/^-pdflua$/){ $pdf_mode = 4; }
+  elsif (/^-pdfps$/) { $pdf_mode = 2; }
   elsif (/^-pdfxe$/) { $pdf_mode = 5; }
 #  elsif (/^-pdflatex$/) {
 #      $pdflatex = "pdflatex %O %S";
@@ -1710,7 +1715,12 @@ while ($_ = $ARGV[0])
   elsif (/^-pdflatex=(.*)$/) {
       $pdflatex = $1;
   }
-  elsif (/^-pdfps$/) { $pdf_mode = 2; }
+  elsif (/^-pdflualatex=(.*)$/) {
+      $lualatex = $1;
+  }
+  elsif (/^-pdfxelatex=(.*)$/) {
+      $xelatex = $1;
+  }
   elsif (/^-print=(.*)$/) {
       $value = $1;
       if ( $value =~ /^dvi$|^ps$|^pdf$|^auto$/ ) {
@@ -2180,14 +2190,31 @@ if ($deps_file eq '' ) {
     $deps_file = '-';
 }
 
+# Since deps_file is global (common to all processed files), we must
+# delete it here when doing a clean up, and not in the FILE loop, where
+# per-file processing (including clean-up) is done
+if ( ($cleanup_mode > 0) &&  $dependents_list && ( $deps_file ne '-' ) ) {
+    unlink_or_move( $deps_file );
+}
+
 # In non-pvc mode, the dependency list is global to all processed TeX files,
-# so we open a single file here, and add items to it after processing each file
-# But in -pvc mode, the dependency list should be written after round of
-# processing the single TeX file (as if each round were a separate run of
-# latexmk).  There's undoubtedly some non-optimal structuring here!
-if ( $dependents_list && ! $preview_continuous_mode ) {
+#   so we open a single file here, and add items to it after processing
+#   each file.  But in -pvc mode, the dependency list should be written
+#   after round of processing the single TeX file (as if each round were
+#   a separate run of latexmk).
+# If we are cleaning up ($cleanup_mode != 0) AND NOT continuing to
+#   make files (--gg option and $go_mode == 2), deps_file should not be
+#   created.
+# I will use definedness of $deps_handle as flag for global deps file having
+#   been opened and therefore being available to be written to after
+#   compiling a file.
+$deps_handle = undef;
+if ( $dependents_list
+     && ! $preview_continuous_mode
+     && ( ($cleanup_mode == 0) || ($go_mode == 2) )
+   ) {
     $deps_handle = new FileHandle "> $deps_file";
-    if (! defined $deps_handle ) {
+    if (! $deps_handle ) {
         die "Cannot open '$deps_file' for output of dependency information\n";
     }
 }
@@ -2399,9 +2426,6 @@ foreach $filename ( @file_list )
         unlink_or_move( 'texput.log', "texput.aux", "missfont.log",
                 keys %index_bibtex_generated, 
                 keys %aux_files );
-        if ( $dependents_list && ( $deps_file ne '-' ) ) {
-            unlink_or_move( $deps_file );
-        }
         if ($cleanup_includes_generated) {
             unlink_or_move( keys %other_generated );
         }
@@ -3697,9 +3721,13 @@ sub print_help
   "   -pdfdvi - generate pdf by dvipdf\n",
   "   -pdflatex=<program> - set program used for pdflatex.\n",
   "                      (replace '<program>' by the program name)\n",
+  "   -pdflualatex=<program> - set program used for lualatex.\n",
+  "                      (replace '<program>' by the program name)\n",
   "   -pdfps - generate pdf by ps2pdf\n",
   "   -pdflua - generate pdf by lualatex\n",
   "   -pdfxe - generate pdf by xelatex\n",
+  "   -pdfxelatex=<program> - set program used for xelatex.\n",
+  "                      (replace '<program>' by the program name)\n",
   "   -pdf-  - turn off pdf\n",
   "   -ps    - generate postscript\n",
   "   -ps-   - turn off postscript\n",

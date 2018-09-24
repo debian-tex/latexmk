@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "7 August 2018" ""
+.TH LATEXMK 1 "21 September 2018" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -756,13 +756,36 @@ contains spaces, it should be quoted, e.g.,
      latexmk -pdf -pdflatex="pdflatex --shell-escape %O %S"  foo.tex
 
 The specification of the contents of the string are the same as for
-the \fI$pdflatex\fR configuration variable.  Depending on your
+the \fI$pdflatex\fR configuration variable.  (The option
+\fB-pdflatex\fR in fact sets the variable \fI$pdflatex\fR.)
+Depending on your
 operating system and the command-line shell you are using, you may
 need to change the single quotes to double quotes (or something
 else). 
 
 To set the command for running \fIlatex\fR (rather than the command
 for \fIpdflatex\fR) see the \fB-latex\fR option.
+
+.TP
+.B -pdflualatex="COMMAND"
+This sets the string specifying the command to run \fIlualatex\fR.  It
+behaves like the \fB-pdflatex\fR option, but sets the variable
+\fI$lualatex\fR.  
+
+.TP
+.B -pdfxelatex="COMMAND"
+This sets the string specifying the command to run \fIlualatex\fR.  It
+behaves like the \fB-pdflatex\fR option, but sets the variable
+\fI$xelatex\fR.
+
+\fIWarning\fR: Ensure that the -no-pdf is used when \fIlualatex\fR is
+invoked; see the explanation for the variable \fI$lualatex\fR for why
+this is necessary.
+
+An example of the use of the \fB-pdfxelatex\fI option:
+
+     latexmk -pdfxe -pdfxelatex="xelatex --shell-escape %O %S"  foo.tex
+
 
 .TP
 .B -print=dvi, -print=ps, -print=pdf, -print=auto,
@@ -3373,7 +3396,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.59).
+(Version 4.60).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the

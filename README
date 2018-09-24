@@ -1,4 +1,4 @@
-Latexmk, version 4.59, 7 Aug 2018
+Latexmk, version 4.60, 21 Sep 2018
 ----------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
@@ -91,7 +91,7 @@ NOTES:-
 
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
-Latexmk 4.59: Automatic LaTeX document generation routine
+Latexmk 4.60: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
@@ -165,9 +165,13 @@ Usage: latexmk [latexmk_options] [filename ...]
    -pdfdvi - generate pdf by dvipdf
    -pdflatex=<program> - set program used for pdflatex.
                       (replace '<program>' by the program name)
+   -pdflualatex=<program> - set program used for lualatex.
+                      (replace '<program>' by the program name)
    -pdfps - generate pdf by ps2pdf
    -pdflua - generate pdf by lualatex
    -pdfxe - generate pdf by xelatex
+   -pdfxelatex=<program> - set program used for xelatex.
+                      (replace '<program>' by the program name)
    -pdf-  - turn off pdf
    -ps    - generate postscript
    -ps-   - turn off postscript
