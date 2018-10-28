@@ -1,3 +1,11 @@
+latexmk (1:4.61-0.1) unstable; urgency=medium
+
+  * NMU
+  * New upstream version 4.61
+  * unfuzzify patches
+
+ -- Norbert Preining <preining@debian.org>  Sun, 28 Oct 2018 22:04:30 +0900
+
 latexmk (1:4.60-0.1) unstable; urgency=medium
 
   * NMU
