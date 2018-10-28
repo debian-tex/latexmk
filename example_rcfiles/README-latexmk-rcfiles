@@ -49,9 +49,18 @@ NOTES:
 
 6. Further assistance for latexmk can be provided when style files
    provide suitable messages about missing files.  See the
-   exceltex1.sty and pythontex1.sty files for examples of what is
-   needed.  These files are modifications of exceltex.sty and
-   pythontex.sty that provide the necessary assistance.  (The versions
-   were the ones current on 30 April 2013.)
+   exceltex1.sty file for an example of what is needed.  This file is
+   a modification of exceltex.sty and pythontex.sty that provide the
+   necessary assistance.  (The version on which the modification is
+   based is the one current on 30 April 2013.)  The necessary support
+   is in pythontex, in v. 0.16.
+
+7. Another technique, exemplified in pythontex-latexmkrc, is to append
+   lines to the .log file to simulate messages about missing files.
+   This provokes latexmk into deducing that the files are intended
+   source files.  If one of the other rules then can make that file,
+   correct dependency information is obtained.
+
+
 
 

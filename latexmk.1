@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "21 September 2018" ""
+.TH LATEXMK 1 "25 October 2018" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -248,6 +248,9 @@ program to do the search, and \fIkpsewhich\fR should use the same
 search path as \fIbibtex\fR and \fIbiber\fR.  If this problem arises, use the
 \fB-bibtex\fR option when invoking \fIlatexmk\fR.)
 
+Note that this value does \fInot\fR work properly if the document uses
+\fIbiber\fR instead of \fIbibtex\fR.  (There's a long story why not.)
+
 .TP
 .B -bibtex-cond1
 The same as \fB-bibtex-cond1\fR except that .bbl files are only
@@ -351,6 +354,12 @@ This option is particularly useful when \fIlatexmk\fR is invoked from
 a GUI configured to invoke \fIlatexmk\fR with a full pathname for the
 source file.
 
+This option works by setting the \fB$do_cd\fR configuration variable
+to one; you can set that variable if you want to configure
+\fIlatexmk\fR to have the effect of the \fB-cd\fR option without
+specifying it on the command line.  See the documentation for that
+variable.
+
 .TP 
 .B -cd-
 Do NOT change to the directory containing the main source file before processing
@@ -362,6 +371,10 @@ This is the default behavior and corresponds to the behavior of the
 behavior when \fIlatexmk\fR is invoked by a GUI configured to invoke
 \fIlatexmk\fR with a full pathname for the source file.  See the
 \fB-cd\fR option.
+
+This option works by setting the \fB$do_cd\fR configuration variable
+to zero.  See the documentation for that variable for more
+information.
 
 .TP 
 .B -CF
@@ -732,7 +745,8 @@ especially .png files, the last step can be quite time consuming, even
 when the creation of the .xdv file by \fIxelatex\fR is fast.  So the
 use of the intermediate .xdv file can result in substantial gains in
 procesing time, since the .pdf file is produced once rather than on
-every run of \fIxelatex\fR.)
+every run of \fIxelatex\fR. See the documentation on the \fB-pdfxe\fR
+option for why an .xdv file is used.
 
 .TP
 .B -pdf-
@@ -778,14 +792,39 @@ This sets the string specifying the command to run \fIlualatex\fR.  It
 behaves like the \fB-pdflatex\fR option, but sets the variable
 \fI$xelatex\fR.
 
-\fIWarning\fR: Ensure that the -no-pdf is used when \fIlualatex\fR is
-invoked; see the explanation for the variable \fI$lualatex\fR for why
-this is necessary.
+\fIWarning\fR: It is important to ensure that the -no-pdf is used when
+\fIxelatex\fR is invoked; see the explanation for the variable
+\fI$xelatex\fR for why this is necessary.  If you provide %O in the
+command specification, this will be done automatically.
 
-An example of the use of the \fB-pdfxelatex\fI option:
+An example of the use of the \fB-pdfxelatex\fR option:
 
      latexmk -pdfxe -pdfxelatex="xelatex --shell-escape %O %S"  foo.tex
 
+
+.TP
+.B -pretex=CODE
+
+Given that CODE is some TeX code, this options sets that code to be
+executed before inputting source file.  This only works if the command
+for invoking the relevant \fI*latex\fR is suitably configured.  See
+the documentation of the variable \fI$pre_tex_cmd\fR, and the
+substitution strings %P and %U for more details.  This option works by
+setting the variable \fI$pre_tex_cmd\fR.
+
+See also the \fB-usepretex\fR option.
+
+An example:
+
+    latexmk -pretex='\\AtBeginDocument{Message\\par}' -usepretex foo.tex
+
+But this is better written
+
+    latexmk -usepretex='\\AtBeginDocument{Message\\par}' foo.tex
+
+If you already have a suitable command configured, you only need
+
+    latexmk -pretex='\\AtBeginDocument{Message\\par}' foo.tex
 
 .TP
 .B -print=dvi, -print=ps, -print=pdf, -print=auto,
@@ -993,8 +1032,8 @@ documentation.  These options are:
 .B -silent
 Run commands silently, i.e., with options that reduce the amount of
 diagnostics generated.  For example, with the default settings, the
-command "latex -interaction=batchmode" is used for \fI(pdf)latex\fR
-and friends.
+command "latex -interaction=batchmode" is used for \fIlatex\fR,
+and similarly for its friends.
 
 See also the \fB-logfilewarninglist\fR and \fB-logfilewarninglist-\fR
 options. 
@@ -1010,6 +1049,16 @@ variables, the relevant ones being \fI$bibtex_silent_switch\fR,
 \fI$lualatex_silent_switch\fR
 \fI$makeindex_silent_switch\fR, \fI$pdflatex_silent_switch\fR,
 and \fI$xelatex_silent_switch\fR
+
+.TP
+.B -stdtexcmds
+Sets the commands for \fIlatex\fR, etc, so that they are the standard
+ones. This is useful to override special configurations.
+
+The result is that \fI$latex = 'latex %O %S'\fR, and similarly for
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.  (The option
+\fB-no-pdf\fR needed for \fI$xelatex\fR is provided automatically,
+given that %O appears in the definition.)
 
 .TP
 .B -time
@@ -1043,6 +1092,25 @@ configuration variable.
 .TP
 .B -use-make-
 Do not use the make program to try to make missing files.  (Default.)
+
+.TP
+.B -usepretex
+Sets the command lines for \fIlatex\fR, etc, so that they use the code
+that is defined by the variable \fI$pre_tex_code\fR or that is set by
+the option \fB-pretex=CODE\fR to execute the specified TeX code before
+the source file is read.  This option overrides any previous
+definition of the command lines.
+
+The result is that \fI$latex = 'latex %O %P'\fR, and similarly for
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.  (The option
+\fB-no-pdf\fR needed for \fI$xelatex\fR is provided automatically,
+given that %O appears in the definition.)
+
+.TP
+.B -usepretex=CODE
+Equivalent to \fB-pretex=CODE -usepretex\fR.  Example
+
+  latexmk -usepretex='\\AtBeginDocument{Message\\par}' foo.tex
 
 .TP
 .B -v, -version
@@ -1183,7 +1251,7 @@ implying that the file bar.baz was read.  (At present I don't know a
 way of doing this automatically.)  Of course, if the file has a
 different name, change bar.baz to the name of your file.
 
-g. See also the section \fBADVANCED CONFIGURATION: Some extra resources\fR.
+g. See also the section "Advanced Configuration: Some extra resources".
 
 h. Look on tex.stackexchange, i.e., at
 http://tex.stackexchange.com/questions/tagged/latexmk  Someone may
@@ -1277,8 +1345,9 @@ http://mirror.ctan.org/support/latexmk/example_rcfiles).
 .SH HOW TO SET VARIABLES IN INITIALIZATION FILES
 .PP
 The important variables that can be configured are described in the
-section "List of configuration variables usable in initialization
-files".  Syntax for setting these variables is of the following forms:
+section  "List of configuration variables usable in initialization
+files".  Syntax for setting these variables is of the following
+forms:
 .PP
 	$bibtex = 'bibtex %O %B';
 .PP
@@ -1347,6 +1416,16 @@ converting a dvi file to postscript).
 .TP
 .B %O
 options
+.B %P
+If the variable \fI$pre_tex_code\fR is non-empty, then %P is
+substituted by the contents of \fI$pre_tex_code\fR followed by
+\fI\\input{SOURCE}\fR, where SOURCE stands for the name of the source
+file.  Appropriate quoting is done.  This enables TeX code to be
+passed to one of the \fI*latex\fR engines to be executed before the
+source file is read.
+
+If the variable \fI$pre_tex_code\fR is the empty string, then %P is
+equivalent to %S.
 .TP
 .B %R
 root filename.  This is the base name for the main tex file.  
@@ -1357,6 +1436,10 @@ to ps).
 .TP
 .B %T
 The name of the primary tex file.
+.B %U
+If the variable \fI$pre_tex_code\fR is non-empty, then its value is
+substituted for %U (appropriately quoted).  Otherwise it is replaced
+by a null string.
 .TP
 .B %Y
 Name of directory for auxiliary output files (see the configuration
@@ -1540,7 +1623,12 @@ invoking the MS-Windows command-line processor \fIcmd.exe\fR.
 
 .SH LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
 .PP
-Default values are indicated in brackets.
+Default values are indicated in brackets.  Note that for variables
+that are boolean in character, concerning whether \fIlatexmk\fR does
+or does not behave in a certain way, a non-zero value, normally 1,
+indicates true, i.e., the behavior occurs, while a zero value
+indicates a false value, i.e., the behavior does not occur.
+
 .TP
 .B $always_view_file_via_temporary [0]
 Whether .ps and .pdf files are initially to be made in a temporary
@@ -1716,7 +1804,12 @@ when the bib files all exist).
 update the bbl 
 files, without testing for the existence of the bib files;
 always delete .bbl files in a cleanup.
- 
+
+Note that the value 1.5 does \fInot\fR work properly if the document
+uses \fIbiber\fR instead of \fIbibtex\fR.  (There's a long story why
+not.)
+
+
 .TP
 .B $cleanup_includes_cusdep_generated [0]
 If nonzero, specifies that cleanup also deletes files that are
@@ -1752,12 +1845,21 @@ It is also possible to specify a more general pattern of file to be
 deleted, by using the place holder %R, as in commands, and it is also
 possible to use wildcards.  Thus setting
 
-   $clean_ext = "out %R-blx.bib %R-figures*.log";
+  $clean_ext = "out %R-blx.bib %R-figures*.log pythontex-files-%R/*";
 
 in an initialization file will imply that when a clean-up operation is
 specified, not only is the standard set of files deleted, but also
-files of the form FOO.out, FOO-blx.bib, and %R-figures*.log, where FOO
-stands for the basename of the file being processed (as in FOO.tex).
+files of the form FOO.out, FOO-blx.bib, %R-figures*.log, and
+pythontex-files-FOO/*, where FOO stands for the basename of the file
+being processed (as in FOO.tex).
+
+The files to be deleted are relative to the directory specified by
+\fI$aux_dir\fR.  (Note that if \fI$out_dir\fR but not \fI$aux_dir\fR
+is set, then in its initialization, \fIlatexmk\fR sets \fI$aux_dir\fR
+equal to \fI$out_dir\fR.  A normal situation is therefore that \fI$aux_dir\fR
+equals \fI$out_dir\fR, which is the only case supported by
+TeXLive, unlike MiKTeX.)
+
 .TP
 .B $clean_full_ext [""]
 Extra extensions of files for \fIlatexmk\fR to remove when the \fB-C\fR
@@ -1765,6 +1867,9 @@ option is selected, i.e., extensions of files to remove when the .dvi,
 etc files are to be cleaned-up.
 
 More general patterns are allowed, as for \fI$clean_ext\fR.
+
+The files specified by \fI$clean_full_ext\fR to be deleted are
+relative to the directory specified by \fI$out_dir\fR.
 
 .TP
 .B $compiling_cmd [""], $failure_cmd [""], $warning_cmd [""], $success_cmd [""]
@@ -1816,7 +1921,7 @@ compilation.
 More complicated situations can best be handled by defining a Perl
 subroutine to invoke the necessary commands, and using the "internal"
 keyword in the definitions to get the subroutine to be invoked.  (See
-the section Format of Command Specifications for how to do this.)
+the section "Format of Command Specifications" for how to do this.)
 
 Naturally, the above settings that invoke the \fIxdotool\fR program
 are only applicable when the X-Window system is used for the relevant
@@ -2195,11 +2300,17 @@ dvi to postscript converters.  Equivalent to the \fB-l\fR option.
 Normally not needed with current previewers.
 .TP
 .B $latex ["latex %O %S"]
-The LaTeX processing program.  Note that as with other programs, you
+Specifies the command line for
+the LaTeX processing program.  Note that as with other programs, you
 can use this variable not just to change the name of the program used,
 but also specify options to the program.  E.g.,
 
-	$latex = "latex --src-specials";
+	$latex = "latex --src-specials %O %S";
+
+To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
+\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
+Configuration".
+
 .TP
 .B %latex_input_extensions
 This variable specifies the extensions tried by \fIlatexmk\fR when it finds
@@ -2278,8 +2389,14 @@ is necessary because one part of the command name ("Program Files")
 contains a space which would otherwise be misinterpreted. 
 .TP
 .B $lualatex ["lualatex %O %S"]
-The LaTeX processing program that is to be used when the \fIlualatex\fR
+Specifies the command line for
+the LaTeX processing program that is to be used when the \fIlualatex\fR
 program is called for (e.g., by the option \fB-lualatex\fR.
+
+To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
+\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
+Configuration".
+
 .TP
 .B %lualatex_input_extensions
 This variable specifies the extensions tried by \fIlatexmk\fR when it finds
@@ -2396,7 +2513,8 @@ In \fI$pdf_mode\fR=2, it is ensured that .dvi and .ps files are also made.
 In \fI$pdf_mode\fR=3, it is ensured that a .dvi file is also made.
 .TP
 .B $pdflatex ["pdflatex %O %S"]
-The LaTeX processing program in a version that makes a pdf file instead
+Specifies the command line for
+the LaTeX processing program in a version that makes a pdf file instead
 of a dvi file.
 
 An example use of this variable is to add certain options to the
@@ -2409,6 +2527,10 @@ to \fI$pdflatex\fR to allow the use of \fIlualatex\fR or \fIxelatex\fR
 instead of \fIpdflatex\fR.  There are now separate configuration
 variables for the use of \fIlualatex\fR or \fIxelatex\fR.  See
 \fI$lualatex\fR and \fI$xelatex\fR.)
+
+To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
+\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
+Configuration".
 .TP
 .B %pdflatex_input_extensions
 This variable specifies the extensions tried by \fIlatexmk\fR when it finds
@@ -2515,6 +2637,23 @@ Equivalent to the \fB-ps\fR option.
 
 If some other request is made for which a postscript file is needed,
 then $postscript_mode will be set to 1.
+.TP
+.B $pre_tex_code ['']
+
+Sets TeX code to be executed before inputting the source file.  This
+works if the relevant one of \fI$latex\fR, etc contains a suitable
+command line with a %P or %U substitution.  For example you could do
+
+     $latex = 'latex %O %P';
+     $pre_tex_code = '\AtBeginDocument{An initial message\par}';
+
+To set all of \fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and
+\fI$xelatex\fR you could use the subroutine \fIalt_tex_cmds\fR:
+
+     &alt_tex_cmds;
+     $pre_tex_code = '\AtBeginDocument{An initial message\par}';
+
+
 .TP
 .B $preview_continuous_mode [0]
 If nonzero, run a previewer to view the document, and
@@ -2812,16 +2951,23 @@ with \fIxelatex\fR when \fI$pdf_mode\fR=5).
 .B $xdvipdfmx_silent_switch ["-q"]
 Switch(es) for the \fIxdvipdfmx\fR program when silent mode is on.
 .TP
-.B $xelatex ["xelatex -no-pdf %O %S"]
-The LaTeX processing program of in a version that makes a pdf file instead
-of a dvi file, when the \fIxelatex\fR program is called for.  See the
+.B $xelatex ["xelatex %O %S"]
+Specifies the command line for
+the LaTeX processing program of
+when the \fIxelatex\fR program is called for.  See the
 documentation of the \fB-xelatex\fR option for some special properties
 of \fIlatexmk\fR's use of \fIxelatex\fR.
 
-Note the use of the \fB-no-pdf\fR option to force \fIxelatex\fR to
-make an .xdv rather than .pdf file, with the .pdf file being created
-in a separate step.  See the documentation of the \fB-pdfxe\fR option
-for more details.
+\fINote about xelatex\fR: Now \fIlatexmk\fR uses \fIxelatex\fR to make
+an .xdv rather than .pdf file, with the .pdf file being created in a
+separate step.  This is enforced by the use of the \fB-no-pdf\fR
+option.  If %O is part of the command for invoking \fIxelatex\fR, then
+\fIlatexmk\fR will insert the \fB-no-pdf\fR option automatically,
+otherwise you must provide the option yourself
+
+To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
+\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
+Configuration".
 
 .TP
 .B %xelatex_input_extensions
@@ -3233,6 +3379,39 @@ printed to the screen unless \fIlatexmk\fR is running in silent mode.
 .PP
 
 
+.SS Coordinated Setting of Commands for *latex
+
+To set all of \fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and
+\fI$xelatex\fR to a common pattern, you can use one of the following
+subroutines, std_tex_cmds, alt_tex_cmds, and set_tex_cmds.
+
+They work as follows
+
+   &std_tex_cmds;
+
+This results in \fI$latex = 'latex %O %S'\fR, and similarly for
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.  Note the
+ampersand in the invocation; this indicates to Perl that a subroutine
+is being called.
+
+   &alt_tex_cmds;
+
+This results in \fI$latex = 'latex %O %P'\fR, and similarly for
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.  Note the
+ampersand in the invocation; this indicates to Perl that a subroutine
+is being called.
+
+  set_tex_cmds( CMD_SPEC );
+
+Here CMD_SPEC is the command line without the program name. This
+results in \fI$latex = 'CMD_SPEC'\fR, and similarly for
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR. An example would
+be 
+
+  set_tex_cmds( '--interaction=batchmode %O %S' );
+
+.PP
+
 .SS Advanced configuration: Using \fIlatexmk\fB with \fImake\fR
 
 This section is targeted only at advanced users who use the \fImake\fR
@@ -3396,7 +3575,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.60).
+(Version 4.61).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the

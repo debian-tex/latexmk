@@ -646,8 +646,27 @@ From v. 4.57 to 4.59
     the extensions differ.  All other cases gave only false positives.
   Do better to ensure xelatex gets its -no-pdf option.
 
-From v. 4.59 to 4.60
+From v. 4.59 to 4.61
   Add -pdfxelatex and -pdflualatex options to set commands for
-    xelatex and lualatex (in analogy with -pdflatex and -latex.
-  Correct bug that use of --gg option with -deps-file option 
+    xelatex and lualatex (in analogy with -pdflatex and -latex).
+  Correct bug that use of -gg option with -deps-file option 
     did not create deps file.
+  After run of latex/pdflatex (etc), report count of warnings about missing
+    characters (typically unavailable Unicode characters). Messages about
+    this may appear only in the .log file and are therefore easily missed
+    by the user.
+  Fix problem that if biber gets a remote file, latexmk would report it
+    incorrectly as a missing file.
+  Provide routines for setting all of $latex, etc, with a common pattern.
+  Variables, options, placeholders for executing code in *latex before
+    inputting source file.  The new variable is $pre_tex_code, the
+    options are -pretex, -usepretex, and the new placeholders are %P
+    and %U.
+  Improved definitions provided for the configuration of latexmk to
+    use pythontex; see the file pythontex-latexmkrc in the directory
+    example_rcfiles.
+  Correction to use of specifications in $clean_ext and
+    $clean_full_ext so that %R can appear in the interior of a string
+    as in 'pythontex-files-%R/*'. 
+  Updates of documentation.
+
