@@ -2,9 +2,9 @@
  latexmk.pl |   14 ++++++++------
  1 file changed, 8 insertions(+), 6 deletions(-)
 
---- latexmk.git.orig/latexmk.pl
-+++ latexmk.git/latexmk.pl
-@@ -960,13 +960,15 @@ else {
+--- latexmk.orig/latexmk.pl
++++ latexmk/latexmk.pl
+@@ -976,13 +976,15 @@ else {
      #         cannot be updated.  (acroread under MSWIN)
      #    4 => Run command to update.  Command in $dvi_update_command, 
      #    $ps_update_command, $pdf_update_command.
@@ -22,7 +22,7 @@
  #    if ( defined $ps_update_signal ) { 
  #        $ps_update_method = 2;  # gv responds to signal to update
  #        $ps_previewer  = 'start gv -nowatch';
-@@ -979,10 +981,10 @@ else {
+@@ -995,10 +997,10 @@ else {
      # Turn off the fancy options for gv.  Regular gv likes -watch etc
      #   GNU gv likes --watch etc.  User must configure
      $ps_update_method = 0;  # gv -watch watches the ps file
