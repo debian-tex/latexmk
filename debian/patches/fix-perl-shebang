@@ -8,5 +8,5 @@
 -#!/usr/bin/env perl
 +#!/usr/bin/perl -w
  
- # ?? Still need to fix bcf error issue.
- # Don't keep looping after error
+ #!!!!!!!!!!!!!!!!!!!????????? CLEAN UP INITIALIZATION
+ #!!! See all FIX items.
