@@ -639,7 +639,7 @@ From v. 4.57 to 4.59
     '"' character is not allowed in a filename read by tex and
     friends.
   Give fatal error when name of tex file on command line is either not
-    allowed by tex and friends are gives problematic behavior.
+    allowed by tex and friends , or gives problematic behavior.
   Use TEXINPUTS as search path for source files for custom
     dependency.
   Only give warning about differing expected and output filenames when
@@ -670,3 +670,12 @@ From v. 4.59 to 4.61
     as in 'pythontex-files-%R/*'. 
   Updates of documentation.
 
+From v. 4.61 to 4.63b
+  Update example_rcfiles/glossary_latexmkrc
+  Fix problem that in -cd mode, an error is raised when the path
+    part of the tex filename contains a character prohibited by *tex.
+  Implement changing of rule network when output of *latex is not what
+    is expected, e.g., because \pdfoutput is used in document.
+  Implement placeholder for true basename of main tex file, and use it
+    in jobname.
+  Various bug fixes.
