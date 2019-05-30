@@ -1,10 +1,10 @@
-latexmk (1:4.63b-1) unstable; urgency=medium
+latexmk (1:4.64a-0.1) experimental; urgency=medium
 
-  * New upstream version 4.63b
+  * NMU
+  * New upstream version 4.64a
   * update patches
-  * add myself to uploaders in agreement with Ohura-san
 
- -- Norbert Preining <norbert@preining.info>  Wed, 20 Mar 2019 08:46:45 +0900
+ -- Norbert Preining <norbert@preining.info>  Thu, 30 May 2019 10:38:52 +0900
 
 latexmk (1:4.61-0.1) unstable; urgency=medium
 

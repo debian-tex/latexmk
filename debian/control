@@ -3,7 +3,6 @@ Section: tex
 Priority: optional
 Build-Depends: debhelper (>= 11.0.0)
 Maintainer: OHURA Makoto <ohura@debian.org>
-Uploaders: Norbert Preining <norbert@preining.info>
 Standards-Version: 4.2.1
 Homepage: http://personal.psu.edu/jcc8//software/latexmk-jcc/
 Vcs-Git: https://github.com/debian-tex/latexmk.git
