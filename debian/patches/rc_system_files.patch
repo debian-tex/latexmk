@@ -6,7 +6,7 @@ Description: add /etc/LatexMk to @rc_system_files
 
 --- latexmk.git.orig/latexmk.pl
 +++ latexmk.git/latexmk.pl
-@@ -942,7 +942,8 @@ else {
+@@ -952,7 +952,8 @@ else {
      @rc_system_files = ();
      foreach ( 'LatexMk', 'latexmkrc' ) {
         push @rc_system_files,
