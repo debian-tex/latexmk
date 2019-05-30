@@ -679,3 +679,12 @@ From v. 4.61 to 4.63b
   Implement placeholder for true basename of main tex file, and use it
     in jobname.
   Various bug fixes.
+
+From v. 4.63b to 4.64
+  Fix problem that rules processing dvi and xdv did not always run after
+    rapid-fire changes in graphics files.
+
+From v. 4.64 to 4.64a
+  Fix incorrect listings by -rules and by -deps
+
+

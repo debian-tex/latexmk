@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "17 March 2019" ""
+.TH LATEXMK 1 "21 May 2019" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -80,9 +80,13 @@ This also extends the possibility of postprocessing generated files.
 \fILatexmk\fR is highly configurable, both from the command line and
 in configuration files, so that it can accommodate a wide variety of
 user needs and system configurations.  Default values are set
-according to the operating system, so \fIlatexmk\fR often works 
+according to the operating system, so \fIlatexmk\fR often works
 without special configuration on MS-Windows, cygwin, Linux, OS-X, and
-other UNIX systems.
+other UNIX systems.  See the section "Configuration/Initialization
+(rc) Files", and then the later sections "How to Set Variables in
+Initialization Files", "Format of Command Specifications", "List of
+Configuration Variables Usable in Initialization Files", "Custom
+Dependencies", and "Advanced Configuration"
 .PP
 A very annoying complication handled very reliably by \fIlatexmk\fR,
 is that LaTeX is a multiple pass system.  On each run, LaTeX reads in
@@ -835,9 +839,9 @@ An example of the use of the \fB-pdfxelatex\fR option:
 Given that CODE is some TeX code, this options sets that code to be
 executed before inputting source file.  This only works if the command
 for invoking the relevant \fI*latex\fR is suitably configured.  See
-the documentation of the variable \fI$pre_tex_cmd\fR, and the
+the documentation of the variable \fI$pre_tex_code\fR, and the
 substitution strings %P and %U for more details.  This option works by
-setting the variable \fI$pre_tex_cmd\fR.
+setting the variable \fI$pre_tex_code\fR.
 
 See also the \fB-usepretex\fR option.
 
@@ -1368,6 +1372,13 @@ rule network is too radical to be readily handled automatically.
 
 .SH CONFIGURATION/INITIALIZATION (RC) FILES
 .PP
+In this section is explained which configuration files are read by
+\fIlatexmk\fR. Subsequent sections "How to Set Variables in
+Initialization Files", "Format of Command Specifications", "List of
+Configuration Variables Usable in Initialization Files", "Custom
+Dependencies", and "Advanced Configuration" give details on what can
+be configured and how.
+
 \fILatexmk\fR can be customized using initialization files, which are
 read at startup in the following order:
 .PP
@@ -1448,9 +1459,10 @@ http://mirror.ctan.org/support/latexmk/example_rcfiles).
 .SH HOW TO SET VARIABLES IN INITIALIZATION FILES
 .PP
 The important variables that can be configured are described in the
-section  "List of configuration variables usable in initialization
-files".  Syntax for setting these variables is of the following
-forms:
+section "List of configuration variables usable in initialization
+files".  (See the earlier section "Configuration/Initialization (rc)
+Files" for the files where the configurations are done.)  Syntax for
+setting these variables is of the following forms:
 .PP
 	$bibtex = 'bibtex %O %B';
 .PP
@@ -1737,6 +1749,11 @@ invoking the MS-Windows command-line processor \fIcmd.exe\fR.
 
 .SH LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
 .PP
+In this section are specified the variables whose values can be
+adjusted to configure \fIlatexmk\fR.  (See the earlier section
+"Configuration/Initialization (rc) Files" for the files where the
+configurations are done.)
+
 Default values are indicated in brackets.  Note that for variables
 that are boolean in character, concerning whether \fIlatexmk\fR does
 or does not behave in a certain way, a non-zero value, normally 1,
@@ -2827,13 +2844,13 @@ works if the relevant one of \fI$latex\fR, etc contains a suitable
 command line with a %P or %U substitution.  For example you could do
 
      $latex = 'latex %O %P';
-     $pre_tex_code = '\AtBeginDocument{An initial message\par}';
+     $pre_tex_code = '\\AtBeginDocument{An initial message\\par}';
 
 To set all of \fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and
 \fI$xelatex\fR you could use the subroutine \fIalt_tex_cmds\fR:
 
      &alt_tex_cmds;
-     $pre_tex_code = '\AtBeginDocument{An initial message\par}';
+     $pre_tex_code = '\\AtBeginDocument{An initial message\\par}';
 
 
 .TP
@@ -3784,7 +3801,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.63b).
+(Version 4.64a).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the
