@@ -1,6 +1,6 @@
             INSTALLING latexmk
             ==================
-      (Version 4.63b, 17 March 2019)
+      (Version 4.64a, 21 May 2019)
 
             John Collins
             Physics Department
@@ -408,7 +408,7 @@ Version 2 was modified by Evan McLean.
 
 The current version is by John Collins (username jcc8 at node
 psu.edu) -- other contact details at the top.  It is copyright
-1998-2015 by John Collins, and the previous authors; see the copyright
+1998-2019 by John Collins, and the previous authors; see the copyright
 notice in the latexmk.pl file, which gives permission to use, copy,
 modify, and distribute this software and its documentation under the
 terms of the GNU Public License v. 2.
