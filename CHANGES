@@ -687,4 +687,6 @@ From v. 4.63b to 4.64
 From v. 4.64 to 4.64a
   Fix incorrect listings by -rules and by -deps
 
-
+From v. 4.64a to 4.65
+  Fix incorrect parsing of long quoted filenames in log file that sometimes
+    prevented latexmk from running.

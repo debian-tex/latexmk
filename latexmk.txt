@@ -61,7 +61,7 @@ DESCRIPTION
 
 
 
-                                  21 May 2019                                1
+                                 18 June 2019                                1
 
 
 
@@ -127,7 +127,7 @@ LATEXMK OPTIONS AND ARGUMENTS ON COMMAND LINE
 
 
 
-                                  21 May 2019                                2
+                                 18 June 2019                                2
 
 
 
@@ -193,7 +193,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                                3
+                                 18 June 2019                                3
 
 
 
@@ -259,7 +259,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                                4
+                                 18 June 2019                                4
 
 
 
@@ -325,7 +325,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                                5
+                                 18 June 2019                                5
 
 
 
@@ -391,7 +391,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                                6
+                                 18 June 2019                                6
 
 
 
@@ -457,7 +457,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                                7
+                                 18 June 2019                                7
 
 
 
@@ -523,7 +523,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                                8
+                                 18 June 2019                                8
 
 
 
@@ -589,7 +589,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                                9
+                                 18 June 2019                                9
 
 
 
@@ -655,7 +655,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               10
+                                 18 June 2019                               10
 
 
 
@@ -721,7 +721,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               11
+                                 18 June 2019                               11
 
 
 
@@ -787,7 +787,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               12
+                                 18 June 2019                               12
 
 
 
@@ -853,7 +853,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               13
+                                 18 June 2019                               13
 
 
 
@@ -919,7 +919,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               14
+                                 18 June 2019                               14
 
 
 
@@ -985,7 +985,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               15
+                                 18 June 2019                               15
 
 
 
@@ -1051,7 +1051,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               16
+                                 18 June 2019                               16
 
 
 
@@ -1117,7 +1117,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               17
+                                 18 June 2019                               17
 
 
 
@@ -1183,7 +1183,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               18
+                                 18 June 2019                               18
 
 
 
@@ -1249,7 +1249,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               19
+                                 18 June 2019                               19
 
 
 
@@ -1315,7 +1315,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               20
+                                 18 June 2019                               20
 
 
 
@@ -1381,7 +1381,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               21
+                                 18 June 2019                               21
 
 
 
@@ -1447,7 +1447,7 @@ DEALING WITH ERRORS, PROBLEMS, ETC
 
 
 
-                                  21 May 2019                               22
+                                 18 June 2019                               22
 
 
 
@@ -1513,7 +1513,7 @@ ALLOWING FOR CHANGE OF OUTPUT FILE TYPE
 
 
 
-                                  21 May 2019                               23
+                                 18 June 2019                               23
 
 
 
@@ -1579,7 +1579,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               24
+                                 18 June 2019                               24
 
 
 
@@ -1645,7 +1645,7 @@ CONFIGURATION/INITIALIZATION (RC) FILES
 
 
 
-                                  21 May 2019                               25
+                                 18 June 2019                               25
 
 
 
@@ -1711,7 +1711,7 @@ HOW TO SET VARIABLES IN INITIALIZATION FILES
 
 
 
-                                  21 May 2019                               26
+                                 18 June 2019                               26
 
 
 
@@ -1777,7 +1777,7 @@ FORMAT OF COMMAND SPECIFICATIONS
 
 
 
-                                  21 May 2019                               27
+                                 18 June 2019                               27
 
 
 
@@ -1843,7 +1843,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               28
+                                 18 June 2019                               28
 
 
 
@@ -1909,7 +1909,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               29
+                                 18 June 2019                               29
 
 
 
@@ -1975,7 +1975,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               30
+                                 18 June 2019                               30
 
 
 
@@ -2041,7 +2041,7 @@ LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
 
 
 
-                                  21 May 2019                               31
+                                 18 June 2019                               31
 
 
 
@@ -2107,7 +2107,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               32
+                                 18 June 2019                               32
 
 
 
@@ -2173,7 +2173,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               33
+                                 18 June 2019                               33
 
 
 
@@ -2239,7 +2239,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               34
+                                 18 June 2019                               34
 
 
 
@@ -2305,7 +2305,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               35
+                                 18 June 2019                               35
 
 
 
@@ -2371,7 +2371,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               36
+                                 18 June 2019                               36
 
 
 
@@ -2437,7 +2437,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               37
+                                 18 June 2019                               37
 
 
 
@@ -2503,7 +2503,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               38
+                                 18 June 2019                               38
 
 
 
@@ -2569,7 +2569,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               39
+                                 18 June 2019                               39
 
 
 
@@ -2635,7 +2635,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               40
+                                 18 June 2019                               40
 
 
 
@@ -2701,7 +2701,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               41
+                                 18 June 2019                               41
 
 
 
@@ -2767,7 +2767,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               42
+                                 18 June 2019                               42
 
 
 
@@ -2833,7 +2833,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               43
+                                 18 June 2019                               43
 
 
 
@@ -2899,7 +2899,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               44
+                                 18 June 2019                               44
 
 
 
@@ -2965,7 +2965,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               45
+                                 18 June 2019                               45
 
 
 
@@ -3031,7 +3031,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               46
+                                 18 June 2019                               46
 
 
 
@@ -3097,7 +3097,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               47
+                                 18 June 2019                               47
 
 
 
@@ -3163,7 +3163,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               48
+                                 18 June 2019                               48
 
 
 
@@ -3229,7 +3229,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               49
+                                 18 June 2019                               49
 
 
 
@@ -3295,7 +3295,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               50
+                                 18 June 2019                               50
 
 
 
@@ -3361,7 +3361,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               51
+                                 18 June 2019                               51
 
 
 
@@ -3427,7 +3427,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               52
+                                 18 June 2019                               52
 
 
 
@@ -3493,7 +3493,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               53
+                                 18 June 2019                               53
 
 
 
@@ -3559,7 +3559,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               54
+                                 18 June 2019                               54
 
 
 
@@ -3625,7 +3625,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               55
+                                 18 June 2019                               55
 
 
 
@@ -3691,7 +3691,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               56
+                                 18 June 2019                               56
 
 
 
@@ -3757,7 +3757,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               57
+                                 18 June 2019                               57
 
 
 
@@ -3823,7 +3823,7 @@ CUSTOM DEPENDENCIES
 
 
 
-                                  21 May 2019                               58
+                                 18 June 2019                               58
 
 
 
@@ -3889,7 +3889,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               59
+                                 18 June 2019                               59
 
 
 
@@ -3955,7 +3955,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               60
+                                 18 June 2019                               60
 
 
 
@@ -4021,7 +4021,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               61
+                                 18 June 2019                               61
 
 
 
@@ -4087,7 +4087,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               62
+                                 18 June 2019                               62
 
 
 
@@ -4153,7 +4153,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               63
+                                 18 June 2019                               63
 
 
 
@@ -4219,7 +4219,7 @@ ADVANCED CONFIGURATION: Some extra resources and advanced tricks
 
 
 
-                                  21 May 2019                               64
+                                 18 June 2019                               64
 
 
 
@@ -4285,7 +4285,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               65
+                                 18 June 2019                               65
 
 
 
@@ -4351,7 +4351,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               66
+                                 18 June 2019                               66
 
 
 
@@ -4417,7 +4417,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               67
+                                 18 June 2019                               67
 
 
 
@@ -4483,7 +4483,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               68
+                                 18 June 2019                               68
 
 
 
@@ -4530,7 +4530,7 @@ THANKS TO
 
 AUTHOR
        Current version, by John  Collins  (username  jcc8  at  node  psu.edu).
-       (Version 4.64a).
+       (Version 4.65).
 
        Released      version      can      be      obtained     from     CTAN:
        <http://www.ctan.org/pkg/latexmk/>,  and  from  the  author's   website
@@ -4549,7 +4549,7 @@ AUTHOR
 
 
 
-                                  21 May 2019                               69
+                                 18 June 2019                               69
 
 
 
@@ -4615,6 +4615,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                  21 May 2019                               70
+                                 18 June 2019                               70
 
 
