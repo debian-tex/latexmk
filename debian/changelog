@@ -1,3 +1,11 @@
+latexmk (1:4.65-0.1) experimental; urgency=medium
+
+  * NMU
+  * New upstream release 4.65
+  * update patches
+
+ -- Norbert Preining <norbert@preining.info>  Wed, 19 Jun 2019 11:46:41 +0900
+
 latexmk (1:4.64a-0.1) experimental; urgency=medium
 
   * NMU
