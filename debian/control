@@ -12,7 +12,7 @@ Package: latexmk
 Architecture: all
 Depends: perl, texlive-latex-base, ${misc:Depends}
 Suggests: ghostscript
-Recommends: xpdf-reader | pdf-viewer, gv | postscript-viewer
+Recommends: xpdf | pdf-viewer, gv | postscript-viewer
 Description: Perl script for running LaTeX the correct number of times
  Latexmk runs LaTeX the correct number of times to resolve cross references,
  etc; it also runs auxiliary programs (bibtex, makeindex if necessary, and
