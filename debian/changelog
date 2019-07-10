@@ -1,11 +1,13 @@
-latexmk (1:4.65-0.2) UNRELEASED; urgency=medium
+latexmk (1:4.65-0.2) unstable; urgency=medium
 
   * NMU
+
+  [ Hilmar Preuße ]
   * Add patch from Kevin Ryde to ignore .fdb_latexmk Files
     (Closes: #730315)
   * Recommend xpdf instead of xpdf-reader (LP: #1115424)
 
- -- Hilmar Preuße <hille42@web.de>  Sun, 30 Jun 2019 22:42:19 +0200
+ -- Norbert Preining <norbert@preining.info>  Wed, 10 Jul 2019 17:30:16 +0900
 
 latexmk (1:4.65-0.1) experimental; urgency=medium
 
