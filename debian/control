@@ -1,7 +1,7 @@
 Source: latexmk
 Section: tex
 Priority: optional
-Build-Depends: debhelper (>= 12~)
+Build-Depends: debhelper-compat (= 12)
 Maintainer: OHURA Makoto <ohura@debian.org>
 Standards-Version: 4.2.1
 Homepage: https://personal.psu.edu/jcc8//software/latexmk-jcc/
