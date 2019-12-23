@@ -1,6 +1,7 @@
 latexmk (1:4.65-1) UNRELEASED; urgency=medium
 
   * Use secure URI in Homepage field.
+  * Bump debhelper from old 11 to 12.
 
  -- Debian Janitor <janitor@jelmer.uk>  Mon, 23 Dec 2019 15:37:48 +0000
 
