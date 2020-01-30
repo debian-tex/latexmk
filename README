@@ -1,4 +1,4 @@
-Latexmk, version 4.65, 18 June 2019
+Latexmk, version 4.67, 26 December 2019
 -----------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
@@ -87,7 +87,8 @@ NOTES:-
 
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
-Latexmk 4.65: Automatic LaTeX document generation routine
+===== Set bibtex_fudge = 0 ===
+Latexmk 4.67: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
