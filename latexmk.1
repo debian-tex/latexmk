@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "18 June 2019" ""
+.TH LATEXMK 1 "26 December 2019" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -609,6 +609,14 @@ automatically.
 Turn off \fB-l\fR.
 
 .TP
+.B -latex
+This sets the generation of dvi files by \fIlatex\fR, and turns off the
+generation of pdf and ps files.
+
+\fINote: to set the \fRcommand\fI used when latex is specified, see the
+\fB-latex="COMMAND"\fI option.\fR
+
+.TP
 .B -latex="COMMAND"
 This sets the string specifying the command to run latex, and is
 typically used to add desired options.  Since the string normally
@@ -621,6 +629,10 @@ the \fI$latex\fR configuration variable.  Depending on your
 operating system and the command-line shell you are using, you may
 need to change the single quotes to double quotes (or something
 else). 
+
+\fINote: This option when provided with the COMMAND argument only sets the
+command for invoking latex; it does not turn on the use of
+latex. That is done by other options or in an initialization file.\fR
 
 To set the command for running \fIpdflatex\fR (rather than the command for
 \fIlatex\fR) see the \fB-pdflatex\fR option.
@@ -653,6 +665,16 @@ This option is equivalent to using the following set of options
 (\fINote\fR: Note that the method of implementation of this option,
 but not its intended effect, differ from some earlier versions of
 \fIlatexmk\fR.)
+
+.TP
+.B -lualatex="COMMAND"
+This sets the string specifying the command to run \fIlualatex\fR.  It
+behaves like the \fB-pdflatex\fR option, but sets the variable
+\fI$lualatex\fR.  
+
+\fINote: This option when provided with the COMMAND argument only sets the
+command for invoking lualatex; it does not turn on the use of
+lualatex. That is done by other options or in an initialization file.\fR
 
 .TP
 .B -M
@@ -771,13 +793,14 @@ an .xdv file rather than a pdf file directly.  Only after possibly
 multiple runs to generate a fully up-to-date .xdv file does \fIlatexmk\fR
 then call \fIxdvipdfmx\fR to generate the final .pdf file.
 
-(\fINote:\fR When the document includes large graphics files,
-especially .png files, the last step can be quite time consuming, even
-when the creation of the .xdv file by \fIxelatex\fR is fast.  So the
-use of the intermediate .xdv file can result in substantial gains in
-procesing time, since the .pdf file is produced once rather than on
-every run of \fIxelatex\fR. See the documentation on the \fB-pdfxe\fR
-option for why an .xdv file is used.
+(\fINote:\fR The reason why \fIlatexmk\fR arranges for \fIxelatex\fR to
+make an .xdv file instead of the \fIxelatex\fR's default of a .pdf file is
+as follows: When the document includes large graphics files,
+especially .png files, the production of a .pdf file can be quite time
+consuming, even when the creation of the .xdv file by \fIxelatex\fR is
+fast.  So the use of the intermediate .xdv file can result in substantial
+gains in procesing time, since the .pdf file is produced once rather than
+on every run of \fIxelatex\fR.)
 
 .TP
 .B -pdf-
@@ -791,6 +814,14 @@ turned off, then generation of a dvi file will be turned on, and then
 the program used to compiled a document will be \fIlatex\fR (or, more
 precisely, whatever program is configured to be used in the
 \fI$latex\fR configuration variable).
+
+.TP
+.B -pdflatex
+This sets the generation of pdf files by \fIpdflatex\fR, and turns off the
+generation of dvi and ps files.
+
+\fINote: to set the \fRcommand\fI used when pdflatex is specified, see the
+\fB-pdflatex="COMMAND"\fI option.\fR
 
 .TP
 .B -pdflatex="COMMAND"
@@ -808,30 +839,20 @@ operating system and the command-line shell you are using, you may
 need to change the single quotes to double quotes (or something
 else). 
 
+\fINote: This option when provided with the COMMAND argument only sets the
+command for invoking pdflatex; it does not turn on the use of
+pdflatex. That is done by other options or in an initialization file.\fR
+
 To set the command for running \fIlatex\fR (rather than the command
 for \fIpdflatex\fR) see the \fB-latex\fR option.
 
 .TP
 .B -pdflualatex="COMMAND"
-This sets the string specifying the command to run \fIlualatex\fR.  It
-behaves like the \fB-pdflatex\fR option, but sets the variable
-\fI$lualatex\fR.  
+Equivalent to \fB-lualatex="COMMAND"\fR.
 
 .TP
 .B -pdfxelatex="COMMAND"
-This sets the string specifying the command to run \fIxelatex\fR.  It
-behaves like the \fB-pdflatex\fR option, but sets the variable
-\fI$xelatex\fR.
-
-\fIWarning\fR: It is important to ensure that the -no-pdf is used when
-\fIxelatex\fR is invoked; see the explanation for the variable
-\fI$xelatex\fR for why this is necessary.  If you provide %O in the
-command specification, this will be done automatically.
-
-An example of the use of the \fB-pdfxelatex\fR option:
-
-     latexmk -pdfxe -pdfxelatex="xelatex --shell-escape %O %S"  foo.tex
-
+Equivalent to \fB-xelatex="COMMAND"\fR.
 
 .TP
 .B -pretex=CODE
@@ -1188,11 +1209,28 @@ but not its intended primary effect, differ from some earlier versions
 of \fIlatexmk\fR. \fILatexmk\fR first uses \fIxelatex\fR to make
 an .xdv file, and does all the extra runs needed (including those of
 \fIbibtex\fR, etc).  Only after that does it make the pdf file from
-the .xdv file, using \fIxdvipdfmx\fR.  This procedure can result in
-considerable savings in run time, since the xdv-to-pdf conversion is
-quite time-consuming when large graphics files are used in the
-document.]
+the .xdv file, using \fIxdvipdfmx\fR.  See the documentation for the
+\fB-pdfxe\fR for why this is done.]
 
+.TP
+.B -xelatex="COMMAND"
+This sets the string specifying the command to run \fIxelatex\fR.  It sets
+the variable \fI$xelatex\fR.
+
+\fIWarning\fR: It is important to ensure that the \fB-no-pdf\fR is used
+when \fIxelatex\fR is invoked, since \fIlatexmk\fR expects \fIxelatex\fR to
+produce an .xdv file, not a .pdf file. If you provide %O in the command
+specification, this will be done automatically.  See the documentation for
+the \fB-pdfxe\fR option for why \fIlatexmk\fR makes a .xdv file rather than
+a .pdf file when \fIxelatex\fR is used.
+
+An example of the use of the \fB-pdfxelatex\fR option:
+
+     latexmk -pdfxe -pdfxelatex="xelatex --shell-escape %O %S"  foo.tex
+
+\fINote: This option when provided with the COMMAND argument only sets the
+command for invoking lualatex; it does not turn on the use of
+lualatex. That is done by other options or in an initialization file.\fR
 
 .PP
 \fBCompatibility between options\fR
@@ -2041,10 +2079,11 @@ relative to the directory specified by \fI$out_dir\fR.
 .B $compiling_cmd [""], $failure_cmd [""], $warning_cmd [""], $success_cmd [""]
 
 These variables specify commands that are executed at certain points
-of compilations during preview-continuous mode.  One motivation for
+of compilations.  One motivation for
 their existance is to allow very useful convenient visual indications of
 compilation status even when the window receiving the screen output of
-the compilation is hidden. 
+the compilation is hidden.  This is particularly useful in
+preview-continuous mode.
 
 The commands are executed at the following points:
 \fI$compiling_cmd\fR at the start of compilation, \fI$success_cmd\fR
@@ -3157,12 +3196,14 @@ when the \fIxelatex\fR program is called for.  See the
 documentation of the \fB-xelatex\fR option for some special properties
 of \fIlatexmk\fR's use of \fIxelatex\fR.
 
-\fINote about xelatex\fR: Now \fIlatexmk\fR uses \fIxelatex\fR to make
-an .xdv rather than .pdf file, with the .pdf file being created in a
-separate step.  This is enforced by the use of the \fB-no-pdf\fR
-option.  If %O is part of the command for invoking \fIxelatex\fR, then
-\fIlatexmk\fR will insert the \fB-no-pdf\fR option automatically,
-otherwise you must provide the option yourself
+\fINote about xelatex\fR: \fIlatexmk\fR uses \fIxelatex\fR to make an .xdv
+rather than .pdf file, with the .pdf file being created in a separate step.
+This is enforced by the use of the \fB-no-pdf\fR option.  If %O is part of
+the command for invoking \fIxelatex\fR, then \fIlatexmk\fR will insert the
+\fB-no-pdf\fR option automatically, otherwise you must provide the option
+yourself.  See the documentation for the \fB-pdfxe\fR option for why
+\fIlatexmk\fR makes a .xdv file rather than a .pdf file when \fIxelatex\fR
+is used.
 
 To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
 \fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
@@ -3801,7 +3842,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.65).
+(Version 4.67).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the

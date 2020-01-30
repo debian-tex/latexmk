@@ -690,3 +690,15 @@ From v. 4.64 to 4.64a
 From v. 4.64a to 4.65
   Fix incorrect parsing of long quoted filenames in log file that sometimes
     prevented latexmk from running.
+
+From v. 4.65 to 4.67
+  Improve parsing of long lines in log file, especially with UTF-8 filenames
+    and xelatex. 
+  Minor diagnostic improvements
+  Allow addition of hook for processing lists of missing source files.
+  Changing of '\' to '/' in filenames is done for msys as well as MSWin32.
+  Use $compiling_cmd, $warning_cmd, $success_cmd on normal make, rather
+    than just in -pvc mode.
+  If there were missing subdirectories in output/aux directories, and these
+    were successfully created, then ignore error from *latex, since rerun
+    may succeed.
