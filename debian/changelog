@@ -1,10 +1,18 @@
-latexmk (1:4.65-1) UNRELEASED; urgency=medium
+latexmk (1:4.67-0.1) unstable; urgency=medium
 
+  * NMU
+
+  [ Debian Janitor ]
   * Use secure URI in Homepage field.
   * Bump debhelper from old 11 to 12.
   * Set debhelper-compat version in Build-Depends.
 
- -- Debian Janitor <janitor@jelmer.uk>  Mon, 23 Dec 2019 15:37:48 +0000
+  [ Norbert Preining ]
+  * New upstream version 4.67
+  * update patches
+  * bump standards version, no changes necessary
+
+ -- Norbert Preining <norbert@preining.info>  Thu, 30 Jan 2020 09:55:42 +0900
 
 latexmk (1:4.65-0.2) unstable; urgency=medium
 
