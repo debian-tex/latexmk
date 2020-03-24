@@ -1,0 +1,6 @@
+# How to use latexmk with pweave to generate tex file
+
+add_cus_dep('texw', 'tex', 0, 'pweave2tex');
+sub pweave2tex {
+    system("pweave -f tex \"$_[0].texw\"");
+}

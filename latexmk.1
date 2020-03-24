@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "26 December 2019" ""
+.TH LATEXMK 1 "31 January 2020" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -692,6 +692,32 @@ If a list of dependents is made, include a phony target for each source
 file.  If you use the dependents list in a Makefile, the dummy rules
 work around errors the program \fImake\fR gives if you remove header
 files without updating the Makefile to match.
+
+.TP
+.B -MSWinBackSlash
+This option only has an effect when \fIlatexmk\fR is running under
+MS-Windows.  This is that when \fIlatexmk\fR runs a command under
+MS-Windows, the Windows standard directory separator "\\" is used to
+separate directory components in a file name.  Internally, \fIlatexmk\fR
+uses "/" for the directory separator character, which is the character used
+by Unix-like systems.
+
+This is the default behavior.  However the default may have been overridden
+by a configuration file (latexmkrc file) which sets
+\fI$MSWin_back_slash=0\fR.
+
+.TP
+.B -MSWinBackSlash-
+This option only has an effect when \fIlatexmk\fR is running under
+MS-Windows.  This is that when \fIlatexmk\fR runs a command under
+MS-Windows, the substitution of "\\" for the separator character between
+directory components of a file name is \fInot\fR done. Instead the forward
+slash "/" is used, the same as on Unix-like systems. This is acceptable in
+most situations under MS-Windows, provided that filenames are properly
+quoted, as \fIlatexmk\fR does by default.
+
+See the documentation for the configuration variable
+\fI$MSWin_back_slash\fR for more details.
 
 .TP
 .B -new-viewer
@@ -2683,14 +2709,16 @@ separator character between components of a directory name.
 Internally, \fIlatexmk\fR uses "/" for the directory separator
 character, which is the character used by Unix-like systems.
 
-For many programs under MS-Windows, both "\\" and "/" are acceptable
-as the directory separator character.  But some programs only accept
-"\\" on the command line.  So for safety \fIlatexmk\fR makes a
-translation, by default.
-It is conceivable that under certain situations this is undesirable,
-so the configuration can be changed.  (A possible example might be
-when some of the software is implemented using Cygwin, which provides
-a Unix-like environment inside MS-Windows.)
+For almost all programs and for typical filenames under MS-Windows, both
+"\\" and "/" are acceptable as the directory separator character, provided
+at least that filenames are properly quoted.  But it is possible that
+programs exist that only accept "\\" on the command line, since that is the
+standard directory separator for MS-Window.  So for safety \fIlatexmk\fR
+makes the substitution of "\\" for "/", by default.  However there are also
+programs for which a back slash "\\" is interpreted differently, notably
+\fIlualtex\fR, so if these are used, then \fI$MSWin_back_slash\fR should be
+set to zero.
+
 .TP
 .B $new_viewer_always [0]
 This variable applies to \fIlatexmk\fR \fBonly\fR in
@@ -3181,7 +3209,7 @@ is set.  (The foregoing explanation is rather complicated, because
 commands isn't set.)
 
 .TP
-.B $xdvipdfmx ["xdvipdfmx -o %D %O %S"]
+.B $xdvipdfmx ["xdvipdfmx -E -o %D %O %S"]
 
 The program to make a pdf file from an xdv file (used in conjunction
 with \fIxelatex\fR when \fI$pdf_mode\fR=5).
@@ -3842,7 +3870,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.67).
+(Version 4.68).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the
