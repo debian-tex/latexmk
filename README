@@ -1,5 +1,5 @@
-Latexmk, version 4.67, 26 December 2019
------------------------------------
+Latexmk, version 4.68, 31 January 2020
+--------------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
 document.  Essentially, it is a highly specialized cousin of the
@@ -88,7 +88,7 @@ NOTES:-
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
 ===== Set bibtex_fudge = 0 ===
-Latexmk 4.67: Automatic LaTeX document generation routine
+Latexmk 4.69: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
@@ -151,6 +151,10 @@ Usage: latexmk [latexmk_options] [filename ...]
    -M     - Show list of dependent files after processing
    -MF file - Specifies name of file to receives list dependent files
    -MP    - List of dependent files includes phony target for each source file.
+   -MSWinBackSlash  under MSWin use backslash (\) for directory separators
+                    for filenames given to called programs
+   -MSWinBackSlash-  under MSWin use forward slash (/) for directory separators
+                     for filenames given to called programs
    -new-viewer    - in -pvc mode, always start a new viewer
    -new-viewer-   - in -pvc mode, start a new viewer only if needed
    -nobibtex      - never use bibtex

@@ -1,0 +1,100 @@
+# This code was provided by Michael Stewart, Feb. 2020.
+#
+# Knitr is a successor to Sweave (see sweave_latexmkrc) which allows the embedding
+# of R code (and its output) into LaTeX files. A .Rnw file (including LaTeX code
+# and R code) is "knitted" to produce a LaTeX file, which also includes the output
+# obtained from running the R code. Knitr also works with other plain-text markup 
+# languages (e.g. Rmarkdown and brew) but they are not supported here. 
+# See https://yihui.org/knitr for more information.
+#
+# This latexmkrc file permits using knitr, allowing SyncTeX to work properly. 
+# It also works for a multiple-file project under one caveat: the "native"
+# knitr child document inclusion method which uses chunks like
+#
+# <<child='child.Rnw'>>=     
+# @
+#
+# is *not* used. Rather, each .Rnw file is "knitted" in a standalone fashion 
+# and the "inputting" is done purely at the LaTeX phase. 
+#
+# Thus if we have a main document "main.Rnw" and a child document "child.Rnw"
+# the successful workflow is:
+# 0. put a line 
+#      
+#    \input child.tex
+# 
+#    at the deisred location in main.Rnw;
+# 1. knit('main.Rnw')  # to produce main.tex (which inherits the \input line above);
+# 2. knit('child.Rnw') # to produce child.tex;
+# 3. pdflatex -synctex=1 main.tex;
+# 4. patchSynctex('main.Rnw');
+# 5. patchSynctex('child.Rnw',syncfile='main');  
+# All steps except 3. are R commands (note that the add-on R package "patchSynctex" 
+# needs to be installed); 3. is an ordinary shell command.
+#
+# The configuration below handles both single-file and multiple-file projects (using
+# the workflow described above).
+
+# In the line below replace 'main.tex' with the name of the main *LaTeX* file. 
+# This line is optional for single-file projects; using it means that latexmk 
+# may be invoked without a filename, even if the file main.tex doesn't yet exist:
+#
+# $ latexmk
+#
+# If the line is not used, and the target LaTeX file does not yet exist, 
+# its name must be supplied, e.g.:
+#
+# $ latexmk main
+#
+# It is compulsory for multiple file projects, so we avoid running pdflatex 
+# on child documents.
+@default_files=('main.tex');  
+
+$pdf_mode=1;
+
+# The definition of $pdflatex below runs pdflatex on the main LaTeX file
+# and runs patchSynctex(...,syncfile='main') once for each .Rnw file appearing
+# in the working directory:
+$pdflatex = "pdflatex -interaction=nonstopmode -synctex=1 %O %B ;"
+          . "Rscript -e \"library(patchSynctex); "
+          . "Rnw.files=system(\\\"ls *.Rnw\\\",intern=T); "
+          . "Rnw.stems=unlist(strsplit(Rnw.files,split=\\\".Rnw\\\")); "
+          . "for (i in 1:length(Rnw.stems)) "
+          . "patchSynctex(Rnw.stems[i],syncfile=\\\"%B\\\",verbose=T)\" " ;
+
+
+# The remaining code defines a custom dependency to ensure that each LaTeX file
+# is updated whenever the corresponding .Rnw file is updated. See below for how
+# to adapt this for use with Sweave instead of knitr.
+add_cus_dep( 'Rnw', 'tex', 0 , 'knit' ); 
+sub knit {
+	system( "Rscript -e \"library(knitr); "
+              . "opts_knit\\\$set(concordance=T); "
+              . "knitr::knit(\\\"$_[0].Rnw\\\",output=\\\"$_[0].tex\\\")\" " ); 
+}
+
+# For use with Sweave (rather than knitr) make the following adjustments:
+#
+# 1. Ensure that 
+#
+# \SweaveOpts{concordance=T}
+#
+# (possibly with other global options e.g. stylepath=T) appears near the top of each 
+# .Rnw file *after* \begin{document} (at the time of writing there seems to be a bug 
+# in Sweave() so that this is the only reliable way to pass the global 
+# concordance=T option; neither Sweave(...,concordance=T) nor # the setting of the 
+# SWEAVE_OPTIONS environment variable seems to work).
+#
+# 2. Replace the last 6 lines of code above this comment block with the commented-out 
+# code below:
+#
+#add_cus_dep( 'Rnw', 'tex', 0, 'Sweave');
+#sub Sweave {
+#	system("Rscript -e \"Sweave(\\\"$_[0].Rnw\\\")\" ");
+#}
+
+# You will need to uncomment the two lines below if you are using this with a version
+# of latexmk older than version 4.68:
+#$force_mode=1;
+#push @file_not_found, '^\\! I can\\\'t find file `([^\\\']*)\\\'\\.';
+

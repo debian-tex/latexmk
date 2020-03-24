@@ -25,12 +25,15 @@
 
 # N.B. ===> IMPORTANT NOTES <===
 #
-# 1. The patchDVI package for R needs to be installed from R-Forge, as
+# 1. See the comments in knitr-latexmkrc for an alternative and probably better
+#    way of using Sweave with latexmk
+#
+# 2. The patchDVI package for R needs to be installed from R-Forge, as
 #    follows:
 #
 #  install.packages("patchDVI", repos="http://R-Forge.R-project.org")
 #
-# 2. In all Sweave (.Rnw) documents, the following lines must be included:
+# 3. In all Sweave (.Rnw) documents, the following lines must be included:
 #
 #         \usepackage{Sweave}
 #         \SweaveOpts{concordance=TRUE}
