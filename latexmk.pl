@@ -162,6 +162,9 @@ use warnings;
 ##
 ## 12 Jan 2012 STILL NEED TO DOCUMENT some items below
 ##
+## 16 Apr 2020 John Collins  Correct contents of "All targets (...) are up-to-date" message
+##                           V. 4.69a.
+## 12 Mar 2020 John Collins  Version is 4.69
 ##  7 Feb 2020 John Collins  Report rc files read
 ##  6 Feb 2020 John Collins  Fix bug when -cd and -outdir are used, and outdir is
 ##                             same as document directory.  (Bug is caused by
@@ -183,6 +186,8 @@ use warnings;
 ##                             match call made by xetex (see XeTeX_ext.c in
 ##                             xetex source).  This forces xdvipdfmx to always
 ##                             try to embed fonts, ignoring licensing flags, etc.
+##
+## Current version (4.67, 26 Dec 2019) to CTAN
 ## 26 Dec 2019 John Collins  Change place of setting of $view_file
 ##                           Make fully consistent set of options for engines:
 ##                               -latex, -latex=...,
@@ -275,8 +280,8 @@ use warnings;
 
 $my_name = 'latexmk';
 $My_name = 'Latexmk';
-$version_num = '4.69';
-$version_details = "$My_name, John Collins, 6 Feb. 2020";
+$version_num = '4.69a';
+$version_details = "$My_name, John Collins, 17 Apr. 2020";
 
 use Config;
 use File::Basename;
@@ -7312,8 +7317,10 @@ sub rdb_make {
             print "$My_name: Errors, so I did not complete making targets\n";
         }
         else {
+#            local @dests = ( keys %current_primaries, @pre_primary, @post_primary, @unusual_one_time );
+            local @rules = ( keys %current_primaries, @post_primary, @unusual_one_time );
             local @dests = ();
-            rdb_for_some( [@_], sub{ push @dests, $$Pdest if ($$Pdest); } );
+            rdb_for_some( [@rules], sub{ push @dests, $$Pdest if ($$Pdest); } );
             print "$My_name: All targets (@dests) are up-to-date\n";
         }
     }
