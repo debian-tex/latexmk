@@ -702,3 +702,24 @@ From v. 4.65 to 4.67
   If there were missing subdirectories in output/aux directories, and these
     were successfully created, then ignore error from *latex, since rerun
     may succeed.
+
+From v. 4.67 to 4.69a
+  Add -E option to default command for xdvipdfmx, to match call made
+    by xetex. This forces xdvipdfmx to always try to embed fonts.
+  Add -MSWinBackSlash -MSWinBackSlash- options (and corresponding
+    configuration variable $MSWin_back_slash) to control whether
+    directory separator '\' is used for filenames on command line for
+    called programs under MSWin.  -MSWinBackSlash- needs to be used
+    when TeXLive is used on MSWin and the TeX filename includes a
+    directory component. 
+  When command-line-specified tex file not found, test for cusdep to
+    make it, then try kpsewhich, and only if all 3 fail report an
+    error.
+  Remove use of $extension_treatment: Too hard to check.  Always use
+    what was called 'unix' method, which all *latex implementations
+    now use. 
+  Improve some warning messages.
+  Fix bug when -cd and -outdir are used, and outdir is same as
+    document directory.  (Bug is caused by problem in perl module
+    Cwd.)
+  Report rc files read

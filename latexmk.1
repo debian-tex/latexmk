@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "31 January 2020" ""
+.TH LATEXMK 1 "17 April 2020" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -2703,21 +2703,25 @@ latex/pdflatex generates files to be read in on a later run.)
 .TP
 .B $MSWin_back_slash [1]
 This configuration variable only has an effect when \fIlatexmk\fR is
-running under MS-Windows.  It determines whether, when a command is
-executed under MS-Windows, there should be substituted "\\" for the
-separator character between components of a directory name.
-Internally, \fIlatexmk\fR uses "/" for the directory separator
-character, which is the character used by Unix-like systems.
+running under MS-Windows.  With the default value of 1 for this variable,
+when a command is executed under MS-Windows, \fIlatexmk\fR substitutes "\\"
+for the separator character between components of a directory name.
+Internally, \fIlatexmk\fR uses "/" for the directory separator character,
+which is the character used by Unix-like systems.
 
-For almost all programs and for typical filenames under MS-Windows, both
+For almost all programs and for almost all filenames under MS-Windows, both
 "\\" and "/" are acceptable as the directory separator character, provided
 at least that filenames are properly quoted.  But it is possible that
 programs exist that only accept "\\" on the command line, since that is the
-standard directory separator for MS-Window.  So for safety \fIlatexmk\fR
-makes the substitution of "\\" for "/", by default.  However there are also
-programs for which a back slash "\\" is interpreted differently, notably
-\fIlualtex\fR, so if these are used, then \fI$MSWin_back_slash\fR should be
-set to zero.
+standard directory separator for MS-Windows.  So for safety \fIlatexmk\fR
+makes the substitution from "/" to "\\", by default.
+
+However there are also programs on MS-Windows for which a back slash "\\"
+is interpreted differently than as a directory separator; for these the
+directory separator should be "/".  Programs with this behavior include all
+the *latex programs in the TeXLive implementation (but not the MiKTeX
+implementation).  Hence if you use TeXLive on MS-Windows, then
+\fI$MSWin_back_slash\fR should be set to zero.
 
 .TP
 .B $new_viewer_always [0]
@@ -3870,7 +3874,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins (username jcc8 at node psu.edu).
-(Version 4.68).
+(Version 4.69a).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the

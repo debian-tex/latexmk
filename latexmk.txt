@@ -61,7 +61,7 @@ DESCRIPTION
 
 
 
-                                31 January 2020                              1
+                                 17 April 2020                               1
 
 
 
@@ -127,7 +127,7 @@ LATEXMK OPTIONS AND ARGUMENTS ON COMMAND LINE
 
 
 
-                                31 January 2020                              2
+                                 17 April 2020                               2
 
 
 
@@ -193,7 +193,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                              3
+                                 17 April 2020                               3
 
 
 
@@ -259,7 +259,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                              4
+                                 17 April 2020                               4
 
 
 
@@ -325,7 +325,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                              5
+                                 17 April 2020                               5
 
 
 
@@ -391,7 +391,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                              6
+                                 17 April 2020                               6
 
 
 
@@ -457,7 +457,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                              7
+                                 17 April 2020                               7
 
 
 
@@ -523,7 +523,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                              8
+                                 17 April 2020                               8
 
 
 
@@ -589,7 +589,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                              9
+                                 17 April 2020                               9
 
 
 
@@ -655,7 +655,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             10
+                                 17 April 2020                              10
 
 
 
@@ -721,7 +721,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             11
+                                 17 April 2020                              11
 
 
 
@@ -787,7 +787,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             12
+                                 17 April 2020                              12
 
 
 
@@ -853,7 +853,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             13
+                                 17 April 2020                              13
 
 
 
@@ -919,7 +919,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             14
+                                 17 April 2020                              14
 
 
 
@@ -985,7 +985,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             15
+                                 17 April 2020                              15
 
 
 
@@ -1051,7 +1051,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             16
+                                 17 April 2020                              16
 
 
 
@@ -1117,7 +1117,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             17
+                                 17 April 2020                              17
 
 
 
@@ -1183,7 +1183,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             18
+                                 17 April 2020                              18
 
 
 
@@ -1249,7 +1249,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             19
+                                 17 April 2020                              19
 
 
 
@@ -1315,7 +1315,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             20
+                                 17 April 2020                              20
 
 
 
@@ -1381,7 +1381,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             21
+                                 17 April 2020                              21
 
 
 
@@ -1447,7 +1447,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             22
+                                 17 April 2020                              22
 
 
 
@@ -1513,7 +1513,7 @@ DEALING WITH ERRORS, PROBLEMS, ETC
 
 
 
-                                31 January 2020                             23
+                                 17 April 2020                              23
 
 
 
@@ -1579,7 +1579,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             24
+                                 17 April 2020                              24
 
 
 
@@ -1645,7 +1645,7 @@ ALLOWING FOR CHANGE OF OUTPUT FILE TYPE
 
 
 
-                                31 January 2020                             25
+                                 17 April 2020                              25
 
 
 
@@ -1711,7 +1711,7 @@ CONFIGURATION/INITIALIZATION (RC) FILES
 
 
 
-                                31 January 2020                             26
+                                 17 April 2020                              26
 
 
 
@@ -1777,7 +1777,7 @@ HOW TO SET VARIABLES IN INITIALIZATION FILES
 
 
 
-                                31 January 2020                             27
+                                 17 April 2020                              27
 
 
 
@@ -1843,7 +1843,7 @@ FORMAT OF COMMAND SPECIFICATIONS
 
 
 
-                                31 January 2020                             28
+                                 17 April 2020                              28
 
 
 
@@ -1909,7 +1909,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             29
+                                 17 April 2020                              29
 
 
 
@@ -1975,7 +1975,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             30
+                                 17 April 2020                              30
 
 
 
@@ -2041,7 +2041,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             31
+                                 17 April 2020                              31
 
 
 
@@ -2107,7 +2107,7 @@ LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
 
 
 
-                                31 January 2020                             32
+                                 17 April 2020                              32
 
 
 
@@ -2173,7 +2173,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             33
+                                 17 April 2020                              33
 
 
 
@@ -2239,7 +2239,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             34
+                                 17 April 2020                              34
 
 
 
@@ -2305,7 +2305,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             35
+                                 17 April 2020                              35
 
 
 
@@ -2371,7 +2371,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             36
+                                 17 April 2020                              36
 
 
 
@@ -2437,7 +2437,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             37
+                                 17 April 2020                              37
 
 
 
@@ -2503,7 +2503,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             38
+                                 17 April 2020                              38
 
 
 
@@ -2569,7 +2569,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             39
+                                 17 April 2020                              39
 
 
 
@@ -2635,7 +2635,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             40
+                                 17 April 2020                              40
 
 
 
@@ -2701,7 +2701,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             41
+                                 17 April 2020                              41
 
 
 
@@ -2767,7 +2767,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             42
+                                 17 April 2020                              42
 
 
 
@@ -2833,7 +2833,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             43
+                                 17 April 2020                              43
 
 
 
@@ -2899,7 +2899,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             44
+                                 17 April 2020                              44
 
 
 
@@ -2965,7 +2965,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             45
+                                 17 April 2020                              45
 
 
 
@@ -3031,7 +3031,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             46
+                                 17 April 2020                              46
 
 
 
@@ -3097,7 +3097,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             47
+                                 17 April 2020                              47
 
 
 
@@ -3163,7 +3163,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                31 January 2020                             48
+                                 17 April 2020                              48
 
 
 
@@ -3217,19 +3217,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        $MSWin_back_slash [1]
               This configuration variable only has an effect when  latexmk  is
-              running under MS-Windows.  It determines whether, when a command
-              is executed under MS-Windows, there should  be  substituted  "\"
-              for  the  separator  character between components of a directory
-              name.  Internally, latexmk uses "/" for the directory  separator
-              character, which is the character used by Unix-like systems.
+              running  under MS-Windows.  With the default value of 1 for this
+              variable, when a command is executed under  MS-Windows,  latexmk
+              substitutes  "\"  for the separator character between components
+              of a directory name.  Internally, latexmk uses "/" for  the  di-
+              rectory  separator  character,  which  is  the character used by
+              Unix-like systems.
 
-              For  almost all programs and for typical filenames under MS-Win-
-              dows, both "\" and "/" are acceptable as the directory separator
-              character, provided at least that filenames are properly quoted.
+              For almost all programs and for almost all filenames  under  MS-
+              Windows,  both  "\"  and  "/"  are  acceptable  as the directory
 
 
 
-                                31 January 2020                             49
+                                 17 April 2020                              49
 
 
 
@@ -3238,13 +3238,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              But it is possible that programs exist that only accept  "\"  on
-              the command line, since that is the standard directory separator
-              for MS-Window.  So for safety latexmk makes the substitution  of
-              "\"  for  "/",  by default.  However there are also programs for
-              which a back slash "\" is interpreted differently, notably lual-
-              tex,  so if these are used, then $MSWin_back_slash should be set
-              to zero.
+              separator character, provided at least that filenames are  prop-
+              erly  quoted.   But it is possible that programs exist that only
+              accept "\" on the command line, since that is the  standard  di-
+              rectory  separator  for MS-Windows.  So for safety latexmk makes
+              the substitution from "/" to "\", by default.
+
+              However there are also programs on MS-Windows for which  a  back
+              slash "\" is interpreted differently than as a directory separa-
+              tor; for these the directory separator should be "/".   Programs
+              with  this  behavior  include  all  the  *latex  programs in the
+              TeXLive implementation  (but  not  the  MiKTeX  implementation).
+              Hence  if  you use TeXLive on MS-Windows, then $MSWin_back_slash
+              should be set to zero.
 
 
        $new_viewer_always [0]
@@ -3286,16 +3292,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               and you need to use makeindex or bibtex, then you need  to  dis-
               able  the  security measures (and assume any risks).  One way of
               doing this is to temporarily set an operating system environment
-              variable  openout_any  to "a" (as in "all"), to override the de-
-              fault "paranoid" setting.
-
-       $pdf_mode [0]
-              If zero, do NOT generate a pdf  version  of  the  document.   If
-              equal  to  1,  generate  a  pdf  version  of  the document using
 
 
 
-                                31 January 2020                             50
+                                 17 April 2020                              50
 
 
 
@@ -3304,9 +3304,15 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              pdflatex, using the command specified by the $pdflatex variable.
-              If  equal  to 2, generate a pdf version of the document from the
-              ps file, by using the command specified by the $ps2pdf variable.
+              variable  openout_any  to "a" (as in "all"), to override the de-
+              fault "paranoid" setting.
+
+       $pdf_mode [0]
+              If zero, do NOT generate a pdf  version  of  the  document.   If
+              equal  to 1, generate a pdf version of the document using pdfla-
+              tex, using the command specified by the $pdflatex variable.   If
+              equal  to  2, generate a pdf version of the document from the ps
+              file, by using the command specified by  the  $ps2pdf  variable.
               If  equal  to 3, generate a pdf version of the document from the
               dvi file, by using the command specified by  the  $dvipdf  vari-
               able.  If equal to 4, generate a pdf version of the document us-
@@ -3353,15 +3359,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               See details of the %latex_input_extensions for other information
               that equally applies to %pdflatex_input_extensions.
 
-       $pdflatex_silent_switch ["-interaction=batchmode"]
-              Switch(es)  for  the pdflatex program (specified in the variable
-              $pdflatex) when silent mode is on.
-
-              See details of the $latex_silent_switch  for  other  information
 
 
-
-                                31 January 2020                             51
+                                 17 April 2020                              51
 
 
 
@@ -3370,6 +3370,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       $pdflatex_silent_switch ["-interaction=batchmode"]
+              Switch(es)  for  the pdflatex program (specified in the variable
+              $pdflatex) when silent mode is on.
+
+              See details of the $latex_silent_switch  for  other  information
               that equally applies to $pdflatex_silent_switch.
 
        $pdf_previewer ["start acroread %O %S"]
@@ -3420,14 +3425,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Note that acroread under MS-Windows (but not UNIX) locks the pdf
               file, so the default value is then 3.
 
-              Arranging to use a command to get a previewer explicitly updated
-              requires three variables to be set.  For example:
-
-                  $pdf_previewer = "start xpdf -remote %R %O %S";
 
 
-
-                                31 January 2020                             52
+                                 17 April 2020                              52
 
 
 
@@ -3436,6 +3436,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              Arranging to use a command to get a previewer explicitly updated
+              requires three variables to be set.  For example:
+
+                  $pdf_previewer = "start xpdf -remote %R %O %S";
                   $pdf_update_method = 4;
                   $pdf_update_command = "xpdf -remote %R -reload";
 
@@ -3487,13 +3491,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-       $preview_continuous_mode [0]
-              If nonzero, run a previewer to view the document,  and  continue
-              running latexmk to keep .dvi up-to-date.  Equivalent to the -pvc
 
 
-
-                                31 January 2020                             53
+                                 17 April 2020                              53
 
 
 
@@ -3502,6 +3502,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       $preview_continuous_mode [0]
+              If nonzero, run a previewer to view the document,  and  continue
+              running latexmk to keep .dvi up-to-date.  Equivalent to the -pvc
               option.  Which previewer is run depends on the  other  settings,
               see the command line options -view=, and the variable $view.
 
@@ -3553,13 +3556,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               Note  that  gv  could be used with the -watch option updates its
               display whenever the postscript file changes, whereas  ghostview
-              does  not.  However, different versions of gv have slightly dif-
-              ferent ways of writing this  option.   You  can  configure  this
-              variable appropriately.
 
 
 
-                                31 January 2020                             54
+                                 17 April 2020                              54
 
 
 
@@ -3567,6 +3567,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+              does  not.  However, different versions of gv have slightly dif-
+              ferent ways of writing this  option.   You  can  configure  this
+              variable appropriately.
 
               WARNING: Linux systems may have installed one (or more) versions
               of gv under different names, e.g.,  ggv,  kghostview,  etc,  but
@@ -3619,13 +3623,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               The period of inactivity, in minutes, after which pvc mode times
               out.  This is used if $pvc_timeout is nonzero.
 
-       $pvc_view_file_via_temporary [1]
-              The same as $always_view_file_via_temporary, except that it only
-              applies in preview-continuous mode (-pvc option).
 
 
-
-                                31 January 2020                             55
+                                 17 April 2020                              55
 
 
 
@@ -3633,6 +3633,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       $pvc_view_file_via_temporary [1]
+              The same as $always_view_file_via_temporary, except that it only
+              applies in preview-continuous mode (-pvc option).
 
        $quote_filenames [1]
               This specifies whether substitutions for placeholders in command
@@ -3684,14 +3688,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               and  dvips do, because sometimes graphics files get generated in
               the output or aux directories.]
 
-              The default under MSWin and Cygwin is ';'  and  under  UNIX-like
-              operating  systems  (including Linux and OS-X) is ':'.  Normally
-              the defaults give correct behavior.  But there can be  difficul-
-              ties  if  your operating system is of one kind, but some of your
 
 
 
-                                31 January 2020                             56
+                                 17 April 2020                              56
 
 
 
@@ -3700,6 +3700,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              The default under MSWin and Cygwin is ';'  and  under  UNIX-like
+              operating  systems  (including Linux and OS-X) is ':'.  Normally
+              the defaults give correct behavior.  But there can be  difficul-
+              ties  if  your operating system is of one kind, but some of your
               software is running under an emulator for the other kind of  op-
               erating  system;  in  that  case you'll need to find out what is
               needed, and set $search_path_separator  explicitly.   (The  same
@@ -3750,14 +3754,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $success_cmd [undefined]
               See the documentation for $compiling_cmd.
 
-       $tmpdir [See below for default]
-              Directory to store temporary files  that  latexmk  may  generate
-              while running.
 
 
 
-
-                                31 January 2020                             57
+                                 17 April 2020                              57
 
 
 
@@ -3765,6 +3765,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       $tmpdir [See below for default]
+              Directory to store temporary files  that  latexmk  may  generate
+              while running.
 
               The  default  under MSWindows (including cygwin), is to set $tm-
               pdir to the value of the first of whichever of the system  envi-
@@ -3816,14 +3820,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The default behavior is normally satisfactory in the usual edit-
               compile-edit cycle.  But, for example, latexmk can also be  used
-              as  part  of  a build process for some bigger project, e.g., for
-              creating documentation in the build of a  software  application.
-              Then  it is often sensible to treat citation and reference warn-
-              ings as errors that require the  overall  build  process  to  be
 
 
 
-                                31 January 2020                             58
+                                 17 April 2020                              58
 
 
 
@@ -3832,6 +3832,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              as  part  of  a build process for some bigger project, e.g., for
+              creating documentation in the build of a  software  application.
+              Then  it is often sensible to treat citation and reference warn-
+              ings as errors that require the  overall  build  process  to  be
               aborted.   Of course, since multiple runs of (pdf)latex are gen-
               erally needed to resolve references and citations, what  matters
               is  not  the  warnings on the first run, but the warnings on the
@@ -3882,14 +3886,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               not  been  found,  and  the  file is given without an extension.
               This typically happens when LaTeX  commands  of  the  form  \in-
               put{file}  or \includegraphics{figure}, when the relevant source
-              file does not exist.
-
-              In this situation, latexmk searches for custom  dependencies  to
-              make  the  missing  file(s),  but restricts it to the extensions
 
 
 
-                                31 January 2020                             59
+                                 17 April 2020                              59
 
 
 
@@ -3898,6 +3898,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              file does not exist.
+
+              In this situation, latexmk searches for custom  dependencies  to
+              make  the  missing  file(s),  but restricts it to the extensions
               specified by the variable  %xelatex_input_extensions.   The  de-
               fault extensions are 'tex', 'pdf', 'jpg, and 'png'.
 
@@ -3948,14 +3952,10 @@ CUSTOM DEPENDENCIES
        must:  If non-zero, the file from which we are converting  must  exist,
               if  it doesn't exist latexmk will give an error message and exit
               unless the -f option is specified.  If must is zero and the file
-              we  are  converting from doesn't exist, then no action is taken.
-              Generally, the appropriate value of must is zero.
 
 
 
-
-
-                                31 January 2020                             60
+                                 17 April 2020                              60
 
 
 
@@ -3963,6 +3963,9 @@ CUSTOM DEPENDENCIES
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+              we  are  converting from doesn't exist, then no action is taken.
+              Generally, the appropriate value of must is zero.
 
        function:
               The name of the subroutine that latexmk should call  to  perform
@@ -4015,19 +4018,21 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        Note for advanced usage: The operating  system's  environment  variable
        TEXINPUTS can be used to specify a search path for finding files by la-
        tex etc.  Correspondingly, when a missing  file  is  reported,  latexmk
-       looks  in the directories specified in TEXINPUTS as well as in the cur-
-       rent directory, to find a source file from which an instance of a  cus-
-       tom dependency can be used to make the missing file.
 
 
 
-                                31 January 2020                             61
+                                 17 April 2020                              61
 
 
 
 
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+       looks  in the directories specified in TEXINPUTS as well as in the cur-
+       rent directory, to find a source file from which an instance of a  cus-
+       tom dependency can be used to make the missing file.
 
 
    Function to implement custom dependency, traditional method:
@@ -4078,16 +4083,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
            }
 
        Note  1: In the command lines given in the system commands in the above
-       examples, double quotes have been inserted around the file  names  (im-
-       plemented  by '\"' in the Perl language).  They immunize the running of
-       the program against special characters in filenames.  Very often  these
-       quotes  are  not  necessary, i.e., they can be omitted.  But it is nor-
-       mally safer to keep them in.  Even though the rules  for  quoting  vary
-       between  operating  systems,  command  shells  and individual pieces of
+       examples, double quotes  have  been  inserted  around  the  file  names
 
 
 
-                                31 January 2020                             62
+                                 17 April 2020                              62
 
 
 
@@ -4096,6 +4096,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       (implemented  by '\"' in the Perl language).  They immunize the running
+       of the program against special characters  in  filenames.   Very  often
+       these  quotes  are not necessary, i.e., they can be omitted.  But it is
+       normally safer to keep them in.  Even though the rules for quoting vary
+       between  operating  systems,  command  shells  and individual pieces of
        software, the quotes in the above examples do not cause problems in the
        cases I have tested.
 
@@ -4144,16 +4149,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        texmk, and many examples can be found, e.g., on the web.
 
        However  in later versions of latexmk the internal structure of the im-
-       plementation of its "rules" for the steps of processing, including cus-
-       tom dependencies, became much more powerful.  The function implementing
-       a custom dependency is executed within a special context where a number
-       of  extra  variables  and subroutines are defined.  Publicly documented
-       ones, intended to be long-term stable,  are  listed  below,  under  the
-       heading "Variables and subroutines for processing a rule".
+       plementation of its "rules" for  the  steps  of  processing,  including
 
 
 
-                                31 January 2020                             63
+                                 17 April 2020                              63
 
 
 
@@ -4161,6 +4161,12 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       custom  dependencies,  became  much more powerful.  The function imple-
+       menting a custom dependency is executed within a special context  where
+       a number of extra variables and subroutines are defined.  Publicly doc-
+       umented ones, intended to be long-term stable, are listed below,  under
+       the heading "Variables and subroutines for processing a rule".
 
        Examples  of  their  use is given in the following examples, concerning
        multiple index files and glossaries.
@@ -4210,16 +4216,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        This  last example uses the command specification in $makeindex, and so
        any customization you have made for the standard index also applies  to
-       your extra indexes.
-
-       Similar techniques can be applied for glossaries.
-
-       Those of you with experience with Makefiles, may get concerned that the
-       .ndx file is written during a run of latex/pdflatex and is always later
 
 
 
-                                31 January 2020                             64
+                                 17 April 2020                              64
 
 
 
@@ -4228,6 +4228,12 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       your extra indexes.
+
+       Similar techniques can be applied for glossaries.
+
+       Those of you with experience with Makefiles, may get concerned that the
+       .ndx file is written during a run of latex/pdflatex and is always later
        than  the  .nnd  last read in.  Thus the .nnd appears to be perpetually
        out-of-date.  This situation, of circular dependencies, is  endemic  to
        latex, and is one of the issues that latexmk is programmed to overcome.
@@ -4278,14 +4284,8 @@ ADVANCED CONFIGURATION: Some extra resources and advanced tricks
        ful ideas
 
 
-   Utility subroutines
-       ensure_path( var, values ...)
 
-              The  first  parameter  is  the  name  of  one  of  the  system's
-
-
-
-                                31 January 2020                             65
+                                 17 April 2020                              65
 
 
 
@@ -4294,13 +4294,17 @@ ADVANCED CONFIGURATION: Some extra resources and advanced tricks
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              environment  variables  for search paths.  The remaining parame-
-              ters are values that should be in the variable.  For each of the
-              value  parameters,  if it isn't already in the variable, then it
-              is prepended to the variable; in that case the environment vari-
-              able is created if it doesn't already exist. For separating val-
-              ues, the character appropriate the the operating system is  used
-              -- see the configuration variable $search_path_separator.
+   Utility subroutines
+       ensure_path( var, values ...)
+
+              The first parameter is the name of one of the system's  environ-
+              ment  variables  for search paths.  The remaining parameters are
+              values that should be in the variable.  For each  of  the  value
+              parameters,  if  it  isn't  already  in the variable, then it is
+              prepended to the variable; in that case the environment variable
+              is  created  if it doesn't already exist. For separating values,
+              the character appropriate the the operating system  is  used  --
+              see the configuration variable $search_path_separator.
 
               Example:
 
@@ -4344,14 +4348,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               This gives the name of the main output file if  any.   Note  the
               double dollar signs.
 
-       rdb_ensure_file( $rule, file )
-              This  a subroutine that ensures that the given file is among the
-              source files for the specified rule.  It is typically used when,
-              during  the  processing of a rule, it is known that a particular
 
 
 
-                                31 January 2020                             66
+                                 17 April 2020                              66
 
 
 
@@ -4360,6 +4360,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+       rdb_ensure_file( $rule, file )
+              This  a subroutine that ensures that the given file is among the
+              source files for the specified rule.  It is typically used when,
+              during  the  processing of a rule, it is known that a particular
               extra file is among the dependencies that latexmk  should  know,
               but its default methods don't find the dependency. Almost always
               the first argument is the name of the rule currently being  pro-
@@ -4410,14 +4414,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
           &std_tex_cmds;
 
-       This results in $latex = 'latex %O %S', and  similarly  for  $pdflatex,
-       $lualatex,  and  $xelatex.   Note the ampersand in the invocation; this
-       indicates to Perl that a subroutine is being called.
 
 
 
-
-                                31 January 2020                             67
+                                 17 April 2020                              67
 
 
 
@@ -4425,6 +4425,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       This results in $latex = 'latex %O %S', and  similarly  for  $pdflatex,
+       $lualatex,  and  $xelatex.   Note the ampersand in the invocation; this
+       indicates to Perl that a subroutine is being called.
 
           &alt_tex_cmds;
 
@@ -4476,14 +4480,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        current  versions  of  GNU make, which is the default on both linux and
        OS-X systems.  They may need modifications for other versions of make.
 
-       The simplest method is simply to delegate all the relevant tasks to la-
-       texmk, as is suitable for a straightforward LaTeX document.  For this a
-       suitable Makefile is like
 
 
 
-
-                                31 January 2020                             68
+                                 17 April 2020                              68
 
 
 
@@ -4491,6 +4491,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       The simplest method is simply to delegate all the relevant tasks to la-
+       texmk, as is suitable for a straightforward LaTeX document.  For this a
+       suitable Makefile is like
 
            .PHONY : FORCE_MAKE
            all : try.pdf
@@ -4542,14 +4546,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
             %.pdf : %.fig
                    fig2dev -Lpdf $< $@
 
-       (Again,  the  lines  containing  the  commands  for the rules should be
-       started with tabs.)  This example was inspired by how GNU automake han-
-       dles automatic dependency tracking of C source files.
 
 
 
-
-                                31 January 2020                             69
+                                 17 April 2020                              69
 
 
 
@@ -4557,6 +4557,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       (Again,  the  lines  containing  the  commands  for the rules should be
+       started with tabs.)  This example was inspired by how GNU automake han-
+       dles automatic dependency tracking of C source files.
 
        After  each  run of latexmk, dependency information is put in a file in
        the .deps subdirectory.  The Makefile causes these dependency files  to
@@ -4609,13 +4613,9 @@ BUGS
        pdf file cannot be updated.  (Remedy: configure latexmk  to  use  suma-
        trapdf instead.)
 
-THANKS TO
-       Authors  of previous versions.  Many users with their feedback, and es-
-       pecially David Coppit (username david at node coppit.org) who made many
 
 
-
-                                31 January 2020                             70
+                                 17 April 2020                              70
 
 
 
@@ -4624,13 +4624,16 @@ THANKS TO
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+THANKS TO
+       Authors  of previous versions.  Many users with their feedback, and es-
+       pecially David Coppit (username david at node coppit.org) who made many
        useful  suggestions  that contributed to version 3, and Herbert Schulz.
        (Please note that the e-mail addresses are not written in  their  stan-
        dard form to avoid being harvested too easily.)
 
 AUTHOR
        Current  version,  by  John  Collins  (username  jcc8 at node psu.edu).
-       (Version 4.68).
+       (Version 4.69a).
 
        Released     version     can      be      obtained      from      CTAN:
        <http://www.ctan.org/pkg/latexmk/>,   and  from  the  author's  website
@@ -4678,9 +4681,6 @@ AUTHOR
 
 
 
-
-
-
-                                31 January 2020                             71
+                                 17 April 2020                              71
 
 
