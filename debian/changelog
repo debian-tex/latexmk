@@ -1,3 +1,9 @@
+latexmk (1:4.69a-1) UNRELEASED; urgency=medium
+
+  * Trim trailing whitespace.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Sun, 26 Apr 2020 14:48:44 +0000
+
 latexmk (1:4.69a-0.1) unstable; urgency=medium
 
   * NMU
