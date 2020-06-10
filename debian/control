@@ -4,7 +4,7 @@ Priority: optional
 Build-Depends: debhelper-compat (= 12)
 Maintainer: OHURA Makoto <ohura@debian.org>
 Standards-Version: 4.5.0
-Homepage: https://personal.psu.edu/jcc8//software/latexmk-jcc/
+Homepage: https://personal.psu.edu/jcc8/software/latexmk-jcc/
 Vcs-Git: https://github.com/debian-tex/latexmk.git
 Vcs-Browser: https://github.com/debian-tex/latexmk
 
