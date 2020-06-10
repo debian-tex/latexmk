@@ -4,7 +4,7 @@
 #export DH_OPTIONS=-v
 
 %:
-	dh $@ 
+	dh $@
 
 override_dh_install:
 	dh_install
