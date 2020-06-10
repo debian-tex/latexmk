@@ -3,6 +3,6 @@ version=3
 # In the pattern below the first digit is isolated so to have a dotted
 # version number in the debian packages, the upstream uses this dotted
 # form in the changelog but removes the dot in the file names.
-http://www.phys.psu.edu/~collins/software/latexmk-jcc/versions.html \
+http://personal.psu.edu/~jcc8/software/latexmk/versions.html \
   latexmk-([\d])([\d]+[a-z]*).zip \
   debian uupdate
