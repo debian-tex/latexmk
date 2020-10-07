@@ -1,0 +1,71 @@
+# This file gives a configuration suitable when chapterbib is being used.
+# Latexmk without special configuration works with chapterbib only if
+# chapter bibliographies are used, but not when an overall consolidated
+# document-level bibliography is used. (This is because one of the runs of
+# bibtex gives an error of a kind that causes latexmk to stop further
+# processing.  The chapterbib documentation mentions this problem
+# explicitly and says the error is to be ignored.)
+
+# The configuration in this file allows the use of a document level
+# bibliographys without any errors.  It works equally when there is no
+# document level bibliography and when chapterbib is not used.
+
+
+$bibtex = 'bibtex %O %S';
+$bibtex_save = $bibtex;
+$bibtex = 'internal bibtex_fix %R %D %S';
+
+# MUST NOT use bibtex_fudge (i.e., change of directory before running bibtex).
+# That's not needed in post-2019 versions of bibtex, and messes up
+# things with chapterbib.  So turn it off:
+$bibtex_fudge = 0;
+
+$clean_ext .= " %R-mod.blg %R-mod.aux %R-mod.bbl";
+
+sub bibtex_fix {
+    my ($root, $dest, $source) = @_;
+    local ($base_tex, $path, $ext) = fileparse( $source, '\.[^\.]*' );
+    my $ret = 0;
+    if ( $base_tex eq $root ) {
+        print "--- Will run bibtex on modified '$root.aux' file\n";
+        my $aux_mod_base = $path.$base_tex."-mod";
+        local $out_fh = new FileHandle "> $aux_mod_base$ext";
+        if (!$out_fh) { die "Cannot write to '$aux_mod_base$ext'\n"; }
+        local $level = 0;
+        fix_aux( $source );
+        close $out_fh;
+        $ret = Run_subst( $bibtex_save, 2, undef, "$aux_mod_base.aux", undef, $aux_mod_base );
+        foreach ( 'bbl', 'blg' ) {
+           copy "$aux_mod_base.$_", "$path$root.$_";
+        }
+    }
+    else {
+        $ret = Run_subst( $bibtex_save );
+    }
+    return $ret;
+}
+
+sub fix_aux {
+   # Read aux file, outputting flattened version to file handle $out_fh and
+   # removing \bibdata and \bibstyle lines that were in included .aux files.
+   my $aux_file = $_[0];
+   print "Processing '$aux_file'\n";
+   my $aux_fh = new FileHandle $aux_file;
+   if (!$aux_fh) { die "$My_name: Couldn't read aux file '$aux_file'\n"; }
+   $level++;
+   while (<$aux_fh>) {
+      if ( ($level > 1) &&
+           ( /^\\bibdata\{(.*)\}/ || /^\\bibstyle\{(.*)\}/ )
+         )
+      { next; }
+      elsif ( /^\\\@input\{(.*)\}/ ) {
+          fix_aux( $path.$1 );
+          next;
+      }
+      else {
+         print $out_fh $_;
+      }
+   }
+   close($aux_fh);
+   $level--;
+}

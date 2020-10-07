@@ -723,3 +723,24 @@ From v. 4.67 to 4.69a
     document directory.  (Bug is caused by problem in perl module
     Cwd.)
   Report rc files read
+
+From v. 4.69a to 4.70a
+  Improved compatibility with chapterbib.sty, provided that the configuration
+    given in file example_rcfiles/chapterbib-latexmkrc is used.
+  Correction of default values of $biber and $bibtex.
+  Improved handling of location of bbl and aux files on an intial run.
+  Change of default: running bibtex no longer uses temporary change of
+    directory, since the bug in bibtex that it evades isn't present in
+    recent versions.
+  Small bug corrections, and changes to some diagnostic messages.
+  Documentation corrections.
+
+From v. 4.70a to 4.70b
+  Fix problems when rearranging rules to deal with change of output file of
+    *latex engine (e.g., .pdf to .dvi).
+  Fix problem with the new default not to do the change of directory for
+    bibtex.  Use of full path names for output-directory or tex file no
+    longer causes a bibtex error.
+  Add options -bibfudge, -bibfudge-, -nobibfudge.
+
+
