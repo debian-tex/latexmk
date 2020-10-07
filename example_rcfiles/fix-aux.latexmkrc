@@ -28,14 +28,16 @@ sub latex_fix_aux {
   #    command line.
   # 3. Run the command.
   # 4. If the aux and output directories are different, move any of the dvi,
-  #    fls, ps and pdf files that are present in the intended aux directory
-  #    to the intended output directory.
+  #    fls, pdf, ps and synctex.gz files that are present in the intended aux
+  #    directory to the intended output directory.
   # N.B. It might seem more appropriate to keep the fls file in the aux
   #    directory.  But MiKTeX puts it in the output directory, so we must do
   #    the same to copy its behavior.
   #    It might also seem appropriate for an xdv file to go in the output
   #    directory, like a dvi file.  But xelatex under MiKTeX puts it in the
   #    aux directory, so we must copy that behavior.
+
+  my @move_exts = ('dvi', 'fls', 'pdf', 'ps', 'synctex.gz' );
 
   # Determine aux and output directories from command line:
   my $auxD = '';
@@ -85,9 +87,17 @@ sub latex_fix_aux {
   print "Running: '@args_act'\n";
   my $ret = system @args_act;
   if ($auxD ne $outD) {
-     print "Moving dvi, fls, ps, pdf files from '$auxD' to '$outD'\n";
-     foreach my $ext ('dvi', 'fls', 'ps', 'pdf' ) {
-        rename "$auxD1$root_filename.$ext", "$outD1$root_filename.$ext",;
+     print "Move @move_exts files from '$auxD' to '$outD'\n";
+     # Use copy and unlink, not rename, since some viewers appear to keep the
+     # viewed file open.  So if rename were used, such viewers would see the
+     # old version of the file, rather than the new one.  With copy, the
+     # contents of the old file are normally overwritten by the new contents.
+     #
+     # In addition, copy works across file system boundaries, but rename
+     # doesn't.
+     foreach my $ext (@move_exts) {
+        copy "$auxD1$root_filename.$ext", "$outD1$root_filename.$ext";
+        unlink "$auxD1$root_filename.$ext";
      }
   }
   return $ret;

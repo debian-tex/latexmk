@@ -1,5 +1,5 @@
-Latexmk, version 4.69a, 17 April 2020
--------------------------------------
+Latexmk, version 4.70b, 29 September 2020
+-----------------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
 document.  Essentially, it is a highly specialized cousin of the
@@ -87,8 +87,7 @@ NOTES:-
 
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
------- TO STDOUT from JCC's latexmkrc
-Latexmk 4.69a: Automatic LaTeX document generation routine
+Latexmk 4.70b: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
@@ -101,6 +100,8 @@ Usage: latexmk [latexmk_options] [filename ...]
    -bibtex-cond  - use bibtex when needed, but only if the bib file exists
    -bibtex-cond1 - use bibtex when needed, but only if the bib file exists;
                    on cleanup delete bbl file only if bib file exists
+   -bibfudge     - use change-directory fudge needed for old bibtexs
+   -bibfudge-    - don't use change-directory fudge needed for old bibtexs
    -bm <message> - Print message across the page when converting to postscript
    -bi <intensity> - Set contrast or intensity of banner
    -bs <scale> - Set scale for banner
@@ -141,11 +142,11 @@ Usage: latexmk [latexmk_options] [filename ...]
    -l-    - turn off -l
    -latex=<program> - set program used for latex.
                       (replace '<program>' by the program name)
-   -latexoption=<option> - add the given option to the (pdf)latex command
+   -latexoption=<option> - add the given option to the *latex command
    -logfilewarninglist or -logfilewarnings 
-               give list of warnings after run of (pdf)latex
+               give list of warnings after run of *latex
    -logfilewarninglist- or -logfilewarnings- 
-               do not give list of warnings after run of (pdf)latex
+               do not give list of warnings after run of *latex
    -lualatex     - use lualatex for processing files to pdf
                    and turn dvi/ps modes off
    -M     - Show list of dependent files after processing
@@ -158,6 +159,7 @@ Usage: latexmk [latexmk_options] [filename ...]
    -new-viewer    - in -pvc mode, always start a new viewer
    -new-viewer-   - in -pvc mode, start a new viewer only if needed
    -nobibtex      - never use bibtex
+   -nobibfudge    - don't use change-directory fudge needed for old bibtexs
    -nodependents  - Do not show list of dependent files after processing
    -norc          - omit automatic reading of system, user and project rc files
    -output-directory=dir or -outdir=dir
@@ -197,9 +199,9 @@ Usage: latexmk [latexmk_options] [filename ...]
    -r <file> - Read custom RC file
                (N.B. This file could override options specified earlier
                on the command line.)
-   -recorder - Use -recorder option for (pdf)latex
+   -recorder - Use -recorder option for *latex
                (to give list of input and output files)
-   -recorder- - Do not use -recorder option for (pdf)latex
+   -recorder- - Do not use -recorder option for *latex
    -rules    - Show list of rules after processing
    -rules-   - Do not show list of rules after processing
    -showextraoptions  - Show other allowed options that are simply passed
