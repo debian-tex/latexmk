@@ -1,3 +1,21 @@
+latexmk (1:4.70b-0.1) unstable; urgency=medium
+
+  * NMU
+
+  [ Norbert Preining ]
+  * New upstream version 4.70b
+  * make janitor happy
+  * update watch file
+  * remove double /
+  * unfuzzify patches
+  * update URL in d/copyright (Closes: #954966)
+
+  [ Stephan Lachnit ]
+  * Use LuaLaTeX in default config
+  * Remove default pdf viewer in default config
+
+ -- Norbert Preining <norbert@preining.info>  Wed, 07 Oct 2020 23:38:06 +0900
+
 latexmk (1:4.69a-0.1) unstable; urgency=medium
 
   * NMU
