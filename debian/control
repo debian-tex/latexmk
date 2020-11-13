@@ -10,7 +10,7 @@ Vcs-Browser: https://github.com/debian-tex/latexmk
 
 Package: latexmk
 Architecture: all
-Depends: perl, texlive-latex-base, ${misc:Depends}
+Depends: perl:any, texlive-latex-base, ${misc:Depends}
 Suggests: ghostscript
 Recommends: xpdf | pdf-viewer, gv | postscript-viewer
 Description: Perl script for running LaTeX the correct number of times
