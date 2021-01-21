@@ -1,0 +1,18 @@
+Description: Change file encoding from ISO-8859 to UTF-8
+Author: Ryan Kavanagh <rak@debian.org>
+Origin: Debian
+Forwarded: no
+Last-Update: 2021-01-21
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Index: latexmk/example_rcfiles/texinfo-latexmkrc
+===================================================================
+--- latexmk.orig/example_rcfiles/texinfo-latexmkrc	2021-01-21 14:24:12.000000000 -0500
++++ latexmk/example_rcfiles/texinfo-latexmkrc	2021-01-21 14:24:41.787420897 -0500
+@@ -1,5 +1,5 @@
+ # Modifications 2015 Sep 9-10, John Collins
+-# Copyright 2014 Vincent Belaïche <vincent.b.1@hotmail.fr>
++# Copyright 2014 Vincent BelaÃ¯che <vincent.b.1@hotmail.fr>
+ 
+ # With the settings here, latexmk can be used to process texinfo files
+ # (typical extension .texi) to pdf files, including the making of
