@@ -1,3 +1,16 @@
+latexmk (1:4.70b-0.2) unstable; urgency=medium
+
+  * NMU
+
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + latexmk: Add :any qualifier for perl dependency.
+
+  [ Ryan Kavanagh ]
+  * Fix file encoding
+  * Install example rec files (Closes: #980760)
+
+ -- Norbert Preining <norbert@preining.info>  Fri, 22 Jan 2021 08:14:15 +0900
+
 latexmk (1:4.70b-0.1) unstable; urgency=medium
 
   * NMU
