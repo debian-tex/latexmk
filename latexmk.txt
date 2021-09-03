@@ -61,7 +61,7 @@ DESCRIPTION
 
 
 
-                               29 September 2020                             1
+                                  29 May 2021                                1
 
 
 
@@ -127,7 +127,7 @@ LATEXMK OPTIONS AND ARGUMENTS ON COMMAND LINE
 
 
 
-                               29 September 2020                             2
+                                  29 May 2021                                2
 
 
 
@@ -137,29 +137,21 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        a specific one of these normally refers that specific engines.  Earlier
-       versions of this documentation weren't so consistent.
+       versions  of  this documentation weren't so consistent.  Which of these
+       is used to compile a document, depends on  the  configuration  and  the
+       command line arguments.
 
        Note  2:  In  addition to the options in the list below, latexmk recog-
-       nizes almost all the options recognized by the *latex in their  current
-       TeXLive and MiKTeX implementations.  Some of the options for these pro-
-       grams also trigger special action or behavior by latexmk, in which case
-       they  have specific explanations in this document.  Otherwise, they are
-       just passed through to a called *latex program. Run  latexmk  with  the
-       -showextraoptions to get a list of the options that latexmk accepts and
-       that are simply passed through to *latex.  See also the explanation  of
-       the -showextraoptions option for more information.
+       nizes almost all the options recognized by the *latex programs in their
+       current  TeXLive  and  MiKTeX implementations.  Some of the options for
+       these programs trigger special action or behavior by latexmk, in  which
+       case  they  have  specific  explanations in this document; in this case
+       they may or may not be passed to *latex as well.
 
-       Note  3:  In  this documentation, the term *latex is often referred to,
-       which refers to all the  supported  latex-like  programs,  whether  the
-       original  latex,  or  the later pdflatex, xelatex, and lualatex.  Users
-       should know that from latexmk's point of view, all  of  these  programs
-       behave  very  much alike, with the sole exception that by default latex
-       produces a dvi file and all the others produce a pdf file.  Latexmk can
-       be easily configured to use whichever of these programs is needed.  See
-       the documentation for the following options: -pdflua,  -pdfxe,  -luala-
-       tex,  and  -xelatex,  and  also  see  the documentation for the $latex,
-       $pdflatex, $lualatex, and $xelatex configuration variables.  At present
-       latexmk does not do automatic detection of which program is to be used.
+       Run latexmk with the -showextraoptions to get a  list  of  the  options
+       that latexmk accepts and that are simply passed through to *latex.  See
+       also the explanation of the -showextraoptions option for more  informa-
+       tion.
 
 
        Definitions of options and arguments
@@ -190,18 +182,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               Latexmk gives a fatal error when it detects  any  of  the  above
               characters in the TeX filename(s) specified on the command line.
-
-
-
-                               29 September 2020                             3
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               However before testing for illegal characters,  latexmk  removes
               matching  pairs  of double quotes from a filename.  This matches
               the behavior of latex etc, and deals with  problems  that  occa-
@@ -210,6 +190,16 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               forward slash character "\" is a directory separator, so latexmk
               replaces it by a backward slash "/", which is also a  legal  di-
               rectory separator in Windows, and is accepted by latex etc.
+
+
+
+                                  29 May 2021                                3
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        -auxdir=FOO or -aux-directory=FOO
@@ -256,18 +246,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               When  the source file uses bbl file(s) for the bibliography, run
               bibtex or biber as needed to regenerate the bbl files, but  only
               if  the relevant bib file(s) exist.  Thus when the bib files are
-
-
-
-                               29 September 2020                             4
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               not available, bibtex or biber  is  not  run,  thereby  avoiding
               overwriting  of  the bbl file(s).  Also, always treat .bbl files
               as precious, i.e., do not delete them in a cleanup operation.
@@ -277,12 +255,24 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The  reason for using this setting is that sometimes a .bbl file
               is available containing the bibliography for a document, but the
-              .bib  file  is  not available.  An example would be for a scien-
-              tific journal where authors submit .tex and .bbl files, but  not
-              the  original  .bib file.  In that case, running bibtex or biber
-              would not work, and the .bbl file should be treated  as  a  user
-              source  file,  and  not as a file that can be regenerated on de-
-              mand.
+              .bib  file  is  not  available.   An  example  would  be  for  a
+
+
+
+                                  29 May 2021                                4
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              scientific journal where authors submit .tex and .bbl files, but
+              not  the  original  .bib  file.  In that case, running bibtex or
+              biber would not work, and the .bbl file should be treated  as  a
+              user  source  file, and not as a file that can be regenerated on
+              demand.
 
               (Note that it is possible for latexmk to  decide  that  the  bib
               file  does  not  exist,  even though the bib file does exist and
@@ -312,32 +302,36 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               variable to 1.5 in a configuration file.
 
 
-       -bibtexfudge, -bibtexfudge-
-              Turn  on/off  the change-directory fudge needed for old versions
-              (pre-2019) of bibtex.  See documentation  of  $bibtex_fudge  for
-              details.
+       -bibtexfudge or -bibfudge
+              Turn  on  the change-directory fudge for bibtex.  See documenta-
+              tion of $bibtex_fudge for details.
+
+
+       -bibtexfudge- or -bibfudge-
+              Turn off the change-directory fudge for bibtex.  See  documenta-
+              tion of $bibtex_fudge for details.
 
 
        -bm <message>
               A  banner message to print diagonally across each page when con-
               verting the dvi file to postscript.  The message must be a  sin-
-              gle  argument  on  the  command  line so be careful with quoting
+              gle argument on the command line so be careful with quoting spa-
+              ces and such.
+
+              Note that if the -bm option is specified, the -ps option is  as-
+              sumed.
 
 
 
-                               29 September 2020                             5
+
+
+                                  29 May 2021                                5
 
 
 
 
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-              spaces and such.
-
-              Note that if the -bm option is specified, the -ps option is  as-
-              sumed.
 
 
        -bi <intensity>
@@ -369,7 +363,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               tion variables are removed.
 
               This  cleanup  is instead of a regular make.  See the -gg option
-              if you want to do a cleanup then a make.
+              if you want to do a cleanup followed by a make.
 
               Treatment of .bbl files:  If $bibtex_use is set to 0 or  1,  bbl
               files  are  always treated as non-regeneratable.  If $bibtex_use
@@ -389,9 +383,15 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               deleted.
 
 
+       -C     Clean up (remove) all regeneratable files generated by latex and
+              bibtex or biber.  This is the same as the -c option with the ad-
+              dition  of dvi, postscript and pdf files, and those specified in
+              the $clean_full_ext configuration variable.
 
 
-                               29 September 2020                             6
+
+
+                                  29 May 2021                                6
 
 
 
@@ -400,13 +400,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       -C     Clean up (remove) all regeneratable files generated by latex and
-              bibtex or biber.  This is the same as the -c option with the ad-
-              dition  of dvi, postscript and pdf files, and those specified in
-              the $clean_full_ext configuration variable.
-
               This cleanup is instead of a regular make.  See the  -gg  option
-              if you want to do a cleanup than a make.
+              if you want to do a cleanup followed by a make.
 
               See  the  -c option for the specification of whether or not .bbl
               files are treated as non-regeneratable or regeneratable.
@@ -454,10 +449,15 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               tion, before doing the other actions requested.
 
 
+       -d     Set draft mode.  This prints the banner message  "DRAFT"  across
+              your  page when converting the dvi file to postscript.  Size and
+              intensity can be modified with the -bs and -bi options.  The -bm
+              option  will override this option as this is really just a short
+              way of specifying:
 
 
 
-                               29 September 2020                             7
+                                  29 May 2021                                7
 
 
 
@@ -465,12 +465,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
-
-       -d     Set draft mode.  This prints the banner message  "DRAFT"  across
-              your  page when converting the dvi file to postscript.  Size and
-              intensity can be modified with the -bs and -bi options.  The -bm
-              option  will override this option as this is really just a short
-              way of specifying:
 
                    latexmk -bm DRAFT
 
@@ -519,11 +513,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               pendent files after processing.
 
 
-       -dF
+       -dF    Dvi file filtering.  The argument to this  option  is  a  filter
+              which  will  generate  a  filtered  dvi  file with the extension
+              ".dviF".  All extra processing (e.g. conversion  to  postscript,
+              preview,  printing)  will then be performed on this filtered dvi
+              file.
+
+              Example usage: To use dviselect to select only the even pages of
 
 
 
-                               29 September 2020                             8
+                                  29 May 2021                                8
 
 
 
@@ -532,13 +532,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              Dvi file filtering.  The argument to this  option  is  a  filter
-              which  will  generate  a  filtered  dvi  file with the extension
-              ".dviF".  All extra processing (e.g. conversion  to  postscript,
-              preview,  printing)  will then be performed on this filtered dvi
-              file.
-
-              Example usage: To use dviselect to select only the even pages of
               the dvi file:
 
                    latexmk -dF "dviselect even" foo.tex
@@ -548,6 +541,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Print  detailed diagnostics during a run.  This may help for de-
               bugging problems or to understand latexmk's behavior  in  diffi-
               cult situations.
+
+
+       -dir-report
+              For  each .tex file processed, list the settings for aux and out
+              directories, after they have been normalized from  the  settings
+              specified  during  initialization.  See  the  description of the
+              variable $aux_out_dir_report for more details.
+
+
+       -dir-report-
+              Do not report the settings for aux and  out  directories.   (De-
+              fault)
 
 
        -dvi   Generate dvi version of document.
@@ -581,15 +586,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                    latexmk -e '$latex=q/latex %O -shell-escape %S/' file.tex
 
-              Note  that  the  single  quotes  block normal UNIX/Linux command
-              shells from treating the characters inside the  quotes  as  spe-
-              cial.   (In  this  example, the q/.../ construct is a Perl idiom
-              equivalent to using single quotes.  This  avoids  the  complica-
-              tions  of  getting  a  quote  character inside an already quoted
 
 
 
-                               29 September 2020                             9
+                                  29 May 2021                                9
 
 
 
@@ -598,6 +598,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              Note  that  the  single  quotes  block normal UNIX/Linux command
+              shells from treating the characters inside the  quotes  as  spe-
+              cial.   (In  this  example, the q/.../ construct is a Perl idiom
+              equivalent to using single quotes.  This  avoids  the  complica-
+              tions  of  getting  a  quote  character inside an already quoted
               string in a way that is independent of both the  shell  and  the
               operating-system.)
 
@@ -620,6 +625,24 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               less problems in dealing with quoting.)
 
 
+       -emulate-aux-dir
+              Emulate  -aux-directory instead of leaving it to the *latex pro-
+              grams to do it.  (MiKTeX supports  -aux-directory,  but  TeXLive
+              doesn't.)
+
+              For more details see the explanation for the configuration vari-
+              able $emulate_aux.
+
+
+       -emulate-aux-dir-
+              Turn off emulatation -aux-directory and leave it to  the  *latex
+              program to handle the case that aux_dir is not equal to out_dir.
+              Note that if you use TeXLive, which doesn't support  -aux-direc-
+              tory, latexmk will automatically switch aux_dir emulation on af-
+              ter the first run of *latex, because it will find the .log  file
+              in the wrong place.
+
+
        -f     Force  latexmk  to  continue document processing despite errors.
               Normally, when latexmk detects that LaTeX or another program has
               found an error which will not be resolved by further processing,
@@ -629,19 +652,32 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               or  the rerunning of latex (etc) that would be done if no errors
               had occurred.  If instead, or additionally, you want  the  latex
               (etc)  program  not  to pause for user input after an error, you
+
+
+
+                                  29 May 2021                               10
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               should arrange this by an option that is passed to the  program,
-              e.g., by latexmk's option -interaction=nonstopmode.
+              e.g.,  by  latexmk's  option -interaction=nonstopmode (which la-
+              texmk passes to *latex).
 
 
        -f-    Turn off the forced processing-past-errors such as is set by the
-              -f option.  This could be used to override a setting in  a  con-
+              -f  option.   This could be used to override a setting in a con-
               figuration file.
 
 
-       -g     Force  latexmk  to process document fully, even under situations
-              where latexmk would normally  decide  that  no  changes  in  the
-              source  files have occurred since the previous run.  This option
-              is useful, for example, if you change some options and  wish  to
+       -g     Force latexmk to process document fully, even  under  situations
+              where  latexmk  would  normally  decide  that  no changes in the
+              source files have occurred since the previous run.  This  option
+              is  useful,  for example, if you change some options and wish to
               reprocess the files.
 
 
@@ -652,36 +688,24 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               -C had been given, and then do a regular make.
 
 
-
-
-
-                               29 September 2020                            10
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-       -h, -help
+       -h or-non-help
               Print help information.
 
 
        -jobname=STRING
-              Set the basename of output files(s) to STRING,  instead  of  the
-              default,  which  is the basename of the specified TeX file.  (At
+              Set  the  basename  of output files(s) to STRING, instead of the
+              default, which is the basename of the specified TeX  file.   (At
               present, STRING should not contain spaces.)
 
-              This is like the same option for current implementations of  the
+              This  is like the same option for current implementations of the
               *latex, and the passing of this option to these programs is part
               of latexmk's implementation of -jobname.
 
               There is one enhancement, that the STRING may contain the place-
               holder '%A'. This will be substituted by the basename of the TeX
-              file.  The primary purpose is when multiple files are  specified
-              on  the  command  line to latexmk, and you wish to use a jobname
-              with a different file-dependent value for each file.  For  exam-
+              file.   The primary purpose is when multiple files are specified
+              on the command line to latexmk, and you wish to  use  a  jobname
+              with  a different file-dependent value for each file.  For exam-
               ple, suppose you had .tex files test1.tex and test2.tex, and you
               wished to compare the results of compilation by *latex and those
               with xelatex.  Then under a unix-type operating system you could
@@ -690,13 +714,24 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                   latexmk -pdf -jobname=%A-pdflatex *.tex
                   latexmk -pdfxe -jobname=%A-xelatex *.tex
 
-              Then the .aux, .log, and .pdf files from  the  use  of  pdflatex
-              would  have  basenames  test1-pdflatex and test2-pdflatex, while
+              Then  the  .aux,  .log,  and .pdf files from the use of pdflatex
+              would have basenames test1-pdflatex  and  test2-pdflatex,  while
               from xelatex, the basenames would be test1-xelatex and test2-xe-
               latex.
 
+
+
+                                  29 May 2021                               11
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               Under MS-Windows with cmd.exe, you would need to double the per-
-              cent sign, so that the percent character is  passed  to  latexmk
+              cent  sign,  so  that the percent character is passed to latexmk
               rather than being used to substitute an environment variable:
 
                   latexmk -pdf -jobname=%%A-pdflatex *.tex
@@ -704,48 +739,37 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        -l     Run in landscape mode, using the landscape mode for the preview-
-              ers and the dvi to postscript converters.  This  option  is  not
-              normally  needed nowadays, since current previewers normally de-
+              ers  and  the  dvi to postscript converters.  This option is not
+              normally needed nowadays, since current previewers normally  de-
               termine this information automatically.
 
 
        -l-    Turn off -l.
 
 
-       -latex This sets the generation of dvi files by latex,  and  turns  off
+       -latex This  sets  the  generation of dvi files by latex, and turns off
               the generation of pdf and ps files.
 
-              Note:  to  set the command used when latex is specified, see the
+              Note: to set the command used when latex is specified,  see  the
               -latex="COMMAND" option.
-
-
-
-
-                               29 September 2020                            11
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        -latex="COMMAND"
               This sets the string specifying the command to run latex, and is
-              typically  used  to  add desired options.  Since the string nor-
+              typically used to add desired options.  Since  the  string  nor-
               mally contains spaces, it should be quoted, e.g.,
 
                    latexmk -latex="latex --shell-escape %O %S"  foo.tex
 
-              The specification of the contents of the string are the same  as
-              for  the $latex configuration variable.  Depending on your oper-
-              ating system and the command-line shell you are using,  you  may
-              need  to change the single quotes to double quotes (or something
+              The  specification of the contents of the string are the same as
+              for the $latex configuration variable.  Depending on your  oper-
+              ating  system  and the command-line shell you are using, you may
+              need to change the single quotes to double quotes (or  something
               else).
 
-              Note: This option when provided with the COMMAND  argument  only
+              Note:  This  option when provided with the COMMAND argument only
               sets the command for invoking latex; it does not turn on the use
-              of latex. That is done by other options or in an  initialization
+              of  latex. That is done by other options or in an initialization
               file.
 
               To set the command for running pdflatex (rather than the command
@@ -753,41 +777,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        -logfilewarninglist
-              -logfilewarnings After a run of *latex, give a list of  warnings
-              about  undefined citations and references (unless silent mode is
+              -logfilewarnings  After a run of *latex, give a list of warnings
+              about undefined citations and references (unless silent mode  is
               on).
 
               See also the $silence_logfile_warnings configuration variable.
 
 
-       -logfilewarninglist-
-              -logfilewarnings- After a run of *latex, do not give a  list  of
-              warnings about undefined citations and references.  (Default)
-
-              See also the $silence_logfile_warnings configuration variable.
-
-
-       -lualatex
-              Use  lualatex.   That  is,  use  lualatex  to process the source
-              file(s) to pdf.  The generation of dvi and postscript  files  is
-              turned off.
-
-              This option is equivalent to using the following set of options
-
-                   -pdflua -dvi- -ps-
-
-              (Note:  Note  that  the method of implementation of this option,
-              but not its intended effect, differ from some  earlier  versions
-              of latexmk.)
-
-
-       -lualatex="COMMAND"
-              This sets the string specifying the command to run lualatex.  It
-              behaves  like  the  -pdflatex  option,  but  sets  the  variable
 
 
 
-                               29 September 2020                            12
+                                  29 May 2021                               12
 
 
 
@@ -796,47 +796,93 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              $lualatex.
+       -logfilewarninglist-
+              -logfilewarnings-  After  a run of *latex, do not give a list of
+              warnings about undefined citations and references.  (Default)
 
-              Note:  This  option when provided with the COMMAND argument only
-              sets the command for invoking lualatex; it does not turn on  the
+              See also the $silence_logfile_warnings configuration variable.
+
+
+       -lualatex
+              Use lualatex.  That is,  use  lualatex  to  process  the  source
+              file(s)  to  pdf.  The generation of dvi and postscript files is
+              turned off.
+
+              This option is equivalent to using the following set of options
+
+                   -pdflua -dvi- -ps-
+
+              (Note: Note that the method of implementation  of  this  option,
+              but  not  its intended effect, differ from some earlier versions
+              of latexmk.)
+
+
+       -lualatex="COMMAND"
+              This sets the string specifying the command to run lualatex.  It
+              behaves like the -pdflatex option, but sets the variable $luala-
+              tex.
+
+              Note: This option when provided with the COMMAND  argument  only
+              sets  the command for invoking lualatex; it does not turn on the
               use of lualatex. That is done by other options or in an initial-
               ization file.
 
 
-       -M     Show list of dependent files after processing.  This is  equiva-
+       -M     Show  list of dependent files after processing.  This is equiva-
               lent to the -deps option.
 
 
        -MF file
-              If  a  list of dependents is made, the -MF specifies the file to
+              If a list of dependents is made, the -MF specifies the  file  to
               write it to.
 
 
        -MP    If a list of dependents is made, include a phony target for each
-              source  file.  If you use the dependents list in a Makefile, the
+              source file.  If you use the dependents list in a Makefile,  the
               dummy rules work around errors the program make gives if you re-
               move header files without updating the Makefile to match.
+
+
+       -makeindexfudge
+              Turn on the change-directory fudge for makeindex.  See  documen-
+              tation of $makeindex_fudge for details.
+
+
+       -makeindexfudge-
+              Turn   off   the  change-directory  fudge  for  makeindex.   See
+
+
+
+                                  29 May 2021                               13
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              documentation of $makeindex_fudge for details.
 
 
        -MSWinBackSlash
               This option only has an effect when latexmk is running under MS-
               Windows.  This is that when latexmk runs a command under MS-Win-
-              dows,  the  Windows  standard directory separator "\" is used to
-              separate directory components in a file name.   Internally,  la-
-              texmk  uses  "/" for the directory separator character, which is
+              dows, the Windows standard directory separator "\"  is  used  to
+              separate  directory  components in a file name.  Internally, la-
+              texmk uses "/" for the directory separator character,  which  is
               the character used by Unix-like systems.
 
               This is the default behavior.  However the default may have been
-              overridden  by  a configuration file (latexmkrc file) which sets
+              overridden by a configuration file (latexmkrc file)  which  sets
               $MSWin_back_slash=0.
 
 
        -MSWinBackSlash-
               This option only has an effect when latexmk is running under MS-
               Windows.  This is that when latexmk runs a command under MS-Win-
-              dows, the substitution of "\" for the  separator  character  be-
-              tween  directory  components of a file name is not done. Instead
+              dows,  the  substitution  of "\" for the separator character be-
+              tween directory components of a file name is not  done.  Instead
               the forward slash "/" is used, the same as on Unix-like systems.
               This is acceptable in most situations under MS-Windows, provided
               that filenames are properly quoted, as latexmk does by default.
@@ -846,30 +892,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        -new-viewer
-              When  in  continuous-preview  mode, always start a new viewer to
-              view the generated file.  By default, latexmk will, in  continu-
-              ous-preview  mode,  test  for a previously running previewer for
+              When in continuous-preview mode, always start a  new  viewer  to
+              view  the generated file.  By default, latexmk will, in continu-
+              ous-preview mode, test for a previously  running  previewer  for
               the same file and not start a new one if a previous previewer is
-
-
-
-                               29 September 2020                            13
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               running.  However, its test sometimes fails (notably if there is
-              an already-running previewer that is viewing a file of the  same
-              name  as  the current file, but in a different directory).  This
+              an  already-running previewer that is viewing a file of the same
+              name as the current file, but in a different  directory).   This
               option turns off the default behavior.
 
 
        -new-viewer-
-              The inverse of the -new-viewer option.  It puts latexmk  in  its
+              The  inverse  of the -new-viewer option.  It puts latexmk in its
               normal behavior that in preview-continuous mode it checks for an
               already-running previewer.
 
@@ -878,48 +912,14 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Never run bibtex or biber.  Equivalent to the -bibtex- option.
 
 
-       -nobibtexfudge
-              Turn off the change-directory  fudge  needed  for  old  versions
-              (pre-2019)  of  bibtex.   See documentation of $bibtex_fudge for
-              details.
-
-
-       -norc  Turn off the automatic reading of initialization (rc) files.
-
-              N.B. Normally the initialization files are read and obeyed,  and
-              then  command  line options are obeyed in the order they are en-
-              countered.  But -norc is an exception to this rule: it is  acted
-              on first, no matter where it occurs on the command line.
-
-
-       -outdir=FOO or -output-directory=FOO
-
-              Sets  the  directory  for  the  output  files  of  *latex.  This
-              achieves its effect by the -output-directory option  of  *latex,
-              which currently (Dec. 2011 and later) is implemented on the com-
-              mon versions of *latex, i.e., MiKTeX and TeXLive.  It may not be
-              present in other versions.
-
-              See  also  the -auxdir/-aux-directory options, and the $aux_dir,
-              $out_dir, and $search_path_separator configuration variables  of
-              latexmk.   In  particular, see the documentation of $out_dir for
-              some complications on what directory names are suitable.
-
-              If you also use the -cd option, and the specified output  direc-
-              tory  is  a relative path, then the path is interpreted relative
-              to the document directory.
-
-
-       -p     Print out the document.  By default the file to  be  printed  is
-              the  first  in the list postscript, pdf, dvi that is being made.
-              But you can use the -print=... option to change the type of file
-              to be printed, and you can configure this in a start up file (by
-              setting the $print_type variable).
+       -nobibtexfudge or -nobibfudge
+              Turn  off the change-directory fudge for bibtex.  See documenta-
+              tion of $bibtex_fudge for details.
 
 
 
 
-                               29 September 2020                            14
+                                  29 May 2021                               14
 
 
 
@@ -927,6 +927,76 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       -noemulate-aux-dir
+              Turn aux_dir emulation off.  Same as -emulate-aux-dir-.
+
+
+       -nomakeindexfudge
+              Turn off the change-directory fudge for makeindex.  See documen-
+              tation of $makeindex_fudge for details.
+
+
+       -norc  Turn off the automatic reading of initialization (rc) files.
+
+              N.B.  Normally the initialization files are read and obeyed, and
+              then command line options are obeyed in the order they  are  en-
+              countered.   But -norc is an exception to this rule: it is acted
+              on first, no matter where it occurs on the command line.
+
+
+       -outdir=FOO or -output-directory=FOO
+
+              Sets the  directory  for  the  output  files  of  *latex.   This
+              achieves  its  effect by the -output-directory option of *latex,
+              which currently (Dec. 2011 and later) is implemented on the com-
+              mon versions of *latex, i.e., MiKTeX and TeXLive.  It may not be
+              present in other versions.
+
+              See also the -auxdir/-aux-directory options, and  the  $aux_dir,
+              $out_dir,  and $search_path_separator configuration variables of
+              latexmk.  In particular, see the documentation of  $out_dir  for
+              some complications on what directory names are suitable.
+
+              If  you also use the -cd option, and the specified output direc-
+              tory is a relative path, then the path is  interpreted  relative
+              to the document directory.
+
+
+       -output-format=FORMAT
+              This  option  is  one  that  is allowed for latex, lualatex, and
+              pdflatex. But it is not passed to these programs.   Instead  la-
+              texmk  emulates  it in a way suitable for the context of latexmk
+              and its workflows.
+
+              If FORMAT is dvi, then dvi output is turned on,  and  postscript
+              and  pdf  output are turned off. This is equivalent to using the
+              options -dvi -ps- -pdf-.
+
+              If FORMAT is pdf, then pdf output is  turned  on,  and  dvi  and
+              postscript  output  are  turned off. This is equivalent to using
+              the options -pdf -ps- -dvi-.
+
+              If FORMAT is anything else, latexmk gives an error.
+
+
+       -p     Print out the document.  By default the file to  be  printed  is
+              the  first  in the list postscript, pdf, dvi that is being made.
+
+
+
+                                  29 May 2021                               15
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              But you can use the -print=... option to change the type of file
+              to be printed, and you can configure this in a start up file (by
+              setting the $print_type variable).
 
               However, printing is enabled by default  only  under  UNIX/Linux
               systems, where the default is to use the lpr command and only on
@@ -978,14 +1048,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               is produced once rather than on every run of xelatex.)
 
 
-       -pdf-  Turn off generation of pdf version of document.   (This  can  be
-              used  to override a setting in a configuration file.  It may get
-              overridden if some other option requires the generation of a pdf
-              file.)
 
 
 
-                               29 September 2020                            15
+                                  29 May 2021                               16
 
 
 
@@ -993,6 +1059,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+       -pdf-  Turn off generation of pdf version of document.   (This  can  be
+              used  to override a setting in a configuration file.  It may get
+              overridden if some other option requires the generation of a pdf
+              file.)
 
               If  after  all  options  have  been processed, pdf generation is
               still turned off, then generation of a dvi file will  be  turned
@@ -1043,15 +1114,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        -pretex=CODE
 
-              Given that CODE is some TeX code, this options sets that code to
-              be executed before inputting source file.  This  only  works  if
-              the command for invoking the relevant *latex is suitably config-
-              ured.  See the documentation of the variable $pre_tex_code,  and
-              the  substitution  strings  %P  and  %U  for more details.  This
 
 
 
-                               29 September 2020                            16
+                                  29 May 2021                               17
 
 
 
@@ -1060,7 +1126,12 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              option works by setting the variable $pre_tex_code.
+              Given that CODE is some TeX code, this options sets that code to
+              be executed before inputting source file.  This  only  works  if
+              the command for invoking the relevant *latex is suitably config-
+              ured.  See the documentation of the variable $pre_tex_code,  and
+              the  substitution  strings %P and %U for more details.  This op-
+              tion works by setting the variable $pre_tex_code.
 
               See also the -usepretex option.
 
@@ -1110,20 +1181,20 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                    latexmk -ps -pF "psnup -2" foo.tex
 
-              Whether to use single or double quotes round the "psnup -2" will
-              depend on your command interpreter, as used  by  the  particular
-              version of perl and the operating system on your computer.
 
 
-
-
-                               29 September 2020                            17
+                                  29 May 2021                               18
 
 
 
 
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              Whether to use single or double quotes round the "psnup -2" will
+              depend on your command interpreter, as used  by  the  particular
+              version of perl and the operating system on your computer.
 
 
        -pv    Run  file previewer.  If the -view option is used, this will se-
@@ -1174,22 +1245,23 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               with the -pvc option will not fork new previewers,  but  latexmk
               will  normally  use the existing previewer.  (At least this will
               happen when latexmk is running under an operating  system  where
-              it  knows how to determine whether an existing previewer is run-
-              ning.)
-
-
-       -pvc-  Turn off -pvc.
+              it  knows  how  to  determine  whether  an existing previewer is
 
 
 
-
-                               29 September 2020                            18
+                                  29 May 2021                               19
 
 
 
 
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              running.)
+
+
+       -pvc-  Turn off -pvc.
 
 
        -pvctimeout
@@ -1234,6 +1306,29 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               ecuted in the order they appear on the command line.
 
 
+       -rc-report
+              After  initialization,  give  a  list of the RC files read. (De-
+              fault)
+
+
+
+
+
+
+                                  29 May 2021                               20
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+       -rc-report-
+              After initialization, do not give a list of the RC  files  read.
+              (Default)
+
+
        -recorder
               Give  the  -recorder  option with *latex.  In (most) modern ver-
               sions of these programs, this results in  a  file  of  extension
@@ -1245,17 +1340,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               For further information, see the documentation for the $recorder
               configuration variable.
-
-
-
-
-                               29 September 2020                            19
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        -recorder-
@@ -1277,26 +1361,37 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               those allowed by the TeXLive and MiKTeX implementations.  (If  a
               particular  option is given to latexmk but is not handled by the
               particular implementation of *latex that  is  being  used,  that
-              program will probably give an error message.)  These options are
-              very numerous, but are not listed in this documentation  because
-              they have no effect on latexmk's actions.
+              program  will  probably  give a warning or an error.)  These op-
+              tions are very numerous, but are not listed in  this  documenta-
+              tion because they have no effect on latexmk's actions.
 
-              There  are  a  few  options (-includedirectory=dir, -initialize,
-              -ini) that are not recognized, either  because  they  don't  fit
-              with latexmk's intended operations, or because they need special
-              processing by latexmk that  isn't  implemented  (at  least,  not
-              yet).
+              There  are a few options (e.g., -includedirectory=dir, -initial-
+              ize, -ini) that are not recognized, either  because  they  don't
+              fit  with  latexmk's  intended  operations, or because they need
+              special processing by latexmk that isn't implemented (at  least,
+              not yet).
 
-              There  are  also options that are accepted by latex etc, but in-
-              stead trigger actions by latexmk: -help, -version.
+              There  are  certain  options  for  *latex (e.g., -recorder) that
+              trigger special actions or behavior by latexmk itself. Depending
+              on  the  action,  they  may  also  be passed in some form to the
+              called *latex program, and/or may affect other programs as well.
+              These  options  do  have  entries  in this documentation.  Among
+              these options are: -jobname=STRING, -aux-directory=dir, -output-
+              directory=DIR, -quiet, and -recorder.
 
-              Finally, there are certain options for *latex (e.g.,  -recorder)
-              that  trigger  special  actions or behavior by latexmk itself as
-              well as being passed in some form to the called *latex  program,
-              or  that  affect  other programs as well.  These options do have
-              entries  in  this  documentation.   These  options  are:   -job-
-              name=STRING,  -aux-directory=dir, -output-directory=DIR, -quiet,
-              and -recorder.
+
+
+                                  29 May 2021                               21
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              There  are also options that are accepted by *latex, but instead
+              trigger actions purely by latexmk: -help, -version.
 
 
        -silent
@@ -1312,18 +1407,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               itself generates.
 
               To  change  the  options used to make the commands run silently,
-
-
-
-                               29 September 2020                            20
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               you need to configure latexmk with changed values of its config-
               uration    variables,    the    relevant    ones   being   $bib-
               tex_silent_switch, $biber_silent_switch,  $dvipdf_silent_switch,
@@ -1361,6 +1444,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               Note  that  the  filename may be specified without an extension,
               e.g., by \includegraphics{drawing} in a  LaTeX  file.   In  that
+
+
+
+                                  29 May 2021                               22
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               case,  latexmk  will try making drawing.ext with ext set in turn
               to the possible extensions that are relevant for  latex  (or  as
               appropriate pdflatex, lualatex, xelatex).
@@ -1378,18 +1473,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Sets the command lines for latex, etc, so that they use the code
               that is defined by the variable $pre_tex_code or that is set  by
               the option -pretex=CODE to execute the specified TeX code before
-
-
-
-                               29 September 2020                            21
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               the source file is read.  This  option  overrides  any  previous
               definition of the command lines.
 
@@ -1405,7 +1488,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                 latexmk -usepretex='\AtBeginDocument{Message\par}' foo.tex
 
 
-       -v, -version
+       -v or -version
               Print version number of latexmk.
 
 
@@ -1426,6 +1509,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               be opened.
 
 
+
+
+
+
+                                  29 May 2021                               23
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        -Werror
               This  causes  latexmk to return a non-zero status code if any of
               the files processed gives a warning about  problems  with  cita-
@@ -1444,17 +1540,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               off.
 
               This option is equivalent to using the following set of options
-
-
-
-                               29 September 2020                            22
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
                    -pdfxe -dvi- -ps-
 
@@ -1491,6 +1576,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        Compatibility between options
 
+
+
+
+                                  29 May 2021                               24
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        The  preview-continuous option -pvc can only work with one file.  So in
        this case you will normally only specify one filename  on  the  command
        line.
@@ -1510,18 +1607,6 @@ EXAMPLES
                            file thesis.tex and any files it
                            uses.  After any changes rerun latex
                            the appropriate number of times and
-
-
-
-                               29 September 2020                            23
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
                            remake the postscript file.  If latex
                            encounters an error, latexmk will
                            keep running, watching for
@@ -1557,6 +1642,18 @@ DEALING WITH ERRORS, PROBLEMS, ETC
        tions.  (But there is a lot of reading!)
 
        The  remainder  of  these notes consists of ideas for dealing with more
+
+
+
+                                  29 May 2021                               25
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        difficult situations.
 
        d. Further tricks can involve replacing the standard commands that  la-
@@ -1576,17 +1673,6 @@ DEALING WITH ERRORS, PROBLEMS, ETC
        put{bar.baz}' in the LaTeX part of the document, latexmk  would  notice
        the  change.)   One  solution is just to put the following somewhere in
        the LaTeX part of the document:
-
-
-
-                               29 September 2020                            24
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
                      \typeout{(bar.baz)}
 
@@ -1621,11 +1707,21 @@ ALLOWING FOR CHANGE OF OUTPUT FILE TYPE
        tion.   The  difference in output file type can happen for two reasons:
        One is that for latex, pdflatex and lualatex the  document  itself  can
        override  the defaults. The other is that there may be a configuration,
-       or misconfiguration, such that the program that latexmk invokes to com-
-       pile  the  document is not the expected one, or is given options incom-
-       patible with what latexmk initially expects.  (E.g.,  the  -output-for-
-       mat=...   option  could  be used with lualatex, or xelatex gets invoked
-       without the -no-pdf option.)
+       or misconfiguration, such that the  program  that  latexmk  invokes  to
+
+
+
+                                  29 May 2021                               26
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+       compile  the  document is not the expected one, or is given options in-
+       compatible with what latexmk initially expects.
 
        Under latex and pdflatex, control of the output format by the  document
        is  done by setting the \pdfoutput macro.  Under lualatex, the \output-
@@ -1642,18 +1738,6 @@ ALLOWING FOR CHANGE OF OUTPUT FILE TYPE
        put=0 in the preamble of the document.
 
        Another example is where the document uses graphics file of  the  .pdf,
-
-
-
-                               29 September 2020                            25
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        .jpg,  and  png types.  With the default setting for the graphicx pack-
        age, these can be processed in compilation to .pdf but not with  compi-
        lation  to  .dvi.  In this case, it is useful to insert \pdfoutput=1 in
@@ -1690,6 +1774,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
+
+
+
+                                  29 May 2021                               27
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
 CONFIGURATION/INITIALIZATION (RC) FILES
        In  this section is explained which configuration files are read by la-
        texmk. Subsequent sections "How  to  Set  Variables  in  Initialization
@@ -1708,18 +1804,6 @@ CONFIGURATION/INITIALIZATION (RC) FILES
           "/usr/local/share/latexmk/LatexMk",
           "/usr/local/lib/latexmk/LatexMk".
           On a MS-Windows system it looks for "C:\latexmk\LatexMk".
-
-
-
-                               29 September 2020                            26
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
           On a cygwin system (i.e., a MS-Windows system in which Perl is  that
        of cygwin), latexmk reads the first it finds of
           "/cygdrive/c/latexmk/LatexMk",
@@ -1756,6 +1840,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        texmk does not look for an RC file under it.
 
 
+
+
+
+                                  29 May 2021                               28
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        3)  The  RC  file  in  the current working directory.  This file can be
        named either "latexmkrc" or ".latexmkrc", and the first of these to  be
        found is used, if any.
@@ -1774,17 +1870,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        option can override previous options but can be  itself  overridden  by
        later  options on the command line.  There is also the -e option, which
        allows initialization code to be specified in latexmk's command line.
-
-
-
-                               29 September 2020                            27
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
         For possible examples of code for in an RC file, see the directory ex-
        ample_rcfiles  in  the  distribution  of  latexmk (e.g., at http://mir-
@@ -1821,6 +1906,18 @@ HOW TO SET VARIABLES IN INITIALIZATION FILES
        quotes, as in many programming languages.  But then the  Perl  program-
        ming  language  brings  into  play some special rules for interpolating
        variables into strings.  People not fluent in Perl will want  to  avoid
+
+
+
+                                  29 May 2021                               29
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        these complications.)
 
        You  can do much more complicated things, but for this you will need to
@@ -1840,18 +1937,6 @@ FORMAT OF COMMAND SPECIFICATIONS
        Placeholders:  Supposed you wanted latexmk to use the command elatex in
        place of the regular latex  command,  and  suppose  moreover  that  you
        wanted  to  give  it the option "--shell-escape".  You could do this by
-
-
-
-                               29 September 2020                            28
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        the following setting:
 
             $latex = 'elatex --shell-escape %O %S';
@@ -1887,6 +1972,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               source file is read.
 
               If the variable $pre_tex_code is the empty string,  then  %P  is
+
+
+
+                                  29 May 2021                               30
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               equivalent to %S.
 
        %R     root filename.  This is the base name for the main tex file.
@@ -1906,18 +2003,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        %Y     Name of directory for auxiliary output files (see the configura-
               tion variable $aux_dir).  A directory separation character ('/')
-
-
-
-                               29 September 2020                            29
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               is appended if $aux_dir is non-empty and does not end in a suit-
               able character, with suitable characters being those appropriate
               to UNIX and MS-Windows, i.e., ':', '/' and '\'.   Note  that  if
@@ -1953,6 +2038,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        "Detaching"  a  command: Normally when latexmk runs a command, it waits
        for the command to run to completion.  This is appropriate for commands
+
+
+
+                                  29 May 2021                               31
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        like latex, of course.  But for previewers, the command should normally
        run detached, so that latexmk gets the previewer running and  then  re-
        turns  to  its next task (or exits if there is nothing else to do).  To
@@ -1972,18 +2069,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        string,  that is equivalent to having just one.  (4) Under cygwin, some
        complications happen, since cygwin amounts to a complicated merging  of
        UNIX  and  MS-Windows.   See  the  source code for how I've handled the
-
-
-
-                               29 September 2020                            30
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        problem.
 
        Command names containing spaces: Under MS-Windows it is common that the
@@ -2020,6 +2105,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
             $dvi_previewer = 'start %S';
 
+
+
+                                  29 May 2021                               32
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        Under MS-Windows, this will cause to be run whatever program the system
        has associated with dvi files.  (The  same  applies  for  a  postscript
        viewer and a pdf viewer.)  But note that this trick is not always suit-
@@ -2038,18 +2134,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        Options to commands: Setting the name of a command can be used not only
        for changing the name of the command called, but also to add options to
        command.  Suppose you want latexmk to use latex  with  source  specials
-
-
-
-                               29 September 2020                            31
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        enabled.   Then  you  might use the following line in an initialization
        file:
 
@@ -2087,6 +2171,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
             $pdflatex = 'pdflatex --shell-escape  %O  %S;  pst2pdf_for_latexmk
        %B';
 
+
+
+                                  29 May 2021                               33
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        This  definition  assumes  you  are using a UNIX-like system (which in-
        cludes Linux and OS-X), so that the two commands to be  run  are  sepa-
        rated by the semicolon in the middle of the string.
@@ -2103,20 +2198,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
-       In this section  are  specified  the  variables  whose  values  can  be
-
-
-
-                               29 September 2020                            32
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-       adjusted  to  configure  latexmk.  (See the earlier section "Configura-
+       In this section are specified the variables whose  values  can  be  ad-
+       justed  to  configure  latexmk.   (See  the earlier section "Configura-
        tion/Initialization (rc) Files" for the files where the  configurations
        are done.)
 
@@ -2153,6 +2236,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               chosen name for the output file.)
 
               This use of a temporary file solves a problem that the making of
+
+
+
+                                  29 May 2021                               34
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               these files can occupy a substantial time.  If a viewer (notably
               gv) sees that the file has changed, it may read the new file be-
               fore the program writing the file has not yet finished its work,
@@ -2169,18 +2264,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               After  a run of latex (etc), always analyze .log for input files
               in the <...> and (...) constructions.  Otherwise,  only  do  the
               analysis when fls file doesn't exist or is out of date.
-
-
-
-
-                               29 September 2020                            33
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
               Under  normal  circumstances,  the data in the fls file is reli-
               able, and the test of the log file gets lots of false positives;
@@ -2218,28 +2301,11 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               Important note:  The  effect  of  $aux_dir,  if  different  from
               $out_dir, is achieved by giving *latex the -aux-directory.  Cur-
-              rently (Dec. 2011 and later) this only works on the MiKTeX  ver-
-              sion of *latex.
-
-              See also the documentation of $out_dir for some complications on
-              what directory names are suitable.
-
-              If you also use the -cd option, and $out_dir (or $aux_dir)  con-
-              tains  a relative path, then the path is interpreted relative to
-              the document directory.
-
-       $banner [0]
-              If nonzero, the banner message is printed across each page  when
-              converting  the  dvi  file to postscript.  Without modifying the
-              variable $banner_message, this is equivalent to  specifying  the
-              -d option.
-
-              Note that if $banner is nonzero, the $postscript_mode is assumed
-              and the postscript file is always generated, even if it is newer
+              rently (Dec. 2011 and later)  this  only  works  on  the  MiKTeX
 
 
 
-                               29 September 2020                            34
+                                  29 May 2021                               35
 
 
 
@@ -2248,11 +2314,47 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              version of *latex.
+
+              See also the documentation of $out_dir for some complications on
+              what directory names are suitable.
+
+              If you also use the -cd option, and $out_dir (or $aux_dir)  con-
+              tains  a relative path, then the path is interpreted relative to
+              the document directory.
+
+
+       $aux_out_dir_report [0]
+              For each .tex file processed, list the settings for aux and  out
+              directories,  after  they have been normalized from the settings
+              specified during initialization.
+
+              This report gives a reminder of where to look for output.
+
+              The report has to be done per file, because of  possible  direc-
+              tory  changes  for each file.  In the simplest cases, the result
+              is the same as originally specified.  In general, e.g., with  an
+              absolute  directory  specified,  the normalization helps perfor-
+              mance and cleans up output to the screen. It also avoids  situa-
+              tions  where  a  file  in the current directory is refered to by
+              different names, e.g., "file.aux" and "./file.aux", which can be
+              annoying.
+
+
+
+       $banner [0]
+              If  nonzero, the banner message is printed across each page when
+              converting the dvi file to postscript.   Without  modifying  the
+              variable  $banner_message,  this is equivalent to specifying the
+              -d option.
+
+              Note that if $banner is nonzero, the $postscript_mode is assumed
+              and the postscript file is always generated, even if it is newer
               than the dvi file.
 
        $banner_intensity [0.95]
               Equivalent to the -bi option, this is a decimal number between 0
-              and 1 that specifies how dark to print the banner message. 0  is
+              and  1 that specifies how dark to print the banner message. 0 is
               black, 1 is white.  The default is just right if your toner car-
               tridge isn't running too low.
 
@@ -2261,19 +2363,31 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               dvi file to postscript.  This is equivalent to the -bm option.
 
        $banner_scale [220.0]
-              A  decimal  number  that  specifies how large the banner message
-              will be printed.  Experimentation is necessary to get the  right
-              scale  for  your message, as a rule of thumb the scale should be
-              about equal to 1100 divided by the number of characters  in  the
-              message.   The  Default  is just right for 5 character messages.
+              A decimal number that specifies how  large  the  banner  message
+              will  be printed.  Experimentation is necessary to get the right
+              scale for your message, as a rule of thumb the scale  should  be
+              about  equal  to 1100 divided by the number of characters in the
+              message.  The Default is just right for  5  character  messages.
+
+
+
+                                  29 May 2021                               36
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               This is equivalent to the -bs option.
 
        @BIBINPUTS
-              This is an array variable, now mostly obsolete,  that  specifies
-              directories  where  latexmk  should look for .bib files.  By de-
-              fault it is set from the BIBINPUTS environment variable  of  the
-              operating  system.   If  that environment variable is not set, a
-              single element list consisting of the current directory is  set.
+              This  is  an array variable, now mostly obsolete, that specifies
+              directories where latexmk should look for .bib  files.   By  de-
+              fault  it  is set from the BIBINPUTS environment variable of the
+              operating system.  If that environment variable is  not  set,  a
+              single  element list consisting of the current directory is set.
               The format of the directory names depends on your operating sys-
               tem, of course.  Examples for setting this variable are:
 
@@ -2283,29 +2397,47 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                       @BIBINPUTS = ( ".", "//server/bibfiles" );
                       @BIBINPUTS = ( ".", "/usr/local/texmf/bibtex/bib" );
 
-              Note that under MS Windows, either a  forward  slash  "/"  or  a
-              backward  slash "\" can be used to separate pathname components,
-              so the first two and the second  two  examples  are  equivalent.
-              Each  backward slash should be doubled to avoid running afoul of
+              Note  that  under  MS  Windows,  either a forward slash "/" or a
+              backward slash "\" can be used to separate pathname  components,
+              so  the  first  two  and the second two examples are equivalent.
+              Each backward slash should be doubled to avoid running afoul  of
               Perl's rules for writing strings.
 
               Important note: This variable is now mostly obsolete in the cur-
               rent version of latexmk, since it has a better method of search-
-              ing for files using the kpsewhich  command.   However,  if  your
-              system  is an unusual one without the kpsewhich command, you may
+              ing  for  files  using  the kpsewhich command.  However, if your
+              system is an unusual one without the kpsewhich command, you  may
               need to set the variable @BIBINPUTS.
 
        $biber ["biber %O %S"]
               The biber processing program.
 
        $biber_silent_switch ["--onlylog"]
-              Switch(es) for the biber processing program when silent mode  is
+              Switch(es)  for the biber processing program when silent mode is
               on.
 
+       $bibtex ["bibtex %O %S"]
+              The BibTeX processing program.
+
+       $bibtex_fudge [1]
+              When using bibtex, whether to change directory to  $aux_dir  be-
+              fore running bibtex.
+
+              The need arises as follows:
+
+              a.  With  bibtex  before about 2019, if the filename given to it
+              contains a path component, there was a bug that bibtex would not
+              find  extra  aux  files,  as produced by the \include command in
+              TeX.
+
+              b. With all moderately recent versions  of  bibtex,  bibtex  may
+              refuse to write its bbl and blg files, for security reasons, for
+              certain cases of the path component of the filename given to it.
 
 
 
-                               29 September 2020                            35
+
+                                  29 May 2021                               37
 
 
 
@@ -2314,14 +2446,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       $bibtex ["bibtex %O %S"]
-              The BibTeX processing program.
+              However, there are also rare cases  where  the  change-directory
+              method  prevents  bibtex  from finding certain bib or bst files.
+              Then $bibtex_fudge needs to be set to 0.
 
-       $bibtex_fudge [0]
-              When using bibtex, whether to take special action to allow older
-              versions of bibtex to work when $out_dir or $aux_dir  is  speci-
-              fied.   With  bibtex  from  about  2019,  this special action is
-              longer be required; hence the default is not to do it.
 
        $bibtex_silent_switch ["-terse"]
               Switch(es) for the BibTeX processing program when silent mode is
@@ -2368,10 +2496,14 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               generated.   It  will  also  include files made from these first
               generation generated files.
 
+              This operation is somewhat dangerous, and  can  have  unintended
+              consequences,  since the files to be deleted are determined from
+              a file created by *latex, which can contain  erroneous  informa-
+              tion. Therefore this variable is turned off by default, and then
 
 
 
-                               29 September 2020                            36
+                                  29 May 2021                               38
 
 
 
@@ -2380,10 +2512,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              This operation is somewhat dangerous, and  can  have  unintended
-              consequences,  since the files to be deleted are determined from
-              a file created by *latex, which can contain  erroneous  informa-
-              tion. Therefore this variable is turned off by default, and then
               files to be deleted are restricted to those explictly  specified
               by    patterns    configured   in   the   variables   clean_ext,
               clean_full_ext, and @generated_exts, together  with  those  very
@@ -2416,7 +2544,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               in an initialization file will imply that when a clean-up opera-
               tion  is  specified,  not  only  is  the  standard  set of files
-              deleted, but also files of the form  FOO.out,  FOO-blx.bib,  %R-
+              deleted, but also files of the form FOO.out,  FOO-blx.bib,  FOO-
               figures*.log,  and  pythontex-files-FOO/*,  where FOO stands for
               the basename of the file being processed (as in FOO.tex).
 
@@ -2434,10 +2562,14 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               You  can  arrange  to remove both the files and the directory by
               setting
 
+                  $clean_ext = "pythontex-files-%R pythontex-files-%R";
+
+              See also the variable @generated_exts.
 
 
 
-                               29 September 2020                            37
+
+                                  29 May 2021                               39
 
 
 
@@ -2445,10 +2577,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
-
-                  $clean_ext = "pythontex-files-%R pythontex-files-%R";
-
-              See also the variable @generated_exts.
 
        $clean_full_ext [""]
               Extra extensions of files for latexmk to remove when the -C  op-
@@ -2500,10 +2628,14 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               These  assume  that  the  program xdotool is installed, that the
               previewer is using an X-Window system for display, and that  the
               title  of the window contains the name of the displayed file, as
+              it normally does.  When the commands are  executed,  the  place-
+              holder  string  %D  is  replaced  by the name of the destination
+              file, which is the previewed file.  The above commands result in
+              an  appropriate  string  being  appended  to the filename in the
 
 
 
-                               29 September 2020                            38
+                                  29 May 2021                               40
 
 
 
@@ -2512,11 +2644,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              it normally does.  When the commands are  executed,  the  place-
-              holder  string  %D  is  replaced  by the name of the destination
-              file, which is the previewed file.  The above commands result in
-              an appropriate string being appended to the filename in the win-
-              dow title: " compiling", " OK", or " FAILURE".
+              window title: " compiling", " OK", or " FAILURE".
 
               Other placeholders that can be used are %S, %T, and %R, with  %S
               and  %T normally being identical. These can be useful for a com-
@@ -2566,10 +2694,14 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               specified on the latexmk command line.  2. Wildcards are allowed
               in @default_excluded_files.
 
+       @default_files [("*.tex")]
+              Default list of files to be processed.
+
+              If  no  filenames  are  specified  on  the command line, latexmk
 
 
 
-                               29 September 2020                            39
+                                  29 May 2021                               41
 
 
 
@@ -2578,14 +2710,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       @default_files [("*.tex")]
-              Default list of files to be processed.
-
-              If  no filenames are specified on the command line, latexmk pro-
-              cesses all tex files specified in the  @default_files  variable,
-              which  by  default is set to all tex files ("*.tex") in the cur-
-              rent directory.  This is a convenience: just run latexmk and  it
-              will  process  an  appropriate  set of files.  But sometimes you
+              processes all tex files specified in  the  @default_files  vari-
+              able,  which by default is set to all tex files ("*.tex") in the
+              current directory.  This is a convenience: just run latexmk  and
+              it  will process an appropriate set of files.  But sometimes you
               want only some of these files to be processed.  In this case you
               can  list the files to be processed by setting @default_files in
               an initialization file (e.g., the file "latexmkrc" in  the  cur-
@@ -2626,6 +2754,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               "-", then the dependency list is set to stdout  (i.e.,  normally
               the screen).
 
+
        $do_cd [0]
               Whether  to  change working directory to the directory specified
               for the main source file before processing it.  The default  be-
@@ -2633,9 +2762,12 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               *latex programs.  This variable is set by the -cd and  -cd-  op-
               tions on latexmk's command line.
 
+       $dvi_filter [empty]
+              The  dvi  file  filter  to be run on the newly produced dvi file
 
 
-                               29 September 2020                            40
+
+                                  29 May 2021                               42
 
 
 
@@ -2644,64 +2776,64 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       $dvi_filter [empty]
-              The dvi file filter to be run on the newly produced dvi file be-
-              fore other processing.  Equivalent to specifying the -dF option.
+              before other processing.  Equivalent to specifying the  -dF  op-
+              tion.
 
        $dvi_mode [See below for default]
-              If nonzero, generate a dvi version of the document.   Equivalent
+              If  nonzero, generate a dvi version of the document.  Equivalent
               to the -dvi option.
 
-              The  variable  $dvi_mode  defaults  to 0, but if no explicit re-
-              quests are made for other types of file (postscript, pdf),  then
-              $dvi_mode  will  be  set  to 1.  In addition, if a request for a
-              file for which a .dvi file is  a  prerequisite,  then  $dvi_mode
+              The variable $dvi_mode defaults to 0, but  if  no  explicit  re-
+              quests  are made for other types of file (postscript, pdf), then
+              $dvi_mode will be set to 1.  In addition, if  a  request  for  a
+              file  for  which  a  .dvi file is a prerequisite, then $dvi_mode
               will be set to 1.
 
        $dvi_previewer ["start xdvi %O %S" under UNIX]
-              The  command  to  invoke a dvi-previewer.  [Under MS-Windows the
-              default is "start"; then latexmk arranges to use the  MS-Windows
-              start  program,  which will cause to be run whatever command the
+              The command to invoke a dvi-previewer.   [Under  MS-Windows  the
+              default  is "start"; then latexmk arranges to use the MS-Windows
+              start program, which will cause to be run whatever  command  the
               system has associated with .dvi files.]
 
-              Important note: Normally you will want to have a  previewer  run
+              Important  note:  Normally you will want to have a previewer run
               detached, so that latexmk doesn't wait for the previewer to ter-
-              minate before continuing its work.  So normally you should  pre-
-              fix  the  command  by  "start  ", which flags to latexmk that it
-              should do the detaching of the  previewer  itself  (by  whatever
-              method  is  appropriate to the operating system).  But sometimes
+              minate  before continuing its work.  So normally you should pre-
+              fix the command by "start ", which  flags  to  latexmk  that  it
+              should  do  the  detaching  of the previewer itself (by whatever
+              method is appropriate to the operating system).   But  sometimes
               letting latexmk do the detaching is not appropriate (for a vari-
-              ety  of non-trivial reasons), so you should put the "start " bit
+              ety of non-trivial reasons), so you should put the "start "  bit
               in yourself, whenever it is needed.
 
        $dvi_previewer_landscape ["start xdvi %O %S"]
               The command to invoke a dvi-previewer in landscape mode.  [Under
-              MS-Windows  the default is "start"; then latexmk arranges to use
-              the MS-Windows start program, which will cause to be  run  what-
+              MS-Windows the default is "start"; then latexmk arranges to  use
+              the  MS-Windows  start program, which will cause to be run what-
               ever command the system has associated with .dvi files.]
 
-       $dvipdf ["dvipdf %O %S %D"]
-              Command  to convert .dvi to .pdf file.  A common reconfiguration
-              is to use the dvipdfm command, which needs its  arguments  in  a
+       $dvipdf ["dvipdf -dALLOWPSTRANSPARENCY %O %S %D"]
+              Command to convert .dvi to .pdf file.  A common  reconfiguration
+              is  to  use  the dvipdfm command, which needs its arguments in a
               different order:
 
                    $dvipdf = "dvipdfm %O -o %D %S";
 
-              WARNING:  The  default  dvipdf  script  generates pdf files with
+              WARNING: The default dvipdf  script  generates  pdf  files  with
               bitmapped fonts, which do not look good when viewed by acroread.
-              That  script  should  be  modified to give dvips the options "-P
+              That script should be modified to give  dvips  the  options  "-P
               pdf" to ensure that type 1 fonts are used in the pdf file.
 
        $dvipdf_silent_switch ["-q"]
               Switch(es) for dvipdf program when silent mode is on.
 
-              N.B. The standard dvipdf program runs silently,  so  adding  the
-              silent  switch has no effect, but is actually innocuous.  But if
-              an alternative program is used, e.g., dvipdfmx, then the  silent
+              N.B.  The  standard  dvipdf program runs silently, so adding the
+              silent switch has no effect, but is actually innocuous.  But  if
+              an  alternative program is used, e.g., dvipdfmx, then the silent
+              switch has an  effect.   The  default  setting  is  correct  for
 
 
 
-                               29 September 2020                            41
+                                  29 May 2021                               43
 
 
 
@@ -2710,130 +2842,130 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              switch  has  an  effect.   The  default  setting  is correct for
               dvipdfm and dvipdfmx.
 
        $dvips ["dvips %O -o %D %S"]
-              The program to used as a filter to convert a .dvi file to a  .ps
-              file.   If pdf is going to be generated from pdf, then the value
-              of the $dvips_pdf_switch variable -- see below --  will  be  in-
+              The  program to used as a filter to convert a .dvi file to a .ps
+              file.  If pdf is going to be generated from pdf, then the  value
+              of  the  $dvips_pdf_switch  variable -- see below -- will be in-
               cluded in the options substituted for "%O".
 
        $dvips_landscape ["dvips -tlandscape %O -o %D %S"]
-              The  program to used as a filter to convert a .dvi file to a .ps
+              The program to used as a filter to convert a .dvi file to a  .ps
               file in landscape mode.
 
        $dvips_pdf_switch ["-P pdf"]
-              Switch(es) for dvips program when pdf file is  to  be  generated
+              Switch(es)  for  dvips  program when pdf file is to be generated
               from .ps file.
 
        $dvips_silent_switch ["-q"]
               Switch(es) for dvips program when silent mode is on.
 
        $dvi_update_command [""]
-              When  the  dvi  previewer is set to be updated by running a com-
-              mand, this is the command that is run.  See the information  for
+              When the dvi previewer is set to be updated by  running  a  com-
+              mand,  this is the command that is run.  See the information for
               the variable $dvi_update_method for further information, and see
-              information on the variable $pdf_update_method  for  an  example
+              information  on  the  variable $pdf_update_method for an example
               for the analogous case of a pdf previewer.
 
        $dvi_update_method [2 under UNIX, 1 under MS-Windows]
-              How  the  dvi  viewer  updates its display when the dvi file has
-              changed.   The  values  here  apply  equally  to  the   $pdf_up-
+              How the dvi viewer updates its display when  the  dvi  file  has
+              changed.    The  values  here  apply  equally  to  the  $pdf_up-
               date_method and to the $ps_update_method variables.
                   0 => update is automatic,
                   1=> manual update by user, which may only mean a mouse click
               on the viewer's window or may mean a more serious action.
-                  2 => Send the  signal,  whose  number  is  in  the  variable
-              $dvi_update_signal.   The  default  value under UNIX is suitable
+                  2  =>  Send  the  signal,  whose  number  is in the variable
+              $dvi_update_signal.  The default value under  UNIX  is  suitable
               for xdvi.
-                  3 => Viewer cannot do an update, because it locks the  file.
+                  3  => Viewer cannot do an update, because it locks the file.
               (As with acroread under MS-Windows.)
-                  4  => run a command to do the update.  The command is speci-
+                  4 => run a command to do the update.  The command is  speci-
               fied by the variable $dvi_update_command.
 
-              See information on the variable $pdf_update_method for an  exam-
+              See  information on the variable $pdf_update_method for an exam-
               ple of updating by command.
 
-       $dvi_update_signal  [Under  UNIX:  SIGUSR1, which is a system-dependent
+       $dvi_update_signal [Under UNIX: SIGUSR1, which  is  a  system-dependent
        value]
-              The number of the signal that is sent to the dvi viewer when  it
-              is  updated  by  sending  a signal -- see the information on the
-              variable $dvi_update_method.  The default value is the  one  ap-
+              The  number of the signal that is sent to the dvi viewer when it
+              is updated by sending a signal -- see  the  information  on  the
+              variable  $dvi_update_method.   The default value is the one ap-
               propriate for xdvi on a UNIX system.
+
+       $emulate_aux [0]
+              Whether to emulate the use of aux_dir when $aux_dir and $out_dir
+              are  different,  rather than using the -aux-directory option for
+
+
+
+                                  29 May 2021                               44
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              the  *latex  programs.   (MiKTeX  supports  -aux-directory,  but
+              TeXLive doesn't.)
+
+              If  you use a version of *latex that doesn't support -aux-direc-
+              tory, e.g., TeXLive, latexmk will automatically  switch  aux_dir
+              emulation on after the first run of *latex, because it will find
+              the .log file in the wrong place.
+
+              Aux_directory emulation means that when *latex is  invoked,  the
+              output  directory  provided  to *latex is set to be the aux_dir.
+              After that, any files that need to be in  the  output  directory
+              will  be moved there. (These are the files with extensions .dvi,
+              .ps, .pdf, .fls, .synctex, .synctex.gz.)
+
 
        $failure_cmd [undefined]
               See the documentation for $compiling_cmd.
 
-
-
-                               29 September 2020                            42
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        $fdb_ext ["fdb_latexmk"]
-              The  extension  of the file which latexmk generates to contain a
-              database of information on source files.  You will not  normally
+              The extension of the file which latexmk generates to  contain  a
+              database  of information on source files.  You will not normally
               need to change this.
 
-       $filetime_causality_threshold   [5];  $filetime_offset_report_threshold
+       $filetime_causality_threshold  [5];   $filetime_offset_report_threshold
        [30]. (Units of seconds.)
 
               These variables control how latexmk deals with the following is-
-              sue,  which  can  affect  the  use of files that are on a remote
+              sue, which can affect the use of files  that  are  on  a  remote
               filesystem (network share) instead of being on a file system lo-
               cal to the computer running latexmk.  Almost users will not have
-              to worry about these settings, and can ignore the following  ex-
+              to  worry about these settings, and can ignore the following ex-
               planation.
 
-              In  almost all situations, latexmk does not need to use the time
-              stamps of the files it works with.  However, there are a  couple
-              of  situations  when it needs to know whether a certain file was
-              created in the current run of a program (e.g., *latex) or  is  a
+              In almost all situations, latexmk does not need to use the  time
+              stamps  of the files it works with.  However, there are a couple
+              of situations when it needs to know whether a certain  file  was
+              created  in  the current run of a program (e.g., *latex) or is a
               leftover file from a previous run. It does this by comparing the
-              modification time of the file with the system time  just  before
-              the  program  was  started.  If the modification time is earlier
-              than when the program was started, the file is a leftover  file,
+              modification  time  of the file with the system time just before
+              the program was started. If the  modification  time  is  earlier
+              than  when the program was started, the file is a leftover file,
               which latexmk treats as if it were not created.  If the filetime
-              is at least the program start time, then it can be assumed  that
+              is  at least the program start time, then it can be assumed that
               the file was created in the current run.
 
-              Unfortunately,  this  test  can  fail if the file is on a remote
-              system, since its system time is  not  necessarily  synchronized
-              with  that  of  the  local  system; the timestamps on the remote
-              files are set by the remote system, not the local system.   Gen-
-              erally,  modern  operating  systems  regularly synchronize their
-              time with a server, so the non-synchronization is  mostly  small
+              Unfortunately, this test can fail if the file  is  on  a  remote
+              system,  since  its  system time is not necessarily synchronized
+              with that of the local system;  the  timestamps  on  the  remote
+              files  are set by the remote system, not the local system.  Gen-
+              erally, modern operating  systems  regularly  synchronize  their
+              time  with  a server, so the non-synchronization is mostly small
               (a second or so, or a few seconds).  But even a small difference
               can mess up latexmk's test.
 
-              Latexmk measures the time difference between the time on the two
-              systems  and  compensates  for  this.  But the measurement (in a
-              system-independent way) is only accurate to a second or two.  So
-              latexmk  allows  for  a threshold on the difference between file
-              and system time before it concludes that a file  is  a  leftover
-              file  from  a  previous  run.  The configuration variable $file-
-              time_causality_theshhold, which in units of  seconds,  specifies
-              this threshold.  Luckily high precision is not needed.  The pre-
-              vious run is normally the previous run in a  human  run-edit-run
-              cycle,  and  is  at  least  many seconds back.  A few seconds is
-              therefore  appropriate  for  the  threshold,   $filetime_causal-
-              ity_theshhold;  it  should be non-negative always, and should be
-              bigger than 2 if a remote filesystem or network share is used.
-
-              If the difference in system times on the two systems  is  large,
-              it  normally  indicates that at least one of the systems is mis-
-              configured.   The   variable   $filetime_offset_report_threshold
-              specifies  the  smallest  size  of the difference (or offset) in
 
 
 
-                               29 September 2020                            43
+                                  29 May 2021                               45
 
 
 
@@ -2842,78 +2974,96 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              seconds between the times of the local and remote system  beyond
-              which  the offset is reported.  This is reported at the point in
-              the latexmk's progress that it measures the offset.  The  report
+              Latexmk measures the time difference between the time on the two
+              systems and compensates for this.  But  the  measurement  (in  a
+              system-independent way) is only accurate to a second or two.  So
+              latexmk allows for a threshold on the  difference  between  file
+              and  system  time  before it concludes that a file is a leftover
+              file from a previous  run.  The  configuration  variable  $file-
+              time_causality_theshhold,  which  in units of seconds, specifies
+              this threshold.  Luckily high precision is not needed.  The pre-
+              vious  run  is normally the previous run in a human run-edit-run
+              cycle, and is at least many seconds  back.   A  few  seconds  is
+              therefore   appropriate  for  the  threshold,  $filetime_causal-
+              ity_theshhold; it should be non-negative always, and  should  be
+              bigger than 2 if a remote filesystem or network share is used.
+
+              If  the  difference in system times on the two systems is large,
+              it normally indicates that at least one of the systems  is  mis-
+              configured.    The   variable  $filetime_offset_report_threshold
+              specifies the smallest size of the  difference  (or  offset)  in
+              seconds  between the times of the local and remote system beyond
+              which the offset is reported.  This is reported at the point  in
+              the  latexmk's  progress that it measures the offset. The report
               is made if silent mode is used and diagnostic mode is not on.
 
 
        $force_mode [0]
-              If  nonzero, continue processing past minor latex errors includ-
+              If nonzero, continue processing past minor latex errors  includ-
               ing unrecognized cross references.  Equivalent to specifying the
               -f option.
 
-       @generated_exts  [(  aux  ,  bbl  , idx , ind , lof , lot , out , toc ,
+       @generated_exts [( aux , bbl , idx , ind , lof , lot  ,  out  ,  toc  ,
        $fdb_ext )]
-              This contains a list of extensions for files that are  generated
-              during  a LaTeX run and that are read in by LaTeX in later runs,
+              This  contains a list of extensions for files that are generated
+              during a LaTeX run and that are read in by LaTeX in later  runs,
               either directly or indirectly.
 
-              This list specifies files known to be generated by  *latex.   It
-              is  used  in  two ways: (a) The specified files are deleted in a
-              cleanup operation (with the -c, -C, -CA, -g  and  -gg  options),
-              and  (b) It affects the determination of whether a rerun of *la-
+              This  list  specifies files known to be generated by *latex.  It
+              is used in two ways: (a) The specified files are  deleted  in  a
+              cleanup  operation  (with  the -c, -C, -CA, -g and -gg options),
+              and (b) It affects the determination of whether a rerun of  *la-
               tex is needed after a run that gives an error.
 
               (Concerning item (b): Normally, a change of a source file during
               a run should provoke a rerun.  This includes a file generated by
-              LaTeX, e.g., an aux file, that is read in  on  subsequent  runs.
-              But  after  a run that results in an error, a new run should not
-              occur until the user has made a change in the  files.   But  the
-              user  may  have  corrected an error in a source .tex file during
+              LaTeX,  e.g.,  an  aux file, that is read in on subsequent runs.
+              But after a run that results in an error, a new run  should  not
+              occur  until  the  user has made a change in the files.  But the
+              user may have corrected an error in a source  .tex  file  during
               the run.  So latexmk needs to distinguish user-generated and au-
-              tomatically  generated  files;  it  determines the automatically
-              generated files as those with extensions in the list in  @gener-
+              tomatically generated files;  it  determines  the  automatically
+              generated  files as those with extensions in the list in @gener-
               ated_exts.)
 
-              A  convenient way to add an extra extension to the list, without
-              losing the already defined ones is to use a push command in  the
+              A convenient way to add an extra extension to the list,  without
+              losing  the already defined ones is to use a push command in the
+
+
+
+                                  29 May 2021                               46
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               line in an RC file.  E.g.,
 
                               push @generated_exts, "end";
 
               adds the extension "end" to the list of predefined generated ex-
-              tensions.  (This extension is used by the  RevTeX  package,  for
+              tensions.   (This  extension  is used by the RevTeX package, for
               example.)
 
        $go_mode [0]
-              If  nonzero, process files regardless of timestamps, and is then
+              If nonzero, process files regardless of timestamps, and is  then
               equivalent to the -g option.
 
        %hash_calc_ignore_pattern
               !!!This variable is for experts only!!!
 
-              The general rule latexmk uses for determining when an extra  run
-              of  some  program  is needed is that one of the source files has
-              changed.  But consider for example a latex package  that  causes
-
-
-
-                               29 September 2020                            44
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-              an  encapsulated postscript file (an "eps" file) to be made that
-              is to be read in on the next run.  The file contains  a  comment
-              line  giving  its  creation  date and time.  On the next run the
-              time changes, latex sees that the  eps  file  has  changed,  and
-              therefore  reruns  latex.  This causes an infinite loop, that is
-              only terminated because latexmk has a limit  on  the  number  of
+              The  general rule latexmk uses for determining when an extra run
+              of some program is needed is that one of the  source  files  has
+              changed.   But  consider for example a latex package that causes
+              an encapsulated postscript file (an "eps" file) to be made  that
+              is  to  be read in on the next run.  The file contains a comment
+              line giving its creation date and time.  On  the  next  run  the
+              time  changes,  latex  sees  that  the eps file has changed, and
+              therefore reruns latex.  This causes an infinite loop,  that  is
+              only  terminated  because  latexmk  has a limit on the number of
               runs to guard against pathological situations.
 
               But the changing line has no real effect, since it is a comment.
@@ -2922,31 +3072,43 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                  $hash_calc_ignore_pattern{'eps'} = '^%%CreationDate: ';
 
               This creates a rule for files with extension .eps about lines to
-              ignore.   The left-hand side is a Perl idiom for setting an item
-              in a hash.  Note that the file extension is specified without  a
+              ignore.  The left-hand side is a Perl idiom for setting an  item
+              in  a hash.  Note that the file extension is specified without a
               period.  The value, on the right-hand side, is a string contain-
-              ing a regular expresssion.  (See documentation on Perl  for  how
-              they  are  to be specified in general.)  This particular regular
-              expression specifies that lines beginning with  "%%CreationDate:
-              "  are to be ignored in deciding whether a file of the given ex-
+              ing  a  regular expresssion.  (See documentation on Perl for how
+              they are to be specified in general.)  This  particular  regular
+              expression  specifies that lines beginning with "%%CreationDate:
+              " are to be ignored in deciding whether a file of the given  ex-
               tension .eps has changed.
 
-              There is only one regular expression available for  each  exten-
-              sion.   If you need more one pattern to specify lines to ignore,
-              then you need to combine the patterns into a single regular  ex-
-              pression.   The simplest method is separate the different simple
-              patterns by a vertical bar character  (indicating  "alternation"
+              There  is  only one regular expression available for each exten-
+              sion.  If you need more one pattern to specify lines to  ignore,
+              then  you need to combine the patterns into a single regular ex-
+              pression.  The simplest method is separate the different  simple
+              patterns  by  a vertical bar character (indicating "alternation"
               in the jargon of regular expressions).  For example,
 
-                 $hash_calc_ignore_pattern{'eps'}  = '^%%CreationDate: |^%%Ti-
+                 $hash_calc_ignore_pattern{'eps'} = '^%%CreationDate:  |^%%Ti-
               tle: ';
 
               causes lines starting with either "^%%CreationDate: " or "^%%Ti-
               tle: " to be ignored.
 
-              It  may happen that a pattern to be ignored is specified in, for
-              example, in a system or user initialization file, and  you  wish
-              to  remove  this  in a file that is read later.  To do this, you
+
+
+
+                                  29 May 2021                               47
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              It may happen that a pattern to be ignored is specified in,  for
+              example,  in  a system or user initialization file, and you wish
+              to remove this in a file that is read later.  To  do  this,  you
               use Perl's delete function, e.g.,
 
                   delete $hash_calc_ignore_pattern{'eps'};
@@ -2954,84 +3116,54 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        $jobname [""]
 
-              This specifies the jobname, i.e., the basename that is used  for
-              generated  files  (.aux,  .log,  .dvi, .ps, .pdf, etc).  If this
-              variable is a null string, then the basename is the basename  of
-              the  main  tex file.  (At present, the string in $jobname should
+              This  specifies the jobname, i.e., the basename that is used for
+              generated files (.aux, .log, .dvi, .ps,  .pdf,  etc).   If  this
+              variable  is a null string, then the basename is the basename of
+              the main tex file.  (At present, the string in  $jobname  should
               not contain spaces.)
 
-              The placeholder '%A' is permitted. This will be  substituted  by
-              the  basename  of  the  TeX file.  The primary purpose is when a
-
-
-
-                               29 September 2020                            45
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-              variety of tex files are to be processed, and you want to use  a
-              different  jobname  for  each but one that is distinct for each.
-              Thus if you wanted to compare compilations of a set of files  on
+              The  placeholder  '%A' is permitted. This will be substituted by
+              the basename of the TeX file.  The primary purpose is when a va-
+              riety  of  tex  files are to be processed, and you want to use a
+              different jobname for each but one that is  distinct  for  each.
+              Thus  if you wanted to compare compilations of a set of files on
               different operating systems, with distinct filenames for all the
               cases, you could set
 
                  $jobname = "%A-$^O";
 
-              in an initialization file.  (Here $^O is a variable provided  by
+              in  an initialization file.  (Here $^O is a variable provided by
               perl that contains perl's name for the operating system.)
 
-              Suppose  you  had .tex files test1.tex and test2.tex.  Then when
+              Suppose you had .tex files test1.tex and test2.tex.   Then  when
               you run
 
                  latexmk -pdf *.tex
 
-              both files will be compiled.  The .aux,  .log,  and  .pdf  files
-              will  have  basenames  test1-MSWin32 ante test2-MSWin32 on a MS-
+              both  files  will  be  compiled.  The .aux, .log, and .pdf files
+              will have basenames test1-MSWin32 ante test2-MSWin32  on  a  MS-
               Windows system, test1-darwin and test2-darwin on an OS-X system,
               and a variety of similar cases on linux systems.
 
 
        $kpsewhich ["kpsewhich %S"]
-              The  program  called to locate a source file when the name alone
-              is not sufficient.  Most filenames used by latexmk  have  suffi-
+              The program called to locate a source file when the  name  alone
+              is  not  sufficient.  Most filenames used by latexmk have suffi-
               cient path information to be found directly.  But sometimes, no-
               tably when a .bib or a .bst file is found from the log file of a
-              bibtex  or  biber  run, only the base name of the file is known,
+              bibtex or biber run, only the base name of the  file  is  known,
               but not its path. The program specified by $kpsewhich is used to
               find it.
 
-              (For  advanced  users: Because of the different way in which la-
+              (For advanced users: Because of the different way in  which  la-
               texmk uses the command specified in $kpsewhich, some of the pos-
               sibilities listed in the FORMAT OF COMMAND SPECIFICATIONS do not
-              apply.  The internal and start keywords  are  not  available.  A
+              apply.   The  internal  and  start keywords are not available. A
               simple command specification with possible options and then "%S"
-              is all that is guaranteed to work.  Note  that  for  other  com-
-              mands, "%S" is substituted by a single source file. In contrast,
-              for $kpsewhich, "%S" may be substituted by a long list of space-
-              separated  filenames,  each  of  which is quoted.  The result on
-              STDOUT of running the command is then piped to latexmk.)
-
-              See also the @BIBINPUTS variable for another  way  that  latexmk
-              also uses to try to locate files; it applies only in the case of
-              .bib files.
-
-       $kpsewhich_show [0]
-              Whether to show diagnostics about invocations of kpsewhich:  the
-              command  line  use to invoke it and the results.  These diagnos-
-              tics are shown if $kpsewhich_show is non-zero or if  diagnostics
-              mode  is on.  (But in the second case, lots of other diagnostics
-              are also shown.)  Without these  diagnostics  there  is  nothing
-              visible  in  latexmk's  screen output about invocations of kpse-
-              which.
 
 
 
-                               29 September 2020                            46
+                                  29 May 2021                               48
 
 
 
@@ -3040,15 +3172,34 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              is  all  that  is  guaranteed to work.  Note that for other com-
+              mands, "%S" is substituted by a single source file. In contrast,
+              for $kpsewhich, "%S" may be substituted by a long list of space-
+              separated filenames, each of which is  quoted.   The  result  on
+              STDOUT of running the command is then piped to latexmk.)
+
+              See  also  the  @BIBINPUTS variable for another way that latexmk
+              also uses to try to locate files; it applies only in the case of
+              .bib files.
+
+       $kpsewhich_show [0]
+              Whether  to show diagnostics about invocations of kpsewhich: the
+              command line use to invoke it and the results.   These  diagnos-
+              tics  are shown if $kpsewhich_show is non-zero or if diagnostics
+              mode is on.  (But in the second case, lots of other  diagnostics
+              are  also  shown.)   Without  these diagnostics there is nothing
+              visible in latexmk's screen output about  invocations  of  kpse-
+              which.
+
        $landscape_mode [0]
               If nonzero, run in landscape mode, using the landscape mode pre-
-              viewers  and dvi to postscript converters.  Equivalent to the -l
+              viewers and dvi to postscript converters.  Equivalent to the  -l
               option.  Normally not needed with current previewers.
 
        $latex ["latex %O %S"]
-              Specifies the command line for  the  LaTeX  processing  program.
-              Note  that as with other programs, you can use this variable not
-              just to change the name of the program used,  but  also  specify
+              Specifies  the  command  line  for the LaTeX processing program.
+              Note that as with other programs, you can use this variable  not
+              just  to  change  the name of the program used, but also specify
               options to the program.  E.g.,
 
                                   $latex = "latex --src-specials %O %S";
@@ -3058,46 +3209,27 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
        %latex_input_extensions
-              This variable specifies the extensions tried by latexmk when  it
-              finds  that a LaTeX run resulted in an error that a file has not
-              been found, and the file is given without  an  extension.   This
-              typically  happens  when LaTeX commands of the form \input{file}
-              or \includegraphics{figure}, when the relevant source file  does
+              This  variable specifies the extensions tried by latexmk when it
+              finds that a LaTeX run resulted in an error that a file has  not
+              been  found,  and  the file is given without an extension.  This
+              typically happens when LaTeX commands of the  form  \input{file}
+              or  \includegraphics{figure}, when the relevant source file does
               not exist.
 
-              In  this  situation, latexmk searches for custom dependencies to
-              make the missing file(s), but restricts  it  to  the  extensions
-              specified  by the variable %latex_input_extensions.  The default
+              In this situation, latexmk searches for custom  dependencies  to
+              make  the  missing  file(s),  but restricts it to the extensions
+              specified by the variable %latex_input_extensions.  The  default
               extensions are 'tex' and 'eps'.
 
-              (For Perl experts: %latex_input_extensions is a hash whose  keys
-              are  the  extensions.   The values are irrelevant.)  Two subrou-
-              tines are provided for manipulating this and the  related  vari-
-              able  %pdflatex_input_extensions,  add_input_ext  and remove_in-
-              put_ext.  They are used as in the following examples are  possi-
-              ble lines in an initialization file:
-
-                  remove_input_ext( 'latex', 'tex' );
-
-              removes the extension 'tex' from latex_input_extensions
-
-                  add_input_ext( 'latex', 'asdf' );
-
-              add  the  extension 'asdf to latex_input_extensions.  (Naturally
-              with such an extension, you should have made an appropriate cus-
-              tom dependency for latexmk, and should also have done the appro-
-              priate programming in the LaTeX source file to enable  the  file
-              to  be  read.   The standard extensions are handled by LaTeX and
-              its graphics/graphicx packages.)
-
-       $latex_silent_switch ["-interaction=batchmode"]
-              Switch(es) for the LaTeX processing program when silent mode  is
-              on.
+              (For  Perl experts: %latex_input_extensions is a hash whose keys
+              are the extensions.  The values are  irrelevant.)   Two  subrou-
+              tines  are  provided for manipulating this and the related vari-
+              able %pdflatex_input_extensions,  add_input_ext  and  remove_in-
+              put_ext.   They  are  used  as  in  the  following  examples are
 
 
 
-
-                               29 September 2020                            47
+                                  29 May 2021                               49
 
 
 
@@ -3106,8 +3238,27 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              If  you  use MikTeX, you may prefer the results if you configure
-              the options to include -c-style-errors, e.g., by  the  following
+              possible lines in an initialization file:
+
+                  remove_input_ext( 'latex', 'tex' );
+
+              removes the extension 'tex' from latex_input_extensions
+
+                  add_input_ext( 'latex', 'asdf' );
+
+              add the extension 'asdf to  latex_input_extensions.   (Naturally
+              with such an extension, you should have made an appropriate cus-
+              tom dependency for latexmk, and should also have done the appro-
+              priate  programming  in the LaTeX source file to enable the file
+              to be read.  The standard extensions are handled  by  LaTeX  and
+              its graphics/graphicx packages.)
+
+       $latex_silent_switch ["-interaction=batchmode"]
+              Switch(es)  for the LaTeX processing program when silent mode is
+              on.
+
+              If you use MikTeX, you may prefer the results if  you  configure
+              the  options  to include -c-style-errors, e.g., by the following
               line in an initialization file
 
                 $latex_silent_switch  =  "-interaction=batchmode  -c-style-er-
@@ -3117,19 +3268,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $lpr ["lpr %O %S" under UNIX/Linux, "NONE lpr" under MS-Windows]
               The command to print postscript files.
 
-              Under MS-Windows (unlike UNIX/Linux), there is no standard  pro-
+              Under  MS-Windows (unlike UNIX/Linux), there is no standard pro-
               gram for printing files.  But there are ways you can do it.  For
               example, if you have gsview installed, you could use it with the
               option "/p":
 
                   $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
 
-              If  gsview  is installed in a different directory, you will need
-              to make the appropriate change.  Note the combination of  single
-              and  double  quotes  around the name.  The single quotes specify
-              that this is a string to be assigned to the configuration  vari-
-              able  $lpr.   The double quotes are part of the string passed to
-              the operating system to get the command obeyed; this  is  neces-
+              If gsview is installed in a different directory, you  will  need
+              to  make the appropriate change.  Note the combination of single
+              and double quotes around the name.  The  single  quotes  specify
+              that  this is a string to be assigned to the configuration vari-
+              able $lpr.  The double quotes are part of the string  passed  to
+              the  operating  system to get the command obeyed; this is neces-
               sary because one part of the command name ("Program Files") con-
               tains a space which would otherwise be misinterpreted.
 
@@ -3139,31 +3290,12 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $lpr_pdf ["NONE lpr_pdf"]
               The printing program to print pdf files.
 
-              Under MS-Windows you could set this to use gsview, if it is  in-
+              Under  MS-Windows you could set this to use gsview, if it is in-
               stalled, e.g.,
 
-                  $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
-
-              If  gsview  is installed in a different directory, you will need
-              to make the appropriate change.  Note the double  quotes  around
-              the name: this is necessary because one part of the command name
-              ("Program Files") contains a space which would otherwise be mis-
-              interpreted.
-
-       $lualatex ["lualatex %O %S"]
-              Specifies the command line for the LaTeX processing program that
-              is to be used when the lualatex program is called for (e.g.,  by
-              the option -lualatex.
-
-              To do a coordinated setting of all of $latex, $pdflatex, $luala-
-              tex, and $xelatex, see the section "Advanced Configuration".
 
 
-
-
-
-
-                               29 September 2020                            48
+                                  29 May 2021                               50
 
 
 
@@ -3172,27 +3304,44 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+                  $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
+
+              If gsview is installed in a different directory, you  will  need
+              to  make  the appropriate change.  Note the double quotes around
+              the name: this is necessary because one part of the command name
+              ("Program Files") contains a space which would otherwise be mis-
+              interpreted.
+
+       $lualatex ["lualatex %O %S"]
+              Specifies the command line for the LaTeX processing program that
+              is  to be used when the lualatex program is called for (e.g., by
+              the option -lualatex.
+
+              To do a coordinated setting of all of $latex, $pdflatex, $luala-
+              tex, and $xelatex, see the section "Advanced Configuration".
+
+
        %lualatex_input_extensions
-              This variable specifies the extensions tried by latexmk when  it
-              finds  that  a lualatex run resulted in an error that a file has
-              not been found, and the file  is  given  without  an  extension.
-              This  typically  happens  when  LaTeX  commands of the form \in-
-              put{file} or \includegraphics{figure}, when the relevant  source
+              This  variable specifies the extensions tried by latexmk when it
+              finds that a lualatex run resulted in an error that a  file  has
+              not  been  found,  and  the  file is given without an extension.
+              This typically happens when LaTeX  commands  of  the  form  \in-
+              put{file}  or \includegraphics{figure}, when the relevant source
               file does not exist.
 
-              In  this  situation, latexmk searches for custom dependencies to
-              make the missing file(s), but restricts  it  to  the  extensions
-              specified  by  the variable %pdflatex_input_extensions.  The de-
+              In this situation, latexmk searches for custom  dependencies  to
+              make  the  missing  file(s),  but restricts it to the extensions
+              specified by the variable %pdflatex_input_extensions.   The  de-
               fault extensions are 'tex', 'pdf', 'jpg, and 'png'.
 
               See details of the %latex_input_extensions for other information
               that equally applies to %lualatex_input_extensions.
 
        $lualatex_silent_switch ["-interaction=batchmode"]
-              Switch(es)  for  the lualatex program (specified in the variable
+              Switch(es) for the lualatex program (specified in  the  variable
               $lualatex) when silent mode is on.
 
-              See details of the $latex_silent_switch  for  other  information
+              See  details  of  the $latex_silent_switch for other information
               that equally applies to $lualatex_silent_switch.
 
        $make ["make"]
@@ -3201,101 +3350,84 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $makeindex ["makeindex %O -o %D %S"]
               The index processing program.
 
+       $makeindex_fudge [0]
+              When using makeindex, whether to change  directory  to  $aux_dir
+              before  running  makeindex.   Set to 1 if $aux_dir is not an ex-
+              plicit subdirectory of current  directory,  otherwise  makeindex
+              will refuse to write its output and log files, for security rea-
+              sons.
+
+
+
+
+
+                                  29 May 2021                               51
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        $makeindex_silent_switch ["-q"]
-              Switch(es)  for the index processing program when silent mode is
+              Switch(es) for the index processing program when silent mode  is
               on.
 
        $max_repeat [5]
-              The maximum number of times latexmk will run *latex  before  de-
-              ciding  that  there may be an infinite loop and that it needs to
-              bail out, rather than rerunning *latex again to  resolve  cross-
+              The  maximum  number of times latexmk will run *latex before de-
+              ciding that there may be an infinite loop and that it  needs  to
+              bail  out,  rather than rerunning *latex again to resolve cross-
               references, etc.  The default value covers all normal cases.
 
               (Note that the "etc" covers a lot of cases where one run of *la-
               tex generates files to be read in on a later run.)
 
        $MSWin_back_slash [1]
-              This configuration variable only has an effect when  latexmk  is
-              running  under MS-Windows.  With the default value of 1 for this
-              variable, when a command is executed under  MS-Windows,  latexmk
-              substitutes  "\"  for the separator character between components
-              of a directory name.  Internally, latexmk uses "/" for  the  di-
-              rectory  separator  character,  which  is  the character used by
+              This  configuration  variable only has an effect when latexmk is
+              running under MS-Windows.  With the default value of 1 for  this
+              variable,  when  a command is executed under MS-Windows, latexmk
+              substitutes "\" for the separator character  between  components
+              of  a  directory name.  Internally, latexmk uses "/" for the di-
+              rectory separator character, which  is  the  character  used  by
               Unix-like systems.
 
-              For almost all programs and for almost all filenames  under  MS-
-              Windows,  both "\" and "/" are acceptable as the directory sepa-
-              rator character, provided at least that filenames  are  properly
-
-
-
-                               29 September 2020                            49
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
+              For  almost  all programs and for almost all filenames under MS-
+              Windows, both "\" and "/" are acceptable as the directory  sepa-
+              rator  character,  provided at least that filenames are properly
               quoted.  But it is possible that programs exist that only accept
-              "\" on the command line, since that is  the  standard  directory
-              separator  for MS-Windows.  So for safety latexmk makes the sub-
+              "\"  on  the  command line, since that is the standard directory
+              separator for MS-Windows.  So for safety latexmk makes the  sub-
               stitution from "/" to "\", by default.
 
-              However there are also programs on MS-Windows for which  a  back
+              However  there  are also programs on MS-Windows for which a back
               slash "\" is interpreted differently than as a directory separa-
-              tor; for these the directory separator should be "/".   Programs
-              with  this  behavior  include  all  the  *latex  programs in the
-              TeXLive implementation  (but  not  the  MiKTeX  implementation).
-              Hence  if  you use TeXLive on MS-Windows, then $MSWin_back_slash
+              tor;  for these the directory separator should be "/".  Programs
+              with this behavior  include  all  the  *latex  programs  in  the
+              TeXLive  implementation  (but  not  the  MiKTeX implementation).
+              Hence if you use TeXLive on MS-Windows,  then  $MSWin_back_slash
               should be set to zero.
 
 
        $new_viewer_always [0]
-              This variable applies  to  latexmk  only  in  continuous-preview
+              This  variable  applies  to  latexmk  only in continuous-preview
               mode.  If $new_viewer_always is 0, latexmk will check for a pre-
-              viously running previewer on the same file, and if one  is  run-
-              ning  will  not  start a new one.  If $new_viewer_always is non-
-              zero, this check will be skipped, and latexmk will behave as  if
+              viously  running  previewer on the same file, and if one is run-
+              ning will not start a new one.  If  $new_viewer_always  is  non-
+              zero,  this check will be skipped, and latexmk will behave as if
               no viewer is running.
 
        $out_dir [""]
-              If  non-blank,  this  variable  specifies the directory in which
+              If non-blank, this variable specifies  the  directory  in  which
               output files are to be written by a run of *latex.  See also the
               variable $aux_dir.
 
-              The  effect of this variable (when non-blank) is achieved by us-
-              ing the -output-directory option of *latex.  This exists in  the
-              usual  current  (Dec.  2011  and  later) implementations of TeX,
-              i.e., MiKTeX and TeXLive. But it may not  be  present  in  other
-              versions.
-
-              If  you also use the -cd option, and $out_dir (or $aux_dir) con-
-              tains a relative path, then the path is interpreted relative  to
-              the document directory.
-
-              Commonly,  the  directory specified for output files is a subdi-
-              rectory of the current working directory.  However, if you spec-
-              ify  some  other  directory, e.g., "/tmp/foo" or "../output", be
-              aware that this could cause problems, e.g.,  with  makeindex  or
-              bibtex.   This  is because modern versions of these programs, by
-              default, will refuse to work when they find that they are  asked
-              to  write  to  a  file in a directory that appears not to be the
-              current working directory or one of its subdirectories.  This is
-              part  of  security  measures by the whole TeX system that try to
-              prevent malicious or errant TeX documents from incorrectly mess-
-              ing with a user's files.  If for $out_dir or $aux_dir you really
-              do need to specify an absolute pathname (e.g., "/tmp/foo") or  a
-              path (e.g., "../output") that includes a higher-level directory,
-              and you need to use makeindex or bibtex, then you need  to  dis-
-              able  the  security measures (and assume any risks).  One way of
-              doing this is to temporarily set an operating system environment
-              variable  openout_any  to  "a"  (as  in  "all"), to override the
+              The effect of this variable (when non-blank) is achieved by  us-
+              ing  the -output-directory option of *latex.  This exists in the
 
 
 
-                               29 September 2020                            50
+                                  29 May 2021                               52
 
 
 
@@ -3304,24 +3436,49 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              default "paranoid" setting.
+              usual current (Dec. 2011  and  later)  implementations  of  TeX,
+              i.e.,  MiKTeX  and  TeXLive.  But it may not be present in other
+              versions.
+
+              If you also use the -cd option, and $out_dir (or $aux_dir)  con-
+              tains  a relative path, then the path is interpreted relative to
+              the document directory.
+
+              Commonly, the directory specified for output files is  a  subdi-
+              rectory of the current working directory.  However, if you spec-
+              ify some other directory, e.g., "/tmp/foo"  or  "../output",  be
+              aware  that  this  could cause problems, e.g., with makeindex or
+              bibtex.  This is because modern versions of these  programs,  by
+              default,  will refuse to work when they find that they are asked
+              to write to a file in a directory that appears  not  to  be  the
+              current working directory or one of its subdirectories.  This is
+              part of security measures by the whole TeX system  that  try  to
+              prevent malicious or errant TeX documents from incorrectly mess-
+              ing with a user's files.  If for $out_dir or $aux_dir you really
+              do  need to specify an absolute pathname (e.g., "/tmp/foo") or a
+              path (e.g., "../output") that includes a higher-level directory,
+              and  you  need to use makeindex or bibtex, then you need to dis-
+              able the security measures (and assume any risks).  One  way  of
+              doing this is to temporarily set an operating system environment
+              variable openout_any to "a" (as in "all"), to override  the  de-
+              fault "paranoid" setting.
 
        $pdf_mode [0]
-              If zero, do NOT generate a pdf  version  of  the  document.   If
-              equal  to 1, generate a pdf version of the document using pdfla-
-              tex, using the command specified by the $pdflatex variable.   If
-              equal  to  2, generate a pdf version of the document from the ps
-              file, by using the command specified by  the  $ps2pdf  variable.
-              If  equal  to 3, generate a pdf version of the document from the
-              dvi file, by using the command specified by  the  $dvipdf  vari-
+              If  zero,  do  NOT  generate  a pdf version of the document.  If
+              equal to 1, generate a pdf version of the document using  pdfla-
+              tex,  using the command specified by the $pdflatex variable.  If
+              equal to 2, generate a pdf version of the document from  the  ps
+              file,  by  using  the command specified by the $ps2pdf variable.
+              If equal to 3, generate a pdf version of the document  from  the
+              dvi  file,  by  using the command specified by the $dvipdf vari-
               able.  If equal to 4, generate a pdf version of the document us-
               ing lualatex, using the command specified by the $lualatex vari-
-              able.   If  equal  to 5, generate a pdf version (and an xdv ver-
-              sion) of the document using xelatex, using the  commands  speci-
+              able.  If equal to 5, generate a pdf version (and  an  xdv  ver-
+              sion)  of  the document using xelatex, using the commands speci-
               fied by the $xelatex and xdvipdfmx variables.
 
-              In  $pdf_mode=2,  it is ensured that .dvi and .ps files are also
-              made.  In $pdf_mode=3, it is ensured that a .dvi  file  is  also
+              In $pdf_mode=2, it is ensured that .dvi and .ps files  are  also
+              made.   In  $pdf_mode=3,  it is ensured that a .dvi file is also
               made.  But this may be overridden by the document.
 
        $pdflatex ["pdflatex %O %S"]
@@ -3333,101 +3490,76 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                    $pdflatex = "pdflatex --shell-escape %O %S";
 
-              (In  some  earlier versions of latexmk, you needed to use an as-
-              signment to $pdflatex to allow the use of  lualatex  or  xelatex
+
+
+
+                                  29 May 2021                               53
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              (In some earlier versions of latexmk, you needed to use  an  as-
+              signment  to  $pdflatex  to allow the use of lualatex or xelatex
               instead of pdflatex.  There are now separate configuration vari-
-              ables for the use of lualatex or  xelatex.   See  $lualatex  and
+              ables  for  the  use  of lualatex or xelatex.  See $lualatex and
               $xelatex.)
 
               To do a coordinated setting of all of $latex, $pdflatex, $luala-
               tex, and $xelatex, see the section "Advanced Configuration".
 
        %pdflatex_input_extensions
-              This variable specifies the extensions tried by latexmk when  it
-              finds  that  a pdflatex run resulted in an error that a file has
-              not been found, and the file  is  given  without  an  extension.
-              This  typically  happens  when  LaTeX  commands of the form \in-
-              put{file} or \includegraphics{figure}, when the relevant  source
+              This  variable specifies the extensions tried by latexmk when it
+              finds that a pdflatex run resulted in an error that a  file  has
+              not  been  found,  and  the  file is given without an extension.
+              This typically happens when LaTeX  commands  of  the  form  \in-
+              put{file}  or \includegraphics{figure}, when the relevant source
               file does not exist.
 
-              In  this  situation, latexmk searches for custom dependencies to
-              make the missing file(s), but restricts  it  to  the  extensions
-              specified  by  the variable %pdflatex_input_extensions.  The de-
+              In this situation, latexmk searches for custom  dependencies  to
+              make  the  missing  file(s),  but restricts it to the extensions
+              specified by the variable %pdflatex_input_extensions.   The  de-
               fault extensions are 'tex', 'pdf', 'jpg, and 'png'.
 
               See details of the %latex_input_extensions for other information
               that equally applies to %pdflatex_input_extensions.
 
-
-
-
-                               29 September 2020                            51
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        $pdflatex_silent_switch ["-interaction=batchmode"]
-              Switch(es)  for  the pdflatex program (specified in the variable
+              Switch(es) for the pdflatex program (specified in  the  variable
               $pdflatex) when silent mode is on.
 
-              See details of the $latex_silent_switch  for  other  information
+              See  details  of  the $latex_silent_switch for other information
               that equally applies to $pdflatex_silent_switch.
 
        $pdf_previewer ["start acroread %O %S"]
               The command to invoke a pdf-previewer.
 
-              On  MS-Windows, the default is changed to "cmd /c start """; un-
-              der more recent versions of Windows, this will cause to  be  run
+              On MS-Windows, the default is changed to "cmd /c start """;  un-
+              der  more  recent versions of Windows, this will cause to be run
               whatever command the system has associated with .pdf files.  But
-              this may be undesirable if this association is  to  acroread  --
+              this  may  be  undesirable if this association is to acroread --
               see the notes in the explanation of the -pvc option.]
 
-              On  OS-X  the  default is changed to "open %S", which results in
-              OS-X starting up (and detaching) the viewer associated with  the
-              file.   By  default, for pdf files this association is to OS-X's
+              On OS-X the default is changed to "open %S",  which  results  in
+              OS-X  starting up (and detaching) the viewer associated with the
+              file.  By default, for pdf files this association is  to  OS-X's
               preview, which is quite satisfactory.
 
-              WARNING:  Problem under MS-Windows: if acroread is used  as  the
-              pdf  previewer,  and  it is actually viewing a pdf file, the pdf
-              file cannot be updated.  Thus makes acroread  a  bad  choice  of
-              previewer  if you use latexmk's previous-continuous mode (option
+              WARNING:   Problem  under MS-Windows: if acroread is used as the
+              pdf previewer, and it is actually viewing a pdf  file,  the  pdf
+              file  cannot  be  updated.   Thus makes acroread a bad choice of
+              previewer if you use latexmk's previous-continuous mode  (option
               -pvc) under MS-windows.  This problem does not occur if, for ex-
               ample, SumatraPDF or gsview is used to view pdf files.
 
-              Important  note:  Normally you will want to have a previewer run
-              detached, so that latexmk doesn't wait for the previewer to ter-
-              minate  before continuing its work.  So normally you should pre-
-              fix the command by "start ", which  flags  to  latexmk  that  it
-              should  do  the  detaching  of the previewer itself (by whatever
-              method is appropriate to the operating system).   But  sometimes
-              letting latexmk do the detaching is not appropriate (for a vari-
-              ety of non-trivial reasons), so you should put the "start "  bit
-              in yourself, whenever it is needed.
-
-       $pdf_update_command [""]
-              When  the  pdf  previewer is set to be updated by running a com-
-              mand, this is the command that is run.  See the information  for
-              the variable $pdf_update_method.
-
-       $pdf_update_method [1 under UNIX, 3 under MS-Windows]
-              How  the  pdf  viewer  updates its display when the pdf file has
-              changed. See the information on the variable  $dvi_update_method
-              for the codes.  (Note that information needs be changed slightly
-              so that for the value 4, to run a command to do the update,  the
-              command  is  specified  by the variable $pdf_update_command, and
-              for the value 2, to specify update  by  signal,  the  signal  is
-              specified by $pdf_update_signal.)
-
-              Note that acroread under MS-Windows (but not UNIX) locks the pdf
-              file, so the default value is then 3.
+              Important note: Normally you will want to have a  previewer  run
 
 
 
-                               29 September 2020                            52
+                                  29 May 2021                               54
 
 
 
@@ -3435,6 +3567,32 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
+
+              detached, so that latexmk doesn't wait for the previewer to ter-
+              minate before continuing its work.  So normally you should  pre-
+              fix  the  command  by  "start  ", which flags to latexmk that it
+              should do the detaching of the  previewer  itself  (by  whatever
+              method  is  appropriate to the operating system).  But sometimes
+              letting latexmk do the detaching is not appropriate (for a vari-
+              ety  of non-trivial reasons), so you should put the "start " bit
+              in yourself, whenever it is needed.
+
+       $pdf_update_command [""]
+              When the pdf previewer is set to be updated by  running  a  com-
+              mand,  this is the command that is run.  See the information for
+              the variable $pdf_update_method.
+
+       $pdf_update_method [1 under UNIX, 3 under MS-Windows]
+              How the pdf viewer updates its display when  the  pdf  file  has
+              changed.  See the information on the variable $dvi_update_method
+              for the codes.  (Note that information needs be changed slightly
+              so  that for the value 4, to run a command to do the update, the
+              command is specified by the  variable  $pdf_update_command,  and
+              for  the  value  2,  to  specify update by signal, the signal is
+              specified by $pdf_update_signal.)
+
+              Note that acroread under MS-Windows (but not UNIX) locks the pdf
+              file, so the default value is then 3.
 
               Arranging to use a command to get a previewer explicitly updated
               requires three variables to be set.  For example:
@@ -3443,47 +3601,59 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                   $pdf_update_method = 4;
                   $pdf_update_command = "xpdf -remote %R -reload";
 
-              The  first  setting  arranges for the xpdf program to be used in
-              its "remote server mode", with the server name specified as  the
-              rootname  of  the TeX file.  The second setting arranges for up-
-              dating to be done in response to a command, and the  third  set-
+              The first setting arranges for the xpdf program to  be  used  in
+              its  "remote server mode", with the server name specified as the
+              rootname of the TeX file.  The second setting arranges  for  up-
+              dating  to  be done in response to a command, and the third set-
               ting sets the update command.
 
-       $pdf_update_signal  [Under  UNIX:  SIGHUP,  which is a system-dependent
+       $pdf_update_signal [Under UNIX: SIGHUP,  which  is  a  system-dependent
        value]
-              The number of the signal that is sent to the pdf viewer when  it
-              is  updated  by  sending  a signal -- see the information on the
-              variable $pdf_update_method.  The default value is the  one  ap-
+              The  number of the signal that is sent to the pdf viewer when it
+              is updated by sending a signal -- see  the  information  on  the
+              variable  $pdf_update_method.   The default value is the one ap-
               propriate for gv on a UNIX system.
 
        $pid_position[1 under UNIX, -1 under MS-Windows]
-              The  variable  $pid_position  is  used  to specify which word in
-              lines of the output from $pscmd corresponds to the  process  ID.
-              The  first word in the line is numbered 0.  The default value of
+              The variable $pid_position is used  to  specify  which  word  in
+              lines  of  the output from $pscmd corresponds to the process ID.
+              The first word in the line is numbered 0.  The default value  of
               1 (2nd word in line) is correct for Solaris 2.6, Linux, and OS-X
               with their default settings of $pscmd.
 
-              Setting  the  variable  to -1 is used to indicate that $pscmd is
+              Setting the variable to -1 is used to indicate  that  $pscmd  is
+
+
+
+                                  29 May 2021                               55
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               not to be used.
 
        $postscript_mode [0]
-              If nonzero, generate  a  postscript  version  of  the  document.
+              If  nonzero,  generate  a  postscript  version  of the document.
               Equivalent to the -ps option.
 
-              If  some  other  request  is made for which a postscript file is
+              If some other request is made for which  a  postscript  file  is
               needed, then $postscript_mode will be set to 1.
 
        $pre_tex_code ['']
 
-              Sets TeX code to be executed before inputting the  source  file.
-              This  works  if the relevant one of $latex, etc contains a suit-
+              Sets  TeX  code to be executed before inputting the source file.
+              This works if the relevant one of $latex, etc contains  a  suit-
               able command line with a %P or %U substitution.  For example you
               could do
 
                    $latex = 'latex %O %P';
                    $pre_tex_code = '\AtBeginDocument{An initial message\par}';
 
-              To  set  all  of  $latex, $pdflatex, $lualatex, and $xelatex you
+              To set all of $latex, $pdflatex,  $lualatex,  and  $xelatex  you
               could use the subroutine alt_tex_cmds:
 
                    &alt_tex_cmds;
@@ -3491,75 +3661,37 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-
-
-                               29 September 2020                            53
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        $preview_continuous_mode [0]
-              If nonzero, run a previewer to view the document,  and  continue
+              If  nonzero,  run a previewer to view the document, and continue
               running latexmk to keep .dvi up-to-date.  Equivalent to the -pvc
-              option.  Which previewer is run depends on the  other  settings,
+              option.   Which  previewer is run depends on the other settings,
               see the command line options -view=, and the variable $view.
 
        $preview_mode [0]
               If nonzero, run a previewer to preview the document.  Equivalent
-              to the -pv option.  Which previewer is run depends on the  other
-              settings,  see the command line options -view=, and the variable
+              to  the -pv option.  Which previewer is run depends on the other
+              settings, see the command line options -view=, and the  variable
               $view.
 
        $printout_mode [0]
-              If nonzero, print the document using the  command  specified  in
+              If  nonzero,  print  the document using the command specified in
               the $lpr variable.  Equivalent to the -p option.  This is recom-
-              mended not to be set from an RC file, otherwise you could  waste
+              mended  not to be set from an RC file, otherwise you could waste
               lots of paper.
 
        $print_type = ["auto"]
-              Type  of  file  to  printout:  possibilities  are "auto", "dvi",
+              Type of file  to  printout:  possibilities  are  "auto",  "dvi",
               "none", "pdf", or "ps".   See the option -print= for the meaning
               of the "auto" value.
 
        $pscmd Command used to get all the processes currently run by the user.
-              The -pvc option uses  the  command  specified  by  the  variable
-              $pscmd  to  determine  if there is an already running previewer,
-              and to find the process ID (needed if latexmk  needs  to  signal
-              the previewer about file changes).
-
-              Each line of the output of this command is assumed to correspond
-              to one process.  See the  $pid_position  variable  for  how  the
-              process number is determined.
-
-              The  default  for  pscmd  is  "NONE" under MS-Windows and cygwin
-              (i.e., the command is not used), "ps -ww  -u  $ENV{USER}"  under
-              OS-X,  and  "ps  -f -u $ENV{USER}" under other operating systems
-              (including Linux).  In these specifications "$ENV{USER}" is sub-
-              stituted by the username.
-
-       $ps2pdf ["ps2pdf %O %S %D"]
-              Command to convert .ps to .pdf file.
-
-       $ps_filter [empty]
-              The postscript file filter to be run on the newly produced post-
-              script file before other processing.  Equivalent  to  specifying
-              the -pF option.
-
-       $ps_previewer ["start gv %O %S", but start %O %S under MS-Windows]
-              The  command  to  invoke a ps-previewer.  (The default under MS-
-              Windows will cause to be run whatever command the system has as-
-              sociated with .ps files.)
-
-              Note  that  gv  could be used with the -watch option updates its
-              display whenever the postscript file changes, whereas  ghostview
+              The  -pvc  option  uses  the  command  specified by the variable
+              $pscmd to determine if there is an  already  running  previewer,
+              and  to  find  the process ID (needed if latexmk needs to signal
 
 
 
-                               29 September 2020                            54
+                                  29 May 2021                               56
 
 
 
@@ -3568,53 +3700,91 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              does  not.  However, different versions of gv have slightly dif-
-              ferent ways of writing this  option.   You  can  configure  this
+              the previewer about file changes).
+
+              Each line of the output of this command is assumed to correspond
+              to  one  process.   See  the  $pid_position variable for how the
+              process number is determined.
+
+              The default for pscmd is  "NONE"  under  MS-Windows  and  cygwin
+              (i.e.,  the  command  is not used), "ps -ww -u $ENV{USER}" under
+              OS-X, and "ps -f -u $ENV{USER}" under  other  operating  systems
+              (including Linux).  In these specifications "$ENV{USER}" is sub-
+              stituted by the username.
+
+       $ps2pdf ["ps2pdf -dALLOWPSTRANSPARENCY %O %S %D"]
+              Command to convert .ps to .pdf file.
+
+       $ps_filter [empty]
+              The postscript file filter to be run on the newly produced post-
+              script  file  before other processing.  Equivalent to specifying
+              the -pF option.
+
+       $ps_previewer ["start gv %O %S", but start %O %S under MS-Windows]
+              The command to invoke a ps-previewer.  (The  default  under  MS-
+              Windows will cause to be run whatever command the system has as-
+              sociated with .ps files.)
+
+              Note that gv could be used with the -watch  option  updates  its
+              display  whenever the postscript file changes, whereas ghostview
+              does not.  However, different versions of gv have slightly  dif-
+              ferent  ways  of  writing  this  option.  You can configure this
               variable appropriately.
 
               WARNING: Linux systems may have installed one (or more) versions
-              of gv under different names, e.g.,  ggv,  kghostview,  etc,  but
+              of  gv  under  different  names, e.g., ggv, kghostview, etc, but
               perhaps not one actually called gv.
 
-              Important  note:  Normally you will want to have a previewer run
+              Important note: Normally you will want to have a  previewer  run
               detached, so that latexmk doesn't wait for the previewer to ter-
-              minate  before continuing its work.  So normally you should pre-
-              fix the command by "start ", which  flags  to  latexmk  that  it
-              should  do  the  detaching  of the previewer itself (by whatever
-              method is appropriate to the operating system).   But  sometimes
+              minate before continuing its work.  So normally you should  pre-
+              fix  the  command  by  "start  ", which flags to latexmk that it
+              should do the detaching of the  previewer  itself  (by  whatever
+              method  is  appropriate to the operating system).  But sometimes
               letting latexmk do the detaching is not appropriate (for a vari-
-              ety of non-trivial reasons), so you should put the "start "  bit
+              ety  of non-trivial reasons), so you should put the "start " bit
               in yourself, whenever it is needed.
 
 
-       $ps_previewer_landscape  ["start gv -swap %O %S", but start %O %S under
+       $ps_previewer_landscape ["start gv -swap %O %S", but start %O %S  under
        MS-Windows]
               The command to invoke a ps-previewer in landscape mode.
 
        $ps_update_command [""]
-              When the postscript previewer is set to be updated by running  a
-              command,  this  is the command that is run.  See the information
+              When  the postscript previewer is set to be updated by running a
+              command, this is the command that is run.  See  the  information
               for the variable $ps_update_method.
 
+
+
+                                  29 May 2021                               57
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        $ps_update_method [0 under UNIX, 1 under MS-Windows]
-              How the postscript viewer updates its display when the .ps  file
-              has  changed.  See  the  information  on  the  variable $dvi_up-
-              date_method for the codes.   (Note  that  information  needs  be
+              How  the postscript viewer updates its display when the .ps file
+              has changed.  See  the  information  on  the  variable  $dvi_up-
+              date_method  for  the  codes.   (Note  that information needs be
               changed slightly so that for the value 4, to run a command to do
-              the update, the command is specified  by  the  variable  $ps_up-
-              date_command,  and for the value 2, to specify update by signal,
+              the  update,  the  command  is specified by the variable $ps_up-
+              date_command, and for the value 2, to specify update by  signal,
               the signal is specified by $ps_update_signal.)
 
-       $ps_update_signal [Under UNIX:  SIGHUP,  which  is  a  system-dependent
+       $ps_update_signal  [Under  UNIX:  SIGHUP,  which  is a system-dependent
        value]
-              The  number of the signal that is sent to the pdf viewer when it
-              is updated by sending a signal --  see  $ps_update_method.   The
+              The number of the signal that is sent to the pdf viewer when  it
+              is  updated  by  sending a signal -- see $ps_update_method.  The
               default value is the one appropriate for gv on a UNIX system.
 
        $pvc_timeout [0]
-              If  this  variable  is  nonzero, there will be a  timeout in pvc
-              mode after a period of inactivity.  Inactivity  means  a  period
-              when  latexmk  has  detected  no  file changes and hence has not
+              If this variable is nonzero, there will be  a   timeout  in  pvc
+              mode  after  a  period of inactivity.  Inactivity means a period
+              when latexmk has detected no file  changes  and  hence  has  not
               taken any actions like compiling the document. The period of in-
               activity is in the variable $pvc_timeout_mins.
 
@@ -3623,9 +3793,37 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               The period of inactivity, in minutes, after which pvc mode times
               out.  This is used if $pvc_timeout is nonzero.
 
+       $pvc_view_file_via_temporary [1]
+              The same as $always_view_file_via_temporary, except that it only
+              applies in preview-continuous mode (-pvc option).
+
+       $quote_filenames [1]
+              This specifies whether substitutions for placeholders in command
+              specifications  (as  in  $pdflatex)  are  surrounded  by  double
+              quotes.  If this variable is 1 (or any other value Perl  regards
+              as true), then quoting is done.  Otherwise quoting is omitted.
+
+              The  quoting  method used by latexmk is tested to work correctly
+              under UNIX systems (including Linux and Mac OS-X) and under  MS-
+              Windows.   It  allows  the  use  of filenames containing special
+              characters, notably spaces.  (But note  that  many  versions  of
+              *latex  cannot correctly deal with TeX files whose names contain
+              spaces.  Latexmk's quoting only ensures that such filenames  are
+              correctly  treated  by the operating system in passing arguments
+              to programs.)
+
+       $rc_report [1]
+              After initialization, whether to give a list  of  the  RC  files
+              read.
+
+       $recorder [1]
+              Whether to use the -recorder option to (latex Use of this option
+              results in a file of extension .fls containing  a  list  of  the
+              files  that  these programs have read and written.  Latexmk will
 
 
-                               29 September 2020                            55
+
+                                  29 May 2021                               58
 
 
 
@@ -3634,29 +3832,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-       $pvc_view_file_via_temporary [1]
-              The same as $always_view_file_via_temporary, except that it only
-              applies in preview-continuous mode (-pvc option).
-
-       $quote_filenames [1]
-              This specifies whether substitutions for placeholders in command
-              specifications  (as  in  $pdflatex)  are  surrounded  by  double
-              quotes.   If this variable is 1 (or any other value Perl regards
-              as true), then quoting is done.  Otherwise quoting is omitted.
-
-              The quoting method used by latexmk is tested to  work  correctly
-              under  UNIX systems (including Linux and Mac OS-X) and under MS-
-              Windows.  It allows the  use  of  filenames  containing  special
-              characters,  notably  spaces.   (But  note that many versions of
-              *latex cannot correctly deal with TeX files whose names  contain
-              spaces.   Latexmk's quoting only ensures that such filenames are
-              correctly treated by the operating system in  passing  arguments
-              to programs.)
-
-       $recorder [1]
-              Whether to use the -recorder option to (latex Use of this option
-              results in a file of extension .fls containing  a  list  of  the
-              files  that  these programs have read and written.  Latexmk will
               then use this file to improve its detection of source files  and
               generated files after a run of *latex.
 
@@ -3688,18 +3863,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               output or aux directories.]
 
               The  default  under  MSWin and Cygwin is ';' and under UNIX-like
-
-
-
-                               29 September 2020                            56
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               operating systems (including Linux and OS-X) is  ':'.   Normally
               the  defaults give correct behavior.  But there can be difficul-
               ties if your operating system is of one kind, but some  of  your
@@ -3723,6 +3886,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               not to give these  warnings.   The  command  line  options  -si-
               lence_logfile_warning_list   and  -silence_logfile_warning_list-
               also set this variable.
+
+
+
+                                  29 May 2021                               59
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
 
               Note that multiple occurrences for the same undefined object  on
               the same page and same line will be compressed to a single warn-
@@ -3753,19 +3927,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $success_cmd [undefined]
               See the documentation for $compiling_cmd.
 
-
-
-
-
-                               29 September 2020                            57
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        $tmpdir [See below for default]
               Directory  to  store  temporary  files that latexmk may generate
               while running.
@@ -3791,6 +3952,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Makefile.   See the section "USING latexmk WITH make" for how to
               do this.  The intent of calling make from latexmk is  merely  to
               detect dependencies.
+
+
+
+                                  29 May 2021                               60
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
 
        $view ["default"]
               Which  kind  of  file is to be previewed if a previewer is used.
@@ -3820,18 +3992,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The default behavior is normally satisfactory in the usual edit-
               compile-edit  cycle.  But, for example, latexmk can also be used
-
-
-
-                               29 September 2020                            58
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               as part of a build process for some bigger  project,  e.g.,  for
               creating  documentation  in the build of a software application.
               Then it is often sensible to treat citation and reference  warn-
@@ -3857,6 +4017,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The program to make a pdf file from an xdv file  (used  in  con-
               junction with xelatex when $pdf_mode=5).
+
+
+
+
+                                  29 May 2021                               61
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
 
        $xdvipdfmx_silent_switch ["-q"]
               Switch(es) for the xdvipdfmx program when silent mode is on.
@@ -3886,18 +4058,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               not been found, and the file  is  given  without  an  extension.
               This  typically  happens  when  LaTeX  commands of the form \in-
               put{file} or \includegraphics{figure}, when the relevant  source
-
-
-
-                               29 September 2020                            59
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               file does not exist.
 
               In  this  situation, latexmk searches for custom dependencies to
@@ -3923,6 +4083,17 @@ CUSTOM DEPENDENCIES
        file with one extension to a file with another.  An example use of this
        would be to allow latexmk to convert a .fig file to .eps to be included
        in the .tex file.
+
+
+
+
+                                  29 May 2021                               62
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
    Defining a custom dependency:
@@ -3952,18 +4123,6 @@ CUSTOM DEPENDENCIES
        must:  If  non-zero,  the file from which we are converting must exist,
               if it doesn't exist latexmk will give an error message and  exit
               unless the -f option is specified.  If must is zero and the file
-
-
-
-                               29 September 2020                            60
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               we are converting from doesn't exist, then no action  is  taken.
               Generally, the appropriate value of must is zero.
 
@@ -3991,6 +4150,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        tects that a run of *latex needs to read a file, like a graphics  file,
        whose  extension  is the to-extension of a custom dependency.  Then la-
        texmk examines whether a file exists with the same name, but  with  the
+
+
+
+                                  29 May 2021                               63
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        corresponding  from-extension,  as  specified in the custom-dependency.
        If it does, then a corresponding instance of the custom  dependency  is
        created,  after which the rule is invoked whenever the destination file
@@ -4018,18 +4189,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        Note  for  advanced  usage: The operating system's environment variable
        TEXINPUTS can be used to specify a search path for finding files by la-
        tex  etc.   Correspondingly,  when  a missing file is reported, latexmk
-
-
-
-                               29 September 2020                            61
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        looks in the directories specified in TEXINPUTS as well as in the  cur-
        rent  directory, to find a source file from which an instance of a cus-
        tom dependency can be used to make the missing file.
@@ -4056,6 +4215,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        "fig" to "eps" files already exists (e.g., from  a  previously  read-in
        initialization  file),  the latexmk will delete this rule before making
        the new one.
+
+
+
+
+                                  29 May 2021                               64
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
 
        Suppose latexmk is using this rule to convert a  file  "figure.fig"  to
        "figure.eps".   Then  it  will invoke the fig2eps subroutine defined in
@@ -4084,18 +4255,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
            }
 
        Note  1: In the command lines given in the system commands in the above
-
-
-
-                               29 September 2020                            62
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        examples, double quotes have been inserted around the file  names  (im-
        plemented  by '\"' in the Perl language).  They immunize the running of
        the program against special characters in filenames.  Very often  these
@@ -4120,6 +4279,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        That's  the usual situation.  But since the subroutines are in the Perl
        language, you can implement much more  complicated  processing  if  you
        need it.
+
+
+
+
+
+
+                                  29 May 2021                               65
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
    Removing custom dependencies, and when you might need to do this:
@@ -4149,25 +4321,13 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        file.  This method has been available since very old  versions  of  la-
        texmk, and many examples can be found, e.g., on the web.
 
-       However  in  later  versions  of  latexmk the internal structure of the
-
-
-
-                               29 September 2020                            63
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-       implementation of its "rules" for the steps  of  processing,  including
-       custom  dependencies,  became  much more powerful.  The function imple-
-       menting a custom dependency is executed within a special context  where
-       a number of extra variables and subroutines are defined.  Publicly doc-
-       umented ones, intended to be long-term stable, are listed below,  under
-       the heading "Variables and subroutines for processing a rule".
+       However  in later versions of latexmk the internal structure of the im-
+       plementation of its "rules" for the steps of processing, including cus-
+       tom dependencies, became much more powerful.  The function implementing
+       a custom dependency is executed within a special context where a number
+       of  extra  variables  and subroutines are defined.  Publicly documented
+       ones, intended to be long-term stable,  are  listed  below,  under  the
+       heading "Variables and subroutines for processing a rule".
 
        Examples  of  their  use is given in the following examples, concerning
        multiple index files and glossaries.
@@ -4188,6 +4348,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                return system( "makeindex -o \"$_[0].nnd\" \"$_[0].ndx\"" );
            }
            push @generated_exts, 'ndx', 'nnd';
+
+
+
+                                  29 May 2021                               66
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
 
        Notice  the  added line compared with earlier examples.  The extra line
        gets the extensions "ndx" and "nnd" added to the list of extensions for
@@ -4216,18 +4387,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
            push @generated_exts, 'ndx', 'nnd', 'adx', 'and';
 
        This  last example uses the command specification in $makeindex, and so
-
-
-
-                               29 September 2020                            64
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        any customization you have made for the standard index also applies  to
        your extra indexes.
 
@@ -4256,6 +4415,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        item,  and the name of the subroutine for the custom dependency.  These
        were all defined above.
 
+
+
+                                  29 May 2021                               67
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        An example of the old method of defining custom dependencies is as fol-
        lows.  It  is  the code in an RC file to ensure automatic conversion of
        .fig files to .eps files:
@@ -4281,20 +4451,8 @@ ADVANCED CONFIGURATION: Some extra resources and advanced tricks
 
        See  also the section DEALING WITH ERRORS, PROBLEMS, ETC.  See also the
        examples in the directory example_rcfiles in the latexmk distributions.
-       Even  if  none  of  the  examples apply to your case, they may give you
-
-
-
-                               29 September 2020                            65
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-       useful ideas
+       Even if none of the examples apply to your case, they may give you use-
+       ful ideas
 
 
    Utility subroutines
@@ -4323,6 +4481,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               invoked programs.
 
 
+
+
+                                  29 May 2021                               68
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
    Variables and subroutines for processing a rule
        A step in the processing is called a rule. One possibility to implement
        the  processing  of a rule is by a Perl subroutine.  This is always the
@@ -4346,19 +4515,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $$Psource
               This gives the name of the primary source file.  Note the double
               dollar signs.
-
-
-
-
-
-                               29 September 2020                            66
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        $$Pdest
               This gives the name of the main output file if  any.   Note  the
@@ -4390,6 +4546,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        rdb_set_source( $rule, file, ... )
 
+
+
+
+                                  29 May 2021                               69
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        rdb_set_source( $rule, @files )
               This subroutine sets the dependency list for the given  rule  to
               be the specified files.  Files that are already in the list have
@@ -4413,18 +4581,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        To set all of $latex, $pdflatex, $lualatex, and $xelatex  to  a  common
        pattern,  you  can  use one of the following subroutines, std_tex_cmds,
        alt_tex_cmds, and set_tex_cmds.
-
-
-
-
-                               29 September 2020                            67
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        They work as follows
 
@@ -4456,6 +4612,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        Now the basic task of latexmk is to run  the  appropriate  programs  to
        make  a  viewable version of a LaTeX document.  However, the usual make
+
+
+
+                                  29 May 2021                               70
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        program is not suited to this purpose for at least two reasons.   First
        is that the use of LaTeX involves circular dependencies (e.g., via .aux
        files), and these cannot be handled by the standard make program.  Sec-
@@ -4479,21 +4647,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        could be quite complicated, for example if some of the source files for
        a LaTeX document are generated by the project's software.
 
-       In  this  section,  I  give  a couple of examples of how latexmk can be
-
-
-
-                               29 September 2020                            68
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-       usefully invoked from a Makefile.  The examples use  specific  features
-       of current versions of GNU make, which is the default on both linux and
+       In this section, I give a couple of examples of how latexmk can be use-
+       fully invoked from a Makefile.  The examples use specific  features  of
+       current  versions  of  GNU make, which is the default on both linux and
        OS-X systems.  They may need modifications for other versions of make.
 
        The simplest method is simply to delegate all the relevant tasks to la-
@@ -4521,13 +4677,25 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        try.tex, but these aren't specified in the Makefile, so changes in them
        will not by themselves cause latexmk to be invoked.  Instead, the  pat-
        tern  rule is equipped with a "phony" prerequisite FORCE_MAKE; this has
-       the effect of causing the rule to be always out-of-date,  so  that  la-
-       texmk  is always run.  It is latexmk that decides whether any action is
-       needed, e.g., a rerun of pdflatex.  Effectively the Makefile  delegates
-       all  decisions  to  latexmk, while make has no knowledge of the list of
-       source files except for primary LaTeX file for the  document.  If there
-       are, for example, graphics files to be made, these must be made by cus-
-       tom dependencies configured in latexmk.
+       the effect of causing the  rule  to  be  always  out-of-date,  so  that
+
+
+
+                                  29 May 2021                               71
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+       latexmk  is  always run.  It is latexmk that decides whether any action
+       is needed, e.g., a rerun of pdflatex.  Effectively the  Makefile  dele-
+       gates all decisions to latexmk, while make has no knowledge of the list
+       of source files except for primary LaTeX file for  the   document.   If
+       there  are,  for example, graphics files to be made, these must be made
+       by custom dependencies configured in latexmk.
 
        But something better is needed in more complicated situations, for  ex-
        ample, when the making of graphics files needs to be specified by rules
@@ -4546,18 +4714,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                    mkdir $@
             %.pdf : %.tex
                    if [ ! -e $(DEPS_DIR) ]; then mkdir $(DEPS_DIR); fi
-
-
-
-                               29 September 2020                            69
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
                    $(LATEXMK) -pdf -dvi- -ps- -deps-out=$(DEPS_DIR)/$@P $<
             %.pdf : %.fig
                    fig2dev -Lpdf $< $@
@@ -4588,6 +4744,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        and an xfig file "graph.fig" exists.  On a first run, pdflatex  reports
        a  missing  file, named "graph". Latexmk succeeds in making "graph.pdf"
        by calling "make graph.pdf", and after completion of its work, it lists
+
+
+
+                                  29 May 2021                               72
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        "fig.pdf" among the dependents of the file latexmk is making.  Then let
        "fig.fig" be updated, and then let make be  run.   Make  first  remakes
        "fig.pdf", and only then reruns latexmk.
@@ -4612,18 +4780,6 @@ BUGS
        manual  update (reopen); it views postscript and pdf.  Gsview under MS-
        Windows works for both postscript and pdf, but only reads  the  updated
        file  when  its  screen  is refreshed.  Acroread under UNIX/Linux views
-
-
-
-                               29 September 2020                            70
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        pdf, but the file needs to be closed and reopened to  view  an  updated
        version.   Under  MS-Windows,  acroread locks its input file and so the
        pdf file cannot be updated.  (Remedy: configure latexmk  to  use  suma-
@@ -4637,7 +4793,7 @@ THANKS TO
        dard form to avoid being harvested too easily.)
 
 AUTHOR
-       Current  version,  by John Collins (Version 4.70b).  Report bugs etc to
+       Current  version,  by John Collins (Version 4.74b).  Report bugs etc to
        his e-mail (jcc8 at psu.edu).
 
        Released     version     can      be      obtained      from      CTAN:
@@ -4657,6 +4813,13 @@ AUTHOR
 
 
 
+                                  29 May 2021                               73
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
@@ -4681,6 +4844,41 @@ AUTHOR
 
 
 
-                               29 September 2020                            71
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  29 May 2021                               74
 
 

@@ -1,5 +1,5 @@
-Latexmk, version 4.70b, 29 September 2020
------------------------------------------
+Latexmk, version 4.74b, 29 May 2021
+----------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
 document.  Essentially, it is a highly specialized cousin of the
@@ -87,7 +87,7 @@ NOTES:-
 
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
-Latexmk 4.70b: Automatic LaTeX document generation routine
+Latexmk 4.74b: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
@@ -100,8 +100,8 @@ Usage: latexmk [latexmk_options] [filename ...]
    -bibtex-cond  - use bibtex when needed, but only if the bib file exists
    -bibtex-cond1 - use bibtex when needed, but only if the bib file exists;
                    on cleanup delete bbl file only if bib file exists
-   -bibfudge     - use change-directory fudge needed for old bibtexs
-   -bibfudge-    - don't use change-directory fudge needed for old bibtexs
+   -bibfudge or -bibtexfudge - change directory to output directory when running bibtex
+   -bibfudge- or -bibtexfudge- - don't change directory when running bibtex
    -bm <message> - Print message across the page when converting to postscript
    -bi <intensity> - Set contrast or intensity of banner
    -bs <scale> - Set scale for banner
@@ -123,18 +123,24 @@ Usage: latexmk [latexmk_options] [filename ...]
    -deps-out=file - Set name of output file for dependency list,
                     and turn on showing of dependency list
    -dF <filter> - Filter to apply to dvi file
+   -dir-report  - Before processing a tex file, report aux and out dir settings
+   -dir-report- - Before processing a tex file, do not report aux and out dir settings
    -dvi   - generate dvi
    -dvi-  - turn off required dvi
    -e <code> - Execute specified Perl code (as part of latexmk start-up
                code)
+   -emulate-aux-dir  - emulate -aux-directory option for *latex
+   -emulate-aux-dir- - use -aux-directory option with *latex
    -f     - force continued processing past errors
    -f-    - turn off forced continuing processing past errors
    -gg    - Super go mode: clean out generated files (-CA), and then
             process files regardless of file timestamps
-   -g     - process regardless of file timestamps
-   -g-    - Turn off -g
+   -g     - process at least one run of all rules
+   -g-    - Turn off -g and -gg
    -h     - print help
    -help - print help
+   -indexfudge or -makeindexfudge - change directory to output directory when running makeindex
+   -indexfudge- or -makeindexfudge- - don't change directory when running makeindex
    -jobname=STRING - set basename of output file(s) to STRING.
             (Like --jobname=STRING on command line for many current
             implementations of latex/pdflatex.)
@@ -152,6 +158,8 @@ Usage: latexmk [latexmk_options] [filename ...]
    -M     - Show list of dependent files after processing
    -MF file - Specifies name of file to receives list dependent files
    -MP    - List of dependent files includes phony target for each source file.
+   -makeindexfudge - change directory to output directory when running makeindex
+   -makeindexfudge-- don't change directory to output directory when running makeindex
    -MSWinBackSlash  under MSWin use backslash (\) for directory separators
                     for filenames given to called programs
    -MSWinBackSlash-  under MSWin use forward slash (/) for directory separators
@@ -159,11 +167,17 @@ Usage: latexmk [latexmk_options] [filename ...]
    -new-viewer    - in -pvc mode, always start a new viewer
    -new-viewer-   - in -pvc mode, start a new viewer only if needed
    -nobibtex      - never use bibtex
-   -nobibfudge    - don't use change-directory fudge needed for old bibtexs
+   -nobibfudge or -nobibtexfudge - don't change directory when running bibtex
    -nodependents  - Do not show list of dependent files after processing
+   -noemulate-aux-dir - use -aux-directory option with *latex
+   -noindexfudge or -nomakeindexfudge - don't change directory when running makeindex
    -norc          - omit automatic reading of system, user and project rc files
    -output-directory=dir or -outdir=dir
                   - set name of directory for output files
+   -output-format=FORMAT
+                  - if FORMAT is dvi, turn on dvi output, turn off others
+                  - if FORMAT is pdf, turn on pdf output, turn off others
+                  - otherwise error
    -pdf   - generate pdf by pdflatex
    -pdfdvi - generate pdf by dvipdf
    -pdflatex=<program> - set program used for pdflatex.
@@ -199,6 +213,8 @@ Usage: latexmk [latexmk_options] [filename ...]
    -r <file> - Read custom RC file
                (N.B. This file could override options specified earlier
                on the command line.)
+   -rc-report  - After initialization, report names of rc files read
+   -rc-report- - After initialization, do not report names of rc files read
    -recorder - Use -recorder option for *latex
                (to give list of input and output files)
    -recorder- - Do not use -recorder option for *latex
