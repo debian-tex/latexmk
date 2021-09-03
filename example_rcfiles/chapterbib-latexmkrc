@@ -15,32 +15,33 @@ $bibtex = 'bibtex %O %S';
 $bibtex_save = $bibtex;
 $bibtex = 'internal bibtex_fix %R %D %S';
 
-# MUST NOT use bibtex_fudge (i.e., change of directory before running bibtex).
-# That's not needed in post-2019 versions of bibtex, and messes up
-# things with chapterbib.  So turn it off:
-$bibtex_fudge = 0;
-
 $clean_ext .= " %R-mod.blg %R-mod.aux %R-mod.bbl";
 
 sub bibtex_fix {
     my ($root, $dest, $source) = @_;
-    local ($base_tex, $path, $ext) = fileparse( $source, '\.[^\.]*' );
+    local ($base_bare, $path, $ext) = fileparse( $source, '\.[^\.]*' );
+    if ($path eq './') { $path = ''; }
+    local $base = $path.$base_bare;
     my $ret = 0;
-    if ( $base_tex eq $root ) {
+    if ( $base_bare eq $root ) {
         print "--- Will run bibtex on modified '$root.aux' file\n";
-        my $aux_mod_base = $path.$base_tex."-mod";
+        my $aux_mod_base = $base."-mod";
         local $out_fh = new FileHandle "> $aux_mod_base$ext";
         if (!$out_fh) { die "Cannot write to '$aux_mod_base$ext'\n"; }
         local $level = 0;
         fix_aux( $source );
         close $out_fh;
-        $ret = Run_subst( $bibtex_save, 2, undef, "$aux_mod_base.aux", undef, $aux_mod_base );
+        # Override source, dest, and basenames, since they are to have the path given
+        # in the arguments to this subroutine, instead of the path given in the
+        # corresponding names in the rule.  Latexmk may change directory before
+        # calling this subroutine, and adjusts the arguments accordingly:
+        $ret = Run_subst( $bibtex_save, 2, undef, "$aux_mod_base$ext", "$aux_mod_base.bbl", $aux_mod_base );
         foreach ( 'bbl', 'blg' ) {
            copy "$aux_mod_base.$_", "$path$root.$_";
         }
     }
     else {
-        $ret = Run_subst( $bibtex_save );
+        $ret = Run_subst( $bibtex_save, 2, undef, $source, $dest, $base );
     }
     return $ret;
 }

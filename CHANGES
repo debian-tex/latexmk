@@ -743,4 +743,38 @@ From v. 4.70a to 4.70b
     longer causes a bibtex error.
   Add options -bibfudge, -bibfudge-, -nobibfudge.
 
+From v. 4.70b to 4.72b
+  For bibtex, revert to change-directory default when running bibtex.
+  Add similar procedure for makeindex, but leave old default.
+  Add options -indexfudge, -indexfudge-, -noindexfudge.
+  Solve bug that transition from non-existent file to existent file didn't
+    trigger rerun of *latex.  (This concerns file that were flagged as
+    missing in the .log file.
+  Give .latexmkrc priority of latexmkrc in finding rc files.
+  Correct bug when chapterbib used with non-trivial out or aux dir.
+  Improve handling of situation when auxdir or outdir are specified as
+    absolute paths. 
+  Miscellaneous bug corrections, especially about consistent normalizations
 
+From v. 4.72b to 4.73
+  Correct slowness in parsing some log files.
+  Provide emulation of -aux-directory, so that it can be used with
+    implementation other than MiKTeX.  (At the moment the only documentation
+    of this feature is given by latexmk --help.)
+
+From v. 4.73 to 4.74
+  Correct treatment of aux_dir and out_dir to avoid bugs that appeared on
+    MS-Windows only.
+  Remove some informational messages (about rc files, and the state of
+    aux and dir settings after normalization).
+
+From v. 4.74 to 4.74b
+  When emulating aux_dir, put .synctex.gz .synctex files in out_dir (as
+    done by MiKTeX, and needed for their use). 
+  Turn emulate aux_dir off by default, to match behavior on older versions
+    of latexmk (BACKWARDS INCOMPATIBLE with 4.73 and 4.74.) 
+  Add end-of-all-runs warning if emulate aux_dir needed to be turned on,
+    when it was initially off. 
+  Add .synctex and .synctex.gz to list of extensions to clear by default.
+  Turn back on default to report rc files read.
+  Add options -rc-report, -rc-report-, -dir_report, -dir_report-.

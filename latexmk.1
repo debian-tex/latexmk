@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "29 September 2020" ""
+.TH LATEXMK 1 "29 May 2021" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -116,36 +116,23 @@ e.g., "latexmk -help" or "latexmk --help".
 supported engines, i.e., currently \fIlatex\fR, \fIlualatex\fR,
 \fIpdflatex\fR, \fIxelatex\fR.  Mention of a specific one of these normally
 refers that specific engines.  Earlier versions of this documentation
-weren't so consistent.
+weren't so consistent.  Which of these is used to compile a document,
+depends on the configuration and the command line arguments.
 
 \fBNote 2\fR: \fBIn addition to the options in the list below,
 \fIlatexmk\fR recognizes almost all the options recognized by the
-\fI*latex\fR in their 
+\fI*latex\fR programs in their 
 current TeXLive and MiKTeX implementations.  Some of the options for
-these programs also trigger special action or behavior by
+these programs trigger special action or behavior by
 \fIlatexmk\fR, in which case they have specific explanations in this
-document.  Otherwise, they 
-are just passed through to a called \fI*latex\fR
-program. Run \fIlatexmk\fR with the \fB-showextraoptions\fR to get a
+document; in this case they may or may not be passed to *latex as well.
+
+Run \fIlatexmk\fR with the \fB-showextraoptions\fR to get a
 list of the options that \fIlatexmk\fR accepts and that are simply
 passed through to \fI*latex\fR.  See also the
 explanation of the \fB-showextraoptions\fR option for more
 information.
 
-\fBNote 3\fR: In this documentation, the term \fI*latex\fR is often
-referred to, which refers to all the supported \fIlatex\fR-like programs,
-whether the original \fIlatex\fR, or the later \fIpdflatex\fR,
-\fIxelatex\fR, and \fIlualatex\fR.  Users should know that from
-\fIlatexmk\fR's point of view, all of these programs behave very much
-alike, with the sole exception that by default \fIlatex\fR produces a dvi
-file and all the others produce a pdf file.  \fILatexmk\fR can be easily
-configured to use whichever of these programs is needed.  See the
-documentation for the following options: \fB-pdflua\fR, \fB-pdfxe\fR,
-\fB-lualatex\fR, and \fB-xelatex\fR, and also see the documentation for the
-\fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR
-configuration variables.  At present \fIlatexmk\fR does not do automatic
-detection of which program is to be used.
- 
 
 \fBDefinitions of options and arguments\fR
 
@@ -184,7 +171,7 @@ by a backward slash "/", which is also a legal directory separator in
 Windows, and is accepted by \fIlatex\fR etc.
 
 .TP
-.B -auxdir=FOO or -aux-directory=FOO
+.B -auxdir=FOO \fRor\fB -aux-directory=FOO
 Sets the directory for auxiliary output files of *latex 
 (.aux, .log etc).  This
 achieves its effect by the \fB-aux-directory\fR option of *latex,
@@ -276,9 +263,14 @@ This property can also be configured by setting the \fI$bibtex_use\fR
 variable to 1.5 in a configuration file.
 
 .TP
-.B -bibtexfudge, -bibtexfudge-
-Turn on/off the change-directory fudge needed for old versions (pre-2019)
-of bibtex.  See documentation of \fI$bibtex_fudge\fR for details.
+.B -bibtexfudge\fR or\fB -bibfudge
+Turn on the change-directory fudge for bibtex.  See documentation of
+\fI$bibtex_fudge\fR for details.
+
+.TP
+.B -bibtexfudge-\fR or\fB -bibfudge-
+Turn off the change-directory fudge for
+bibtex.  See documentation of \fI$bibtex_fudge\fR for details.
 
 .TP
 .B -bm <message>
@@ -320,7 +312,7 @@ files specified by the \fI$clean_ext\fR and \fI@generated_exts\fR
 configuration variables are removed.
 
 This cleanup is instead of a regular make.  See the \fB-gg\fR option
-if you want to do a cleanup then a make.
+if you want to do a cleanup followed by a make.
 
 \fITreatment of .bbl files: \fR If \fI$bibtex_use\fR is set to 0 or 1,
 bbl files are always treated as non-regeneratable.  If
@@ -347,7 +339,7 @@ addition of dvi, postscript and pdf files, and those specified
 in the \fI$clean_full_ext\fR configuration variable.
 
 This cleanup is instead of a regular make.  See the \fB-gg\fR option
-if you want to do a cleanup than a make.
+if you want to do a cleanup followed by a make.
 
 See the \fB-c\fR option for the specification of whether or not .bbl
 files are treated as non-regeneratable or regeneratable. 
@@ -473,6 +465,17 @@ problems or to understand \fIlatexmk\fR's behavior in difficult
 situations. 
 
 .TP
+.B -dir-report
+For each .tex file processed, list the settings for aux and out
+directories, after they have been normalized from the settings specified
+during initialization. See the description of the variable
+\fB$aux_out_dir_report\fR for more details.
+
+.TP
+.B -dir-report-
+Do not report the settings for aux and out directories.  (Default)
+
+.TP
 .B -dvi
 Generate dvi version of document.
 
@@ -533,6 +536,22 @@ particular effect can be achieved also by the use of the \fB-latex\fR
 option with less problems in dealing with quoting.)
 
 .TP
+.B -emulate-aux-dir
+Emulate -aux-directory instead of leaving it to the *latex programs
+to do it.  (MiKTeX supports -aux-directory, but TeXLive doesn't.)
+
+For more details see the explanation for the configuration variable
+\fI$emulate_aux\fR. 
+
+.TP
+.B -emulate-aux-dir-
+Turn off emulatation -aux-directory and leave it to the *latex program
+to handle the case that aux_dir is not equal to out_dir.  Note that if you
+use TeXLive, which doesn't support -aux-directory, latexmk will
+automatically switch aux_dir emulation on after the first run of *latex,
+because it will find the .log file in the wrong place.
+
+.TP
 .B -f
 Force \fIlatexmk\fR to continue document processing despite errors.
 Normally, when \fIlatexmk\fR detects that LaTeX or another program has
@@ -544,7 +563,8 @@ rerunning of \fIlatex\fR (etc) that would be done if no errors had
 occurred.  If instead, or additionally, you want the \fIlatex\fR (etc)
 program not to pause for user input after an error, you should arrange
 this by an option that is passed to the program, e.g., by
-\fIlatexmk\fR's option \fB-interaction=nonstopmode\fR.
+\fIlatexmk\fR's option \fB-interaction=nonstopmode\fR (which \fIlatexmk\fR
+passes to \fI*latex\fR). 
 
 .TP
 .B -f-
@@ -570,7 +590,7 @@ Turn off \fB-g\fR.
 \fB-C\fR had been given, and then do a regular make.
 
 .TP
-.B -h, -help
+.B -h \fRor\fB-non-help
 Print help information.
 
 .TP
@@ -705,6 +725,16 @@ work around errors the program \fImake\fR gives if you remove header
 files without updating the Makefile to match.
 
 .TP
+.B -makeindexfudge
+Turn on the change-directory fudge for makeindex.  See documentation of
+\fI$makeindex_fudge\fR for details.
+
+.TP
+.B -makeindexfudge-
+Turn off the change-directory fudge for makeindex.  See documentation of
+\fI$makeindex_fudge\fR for details.
+
+.TP
 .B -MSWinBackSlash
 This option only has an effect when \fIlatexmk\fR is running under
 MS-Windows.  This is that when \fIlatexmk\fR runs a command under
@@ -751,9 +781,18 @@ an already-running previewer.
 Never run bibtex or biber.  Equivalent to the \fB-bibtex-\fR option.
 
 .TP
-.B -nobibtexfudge
-Turn off the change-directory fudge needed for old versions (pre-2019)
-of bibtex.  See documentation of \fI$bibtex_fudge\fR for details.
+.B -nobibtexfudge \fRor\fB -nobibfudge
+Turn off the change-directory fudge for
+bibtex.  See documentation of \fI$bibtex_fudge\fR for details.
+
+.TP
+.B -noemulate-aux-dir
+Turn aux_dir emulation off.  Same as \fI-emulate-aux-dir-\fR.
+
+.TP
+.B -nomakeindexfudge
+Turn off the change-directory fudge for makeindex.  See documentation of
+\fI$makeindex_fudge\fR for details.
 
 .TP
 .B -norc
@@ -765,7 +804,7 @@ But \fB-norc\fR is an exception to this rule: it is acted on first,
 no matter where it occurs on the command line.
 
 .TP
-.B -outdir=FOO or -output-directory=FOO
+.B -outdir=FOO \fRor\fB -output-directory=FOO
 
 Sets the directory for the output files of *latex.  This achieves
 its effect by the \fB-output-directory\fR option of *latex, which
@@ -782,6 +821,23 @@ directory names are suitable.
 If you also use the \fB-cd\fR option, and the specified output
 directory is a relative path, then the path is interpreted relative to
 the document directory.
+
+.TP
+.B -output-format=FORMAT
+This option is one that is allowed for \fIlatex\fR, \fIlualatex\fR, and
+\fIpdflatex\fR. But it is not passed to these programs.  Instead
+\fIlatexmk\fR emulates it in a way suitable for the context of
+\fIlatexmk\fR and its workflows.
+
+If FORMAT is dvi, then dvi output is turned on, and postscript and pdf
+output are turned off. This is equivalent to using the options \fB-dvi -ps-
+-pdf-\fR.
+
+If FORMAT is pdf, then pdf output is turned on, and dvi and postscript
+output are turned off. This is equivalent to using the options \fB-pdf -ps-
+-dvi-\fR.
+
+If FORMAT is anything else, \fIlatexmk\fR gives an error.
 
 .TP
 .B -p
@@ -921,7 +977,7 @@ If you already have a suitable command configured, you only need
     latexmk -pretex='\\AtBeginDocument{Message\\par}' foo.tex
 
 .TP
-.B -print=dvi, -print=ps, -print=pdf, -print=auto,
+.B -print=dvi\fR,\fB -print=ps\fR,\fB -print=pdf\fR,\fB -print=auto,
 Define which kind of file is printed.  This option also ensures that
 the requisite file is made, and turns on printing.
 
@@ -1064,6 +1120,14 @@ error results in \fIlatexmk\fR stopping.  Multiple instances of the
 the order they appear on the command line.
 
 .TP
+.B -rc-report
+After initialization, give a list of the RC files read. (Default)
+
+.TP
+.B -rc-report-
+After initialization, do not give a list of the RC files read. (Default)
+
+.TP
 .B -recorder
 Give the -recorder option with \fI*latex\fR.  In
 (most) modern versions of these programs, this results in a file of
@@ -1098,29 +1162,28 @@ are run.  These options are
 (currently) a combination of those allowed by the TeXLive and MiKTeX
 implementations.  (If a particular option is given to \fIlatexmk\fR
 but is not handled by the particular implementation of \fI*latex\fR
-that is being used, that program will probably give an
-error message.)  These options are very numerous, but are not listed
+that is being used, that program will probably give a warning or an
+error.)  These options are very numerous, but are not listed
 in this documentation because they have no effect on \fIlatexmk\fR's
 actions.
 
-There are a few options (\fB-includedirectory=dir\fR,
+There are a few options (e.g., \fB-includedirectory=dir\fR,
 \fB-initialize\fR, \fB-ini\fR) that are not recognized, either because
 they don't fit with \fIlatexmk\fR's intended operations, or because
 they need special processing by \fIlatexmk\fR that isn't implemented
 (at least, not yet).
 
-There are also options that are accepted by \fIlatex\fR etc, but
-instead trigger actions by \fIlatexmk\fR: \fB-help\fR,
-\fB-version\fR. 
-
-Finally, there are certain options for \fI*latex\fR
-(e.g., \fB-recorder\fR) that trigger special actions or behavior by
-\fIlatexmk\fR itself as well as being passed in some form to the
-called \fI*latex\fR program, or that affect other
-programs as well.  These options do have entries in this
-documentation.  These options are:
+There are certain options for \fI*latex\fR (e.g., \fB-recorder\fR) that
+trigger special actions or behavior by \fIlatexmk\fR itself. Depending on
+the action, they may also be passed in some form to the called \fI*latex\fR
+program, and/or may affect other programs as well.  These options do have
+entries in this documentation.  Among these options are:
 \fB-jobname=STRING\fR, \fB-aux-directory=dir\fR,
 \fB-output-directory=DIR\fR, \fB-quiet\fR, and \fB-recorder\fR.
+
+There are also options that are accepted by \fI*latex\fR, but
+instead trigger actions purely by \fIlatexmk\fR: \fB-help\fR,
+\fB-version\fR. 
 
 .TP
 .B -silent
@@ -1207,7 +1270,7 @@ Equivalent to \fB-pretex=CODE -usepretex\fR.  Example
   latexmk -usepretex='\\AtBeginDocument{Message\\par}' foo.tex
 
 .TP
-.B -v, -version
+.B -v \fRor\fB -version
 Print version number of \fIlatexmk\fR.
 
 .TP
@@ -1215,7 +1278,7 @@ Print version number of \fIlatexmk\fR.
 Opposite of \fB-silent\fR.  This is the default setting.
 
 .TP
-.B -view=default, -view=dvi, -view=ps, -view=pdf, -view=none
+.B -view=default\fR,\fB -view=dvi\fR,\fB -view=ps\fR,\fB -view=pdf\fR,\fB -view=none
 Set the kind of file used when previewing is requested (e.g., by the
 \fB-pv\fR or \fB-pvc\fR switches).  The default is to view the "highest"
 kind of requested file (in the low-to-high order .dvi, .ps, .pdf).  
@@ -1392,9 +1455,7 @@ and \fIlualatex\fR the document itself can override the defaults. The
 other is that there may be a configuration, or misconfiguration, such
 that the program that \fIlatexmk\fR invokes to compile the document is
 not the expected one, or is given options incompatible with what
-\fIlatexmk\fR initially expects.  (E.g., the \fB-output-format=...\fR
-option could be used with \fIlualatex\fR, or \fIxelatex\fR gets
-invoked without the \fB-no-pdf\fR option.)
+\fIlatexmk\fR initially expects.
 
 Under \fIlatex\fR and \fIpdflatex\fR, control of the output format by
 the document is done by setting the \\pdfoutput macro.  Under
@@ -1917,6 +1978,23 @@ what directory names are suitable.
 If you also use the \fB-cd\fR option, and \fI$out_dir\fR (or \fI$aux_dir\fR) contains a
 relative path, then the path is interpreted relative to the document
 directory.
+
+.TP
+.B $aux_out_dir_report [0]
+For each .tex file processed, list the settings for aux and out
+directories, after they have been normalized from the settings specified
+during initialization.
+
+This report gives a reminder of where to look for output.
+
+The report has to be done per file, because of possible directory changes
+for each file.  In the simplest cases, the result is the same as originally
+specified.  In general, e.g., with an absolute directory specified, the
+normalization helps performance and cleans up output to the screen. It also
+avoids situations where a file in the current directory is refered to by
+different names, e.g., "file.aux" and "./file.aux", which can be annoying.
+
+
 .TP
 .B $banner [0]
 If nonzero, the banner message is printed across each page when
@@ -1983,12 +2061,24 @@ Switch(es) for the biber processing program when silent mode is on.
 .B $bibtex ["bibtex %O %S"]
 The BibTeX processing program.
 .TP
-.B $bibtex_fudge [0]
-When using bibtex, whether to take special action to allow older
-versions of bibtex to
-work when $out_dir or $aux_dir is specified.  With bibtex from about 2019,
-this special action is longer be required; hence the default is not to do
-it. 
+.B $bibtex_fudge [1]
+When using bibtex, whether to change directory to $aux_dir before running
+bibtex.
+
+The need arises as follows:
+
+a. With bibtex before about 2019, if the filename given to it contains a
+path component, there was a bug that bibtex would not find extra aux files,
+as produced by the \\include command in TeX.
+
+b. With all moderately recent versions of bibtex, bibtex may refuse to
+write its bbl and blg files, for security reasons, for certain cases of the
+path component of the filename given to it.
+
+However, there are also rare cases where the change-directory method
+prevents bibtex from finding certain bib or bst files. Then
+\fI$bibtex_fudge\fR needs to be set to 0.
+
 .TP
 .B $bibtex_silent_switch ["-terse"]
 Switch(es) for the BibTeX processing program when silent mode is on.
@@ -2074,7 +2164,7 @@ possible to use wildcards.  Thus setting
 
 in an initialization file will imply that when a clean-up operation is
 specified, not only is the standard set of files deleted, but also
-files of the form FOO.out, FOO-blx.bib, %R-figures*.log, and
+files of the form FOO.out, FOO-blx.bib, FOO-figures*.log, and
 pythontex-files-FOO/*, where FOO stands for the basename of the file
 being processed (as in FOO.tex).
 
@@ -2238,6 +2328,7 @@ Whether to display a list(s) of dependencies at the end of a run.
 Name of file to receive list(s) of dependencies at the end of a run,
 to be used if \fI$dependesnt_list\fR is set.  If the filename is "-",
 then the dependency list is set to stdout (i.e., normally the screen).
+
 .TP
 .B $do_cd [0]
 Whether to change working directory to the directory specified for the
@@ -2281,7 +2372,7 @@ The command to invoke a dvi-previewer in landscape mode.
 use the MS-Windows \fIstart\fR program, which will cause to be run
 whatever command the system has associated with .dvi files.]
 .TP
-.B $dvipdf ["dvipdf %O %S %D"]
+.B $dvipdf ["dvipdf -dALLOWPSTRANSPARENCY %O %S %D"]
 Command to convert .dvi to .pdf file.  A common reconfiguration is to
 use the dvipdfm command, which needs its arguments in a different order:
 
@@ -2348,6 +2439,22 @@ The number of the signal that is sent to the dvi viewer when it is
 updated by sending a signal -- see the information on the variable
 \fI$dvi_update_method\fR.  The default value is the one appropriate
 for \fIxdvi\fR on a UNIX system.
+.TP
+.B $emulate_aux [0]
+Whether to emulate the use of aux_dir when $aux_dir and $out_dir are
+different, rather than using the -aux-directory option for the *latex
+programs.  (MiKTeX supports -aux-directory, but TeXLive doesn't.)
+
+If you use a version of *latex that doesn't support -aux-directory, e.g.,
+TeXLive, latexmk will automatically switch aux_dir emulation on after the
+first run of *latex, because it will find the .log file in the wrong
+place.
+
+Aux_directory emulation means that when *latex is invoked, the \fIoutput\fR
+directory provided to *latex is set to be the aux_dir. After that, any
+files that need to be in the output directory will be moved there. (These
+are the files with extensions .dvi, .ps, .pdf, .fls, .synctex, .synctex.gz.) 
+
 .TP
 .B $failure_cmd [undefined]
 See the documentation for \fI$compiling_cmd\fR.
@@ -2693,6 +2800,12 @@ The make processing program.
 .B $makeindex ["makeindex %O -o %D %S"]
 The index processing program.
 .TP
+.B $makeindex_fudge [0]
+When using makeindex, whether to change directory to $aux_dir before running
+makeindex.  Set to 1 if $aux_dir is not an explicit subdirectory of current
+directory, otherwise makeindex will refuse to write its output and log
+files, for security reasons. 
+.TP
 .B $makeindex_silent_switch ["-q"]
 \fBSwitch(es)\fR for the index processing program when silent mode is on.
 .TP
@@ -2970,7 +3083,7 @@ OS-X, and
 "ps -f -u $ENV{USER}" under other operating systems (including Linux).
 In these specifications "$ENV{USER}" is substituted by the username.
 .TP
-.B $ps2pdf ["ps2pdf  %O %S %D"]
+.B $ps2pdf ["ps2pdf -dALLOWPSTRANSPARENCY %O %S %D"]
 Command to convert .ps to .pdf file.  
 .TP
 .B $ps_filter [empty]
@@ -3054,6 +3167,9 @@ spaces.  (But note that many versions of \fI*latex\fR cannot
 correctly deal with TeX files whose names contain spaces.  \fILatexmk\fR's
 quoting only ensures that such filenames are correctly treated by the
 operating system in passing arguments to programs.)
+.TP
+.B $rc_report [1]
+After initialization, whether to give a list of the RC files read.
 .TP
 .B $recorder [1]
 Whether to use the \fB-recorder\fR option to \fI(latex\fR
@@ -3879,7 +3995,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.70b).
+(Version 4.74b).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
