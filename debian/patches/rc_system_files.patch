@@ -4,9 +4,11 @@ Description: add /etc/LatexMk to @rc_system_files
  latexmk.pl |    3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
---- a/latexmk.pl
-+++ b/latexmk.pl
-@@ -1043,7 +1043,8 @@ else {
+Index: latexmk/latexmk.pl
+===================================================================
+--- latexmk.orig/latexmk.pl	2021-09-03 20:37:50.198145450 +0200
++++ latexmk/latexmk.pl	2021-09-03 20:37:50.190145480 +0200
+@@ -844,7 +844,8 @@
      @rc_system_files = ();
      foreach ( 'LatexMk', 'latexmkrc' ) {
         push @rc_system_files,

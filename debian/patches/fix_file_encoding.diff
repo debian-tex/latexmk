@@ -7,8 +7,8 @@ Last-Update: 2021-01-21
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 Index: latexmk/example_rcfiles/texinfo-latexmkrc
 ===================================================================
---- latexmk.orig/example_rcfiles/texinfo-latexmkrc	2021-01-21 14:24:12.000000000 -0500
-+++ latexmk/example_rcfiles/texinfo-latexmkrc	2021-01-21 14:24:41.787420897 -0500
+--- latexmk.orig/example_rcfiles/texinfo-latexmkrc	2021-09-03 20:38:45.929931041 +0200
++++ latexmk/example_rcfiles/texinfo-latexmkrc	2021-09-03 20:38:45.921931074 +0200
 @@ -1,5 +1,5 @@
  # Modifications 2015 Sep 9-10, John Collins
 -# Copyright 2014 Vincent Belaïche <vincent.b.1@hotmail.fr>
