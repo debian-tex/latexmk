@@ -1,7 +1,13 @@
-latexmk (1:4.70b-0.3) UNRELEASED; urgency=medium
+latexmk (1:4.74b-0.1) UNRELEASED; urgency=medium
+
+  * NMU
 
   [ John Scott ]
   * Add Multi-Arch: foreign in accordance with the hint.
+
+  [ Hilmar Preusse ]
+  * New upstream version 4.74b
+  * refresh patches
 
  -- OHURA Makoto <ohura@debian.org>  Tue, 26 Jan 2021 11:23:49 -0500
 
