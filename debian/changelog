@@ -4,6 +4,7 @@ latexmk (1:4.75-0.1) UNRELEASED; urgency=medium
 
   [ John Scott ]
   * Add Multi-Arch: foreign in accordance with the hint.
+    (Closes: #995112)
 
   [ Hilmar Preusse ]
   * New upstream version 4.75
