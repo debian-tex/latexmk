@@ -1,6 +1,6 @@
             INSTALLING latexmk
             ==================
-      (Version 4.74b, 29 May 2021)
+      (Version 4.75, 21 Sep. 2021)
 
             John Collins
             Physics Department
@@ -29,11 +29,11 @@ presumably be used on other systems with suitable customization.
 
 On all systems, the prequisites are
 
-a.  A working installation of Perl.  (See http://www.cpan.org/ if you
-    don't have one.  Modern UNIX-like systems, particularly linux and
-    OS-X, normally have perl installed by default.  As for MSWindows,
-    the TeXLive distribution (2009 or later) includes Perl, and also
-    includes latexmk.)
+a.  A working installation of Perl.  (See http://www.cpan.org/ if you don't
+    have one.  Modern UNIX-like systems, particularly linux and OS-X, often
+    have perl installed by default.  As for MSWindows, the TeXLive
+    distribution (2009 or later) includes Perl, and in the default
+    configuration also includes latexmk.)
 
 b.  A working installation of TeX and LaTeX.  (See http://www.ctan.org/ if
     you don't have one.)
@@ -69,28 +69,27 @@ latexmk installed, the same as for any other missing package.
 If you are on MS-Windows and you are using TeXLive (2009, or later),
 this distribution also includes a distribution of Perl sufficient to
 run latexmk.pl, so you don't need to install Perl separately.  It also
-includes an executable file latexmk.exe that runs latexmk, so you
-don't have to use the latexmk.bat that is part of the latexmk
-distribution.
+includes an executable file latexmk.exe that runs latexmk.
 
 In the case of MiKTeX, the other standard distribution for MS-Windows,
 the main difference from TeXLive as regards latexmk is that you may
 need to install a distribution of Perl. A standard default
 installation of Perl should enable latexmk to work.
 
+BUT, you may need to configure latexmk to
 
-Installing on UNIX/LINUX/OS-X
-=============================
 
-(Power users can modify these as appropriate.)
+**Manual** installation on UNIX/LINUX/OS-X
+==========================================
+
+(Power users can modify these as appropriate, of course.)
 
 NOTE: If you are using TeXLive 2009 or later, you can install latexmk
 simply by using the TeXLive package manager (that includes users of
-MacTeX on OS-X).  In fact, depending on how much of TeXLive you have
-already installed, latexmk may already have been installed.  In that
-case you don't normally need to bother with the manual installation
-explained below.  Still you may need to examine the configuration
-instructions.
+MacTeX).  In fact, depending on how much of TeXLive you have already
+installed, latexmk may already have been installed.  In that case you don't
+normally need to bother with the manual installation explained below.
+Still you may need to examine the configuration instructions see item 6.
 
 1.  Make sure you have working installations of Perl and TeX/LaTeX.
 
@@ -104,15 +103,15 @@ instructions.
 3.  Rename this file to latexmk.
 
 4.  Make sure latexmk is executable, e.g., by using chmod suitably.
-        [Special case, which you probably don't have to be concerned
-        with: You may also find it necessary to change the first line
-        of the script so that perl can be found to execute latexmk.
-        Currently the first line is #!/usr/bin/env perl, which uses
-        the program /usr/bin/env to find perl, provided only that the
-        perl executable can be found in the PATH for executables.
-        This insulates latexmk from the fact that the Perl executable
-        has a system-dependent location. The program /usr/bin/env is
-        present on almost all modern UNIX/Linux systems.]
+        [Special case, which you probably don't have to be concerned with:
+        You **may** also find it necessary to change the first line of the
+        script so that perl can be found to execute latexmk.  Currently the
+        first line is #!/usr/bin/env perl, which uses the program
+        /usr/bin/env to find perl, provided only that the perl executable
+        can be found in the PATH for executables.  This insulates latexmk
+        from the fact that the Perl executable has a system-dependent
+        location. The program /usr/bin/env is present on almost all modern
+        UNIX-type systems, including linux and macOS.]
 
 5.  (Optional) Copy the file latexmk.1 to an appropriate directory for man
     pages, e.g., /usr/local/man/man1/.
@@ -120,34 +119,47 @@ instructions.
     Alternatively, or in addition, put the file latexmk.pdf in a
     suitable place for pdf files for documentation.
 
-6.  Check whether the commands used by latexmk for executing latex etc
-    are correct.  The ones you particularly have to worry about are
-    those for previewing files ($pdf_previewer, $ps_previewer, and
-    $dvi_previwer), and most importantly $pscmd, and its associated
-    variable $pid_position --- see below.  The command $pscmd is the
-    least obvious: it runs the command ps and is used in
-    preview_continuous_mode to determine whether a previewer is
-    already running.  The format of the output of ps is highly system
-    dependent.  Latexmk should get it right under LINUX and OS-X.
-    If latexmk does not get this or another command correct, put an
+6.  Check whether the commands used by latexmk for executing latex etc are
+    correct or need changes.  See below for how to do this in a
+    configuration file, and the documentation for further information.
+
+    The commands you particularly have to worry about are those for
+    previewing files (set by the variables $pdf_previewer, $ps_previewer,
+    and $dvi_previwer), and most importantly $pscmd, and its associated
+    variable $pid_position --- see below.  The command $pscmd is the least
+    obvious: it runs the command ps and is used in preview_continuous_mode
+    to determine whether a previewer is already running.  The format of the
+    output of ps is highly system dependent.  Latexmk should get it right
+    under LINUX and macOS.
+
+    To know what the current settings are, run
+
+       latexmk --commands
+
+    from the command line.
+
+    If latexmk does not get one of more of these commands correct, put an
     override in a startup file:
 
     a.  For a system-wide installation, the correction should be in the
-        system startup file, which is any one of the files
+        system startup file, which on a UNIX-like operating system is any
+        one of
+        
            /opt/local/share/latexmk/LatexMk,
            /usr/local/share/latexmk/LatexMk,
            /usr/local/lib/latexmk/LatexMk,
            /opt/local/share/latexmk/latexmkrc,
            /usr/local/share/latexmk/latexmkrc,
            /usr/local/lib/latexmk/latexmkrc.
+           
         (You get to choose which, but only one.  If none of these
         directories is appropriate you'll need to modify latexmk.pl.)
 
-        Those directories apply to Unix-like operating systems
-        (including linux and OS-X).  On MS-Windows, the system
-        start-up file is one of C:\latexmk\LatexMk
-        C:\latexmk\latexmkrc  (If you happen to use Cygwin, latexmk
-        combines both the MS-Windows and the Unix possibilities.)
+        Those directories apply to Unix-like operating systems (including
+        linux and macOS).  On MS-Windows, the system start-up file is one
+        of C:\latexmk\LatexMk C:\latexmk\latexmkrc (If you happen to use
+        Cygwin, latexmk combines both the MS-Windows and the Unix
+        possibilities.)
 
     b.  If you are installing latexmk as an ordinary user, the startup
         file is the user startup file, which is the file .latexmkrc in
@@ -173,13 +185,9 @@ instructions.
 
     for the ps command.  Here, $pid_position = 1 indicates that the
     process ID number is in the first column of the output of the
-    command ps.  See the latexmk.pl file for some more examples.
+    command ps.
 
-    To determine what commands latexmk currently uses run the
-    following: 
-
-        latexmk --commands
-
+    See the latexmk documentation for more details.
 
 7.  If you need any modifications on the commands for running previewers,
     like gv, note that prefixing a command by start, as in 
@@ -205,13 +213,12 @@ instructions.
             $postscript_mode = 0;
             $dvi_mode = 0;
 
-    This change is particularly useful for Mac OS-X.  See step 6 for
-    the locations of the initialization/configuration files (under
-    UNIX-like systems), where you should put this lines.
+    See step 6 for the locations of the initialization/configuration files
+    where you should put these lines.
 
 
-Installing on MS-Windows
-========================
+**Manual** Installation on MS-Windows
+=====================================
 
 (Power users can modify these as appropriate.)
 
@@ -226,70 +233,33 @@ MiKTeX's package manager.  But to allow latexmk to work, you will also
 need to install a distribution of Perl if you haven't done so already.
 
 1.  Make sure you have working installations of Perl and TeX/LaTeX,
-    complete with viewers for dvi and/or postscript files.  You will
+    complete with viewers for dvi, postscript and/or pdf files.  You will
     also need whatever packages your document needs.
 
-2.  If necessary, unpack the latexmk distribution.  [Note: It is a
-    good idea to unpack the files so that they have the correct
-    line-end characters for MS-Windows.  For example, if you use unzip
-    on latexmk.zip, the command unzip -a latexmk.zip should do the
-    job.  If you don't do this conversion, it probably won't matter,
-    since much software, including Perl, MikTeX and emacs, handles
-    MS-Windows and UNIX line ends equally well.]
+2.  If necessary, unpack the latexmk distribution.  
 
-3.  Copy the files latexmk.pl and latexmk.bat to a suitable directory
-    (your choice).  One possibility is a directory C:\local\bin.  You will
-    need to make sure this directory in the search path for executable
-    files --- see the next step.   
+3.  **Difference compared with UNIX-type systems**: Copy the file
+    latexmk.pl to a suitable directory (your choice), and arrange for it to
+    be invoked as a command.  (If you don't know how to do this, find out
+    about "executable extension for perl on windows", by a web search.)
 
 4.  If the directory in the previous step is NOT already in the search
     path for executable files, arrange for this, by adjusting the
-    environment variable PATH suitably.  Suppose the latexmk directory
-    is C:\local\bin.   (Warning: the exact details of the instructions
-    below are subject to change as new versions of MS-Windows come out,
-    so you may need to do some exploration to find the equivalents of
-    the instructions under other versions; the principles remain
-    unchanged.) 
+    environment variable PATH suitably.
 
-    a. In Windows XP, there is an item in the Control Panel to adjust
-       the environment: normally Control Panel -> Performance and
-       Maintenance -> System.  The pick the tab Advanced and click on
-       Environment Variables.  
+    In Windows, there is a Control Panel setting for this.  (Should be
+    under Advanced system settings->Environment variables.)
 
-       (i) If you are a REGULAR user, examine the User variables.  If
-           there is already an entry for PATH, append a semicolon and
-           then the name of latexmk's directory (e.g., C:\local\bin).
-           If not, then make a new variable named PATH with the value
-           %PATH%;C:\local\bin  
-
-       (ii) If you are an administrator, examine the System variables,
-            and adjust the entry to PATH, as above.
-
-    b. OBSOLETE: ONLY in Windows 95, 98 and ME: you will need to add a
-       line to the end of the C:\AUTOEXEC.BAT file.  Suppose the
-       directory for latexmk is named C:\local\bin, then the line you
-       add is
-
-              PATH %PATH%;C:\local\bin
-      
-       This change will take effect the next time you reboot.
-    
 5.  (Optional) Copy documentation file(s) to a suitable directory.  The
     only requirement on the directory is your convenience: some convenient
     place to look up documentation. The relevant files are latexmk.txt
     which is a pure ASCII text file, and latexmk.pdf which is a postscript
     file.  
 
-6.  Check whether perl is in the search path for executables.  (E.g.,
-    from the MS-Windows command-line prompt, try the command perl
-    --version.) If perl is not in the search path, then modify the
-    first line of latexmk.bat (which you installed at step 2) by
-    replacing the command perl by the full path name for perl, e.g.,
-    C:\perl\bin\perl.exe.
+6.  You may need to reboot, or at least logoff and log back in, if you made
+    any changes to PATH.
 
-7.  You may need to reboot, or at least logoff and log back in, if you
-    made any changes to the path at step 3.  Test out the installation
-    at the command-line prompt:
+7.  Test out the installation at the command-line prompt:
 
     a. First do
 
@@ -377,7 +347,7 @@ Tricky points
     characters.  There are some tricky problems because of mismatches
     between character codings as used by different software and
     operating systems.  Latexmk tries to do its best, but problems can
-    arise.  
+    arise.  Often things work without trouble.
 
 4.  If you need to remake documentation files, e.g., latexmk.pdf or
     latexmk.txt, from the man page file latexmk.1, the following
