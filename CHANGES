@@ -778,3 +778,8 @@ From v. 4.74 to 4.74b
   Add .synctex and .synctex.gz to list of extensions to clear by default.
   Turn back on default to report rc files read.
   Add options -rc-report, -rc-report-, -dir_report, -dir_report-.
+
+From v. 4.74 to 4.74b
+  For biber, add any dependency on configuration file.
+  When -time option used, report running times for all rules
+

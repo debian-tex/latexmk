@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "29 May 2021" ""
+.TH LATEXMK 1 "21 September 2021" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -252,7 +252,7 @@ Note that this value does \fInot\fR work properly if the document uses
 
 .TP
 .B -bibtex-cond1
-The same as \fB-bibtex-cond1\fR except that .bbl files are only
+The same as \fB-bibtex-cond\fR except that .bbl files are only
 treated as precious if one or more bibfiles fails to exist.
 
 Thus if all the bib files exist, \fIbibtex\fR or \fIbiber\fR is run to
@@ -1125,7 +1125,7 @@ After initialization, give a list of the RC files read. (Default)
 
 .TP
 .B -rc-report-
-After initialization, do not give a list of the RC files read. (Default)
+After initialization, do not give a list of the RC files read.
 
 .TP
 .B -recorder
@@ -3995,7 +3995,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.74b).
+(Version 4.75).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:

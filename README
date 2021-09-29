@@ -1,5 +1,5 @@
-Latexmk, version 4.74b, 29 May 2021
-----------------------------------
+Latexmk, version 4.75, 21 Sep 2021
+---------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
 document.  Essentially, it is a highly specialized cousin of the
@@ -19,10 +19,10 @@ bibliographies, the current version now supports biber as well as the
 traditional bibtex.  Which of bibtex or biber to use is determined
 automatically.
 
-Please read the man page (or the corresponding text or postscript
-file) for details of what latexmk does and what all the features are.
-A copy of the fast help that can be seen by doing "latexmk -h" is at
-the end of this file.
+Please read the man page (or the corresponding text or postscript file) for
+details of what latexmk does and what all the features are.  A copy of the
+fast help that can be seen by running "latexmk -h" is at the end of this
+file.
 
 Latexmk is a perl script.  It is licensed under the GNU General Public
 License v. 2.
@@ -47,47 +47,24 @@ NOTES:-
 
 1) See the INSTALL file for installation instructions
 
-2) Portability under various UNIX-type systems (including Linux):
-   A special hack is used at the beginning of the latexmk script to ensure
-   that it correctly runs without the need to adjust a #! line.  All that
-   is necessary is that the script has execute permission.
+2) The main portability/non-portability issues: The various commands to
+   process LaTeX files may often need to be changed for particular
+   installations.  See the INSTALL file and the documentation for
+   information on customization.
 
-3) Portability under non-UNIX systems:
-   Under other operating systems some other arrangement needs to be made
-   to run the file.  For example under MS-Windows, the supplied batch file
-   latexmk.bat will do this.  Under current TeXLive (2009 or later)
-   distribution, latexmk can be installed by TeXLive's package
-   manager, in which case an executable program is also installed to
-   run latexmk.pl, and an appropriate version of Perl is part of the
-   TeXLive system.  
+3) Availability:
 
-   You may also find it necessary to convert files to the correct
-   local format for text files.  As downloaded, the files are in UNIX
-   format (line-ending is '\n').  On MS-Windows systems, the
-   conversion to MSDOS format (with line-ending '\r\n') is normally
-   UNnecessary, since much current software handles the UNIX format
-   correctly.  (The known current software for which this statement
-   applies includes MikTeX, TeXLive, emacs.)
+   a. In the TeXLive and MiKTeX distributions.
 
-4) Portability:  The various commands to process LaTeX files made need to
-   be changed for particular installations.  See the INSTALL file and the
-   documentation for information on customization.  
+   b. On the CTAN tex archive --- see http://www.ctan.org/pkg/latexmk
 
-5) Portability: Users of different UNIX-like systems may have to change
-   the "$pscmd" variable in their RC file if the -pvc option is to work
-   perfectly.  Refer to $pscmd in the man page.
-
-6) Latexmk can be downloaded from the author's site at
-   http://www.personal.psu.edu/jcc8/latexmk/
-   This site also includes previous versions, and sometimes newer
-   versions under development.
-
-7) Latexmk is archived on the CTAN tex archive --- see
-   http://www.ctan.org/pkg/latexmk  
+   c. From the author's site at http://www.personal.psu.edu/jcc8/latexmk/
+   This site also includes previous versions, and sometimes newer versions
+   under development.
 
 John Collins
 ---------------------------- "latexmk -h" ----------------------------
-Latexmk 4.74b: Automatic LaTeX document generation routine
+Latexmk 4.75: Automatic LaTeX document generation routine
 
 Usage: latexmk [latexmk_options] [filename ...]
 
