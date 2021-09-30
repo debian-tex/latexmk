@@ -1,4 +1,4 @@
-latexmk (1:4.75-0.1) UNRELEASED; urgency=medium
+latexmk (1:4.75-0.1) unstable; urgency=medium
 
   * NMU
 
@@ -10,7 +10,7 @@ latexmk (1:4.75-0.1) UNRELEASED; urgency=medium
   * New upstream version 4.75
   * refresh patches
 
- -- Hilmar Preusse <hille42@web.de>  Wed, 29 Sep 2021 23:41:56 +0200
+ -- Norbert Preining <norbert@preining.info>  Thu, 30 Sep 2021 16:42:13 +0900
 
 latexmk (1:4.70b-0.2) unstable; urgency=medium
 
