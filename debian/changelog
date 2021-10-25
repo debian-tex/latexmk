@@ -1,3 +1,16 @@
+latexmk (1:4.75-1) unstable; urgency=medium
+
+  [ Hilmar Preusse ]
+  * Fixes for
+    I: debian-watch-uses-insecure-uri
+    I: older-debian-watch-file-standard
+
+  [ Norbert Preining ]
+  * Change maintainer to the Debian TeX Task Force (Closes: #995683)
+  * Bump standards version to 4.6.0, no changes necessary.
+
+ -- Norbert Preining <norbert@preining.info>  Mon, 25 Oct 2021 11:01:02 +0900
+
 latexmk (1:4.75-0.1) unstable; urgency=medium
 
   * NMU
