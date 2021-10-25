@@ -5,7 +5,7 @@ Build-Depends: debhelper-compat (= 12)
 Maintainer: Debian TeX Task Force <debian-tex-maint@lists.debian.org>
 Uploaders: Hilmar Preusse <hille42@web.de>,
            Norbert Preining <norbert@preining.info>
-Standards-Version: 4.5.0
+Standards-Version: 4.6.0
 Homepage: https://personal.psu.edu/jcc8/software/latexmk-jcc/
 Vcs-Git: https://github.com/debian-tex/latexmk.git
 Vcs-Browser: https://github.com/debian-tex/latexmk
