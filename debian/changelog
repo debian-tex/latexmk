@@ -1,3 +1,10 @@
+latexmk (1:4.75-2) UNRELEASED; urgency=medium
+
+  * Lintian:
+    I: typo-in-manual-page 
+
+ -- Hilmar Preusse <hille42@web.de>  Mon, 01 Nov 2021 23:38:06 +0100
+
 latexmk (1:4.75-1) unstable; urgency=medium
 
   [ Hilmar Preusse ]
