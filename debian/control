@@ -6,6 +6,7 @@ Maintainer: Debian TeX Task Force <debian-tex-maint@lists.debian.org>
 Uploaders: Hilmar Preusse <hille42@web.de>,
            Norbert Preining <norbert@preining.info>
 Standards-Version: 4.6.0
+Rules-Requires-Root: no
 Homepage: https://personal.psu.edu/jcc8/software/latexmk-jcc/
 Vcs-Git: https://github.com/debian-tex/latexmk.git
 Vcs-Browser: https://github.com/debian-tex/latexmk
@@ -20,6 +21,6 @@ Description: Perl script for running LaTeX the correct number of times
  Latexmk runs LaTeX the correct number of times to resolve cross references,
  etc; it also runs auxiliary programs (bibtex, makeindex if necessary, and
  dvips and/or a previewer as requested). It has a number of other useful
- capabilities, for example to start a previewer and then run latex whenever the
+ capabilities, for example to start a previewer and then run LaTeX whenever the
  source files are updated, so that the previewer gives an up-to-date view of
  the document.
