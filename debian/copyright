@@ -1,22 +1,39 @@
-This is the Debian package for Latexmk. It was created by
-Florian Ragwitz <rafl@debian.org> on Mon, 12 Jun 2006 00:53:53 +0200
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: latexmk
+Source: https://personal.psu.edu/~jcc8/software/latexmk/versions.html
 
-It was downloaded from http://personal.psu.edu/~jcc8/software/latexmk/versions.html
+Files: *
+Copyright: 1992, David J. Musliner and The University of Michigan
+           1998-2001, Evan McLean
+           1998-2020, John Collins <jcc8@psu.edu>
+           1998-2020, David Coppit <david@coppit.org>
+License: GPL-2+
 
+Files: debian/*
+Copyright: 2006, Florian Ragwitz <rafl@debian.org>
+           2006-2015, Ohura Makoto <ohura@debian.org>
+           2018-2021, Norbert Preining <preining@debian.org>
+           2020-2021, Hilmar Preuße <hille42@web.de>
+License: GPL-2+
 
-## Copyright John Collins 1998-2020
-##           (username jcc8 at node psu.edu)
-##      (and thanks to David Coppit (username david at node coppit.org) 
-##           for suggestions) 
-## Copyright Evan McLean
-##         (modifications up to version 2)
-## Copyright 1992 by David J. Musliner and The University of Michigan.
-##         (original version)
-##
-##    This program is free software; you can redistribute it and/or modify
-##    it under the terms of the GNU General Public License as published by
-##    the Free Software Foundation; either version 2 of the License, or
-##    (at your option) any later version.
-
-On Debian GNU/Linux systems, the complete text of the GNU General
-Public License can be found in `/usr/share/common-licenses/GPL'.
+License: GPL-2+
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later
+ version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
