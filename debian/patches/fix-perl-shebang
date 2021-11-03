@@ -1,3 +1,9 @@
+Description: Fix shebang for new perl policy
+Origin: Norbert Preining <preining@debian.org>
+Forwarded: No. Patch is specific to Debian.
+Author: Norbert Preining <preining@debian.org>
+Last-Update: 20210929
+
 ---
  latexmk.pl |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

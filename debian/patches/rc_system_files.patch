@@ -1,5 +1,9 @@
-Author: Florian Ragwitz <rafl@debian.org>
 Description: add /etc/LatexMk to @rc_system_files
+Author: Florian Ragwitz <rafl@debian.org>
+Origin: Florian Ragwitz <rafl@debian.org>
+Forwarded: Not yet.
+Last-Update: 20210929
+
 ---
  latexmk.pl |    3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)

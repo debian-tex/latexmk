@@ -1,3 +1,9 @@
+Description: Replace specific commands by Debian commands.
+Origin: Norbert Preining <preining@debian.org>
+Forwarded: No. Patch is specific to Debian.
+Author: Norbert Preining <preining@debian.org>
+Last-Update: 20210929
+
 ---
  latexmk.pl |   14 ++++++++------
  1 file changed, 8 insertions(+), 6 deletions(-)
