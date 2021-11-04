@@ -8,6 +8,8 @@ latexmk (1:4.75-2) UNRELEASED; urgency=medium
     P: no-dep5-copyright
     P: latexmk source: package-uses-old-debhelper-compat-version 12
     Override: I: acute-accent-in-manual-page
+  * Do not install latexmk.txt & latexmk.pdf, they are pre-formatted
+    man pages.
 
  -- Hilmar Preusse <hille42@web.de>  Mon, 01 Nov 2021 23:38:06 +0100
 
