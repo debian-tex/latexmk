@@ -1,0 +1,15 @@
+Document: latexmk-readme
+Title: README for latexmk
+Author: John Collins
+Abstract: Latexmk completely automates the process of generating a LaTeX
+ document.  Essentially, it is a highly specialized cousin of the
+ general make utility.  Given the source files for a document, latexmk
+ issues the appropriate sequence of commands to generate a .dvi, .ps,
+ .pdf or hardcopy version of the document, including repeated running
+ of the programs until cross references etc are resolved.  Latexmk can also
+ be set to run continuously with a previewer; the LaTeX program, etc,
+ are rerun whenever one of the source files is modified.
+Section: Typesetting
+
+Format: Text
+Files: /usr/share/doc/latexmk/README.gz

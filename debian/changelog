@@ -4,6 +4,7 @@ latexmk (1:4.75-2) UNRELEASED; urgency=medium
     I: typo-in-manual-page
     I: capitalization-error-in-description
     I: quilt-patch-missing-description
+    I: possible-documentation-but-no-doc-base-registration
     P: silent-on-rules-requiring-root
     P: no-dep5-copyright
     P: latexmk source: package-uses-old-debhelper-compat-version 12
