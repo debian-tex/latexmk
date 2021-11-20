@@ -1,7 +1,7 @@
 Description: Change file encoding from ISO-8859 to UTF-8
 Author: Ryan Kavanagh <rak@debian.org>
 Origin: Debian
-Forwarded: Not yet.
+Forwarded: Yes.
 Last-Update: 2021-01-21
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
