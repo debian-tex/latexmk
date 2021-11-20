@@ -1,5 +1,1 @@
 - make latexmk.pdf texdoc findable by installing it into /u/s/texmf/doc
-
-hille@debian-amd64-sid:~/devel/TeXLive/git/github$ lintian -I --pedantic latexmk_4.75-2_all.deb
-I: latexmk: possible-documentation-but-no-doc-base-registration
-N: 3 hints overridden (3 info); 0 unused overrides
