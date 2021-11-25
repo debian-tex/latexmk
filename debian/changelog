@@ -1,10 +1,10 @@
-latexmk (1:4.76-1) UNRELEASED; urgency=medium
+latexmk (1:4.76-1) unstable; urgency=medium
 
-  * New upstream release, deactivate obsolete patches.
-  * Remove "Override: I: acute-accent-in-manual-page"
-    Quote backslashes in manual page correctly.
+  * New upstream release, deactivate obsolete patches, refresh needed.
+  * Remove "Override: I: acute-accent-in-manual-page", correct manual
+    page accordingly.
 
- -- Hilmar Preusse <hille42@web.de>  Mon, 22 Nov 2021 23:10:59 +0100
+ -- Hilmar Preusse <hille42@web.de>  Thu, 25 Nov 2021 23:30:41 +0100
 
 latexmk (1:4.75-2) unstable; urgency=medium
 
