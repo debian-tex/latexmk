@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "21 September 2021" ""
+.TH LATEXMK 1 "20 November 2021" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -1487,7 +1487,7 @@ are met.
 The first is that \fIlatexmk\fR's \fI$allow_switch\fR configuration
 variable is set to a non-zero value as it is by default.  If this
 variable is zero, a mismatch of filetypes in the compilation results
-in an erro.
+in an error.
 
 The second condition for \fIlatexmk\fR to be able to handle a change
 of output type is that no explicit requests for .dvi or .ps output
@@ -1524,21 +1524,22 @@ be configured and how.
 read at startup in the following order:
 .PP
 1) The system RC file, if it exists.  
-   On a UNIX system, \fIlatexmk\fR searches for following places for its
-system RC file, in the following order, and reads the first it finds:
-   "/opt/local/share/latexmk/LatexMk",
-   "/usr/local/share/latexmk/LatexMk",
-   "/usr/local/lib/latexmk/LatexMk".
-   On a MS-Windows system it looks for "C:\\latexmk\\LatexMk".
+   On a UNIX system, \fIlatexmk\fR searches the following directories for a
+   system RC file, which may be named either "LatexMk" or "latexmkrc".  The
+   directories are searched in the following order, and \fIlatexmk\fR uses
+   the first such file it finds (if any):
+   "/etc",
+   "/opt/local/share/latexmk",
+   "/usr/local/share/latexmk",
+   "/usr/local/lib/latexmk".
+   On a MS-Windows system it looks just in "C:\\latexmk".
    On a cygwin system (i.e., a MS-Windows system in which Perl is
-that of cygwin), \fIlatexmk\fR reads the first it finds of
-   "/cygdrive/c/latexmk/LatexMk",
-   "/opt/local/share/latexmk/LatexMk",
-   "/usr/local/share/latexmk/LatexMk",
-   "/usr/local/lib/latexmk/LatexMk".
-
-In addition, it then tries the same set of locations, but with the
-file name replaced "LatexMk" replaced by "latexmkrc".
+that of cygwin), \fIlatexmk\fR looks in the directories
+   "/cygdrive/c/latexmk",
+   "/etc",
+   "/opt/local/share/latexmk",
+   "/usr/local/share/latexmk",
+   "/usr/local/lib/latexmk".
 
 If the environment variable LATEXMKRCSYS is set, its value is used as
 the name of the system RC file, instead of any of the above.
@@ -1716,7 +1717,7 @@ character, with suitable characters being those appropriate to UNIX
 and MS-Windows, i.e., ':', '/' and '\\'.   Note that if after
 initialization,  \fI$out_dir\fR is set, but \fI$aux_dir\fR is not set
 (i.e., it is blank), then \fIlatexmk\fR sets \fI$aux_dir\fR to the
-same value \fI$out_dir\fR. 
+same value \fI$out_dir\fR.
 .TP
 .B %Z
 Name of directory for output files (see the configuration
@@ -1991,7 +1992,7 @@ The report has to be done per file, because of possible directory changes
 for each file.  In the simplest cases, the result is the same as originally
 specified.  In general, e.g., with an absolute directory specified, the
 normalization helps performance and cleans up output to the screen. It also
-avoids situations where a file in the current directory is refered to by
+avoids situations where a file in the current directory is referred to by
 different names, e.g., "file.aux" and "./file.aux", which can be annoying.
 
 
@@ -2133,7 +2134,7 @@ This operation is somewhat dangerous, and can have unintended
 consequences, since the files to be deleted are determined from a file
 created by *latex, which can contain erroneous
 information. Therefore this variable is turned off by default, and
-then files to be deleted are restricted to those explictly specified
+then files to be deleted are restricted to those explicitly specified
 by patterns configured in the variables \fIclean_ext\fR,
 \fIclean_full_ext\fR, and \fI@generated_exts\fR, together with those
 very standard cases that are hardwired into \fIlatexmk\fR (e.g., .log
@@ -2175,7 +2176,7 @@ equal to \fI$out_dir\fR.  A normal situation is therefore that \fI$aux_dir\fR
 equals \fI$out_dir\fR, which is the only case supported by
 TeXLive, unlike MiKTeX.)
 
-The filenames specfied for a clean-up operation can refer not only to
+The filenames specified for a clean-up operation can refer not only to
 regular files but also to directories.  Directories are only deleted
 if they are empty.  An example of an application is to pythontex, which
 creates files in a particular directory.  You can arrange to remove
@@ -2200,7 +2201,7 @@ relative to the directory specified by \fI$out_dir\fR.
 
 These variables specify commands that are executed at certain points
 of compilations.  One motivation for
-their existance is to allow very useful convenient visual indications of
+their existence is to allow very useful convenient visual indications of
 compilation status even when the window receiving the screen output of
 the compilation is hidden.  This is particularly useful in
 preview-continuous mode.
@@ -2581,7 +2582,7 @@ This creates a rule for files with extension \fI.eps\fR about lines to
 ignore.  The left-hand side is a \fIPerl\fR idiom for setting an item
 in a hash.  Note that the file extension is specified without a
 period.  The value, on the right-hand side, is a string containing a
-regular expresssion.  (See documentation on \fIPerl\fR for how they
+regular expression.  (See documentation on \fIPerl\fR for how they
 are to be specified in general.)  This particular regular expression
 specifies that lines beginning with "%%CreationDate: " are to be
 ignored in deciding whether a file of the given extension \fI.eps\fR
@@ -3543,8 +3544,8 @@ the cases I have tested.
 \fBNote 2:\fR One case in which the quotes are important is when the
 files are in a subdirectory and your operating system is Microsoft
 Windows.  Then the separator character for directory components can be
-either a forward slash '/' or Microsoft's more usual backward slash
-\'\\'.  Forward slashes are generated by \fIlatexmk\fR, to maintain its
+either a forward slash '/' or Microsoft's more usual backward
+slash '\\'.  Forward slashes are generated by \fIlatexmk\fR, to maintain its
 sanity from software like MiKTeX that mixes both directory
 separators; but their correct use normally requires quoted filenames. 
 (See a log file from a run of MiKTeX (at least in v. 2.9) for an
@@ -3995,7 +3996,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.75).
+(Version 4.76).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
