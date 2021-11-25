@@ -1,5 +1,5 @@
 # Modifications 2015 Sep 9-10, John Collins
-# Copyright 2014 Vincent Belaïche <vincent.b.1@hotmail.fr>
+# Copyright 2014 Vincent BelaÃ¯che <vincent.b.1@hotmail.fr>
 
 # With the settings here, latexmk can be used to process texinfo files
 # (typical extension .texi) to pdf files, including the making of

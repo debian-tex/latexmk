@@ -779,7 +779,13 @@ From v. 4.74 to 4.74b
   Turn back on default to report rc files read.
   Add options -rc-report, -rc-report-, -dir_report, -dir_report-.
 
-From v. 4.74 to 4.74b
+From v. 4.74b to 4.75
   For biber, add any dependency on configuration file.
   When -time option used, report running times for all rules
+
+From v. 4.75 to 4.76
+  In fdb_latexmk file, sort generated file list by name.
+  If nothing is done in a rerun, don't do the unnecessary rewrite of fdb_latexmk file.
+  Improve some diagnostics.
+  Add /etc to list of locations for system rc files (with Unix-like OSs).
 
