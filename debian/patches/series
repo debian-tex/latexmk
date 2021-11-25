@@ -1,6 +1,6 @@
-rc_system_files.patch
+#rc_system_files.patch
 adjust-default-viewer
 fix-perl-shebang
-fix_file_encoding.diff
-typo-in-manual-page.diff
+#fix_file_encoding.diff
+#typo-in-manual-page.diff
 acute-accent-in-manual-page
