@@ -1,0 +1,10 @@
+#!/bin/sh
+set -C -e -f -u
+cd "$AUTOPKGTEST_TMP"
+cat > foo.tex <<EOF
+\documentclass{article}
+\begin{document}
+hello
+\end{document}
+EOF
+latexmk foo
