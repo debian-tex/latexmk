@@ -21,7 +21,7 @@ sub mypythontex {
    my $result_dir = $aux_dir1."pythontex-files-$$Pbase";
    my $ret = Run_subst( $pythontex, 2 );
    rdb_add_generated( glob "$result_dir/*" );
-   my $fh = new FileHandle $$Pdest, "r";
+   open( my $fh, "<", $$Pdest );
    if ($fh) {
       while (<$fh>) {
          if ( /^%PythonTeX dependency:\s+'([^']+)';/ ) {

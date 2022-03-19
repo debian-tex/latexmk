@@ -1,6 +1,6 @@
             INSTALLING latexmk
             ==================
-      (Version 4.76, 20 Nov. 2021)
+      (Version 4.77, 17 Mar. 2022)
 
             John Collins
             Physics Department
@@ -43,40 +43,36 @@ c.  In addition, the installation of TeX and LaTex should, of course,
     documents to be compiled and processed.
 
 
-!!!!  IMPORTANT NOTE:  !!!!
-===========================
+!!!!  IMPORTANT NOTES:  !!!!
+============================
 
-If you have installed a modern distribution of TeX and friends, you
-may find that latexmk is already installed on your computer.  This is
-true for full installations of TeXLive 2009 or later on the operating
-systems it supports.  (Note that MacTeX on OS-X incorporates TeXLive,
-so anything said about TeXLive also applies to MacTeX.)  If you have
-only installed a subset of packages, e.g., because you installed
-BasicTeX, then the subset may not include latexmk; in that case you
-should be able to use your distribution's package manager to install
-latexmk.  This is generally the recommended method; only use the
-manual installation method below if you have a special need for it.
-However, you should still examine the information on configuration
-here and in the main documentation to get latexmk working exactly as
-you want it.
+1. If you have installed a distribution of TeX and friends, you will
+probably find that latexmk is already installed on your computer.  This
+applies to both the TeXLive and the MiKTeX distributions (Note that MacTeX
+on OS-X incorporates TeXLive, so anything said about TeXLive also applies
+to MacTeX.)  If you have only installed a subset of packages, e.g., because
+you installed BasicTeX, then the subset may or may not include latexmk; in
+that case you should be able to use your distribution's package manager to
+install latexmk.  Having latexmk installed by a TeX distribution is
+normally the recommended way to be able to use latexmk.
 
-You can test whether latexmk is already properly installed by trying
-the command "latexmk -v" from the command line.  If this succeeds,
-then latexmk is already installed.  Otherwise, if you are using
-TeXLive or MacTeX, then you can simply use its package manager to get
-latexmk installed, the same as for any other missing package.
+2. The only extra requirement beyond having latexmk installed is to have an
+installation of Perl. See above.
 
-If you are on MS-Windows and you are using TeXLive (2009, or later),
-this distribution also includes a distribution of Perl sufficient to
-run latexmk.pl, so you don't need to install Perl separately.  It also
-includes an executable file latexmk.exe that runs latexmk.
+3. You will normally need to use the manual installation method below if
+you have a special need for it.  However, you should still examine the
+information on configuration below and in the main documentation to get
+latexmk working exactly as you want it.
 
-In the case of MiKTeX, the other standard distribution for MS-Windows,
-the main difference from TeXLive as regards latexmk is that you may
-need to install a distribution of Perl. A standard default
-installation of Perl should enable latexmk to work.
+4. You can test whether latexmk is already properly installed by trying the
+command "latexmk -v" from the command line.  If this succeeds, then latexmk
+is already installed and will report its version number.  Otherwise, if you
+are using TeXLive or MacTeX, then you can simply use its package manager to
+get latexmk installed, the same as for any other missing package.
 
-BUT, you may need to configure latexmk to
+BUT, you may need to configure latexmk to adjust its behavior to suit your
+needs. See item 6 below, as well as the full documentation, for further
+information.
 
 
 **Manual** installation on UNIX/LINUX/OS-X
@@ -84,12 +80,13 @@ BUT, you may need to configure latexmk to
 
 (Power users can modify these as appropriate, of course.)
 
-NOTE: If you are using TeXLive 2009 or later, you can install latexmk
-simply by using the TeXLive package manager (that includes users of
-MacTeX).  In fact, depending on how much of TeXLive you have already
-installed, latexmk may already have been installed.  In that case you don't
-normally need to bother with the manual installation explained below.
-Still you may need to examine the configuration instructions see item 6.
+NOTE: If you are using TeXLive 2009 or later, or a moderately recent
+version of MiKTeX, you can install latexmk simply by using the TeXLive
+package manager (that includes users of MacTeX).  In fact, depending on how
+much of TeXLive or MiKTeX you have already installed, latexmk may already
+have been installed.  In that case you don't normally need to bother with
+the manual installation explained below.  Still you may need to examine the
+configuration instructions see item 6.
 
 1.  Make sure you have working installations of Perl and TeX/LaTeX.
 
@@ -98,7 +95,10 @@ Still you may need to examine the configuration instructions see item 6.
     /usr/local/bin.  But if you are an ordinary user, you can put the
     file somewhere where you have access, and ensure that the PATH
     environment variable includes the directory where latexmk is
-    installed.  
+    installed.
+
+    If you are using MS-Windows, go to the corresponding items in the
+    instructions for Windows.
 
 3.  Rename this file to latexmk.
 
@@ -141,13 +141,15 @@ Still you may need to examine the configuration instructions see item 6.
     If latexmk does not get one of more of these commands correct, put an
     override in a startup file:
 
-    a.  For a system-wide installation, the correction should be in the
+    a.  For a system-wide installation, the correction can be in the
         system startup file, which on a UNIX-like operating system is any
         one of
         
+           /etc/LatexMk,
            /opt/local/share/latexmk/LatexMk,
            /usr/local/share/latexmk/LatexMk,
            /usr/local/lib/latexmk/LatexMk,
+           /etc/latexmkrc,
            /opt/local/share/latexmk/latexmkrc,
            /usr/local/share/latexmk/latexmkrc,
            /usr/local/lib/latexmk/latexmkrc.
@@ -161,9 +163,8 @@ Still you may need to examine the configuration instructions see item 6.
         Cygwin, latexmk combines both the MS-Windows and the Unix
         possibilities.)
 
-    b.  If you are installing latexmk as an ordinary user, the startup
-        file is the user startup file, which is the file .latexmkrc in
-        your home directory.
+    b.  You can also/instead put the configuration lines in the user
+        startup file, which is the file .latexmkrc in your home directory.
 
         (Under normal circumstances, latexmk's definition of home
         directory under Unix-like operating systems is the usual one,
@@ -232,34 +233,48 @@ Similarly if you have MiKTeX, you can install latexmk by using
 MiKTeX's package manager.  But to allow latexmk to work, you will also
 need to install a distribution of Perl if you haven't done so already.
 
+In either of these cases you don't normally need to bother with the manual
+installation explained below.  Still you may need to examine the
+configuration instructions see item 6.
+
+
 1.  Make sure you have working installations of Perl and TeX/LaTeX,
     complete with viewers for dvi, postscript and/or pdf files.  You will
-    also need whatever packages your document needs.
+    also need whatever packages your document needs.  
 
 2.  If necessary, unpack the latexmk distribution.  
 
 3.  **Difference compared with UNIX-type systems**: Copy the file
-    latexmk.pl to a suitable directory (your choice), and arrange for it to
-    be invoked as a command.  (If you don't know how to do this, find out
-    about "executable extension for perl on windows", by a web search.)
+    latexmk.pl to a suitable directory and arrange for it to be invoked as
+    a command.  See the following sentences for what "suitable directory"
+    means. One way to ensure that you can invoke the latexmk command is to
+    also put the file latexmk.cmd in the same directory, and then follow
+    the next instructions:
 
-4.  If the directory in the previous step is NOT already in the search
-    path for executable files, arrange for this, by adjusting the
-    environment variable PATH suitably.
+    If the directory in the previous step is NOT already in the search path
+    for executable files, arrange for this, by adjusting the environment
+    variable PATH suitably.  In Windows, there is a Control Panel setting
+    for this.  (It should be under Advanced system settings->Environment
+    variables.)  Log out and back in to make sure the changed setting gets
+    used.
 
-    In Windows, there is a Control Panel setting for this.  (Should be
-    under Advanced system settings->Environment variables.)
+    Note: Each of TeXLive and MiKTeX make a suitable change to the PATH
+    environment variable, so that all the programs they install are
+    usable, including latexmk.
 
-5.  (Optional) Copy documentation file(s) to a suitable directory.  The
-    only requirement on the directory is your convenience: some convenient
-    place to look up documentation. The relevant files are latexmk.txt
-    which is a pure ASCII text file, and latexmk.pdf which is a postscript
-    file.  
-
-6.  You may need to reboot, or at least logoff and log back in, if you made
+4.  You may need to reboot, or at least logoff and log back in, if you made
     any changes to PATH.
 
-7.  Test out the installation at the command-line prompt:
+5.  Concerning invocation of latexmk:  See later items.
+
+6.  (Optional) Copy documentation file(s) to a suitable directory.  The
+    only requirement on the directory is your convenience: i.e., some
+    convenient place to look up documentation. The relevant files are
+    latexmk.txt which is a pure ASCII text file, and latexmk.pdf which is a
+    postscript file.
+
+7.  Test out the installation at the command-line prompt (cmd.exe or Power
+    Shell): 
 
     a. First do
 
@@ -292,20 +307,22 @@ need to install a distribution of Perl if you haven't done so already.
        Also LOOK AT THE SECTION NAMED "TRICKY POINTS" below to see some
        hints. 
 
-
 8.  If the commands used by latexmk are incorrect, see the UNIX
     installation instructions for what to do.  The only changes needed
     from the UNIX instructions are: 
 
-    a.  The system initialization file is C:\latexmk\LatexMk.  (If
-        this is not suitable for some reason, you'll need to change
-        the latexmk.pl file where this filename appears.)
+    a.  The system initialization file is either C:\latexmk\LatexMk or
+        C:\latexmk\latexmkrc.  (If these is not suitable for some reason,
+        you'll need to change the latexmk.pl file where this filename
+        appears.  But normally it's easier to change the user latexmkrc
+        file --- see the next item.)
 
     b.  The user initialization file is .latexmkrc in the directory
-        specified by the environment variable HOME.  If there is no HOME
-        variable, then the file is in the directory specified by the
-        environment variable USERPROFILE, which should have been set
-        by the MS-Windows operating system at login.
+        specified by the environment variable HOME, if that happens to be
+        defined, which it normally isn't.  If there is no HOME variable,
+        then the file is in the directory specified by the environment
+        variable USERPROFILE, which should have been set by the MS-Windows
+        operating system at login.
 
 
        
@@ -320,34 +337,39 @@ can update these instructions and possibly latexmk as well.
 
 Tricky points
 =============
+(These aren't so much issues about installation as about use of latexmk.)
 
-1.  BEWARE of filenames with double extensions, for example,
-    two.part.tex.  The behavior of TeX-related software is not
-    consistent in this situation.  You may, for example, find a log
-    file named two.log or two.part.log, depending on which version of
-    which implementation of TeX/LaTeX you use.  Naturally, there is a
-    possibility in this situation that latexmk will get confused, and
-    not recognize, for example, that a dvi file has been generated.
-    Latexmk has configuration variables to deal with some of the
-    possibilities, so you could try playing with them --- see the
-    code.  But it general, it is best to avoid such double extensions:
-    they make your files non-portable.  Do something like two-part.tex
-    or two_part.tex instead.
+1.  BEWARE of filenames with double extensions, for example, two.part.tex.
+    The behavior of TeX-related software is not consistent in this
+    situation.  You may, for example, find a log file named two.log or
+    two.part.log, depending on which version of which implementation of
+    TeX/LaTeX you use.  Naturally, there is a possibility in this situation
+    that latexmk will get confused, and not recognize, for example, that a
+    dvi or other file has been generated.  Latexmk has configuration
+    variables to deal with some of the possibilities, so you could try
+    playing with them --- see the code.  But it general, it is best to
+    avoid such double extensions: they make your files non-portable.  Do
+    something like two-part.tex or two_part.tex instead.
 
-2.  The same goes for filenames and directory names with spaces in
-    them.  Much software tends to interpret spaces as separators
-    between different filenames or between filenames and other text.
-    This can cause problems in some of the programs called by latexmk.
-    It can also cause problems when latexmk parses a .log file to
-    determine dependency information.  Latexmk does try to correctly
-    treat filenames with spaces, as do current implementations of the
-    TeX program.
+2.  Filenames and directory names with spaces in them can potentially cause
+    problems.  Much software tends to interpret spaces as separators
+    between different filenames or between filenames and other text.  This
+    coul cause problems in some of the programs called by latexmk.
 
-3.  Beware also of files and directories whose names contain non-ASCII
-    characters.  There are some tricky problems because of mismatches
-    between character codings as used by different software and
-    operating systems.  Latexmk tries to do its best, but problems can
-    arise.  Often things work without trouble.
+    Even so, file and directory names containing spaces generally cause no
+    problems in both latexmk and the programs it calls.
+
+3.  Non-ASCII characters in file and directory names: In the current
+    version of latexmk and current TeXLive and MiKTeX, these are generally
+    handled correctly, particular on linux and macOS systems.
+
+    But it is worth being aware there is a potential for problems: (a) Default
+    installations of MS-Windows do not make all Unicode characters in
+    filenames available to Perl and hence latexmk.  (b) Some annoying
+    issues may arise if you transfer files from a macOS HFS+ volume to a
+    volume used by another operating system for use with that OS.  These
+    problems concern different ways of normalizing filenames containing
+    accented characters, and may entail renaming the transferred files.
 
 4.  If you need to remake documentation files, e.g., latexmk.pdf or
     latexmk.txt, from the man page file latexmk.1, the following
@@ -378,7 +400,7 @@ Version 2 was modified by Evan McLean.
 
 The current version is by John Collins (username jcc8 at node
 psu.edu) -- other contact details at the top.  It is copyright
-1998-2019 by John Collins, and the previous authors; see the copyright
+1998-2022 by John Collins, and the previous authors; see the copyright
 notice in the latexmk.pl file, which gives permission to use, copy,
 modify, and distribute this software and its documentation under the
 terms of the GNU Public License v. 2.

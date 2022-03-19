@@ -1,0 +1,175 @@
+# ================ Customization for dot2tex: ================================
+
+push @generated_exts, '%R-dot2tex-fig*.tex', '%R-dot2tex-fig*.dot',
+                      '%R-dot2tex-fig*.dot2texopts';
+add_cus_dep( 'dot', 'tex', 0, 'dot2tex' );
+
+# Fancy: prefix string for each *latex by "internal" mylatex and basename of tex file
+#foreach my $name ( 'latex', 'pdflatex', 'lualatex', 'xelatex' ) {
+#   ${$name} = "internal mylatex %B ". ${$name};
+#}
+
+$latex    = 'internal mylatex %B latex %O %S';
+$lualatex = 'internal mylatex %B lualatex %O %S';
+$pdflatex = 'internal mylatex %B pdflatex %O %S';
+$xelatex  = 'internal mylatex %B xelatex %O %S';
+
+
+#---------------------------------
+
+sub dot2tex {
+    # Context for a dot2tex custom dependency assumed.
+
+    # Default options:
+    my $opts = '--figonly -fpgf -tmath';
+
+    # File that contains the option string. (Written after analysis of the
+    # log file for the previous *latex run.)  
+    my $opt_file = "$_[0].dot2texopts";
+
+    # Ensure that it is known as a source file of this rule, since some
+    # changes in the main .tex could affect the options only, but not the
+    # contents of the .dot file
+    rdb_ensure_file( $rule, $opt_file );
+
+    if ( -e $opt_file && open( my $fh, '<', $opt_file ) ) {
+        $opts = <$fh>;
+        close $opt_file;
+    }
+    else { warn "dot2tex: Cannot open '$opt_file'\n"; }
+    
+    my @cmd = ( 'dot2tex', split(/\s+/, $opts), '-o', $$Pdest, $$Psource );
+    print "dot2tex command line to execute:\n ", join( ' ', @cmd), "\n";
+    return system @cmd;
+}
+
+#---------------------------------
+
+sub mylatex {
+    # Context for a *latex rule assumed.
+    # Run *latex as specified in my arguments, and then process the log file
+    # to deal with dot2tex conversions needed by the dot2texi package.
+
+    my ($base, @cmd) = @_;
+    my $log_name = "$aux_dir1$base.log";
+
+    my $return = system @cmd;
+    &examine_log_for_dot2tex( $log_name );
+    return $return;
+}
+
+#---------------------------------
+
+sub examine_log_for_dot2tex {
+   # Context for a *latex rule assumed.
+   # From the log file given in the argument to this subroutine,
+   # find places where dot2tex would be invoked if *latex were used with
+   # the -shell-escape option.  This invocation is on .dot files created
+   # by the dot2texi package.
+   # Find the basename of the .dot and .tex files (all assumed to be
+   # relative to the aux dir).  (Basename includes a possible path
+   # component.) 
+   # Ensure that for each .dot file the .tex file is in the source file of
+   # the current rule, so that latexmk will know to make a corresponding
+   # custom dependency.
+   # Put the option string in a file where the custom dependency for the
+   # dot-to-tex conversion can find it.
+
+   my $log_name = $_[0];
+
+   # Map of basenames_with_relative_path of dot/tex file to option string
+   my %found = ();
+
+   open( my $log_fh, '<', $log_name )
+      or ( warn( "examine_log_for_dot2tex: Can't read '$log_name'\n" ),
+           return
+         );
+LINE:
+   while (my $line = <$log_fh> ) {
+       # Aim: find lines of form runsystem\(dot2tex followed by options
+       #      followed by "-o file.tex file.dot)", for some value of file.
+       #      Allow for continuation lines.
+       # Often use /.../x with x option to regex, to get space in pattern
+       # ignored, for readability
+
+       # Ignore lines with wrong start:
+       if ( $line !~ /^runsystem\(dot2tex \s+ (.*)$/x ) { next; }
+
+       # Rest of command line (after dot2tex) is in $1.
+       my $args = $1;
+
+       # Only keep going if arguments begin with options and have -o (for
+       # output file):
+       if ( $args !~ /(-.*) \s+ -o \s+ (.*) $/x ) {
+          next LINE;
+       }
+
+       # Putative options for command, then source and dest file:
+       my ($opts, $file_part) = ($1, $2);
+       # Remove superfluous space:
+       $opts =~ s/\s+/ /g;
+       $opts =~ s/\s*$//;
+       if ( $opts !~ /^(-\S+\s*)*$/x ) {
+          warn "Putative options for dot2tex in '$opts' aren't options\n";
+          next LINE;
+       }
+       my $attempts = 0;
+
+CONT_LINE:
+       while ($attempts < 2) {
+           $attempts++;
+           if ($file_part =~ /^(.+) \.tex \s+ \1 \.dot\)/x ) {
+               ($found{$1} = $opts) =~ s/\s+/ /g;
+               last CONT_LINE;
+           }
+           if (length($line) >= 80) {
+              if (eof($log_fh)) { last LINE; }
+              $file_part .= <$log_fh>;
+              # Remove trailing new line characters:
+              $file_part =~ s/[\n\r]$//;
+           }
+           else { last CONT_LINE; }
+       }
+   }
+   close $log_fh;
+
+   my @missing_files = ();
+   while (my ($base, $opts) = each %found) {
+       my $dot = "$aux_dir1$base.dot";
+       my $tex = "$aux_dir1$base.tex";
+       # File to save options for dot2tex command, so cusdep can read them:
+       my $opt_file = "$aux_dir1$base.dot2texopts";
+
+       write_to_file( $opt_file, "$opts\n" );
+       if (! -e $tex) { push @missing_files, $tex; }
+   }
+   if (@missing_files) {
+       # No-file lines for missing .tex files will tell latexmk to try
+       # to find a cusdep to make them:
+       append_to_file( $log_name, map("No file $_.\n", @missing_files) );
+   }
+}
+
+#---------------------------------
+
+sub write_to_file {
+  # Usage: write_to_file( name, items to write )
+  my $file = shift;
+  open( my $fh, ">", $file )
+    or (warn "Cannot write to '$file'\n", return 0 );
+  print $fh @_;
+  close( $fh );
+}
+
+#---------------------------------
+
+sub append_to_file {
+  # Usage: append_to_file( name, items to write )
+  my $file = shift;
+  open( my $fh, ">>", $file )
+    or (warn "Cannot append to '$file'\n", return 0 );
+  print $fh @_;
+  close( $fh );
+}
+
+#---------------------------------
