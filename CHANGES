@@ -789,3 +789,18 @@ From v. 4.75 to 4.76
   Improve some diagnostics.
   Add /etc to list of locations for system rc files (with Unix-like OSs).
 
+From v. 4.76 to 4.77
+  Clean up and improvements in warnings etc
+  Ensured systematic use of STDOUT and STDERR, to more or less match that
+    of  *tex: STDOUT for progress messages, and, normally, errors and
+    warnings caused by the compilation of a document.  STDERR is for
+    within-latexmk errors etc: incorrect command line, configuration errors
+    etc.  
+  Internal improvements and bug fixes.
+  Correctly handle non-ASCII filenames, UTF-8 coding of log files etc,
+    including on MS Wndows, and including correct parsing of wrapped
+    lines in log files.  Adjust method of unwrapping of wrapped lines in
+    log file according to whether latex/pdflatex, lualatex or xelatex is
+    used, thereby reducing misparses of information in log file.
+  Reinstate Windows batch file for running latexmk, now called latexmk.cmd.
+

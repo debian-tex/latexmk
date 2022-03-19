@@ -3,6 +3,10 @@
 # option.  (Of the standard distributions, MiKTeX supports -aux-directory,
 # but TeXLive does not.)
 
+# !!!IMPORTANT: THIS CONFIGURATION IS NO LONGER NECESSARY. From V. 4.74b onwards,
+#    latexmk can handle the aux_dir isssue itself --- see the documentation on the
+#    $emulate_aux variable.
+
 
 foreach my $cmd ('latex', 'lualatex', 'pdflatex', 'xelatex' ) {
     ${$cmd} = "internal latex_fix_aux $cmd %O %S";

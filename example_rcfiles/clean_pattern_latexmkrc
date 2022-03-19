@@ -2,7 +2,7 @@
 # extension or something containing %R.
 # This is done by overriding latexmk's cleanup1 subroutine.
 
-# Here is an example of a usefule application:
+# Here is an example of a useful application:
 $clean_ext = "*-eps-converted-to.pdf";
 
 sub cleanup1 {

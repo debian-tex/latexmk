@@ -26,11 +26,17 @@ sub bibtex_fix {
     if ( $base_bare eq $root ) {
         print "--- Will run bibtex on modified '$root.aux' file\n";
         my $aux_mod_base = $base."-mod";
-        local $out_fh = new FileHandle "> $aux_mod_base$ext";
+
+        # Open output (modified aux file) here rather than in fix_aux, and
+        # make the relevant variables local.  This is instead opening both
+        # files in fix_aux itself.  The reason: fix_aux calls itself
+        # recursively, but must always write to the same file.
+        open( local $out_fh, ">", $aux_mod_base$ext );
         if (!$out_fh) { die "Cannot write to '$aux_mod_base$ext'\n"; }
         local $level = 0;
         fix_aux( $source );
         close $out_fh;
+
         # Override source, dest, and basenames, since they are to have the path given
         # in the arguments to this subroutine, instead of the path given in the
         # corresponding names in the rule.  Latexmk may change directory before
@@ -51,7 +57,7 @@ sub fix_aux {
    # removing \bibdata and \bibstyle lines that were in included .aux files.
    my $aux_file = $_[0];
    print "Processing '$aux_file'\n";
-   my $aux_fh = new FileHandle $aux_file;
+   open( my $aux_fh, "<", $aux_file );
    if (!$aux_fh) { die "$My_name: Couldn't read aux file '$aux_file'\n"; }
    $level++;
    while (<$aux_fh>) {

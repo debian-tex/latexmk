@@ -48,8 +48,7 @@ sub asy2tex { return asy2x( $_[0], 'tex' ); }
 
 sub asy2x   {
    my $ret = system("asy -vv -f '$_[1]' '$_[0]' >& '$_[0].log'");
-   my $FH = new FileHandle;
-   open $FH, "$_[0].log";
+   open( my $FH, "<", "$_[0].log" );
    %imp = ();
 
    while (<$FH>) {

@@ -44,7 +44,7 @@ sub excel2tex {
     # changes, and to do this before running latex/pdflatex again.
 
     # First find dependency/ies on .xls files, by parsing the .excltx file,
-    my $Hsource = new FileHandle;
+    my $Hsource;
     my %xls = ();
     my $source = "$_[0].excltx";
     if (! open $Hsource, "<$source") {

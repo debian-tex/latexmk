@@ -61,7 +61,7 @@ DESCRIPTION
 
 
 
-                               20 November 2021                              1
+                                 17 March 2022                               1
 
 
 
@@ -127,7 +127,7 @@ LATEXMK OPTIONS AND ARGUMENTS ON COMMAND LINE
 
 
 
-                               20 November 2021                              2
+                                 17 March 2022                               2
 
 
 
@@ -193,7 +193,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                              3
+                                 17 March 2022                               3
 
 
 
@@ -259,7 +259,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                              4
+                                 17 March 2022                               4
 
 
 
@@ -325,7 +325,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                              5
+                                 17 March 2022                               5
 
 
 
@@ -391,7 +391,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                              6
+                                 17 March 2022                               6
 
 
 
@@ -457,7 +457,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                              7
+                                 17 March 2022                               7
 
 
 
@@ -523,7 +523,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                              8
+                                 17 March 2022                               8
 
 
 
@@ -589,7 +589,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                              9
+                                 17 March 2022                               9
 
 
 
@@ -655,7 +655,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             10
+                                 17 March 2022                              10
 
 
 
@@ -721,7 +721,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             11
+                                 17 March 2022                              11
 
 
 
@@ -787,7 +787,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             12
+                                 17 March 2022                              12
 
 
 
@@ -853,7 +853,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             13
+                                 17 March 2022                              13
 
 
 
@@ -919,7 +919,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             14
+                                 17 March 2022                              14
 
 
 
@@ -985,7 +985,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             15
+                                 17 March 2022                              15
 
 
 
@@ -1051,7 +1051,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             16
+                                 17 March 2022                              16
 
 
 
@@ -1117,7 +1117,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             17
+                                 17 March 2022                              17
 
 
 
@@ -1183,7 +1183,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             18
+                                 17 March 2022                              18
 
 
 
@@ -1249,7 +1249,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             19
+                                 17 March 2022                              19
 
 
 
@@ -1315,7 +1315,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             20
+                                 17 March 2022                              20
 
 
 
@@ -1381,7 +1381,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             21
+                                 17 March 2022                              21
 
 
 
@@ -1447,7 +1447,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             22
+                                 17 March 2022                              22
 
 
 
@@ -1513,7 +1513,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             23
+                                 17 March 2022                              23
 
 
 
@@ -1579,7 +1579,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             24
+                                 17 March 2022                              24
 
 
 
@@ -1645,7 +1645,7 @@ DEALING WITH ERRORS, PROBLEMS, ETC
 
 
 
-                               20 November 2021                             25
+                                 17 March 2022                              25
 
 
 
@@ -1711,7 +1711,7 @@ ALLOWING FOR CHANGE OF OUTPUT FILE TYPE
 
 
 
-                               20 November 2021                             26
+                                 17 March 2022                              26
 
 
 
@@ -1777,7 +1777,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             27
+                                 17 March 2022                              27
 
 
 
@@ -1843,7 +1843,7 @@ CONFIGURATION/INITIALIZATION (RC) FILES
 
 
 
-                               20 November 2021                             28
+                                 17 March 2022                              28
 
 
 
@@ -1909,7 +1909,7 @@ HOW TO SET VARIABLES IN INITIALIZATION FILES
 
 
 
-                               20 November 2021                             29
+                                 17 March 2022                              29
 
 
 
@@ -1975,7 +1975,7 @@ FORMAT OF COMMAND SPECIFICATIONS
 
 
 
-                               20 November 2021                             30
+                                 17 March 2022                              30
 
 
 
@@ -2041,7 +2041,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             31
+                                 17 March 2022                              31
 
 
 
@@ -2107,7 +2107,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             32
+                                 17 March 2022                              32
 
 
 
@@ -2173,7 +2173,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             33
+                                 17 March 2022                              33
 
 
 
@@ -2239,7 +2239,7 @@ LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
 
 
 
-                               20 November 2021                             34
+                                 17 March 2022                              34
 
 
 
@@ -2305,7 +2305,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             35
+                                 17 March 2022                              35
 
 
 
@@ -2371,7 +2371,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             36
+                                 17 March 2022                              36
 
 
 
@@ -2437,7 +2437,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             37
+                                 17 March 2022                              37
 
 
 
@@ -2503,7 +2503,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                               20 November 2021                             38
+                                 17 March 2022                              38
 
 
 
@@ -2514,9 +2514,9 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               files to be deleted are restricted to those explicitly specified
               by    patterns    configured   in   the   variables   clean_ext,
-              clean_full_ext, and @generated_exts, together  with  those  very
-              standard  cases  that  are  hardwired  into  latexmk (e.g., .log
-              files).
+              clean_full_ext, and @generated_exts.  Standard cases (e.g., .log
+              files)  appear  in latexmk's initial value for the array @gener-
+              ated_exts.
 
        $cleanup_mode [0]
               If nonzero, specifies cleanup mode: 1 for full  cleanup,  2  for
@@ -2548,94 +2548,94 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               figures*.log,  and  pythontex-files-FOO/*,  where FOO stands for
               the basename of the file being processed (as in FOO.tex).
 
-              The files to be deleted are relative to the directory  specified
-              by  $aux_dir.   (Note  that if $out_dir but not $aux_dir is set,
-              then in its  initialization,  latexmk  sets  $aux_dir  equal  to
-              $out_dir.   A normal situation is therefore that $aux_dir equals
-              $out_dir, which is the only case supported  by  TeXLive,  unlike
-              MiKTeX.)
+              Most of the files to be deleted are relative  to  the  directory
+              specified  by  $aux_dir.  Note that if $out_dir but not $aux_dir
+              is set, then in its initialization, latexmk sets $aux_dir  equal
+              to  $out_dir.   A  normal  situation  is therefore that $aux_dir
+              equals $out_dir, which is the only case  directly  supported  by
+              TeXLive,  unlike  MiKTeX.   Note  that even with TeXLive latexmk
+              does now support different values for the directories -- see the
+              explanation of the $emulate_aux variable.
+
+              If $out_dir and $aux_dir different, latexmk actually deletes any
+              files of the specified names in both $aux_dir and $out_dir; this
+              is  because under certain error conditions, the files may be put
+              in $out_dir instead of $aux_dir.  This also handles the case  of
+              deleting any fls file, since that file is in $out_dir.
 
               The  filenames  specified for a clean-up operation can refer not
               only to regular files but also to directories.  Directories  are
               only deleted if they are empty.  An example of an application is
+
+
+
+                                 17 March 2022                              39
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               to pythontex, which creates files  in  a  particular  directory.
               You  can  arrange  to remove both the files and the directory by
               setting
 
                   $clean_ext = "pythontex-files-%R pythontex-files-%R";
 
-              See also the variable @generated_exts.
-
-
-
-
-                               20 November 2021                             39
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
+              See also the (array) variable  @generated_exts.   In  the  past,
+              this  variable  had certain uses beyond that of $clean_ext.  But
+              now, they accomplish the same things.  In fact,  after  initial-
+              ization  including  the  processing of command line options, la-
+              texmk simply appends the list of extensions in $clean_ext to the
+              array @generated_exts.
 
        $clean_full_ext [""]
-              Extra extensions of files for latexmk to remove when the -C  op-
-              tion  is  selected, i.e., extensions of files to remove when the
+              Extra  extensions of files for latexmk to remove when the -C op-
+              tion is selected, i.e., extensions of files to remove  when  the
               .dvi, etc files are to be cleaned-up.
 
               More general patterns are allowed, as for $clean_ext.
 
-              The files specified by $clean_full_ext to be deleted  are  rela-
+              The  files  specified by $clean_full_ext to be deleted are rela-
               tive to the directory specified by $out_dir.
 
 
        $compiling_cmd [""], $failure_cmd [""], $warning_cmd [""], $success_cmd
        [""]
 
-              These variables specify commands that are  executed  at  certain
-              points  of  compilations.  One motivation for their existence is
-              to allow very useful convenient visual indications  of  compila-
-              tion  status even when the window receiving the screen output of
-              the compilation is hidden.  This is particularly useful in  pre-
+              These  variables  specify  commands that are executed at certain
+              points of compilations.  One motivation for their  existence  is
+              to  allow  very useful convenient visual indications of compila-
+              tion status even when the window receiving the screen output  of
+              the  compilation is hidden.  This is particularly useful in pre-
               view-continuous mode.
 
-              The  commands  are  executed  at  the following points: $compil-
-              ing_cmd at the start of compilation, $success_cmd at the end  of
-              a  completely successful compilation, $failure_cmd at the end of
+              The commands are executed  at  the  following  points:  $compil-
+              ing_cmd  at the start of compilation, $success_cmd at the end of
+              a completely successful compilation, $failure_cmd at the end  of
               an unsuccessful compilation, $warning_cmd at the of an otherwise
               successful compilation that gives warnings about undefined cita-
               tions or references or about multiply defined references. If any
-              of  above  variables  is  undefined or blank (the default situa-
+              of above variables is undefined or  blank  (the  default  situa-
               tion), then the corresponding command is not executed.
 
-              However, when $warning_cmd is not set, then in  the  case  of  a
-              compilation  with  warnings  about  references or citations, but
-              with no other error, one or  other  of  $success_cmd  or  $fail-
-              ure_cmd  is  used  (if  it  is  set) according to the setting of
+              However,  when  $warning_cmd  is  not set, then in the case of a
+              compilation with warnings about  references  or  citations,  but
+              with  no  other  error,  one  or other of $success_cmd or $fail-
+              ure_cmd is used (if it is  set)  according  to  the  setting  of
               $warnings_as_errors.
 
               An example of a simple setting of these variables is as follows
 
-                  $compiling_cmd = "xdotool search  --name  \"%D\"  set_window
+                  $compiling_cmd  =  "xdotool  search --name \"%D\" set_window
               --name \"%D compiling\"";
-                  $success_cmd    =  "xdotool  search --name \"%D\" set_window
-              --name \"%D OK\"";
-                  $warning_cmd   = "xdotool search --name \"%D\" ".
-                                   "set_window --name \"%D CITE/REF ISSUE\"";
-                  $failure_cmd   = "xdotool search  --name  \"%D\"  set_window
-              --name \"%D FAILURE\"";
-
-              These  assume  that  the  program xdotool is installed, that the
-              previewer is using an X-Window system for display, and that  the
-              title  of the window contains the name of the displayed file, as
-              it normally does.  When the commands are  executed,  the  place-
-              holder  string  %D  is  replaced  by the name of the destination
-              file, which is the previewed file.  The above commands result in
-              an  appropriate  string  being  appended  to the filename in the
+                  $success_cmd   = "xdotool search  --name  \"%D\"  set_window
 
 
 
-                               20 November 2021                             40
+                                 17 March 2022                              40
 
 
 
@@ -2644,23 +2644,36 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              window title: " compiling", " OK", or " FAILURE".
+              --name \"%D OK\"";
+                  $warning_cmd   = "xdotool search --name \"%D\" ".
+                                   "set_window --name \"%D CITE/REF ISSUE\"";
+                  $failure_cmd    =  "xdotool  search --name \"%D\" set_window
+              --name \"%D FAILURE\"";
 
-              Other placeholders that can be used are %S, %T, and %R, with  %S
-              and  %T normally being identical. These can be useful for a com-
-              mand changing the title of the edit window. The  visual  indica-
-              tion  in a window title can useful, since the user does not have
-              to keep shifting attention to the (possibly hidden)  compilation
+              These assume that the program xdotool  is  installed,  that  the
+              previewer  is using an X-Window system for display, and that the
+              title of the window contains the name of the displayed file,  as
+              it  normally  does.   When the commands are executed, the place-
+              holder string %D is replaced by  the  name  of  the  destination
+              file, which is the previewed file.  The above commands result in
+              an appropriate string being appended to the filename in the win-
+              dow title: " compiling", " OK", or " FAILURE".
+
+              Other  placeholders that can be used are %S, %T, and %R, with %S
+              and %T normally being identical. These can be useful for a  com-
+              mand  changing  the title of the edit window. The visual indica-
+              tion in a window title can useful, since the user does not  have
+              to  keep shifting attention to the (possibly hidden) compilation
               window to know the status of the compilation.
 
-              More  complicated  situations  can best be handled by defining a
-              Perl subroutine to invoke the necessary commands, and using  the
-              "internal"  keyword  in the definitions to get the subroutine to
+              More complicated situations can best be handled  by  defining  a
+              Perl  subroutine to invoke the necessary commands, and using the
+              "internal" keyword in the definitions to get the  subroutine  to
               be invoked.  (See the section "Format of Command Specifications"
               for how to do this.)
 
-              Naturally,  the  above  settings that invoke the xdotool program
-              are only applicable when the X-Window system  is  used  for  the
+              Naturally, the above settings that invoke  the  xdotool  program
+              are  only  applicable  when  the X-Window system is used for the
               relevant window(s).  For other cases, you will have to find what
               software solutions are available.
 
@@ -2669,15 +2682,15 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Custom dependency list -- see section on "Custom Dependencies".
 
        @default_excluded_files [()]
-              When latexmk is invoked with no files specified on  the  command
+              When  latexmk  is invoked with no files specified on the command
               line, then, by default, it will process all files in the current
               directory with the extension .tex.  (In general, it will process
               the files specified in the @default_files variable.)
 
               But sometimes you want to exclude particular files from this de-
-              fault list.  In that case you can specify the excluded files  in
+              fault  list.  In that case you can specify the excluded files in
               the array @default_excluded_files.  For example if you wanted to
-              process all .tex files with the exception of  common.tex,  which
+              process  all  .tex files with the exception of common.tex, which
               is a not a standard alone LaTeX file but a file input by some or
               all of the others, you could do
 
@@ -2685,23 +2698,10 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                    @default_excluded_files = ("common.tex");
 
-              If you have a variable or large number of files to be processed,
-              this method saves you from having to list them in detail in @de-
-              fault_files and having to update the list every time you  change
-              the set of files to be processed.
-
-              Notes:  1.  This variable has no effect except when no files are
-              specified on the latexmk command line.  2. Wildcards are allowed
-              in @default_excluded_files.
-
-       @default_files [("*.tex")]
-              Default list of files to be processed.
-
-              If  no  filenames  are  specified  on  the command line, latexmk
 
 
 
-                               20 November 2021                             41
+                                 17 March 2022                              41
 
 
 
@@ -2710,15 +2710,28 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              processes all tex files specified in  the  @default_files  vari-
-              able,  which by default is set to all tex files ("*.tex") in the
-              current directory.  This is a convenience: just run latexmk  and
-              it  will process an appropriate set of files.  But sometimes you
+              If you have a variable or large number of files to be processed,
+              this method saves you from having to list them in detail in @de-
+              fault_files  and having to update the list every time you change
+              the set of files to be processed.
+
+              Notes: 1. This variable has no effect except when no  files  are
+              specified on the latexmk command line.  2. Wildcards are allowed
+              in @default_excluded_files.
+
+       @default_files [("*.tex")]
+              Default list of files to be processed.
+
+              If no filenames are specified on the command line, latexmk  pro-
+              cesses  all  tex files specified in the @default_files variable,
+              which by default is set to all tex files ("*.tex") in  the  cur-
+              rent  directory.  This is a convenience: just run latexmk and it
+              will process an appropriate set of  files.   But  sometimes  you
               want only some of these files to be processed.  In this case you
-              can  list the files to be processed by setting @default_files in
-              an initialization file (e.g., the file "latexmkrc" in  the  cur-
-              rent  directory).  Then if no files are specified on the command
-              line then the files you specify by  setting  @default_files  are
+              can list the files to be processed by setting @default_files  in
+              an  initialization  file (e.g., the file "latexmkrc" in the cur-
+              rent directory).  Then if no files are specified on the  command
+              line  then  the  files you specify by setting @default_files are
               processed.
 
               Three examples:
@@ -2729,45 +2742,32 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                    @default_files = ("*.tex", "*.dtx");
 
-              Note  that more than file may be given, and that the default ex-
+              Note that more than file may be given, and that the default  ex-
               tension is ".tex".  Wild cards are allowed.  The parentheses are
               because @default_files is an array variable, i.e., a sequence of
               filename specifications is possible.
 
-              If you want latexmk to process all .tex files with a few  excep-
+              If  you want latexmk to process all .tex files with a few excep-
               tions, see the @default_excluded_files array variable.
 
        $dependents_phony [0]
-              If  a  list  of dependencies is output, this variable determines
-              whether to include a phony target for each source file.  If  you
-              use  the  dependents  list  in  a Makefile, the dummy rules work
-              around errors make gives if you remove header files without  up-
+              If a list of dependencies is output,  this  variable  determines
+              whether  to include a phony target for each source file.  If you
+              use the dependents list in a  Makefile,  the  dummy  rules  work
+              around  errors make gives if you remove header files without up-
               dating the Makefile to match.
 
        $dependents_list [0]
-              Whether  to  display  a  list(s) of dependencies at the end of a
+              Whether to display a list(s) of dependencies at  the  end  of  a
               run.
 
        $deps_file ["-"]
-              Name of file to receive list(s) of dependencies at the end of  a
-              run,  to be used if $dependesnt_list is set.  If the filename is
-              "-", then the dependency list is set to stdout  (i.e.,  normally
-              the screen).
-
-
-       $do_cd [0]
-              Whether  to  change working directory to the directory specified
-              for the main source file before processing it.  The default  be-
-              havior  is  not to do this, which is the same as the behavior of
-              *latex programs.  This variable is set by the -cd and  -cd-  op-
-              tions on latexmk's command line.
-
-       $dvi_filter [empty]
-              The  dvi  file  filter  to be run on the newly produced dvi file
+              Name  of file to receive list(s) of dependencies at the end of a
+              run, to be used if $dependesnt_list is set.  If the filename  is
 
 
 
-                               20 November 2021                             42
+                                 17 March 2022                              42
 
 
 
@@ -2776,8 +2776,20 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
-              before other processing.  Equivalent to specifying the  -dF  op-
-              tion.
+              "-",  then  the dependency list is set to stdout (i.e., normally
+              the screen).
+
+
+       $do_cd [0]
+              Whether to change working directory to the  directory  specified
+              for  the main source file before processing it.  The default be-
+              havior is not to do this, which is the same as the  behavior  of
+              *latex  programs.   This variable is set by the -cd and -cd- op-
+              tions on latexmk's command line.
+
+       $dvi_filter [empty]
+              The dvi file filter to be run on the newly produced dvi file be-
+              fore other processing.  Equivalent to specifying the -dF option.
 
        $dvi_mode [See below for default]
               If  nonzero, generate a dvi version of the document.  Equivalent
@@ -2818,6 +2830,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                    $dvipdf = "dvipdfm %O -o %D %S";
 
+
+
+
+                                 17 March 2022                              43
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               WARNING: The default dvipdf  script  generates  pdf  files  with
               bitmapped fonts, which do not look good when viewed by acroread.
               That script should be modified to give  dvips  the  options  "-P
@@ -2830,18 +2854,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               silent switch has no effect, but is actually innocuous.  But  if
               an  alternative program is used, e.g., dvipdfmx, then the silent
               switch has an  effect.   The  default  setting  is  correct  for
-
-
-
-                               20 November 2021                             43
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               dvipdfm and dvipdfmx.
 
        $dvips ["dvips %O -o %D %S"]
@@ -2883,8 +2895,20 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                   4 => run a command to do the update.  The command is  speci-
               fied by the variable $dvi_update_command.
 
-              See  information on the variable $pdf_update_method for an exam-
-              ple of updating by command.
+              See  information  on  the  variable  $pdf_update_method  for  an
+
+
+
+                                 17 March 2022                              44
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              example of updating by command.
 
        $dvi_update_signal [Under UNIX: SIGUSR1, which  is  a  system-dependent
        value]
@@ -2896,18 +2920,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $emulate_aux [0]
               Whether to emulate the use of aux_dir when $aux_dir and $out_dir
               are  different,  rather than using the -aux-directory option for
-
-
-
-                               20 November 2021                             44
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               the  *latex  programs.   (MiKTeX  supports  -aux-directory,  but
               TeXLive doesn't.)
 
@@ -2950,6 +2962,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               the program was started. If the  modification  time  is  earlier
               than  when the program was started, the file is a leftover file,
               which latexmk treats as if it were not created.  If the filetime
+
+
+
+                                 17 March 2022                              45
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               is  at least the program start time, then it can be assumed that
               the file was created in the current run.
 
@@ -2961,18 +2985,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               time  with  a server, so the non-synchronization is mostly small
               (a second or so, or a few seconds).  But even a small difference
               can mess up latexmk's test.
-
-
-
-
-                               20 November 2021                             45
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
               Latexmk measures the time difference between the time on the two
               systems and compensates for this.  But  the  measurement  (in  a
@@ -3003,35 +3015,23 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               ing unrecognized cross references.  Equivalent to specifying the
               -f option.
 
-       @generated_exts [( aux , bbl , idx , ind , lof , lot  ,  out  ,  toc  ,
-       $fdb_ext )]
+
+       @generated_exts [( 'aux', 'bcf', 'fls',  'idx',  'ind',  'lof',  'lot',
+       'out', 'toc', 'blg', 'ilg', 'log', 'xdv' )]
+
               This  contains a list of extensions for files that are generated
-              during a LaTeX run and that are read in by LaTeX in later  runs,
-              either directly or indirectly.
+              during processing, and that should  be  deleted  during  a  main
+              clean  up  operation,  as invoked by the command line option -c.
+              (The use of -C or -gg gives this clean up and more.)
 
-              This  list  specifies files known to be generated by *latex.  It
-              is used in two ways: (a) The specified files are  deleted  in  a
-              cleanup  operation  (with  the -c, -C, -CA, -g and -gg options),
-              and (b) It affects the determination of whether a rerun of  *la-
-              tex is needed after a run that gives an error.
-
-              (Concerning item (b): Normally, a change of a source file during
-              a run should provoke a rerun.  This includes a file generated by
-              LaTeX,  e.g.,  an  aux file, that is read in on subsequent runs.
-              But after a run that results in an error, a new run  should  not
-              occur  until  the  user has made a change in the files.  But the
-              user may have corrected an error in a source  .tex  file  during
-              the run.  So latexmk needs to distinguish user-generated and au-
-              tomatically generated files;  it  determines  the  automatically
-              generated  files as those with extensions in the list in @gener-
-              ated_exts.)
-
-              A convenient way to add an extra extension to the list,  without
-              losing  the already defined ones is to use a push command in the
+              The default values are extensions for standard  files  generated
+              by  *latex,  bibtex, and the like.  (Note that the clean up also
+              deletes the fdb_latexmk file, but that's separately  coded  into
+              latexmk, currently.)
 
 
 
-                               20 November 2021                             46
+                                 17 March 2022                              46
 
 
 
@@ -3040,6 +3040,29 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
+              After  initialization  of latexmk and the processing of its com-
+              mand line, the  items  in  clean_ext  are  appended  to  @gener-
+              ated_exts.   So  these two variables have the same meaning (con-
+              trary to older versions of latexmk).
+
+              The items in @generated_exts are normally extensions  of  files,
+              whose  base  name  is  the same as the main tex file.  But it is
+              also possible to specify patterns including  that  basename  ---
+              see the explanation of the variable $clean_ext.
+
+              In addition to specifying files to be deleted in a clean up, la-
+              texmk uses the same specification to assist its  examination  of
+              changes  in source files: Under some situations it needs to find
+              those changes in files (since a previous run) that are  expected
+              to  be  due to the user editing a file.  This contrasts with the
+              cases of files that are generated by some program run by latexmk
+              and  that differ from the results of the previous run.  This use
+              of @generated_exts is normally unimportant, given the usual  ac-
+              curacy  of  latexmk's  other ways of determining these generated
+              files.
+
+              A convenient way to add an extra extension to the list,  without
+              losing  the already defined ones is to use a push command in the
               line in an RC file.  E.g.,
 
                               push @generated_exts, "end";
@@ -3047,6 +3070,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               adds the extension "end" to the list of predefined generated ex-
               tensions.   (This  extension  is used by the RevTeX package, for
               example.)
+
 
        $go_mode [0]
               If nonzero, process files regardless of timestamps, and is  then
@@ -3071,6 +3095,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                  $hash_calc_ignore_pattern{'eps'} = '^%%CreationDate: ';
 
+
+
+                                 17 March 2022                              47
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               This creates a rule for files with extension .eps about lines to
               ignore.  The left-hand side is a Perl idiom for setting an  item
               in  a hash.  Note that the file extension is specified without a
@@ -3093,18 +3128,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               causes lines starting with either "^%%CreationDate: " or "^%%Ti-
               tle: " to be ignored.
-
-
-
-
-                               20 November 2021                             47
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
               It may happen that a pattern to be ignored is specified in,  for
               example,  in  a system or user initialization file, and you wish
@@ -3138,6 +3161,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Suppose you had .tex files test1.tex and test2.tex.   Then  when
               you run
 
+
+
+                                 17 March 2022                              48
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
                  latexmk -pdf *.tex
 
               both  files  will  be  compiled.  The .aux, .log, and .pdf files
@@ -3160,18 +3194,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               sibilities listed in the FORMAT OF COMMAND SPECIFICATIONS do not
               apply.   The  internal  and  start keywords are not available. A
               simple command specification with possible options and then "%S"
-
-
-
-                               20 November 2021                             48
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               is  all  that  is  guaranteed to work.  Note that for other com-
               mands, "%S" is substituted by a single source file. In contrast,
               for $kpsewhich, "%S" may be substituted by a long list of space-
@@ -3204,6 +3226,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
                                   $latex = "latex --src-specials %O %S";
 
+
+
+
+                                 17 March 2022                              49
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               To do a coordinated setting of all of $latex, $pdflatex, $luala-
               tex, and $xelatex, see the section "Advanced Configuration".
 
@@ -3225,20 +3259,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               are the extensions.  The values are  irrelevant.)   Two  subrou-
               tines  are  provided for manipulating this and the related vari-
               able %pdflatex_input_extensions,  add_input_ext  and  remove_in-
-              put_ext.   They  are  used  as  in  the  following  examples are
-
-
-
-                               20 November 2021                             49
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-              possible lines in an initialization file:
+              put_ext.   They are used as in the following examples are possi-
+              ble lines in an initialization file:
 
                   remove_input_ext( 'latex', 'tex' );
 
@@ -3270,6 +3292,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               Under  MS-Windows (unlike UNIX/Linux), there is no standard pro-
               gram for printing files.  But there are ways you can do it.  For
+
+
+
+                                 17 March 2022                              50
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               example, if you have gsview installed, you could use it with the
               option "/p":
 
@@ -3292,17 +3326,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               Under  MS-Windows you could set this to use gsview, if it is in-
               stalled, e.g.,
-
-
-
-                               20 November 2021                             50
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
                   $lpr = '"c:/Program Files/Ghostgum/gsview/gsview32.exe" /p';
 
@@ -3335,6 +3358,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               fault extensions are 'tex', 'pdf', 'jpg, and 'png'.
 
               See details of the %latex_input_extensions for other information
+
+
+
+                                 17 March 2022                              51
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               that equally applies to %lualatex_input_extensions.
 
        $lualatex_silent_switch ["-interaction=batchmode"]
@@ -3356,19 +3391,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               plicit subdirectory of current  directory,  otherwise  makeindex
               will refuse to write its output and log files, for security rea-
               sons.
-
-
-
-
-
-                               20 November 2021                             51
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        $makeindex_silent_switch ["-q"]
               Switch(es) for the index processing program when silent mode  is
@@ -3401,10 +3423,22 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               stitution from "/" to "\", by default.
 
               However  there  are also programs on MS-Windows for which a back
-              slash "\" is interpreted differently than as a directory separa-
-              tor;  for these the directory separator should be "/".  Programs
-              with this behavior  include  all  the  *latex  programs  in  the
-              TeXLive  implementation  (but  not  the  MiKTeX implementation).
+              slash  "\"  is  interpreted  differently  than  as  a  directory
+
+
+
+                                 17 March 2022                              52
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+              separator;  for  these  the  directory  separator should be "/".
+              Programs with this behavior include all the *latex  programs  in
+              the  TeXLive implementation (but not the MiKTeX implementation).
               Hence if you use TeXLive on MS-Windows,  then  $MSWin_back_slash
               should be set to zero.
 
@@ -3424,18 +3458,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The effect of this variable (when non-blank) is achieved by  us-
               ing  the -output-directory option of *latex.  This exists in the
-
-
-
-                               20 November 2021                             52
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               usual current (Dec. 2011  and  later)  implementations  of  TeX,
               i.e.,  MiKTeX  and  TeXLive.  But it may not be present in other
               versions.
@@ -3468,6 +3490,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               equal to 1, generate a pdf version of the document using  pdfla-
               tex,  using the command specified by the $pdflatex variable.  If
               equal to 2, generate a pdf version of the document from  the  ps
+
+
+
+                                 17 March 2022                              53
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               file,  by  using  the command specified by the $ps2pdf variable.
               If equal to 3, generate a pdf version of the document  from  the
               dvi  file,  by  using the command specified by the $dvipdf vari-
@@ -3489,18 +3523,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               command line for the program, e.g.,
 
                    $pdflatex = "pdflatex --shell-escape %O %S";
-
-
-
-
-                               20 November 2021                             53
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
               (In some earlier versions of latexmk, you needed to use  an  as-
               signment  to  $pdflatex  to allow the use of lualatex or xelatex
@@ -3534,6 +3556,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               See  details  of  the $latex_silent_switch for other information
               that equally applies to $pdflatex_silent_switch.
 
+
+
+
+                                 17 March 2022                              54
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        $pdf_previewer ["start acroread %O %S"]
               The command to invoke a pdf-previewer.
 
@@ -3556,18 +3590,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               ample, SumatraPDF or gsview is used to view pdf files.
 
               Important note: Normally you will want to have a  previewer  run
-
-
-
-                               20 November 2021                             54
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               detached, so that latexmk doesn't wait for the previewer to ter-
               minate before continuing its work.  So normally you should  pre-
               fix  the  command  by  "start  ", which flags to latexmk that it
@@ -3601,6 +3623,17 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                   $pdf_update_method = 4;
                   $pdf_update_command = "xpdf -remote %R -reload";
 
+
+
+                                 17 March 2022                              55
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               The first setting arranges for the xpdf program to  be  used  in
               its  "remote server mode", with the server name specified as the
               rootname of the TeX file.  The second setting arranges  for  up-
@@ -3622,18 +3655,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               with their default settings of $pscmd.
 
               Setting the variable to -1 is used to indicate  that  $pscmd  is
-
-
-
-                               20 November 2021                             55
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               not to be used.
 
        $postscript_mode [0]
@@ -3667,6 +3688,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               option.   Which  previewer is run depends on the other settings,
               see the command line options -view=, and the variable $view.
 
+
+
+
+                                 17 March 2022                              56
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        $preview_mode [0]
               If nonzero, run a previewer to preview the document.  Equivalent
               to  the -pv option.  Which previewer is run depends on the other
@@ -3688,18 +3721,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               The  -pvc  option  uses  the  command  specified by the variable
               $pscmd to determine if there is an  already  running  previewer,
               and  to  find  the process ID (needed if latexmk needs to signal
-
-
-
-                               20 November 2021                             56
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               the previewer about file changes).
 
               Each line of the output of this command is assumed to correspond
@@ -3733,6 +3754,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               WARNING: Linux systems may have installed one (or more) versions
               of  gv  under  different  names, e.g., ggv, kghostview, etc, but
+
+
+
+                                 17 March 2022                              57
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               perhaps not one actually called gv.
 
               Important note: Normally you will want to have a  previewer  run
@@ -3754,17 +3787,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               When  the postscript previewer is set to be updated by running a
               command, this is the command that is run.  See  the  information
               for the variable $ps_update_method.
-
-
-
-                               20 November 2021                             57
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        $ps_update_method [0 under UNIX, 1 under MS-Windows]
               How  the postscript viewer updates its display when the .ps file
@@ -3797,6 +3819,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               The same as $always_view_file_via_temporary, except that it only
               applies in preview-continuous mode (-pvc option).
 
+
+
+
+
+                                 17 March 2022                              58
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        $quote_filenames [1]
               This specifies whether substitutions for placeholders in command
               specifications  (as  in  $pdflatex)  are  surrounded  by  double
@@ -3820,18 +3855,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Whether to use the -recorder option to (latex Use of this option
               results in a file of extension .fls containing  a  list  of  the
               files  that  these programs have read and written.  Latexmk will
-
-
-
-                               20 November 2021                             58
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
               then use this file to improve its detection of source files  and
               generated files after a run of *latex.
 
@@ -3863,6 +3886,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               output or aux directories.]
 
               The  default  under  MSWin and Cygwin is ';' and under UNIX-like
+
+
+
+                                 17 March 2022                              59
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               operating systems (including Linux and OS-X) is  ':'.   Normally
               the  defaults give correct behavior.  But there can be difficul-
               ties if your operating system is of one kind, but some  of  your
@@ -3886,17 +3921,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               not to give these  warnings.   The  command  line  options  -si-
               lence_logfile_warning_list   and  -silence_logfile_warning_list-
               also set this variable.
-
-
-
-                               20 November 2021                             59
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
               Note that multiple occurrences for the same undefined object  on
               the same page and same line will be compressed to a single warn-
@@ -3927,6 +3951,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $success_cmd [undefined]
               See the documentation for $compiling_cmd.
 
+
+
+
+
+                                 17 March 2022                              60
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        $tmpdir [See below for default]
               Directory  to  store  temporary  files that latexmk may generate
               while running.
@@ -3952,17 +3989,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               Makefile.   See the section "USING latexmk WITH make" for how to
               do this.  The intent of calling make from latexmk is  merely  to
               detect dependencies.
-
-
-
-                               20 November 2021                             60
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        $view ["default"]
               Which  kind  of  file is to be previewed if a previewer is used.
@@ -3992,6 +4018,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The default behavior is normally satisfactory in the usual edit-
               compile-edit  cycle.  But, for example, latexmk can also be used
+
+
+
+                                 17 March 2022                              61
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               as part of a build process for some bigger  project,  e.g.,  for
               creating  documentation  in the build of a software application.
               Then it is often sensible to treat citation and reference  warn-
@@ -4017,18 +4055,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
               The program to make a pdf file from an xdv file  (used  in  con-
               junction with xelatex when $pdf_mode=5).
-
-
-
-
-                               20 November 2021                             61
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        $xdvipdfmx_silent_switch ["-q"]
               Switch(es) for the xdvipdfmx program when silent mode is on.
@@ -4058,6 +4084,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
               not been found, and the file  is  given  without  an  extension.
               This  typically  happens  when  LaTeX  commands of the form \in-
               put{file} or \includegraphics{figure}, when the relevant  source
+
+
+
+                                 17 March 2022                              62
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               file does not exist.
 
               In  this  situation, latexmk searches for custom dependencies to
@@ -4083,17 +4121,6 @@ CUSTOM DEPENDENCIES
        file with one extension to a file with another.  An example use of this
        would be to allow latexmk to convert a .fig file to .eps to be included
        in the .tex file.
-
-
-
-
-                               20 November 2021                             62
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
    Defining a custom dependency:
@@ -4123,6 +4150,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        must:  If  non-zero,  the file from which we are converting must exist,
               if it doesn't exist latexmk will give an error message and  exit
               unless the -f option is specified.  If must is zero and the file
+
+
+
+                                 17 March 2022                              63
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
               we are converting from doesn't exist, then no action  is  taken.
               Generally, the appropriate value of must is zero.
 
@@ -4150,18 +4189,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        tects that a run of *latex needs to read a file, like a graphics  file,
        whose  extension  is the to-extension of a custom dependency.  Then la-
        texmk examines whether a file exists with the same name, but  with  the
-
-
-
-                               20 November 2021                             63
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        corresponding  from-extension,  as  specified in the custom-dependency.
        If it does, then a corresponding instance of the custom  dependency  is
        created,  after which the rule is invoked whenever the destination file
@@ -4189,6 +4216,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        Note  for  advanced  usage: The operating system's environment variable
        TEXINPUTS can be used to specify a search path for finding files by la-
        tex  etc.   Correspondingly,  when  a missing file is reported, latexmk
+
+
+
+                                 17 March 2022                              64
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        looks in the directories specified in TEXINPUTS as well as in the  cur-
        rent  directory, to find a source file from which an instance of a cus-
        tom dependency can be used to make the missing file.
@@ -4215,18 +4254,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        "fig" to "eps" files already exists (e.g., from  a  previously  read-in
        initialization  file),  the latexmk will delete this rule before making
        the new one.
-
-
-
-
-                               20 November 2021                             64
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        Suppose latexmk is using this rule to convert a  file  "figure.fig"  to
        "figure.eps".   Then  it  will invoke the fig2eps subroutine defined in
@@ -4255,6 +4282,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
            }
 
        Note  1: In the command lines given in the system commands in the above
+
+
+
+                                 17 March 2022                              65
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        examples, double quotes have been inserted around the file  names  (im-
        plemented  by '\"' in the Perl language).  They immunize the running of
        the program against special characters in filenames.  Very often  these
@@ -4279,19 +4318,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        That's  the usual situation.  But since the subroutines are in the Perl
        language, you can implement much more  complicated  processing  if  you
        need it.
-
-
-
-
-
-
-                               20 November 2021                             65
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
    Removing custom dependencies, and when you might need to do this:
@@ -4321,13 +4347,25 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        file.  This method has been available since very old  versions  of  la-
        texmk, and many examples can be found, e.g., on the web.
 
-       However  in later versions of latexmk the internal structure of the im-
-       plementation of its "rules" for the steps of processing, including cus-
-       tom dependencies, became much more powerful.  The function implementing
-       a custom dependency is executed within a special context where a number
-       of  extra  variables  and subroutines are defined.  Publicly documented
-       ones, intended to be long-term stable,  are  listed  below,  under  the
-       heading "Variables and subroutines for processing a rule".
+       However  in  later  versions  of  latexmk the internal structure of the
+
+
+
+                                 17 March 2022                              66
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+       implementation of its "rules" for the steps  of  processing,  including
+       custom  dependencies,  became  much more powerful.  The function imple-
+       menting a custom dependency is executed within a special context  where
+       a number of extra variables and subroutines are defined.  Publicly doc-
+       umented ones, intended to be long-term stable, are listed below,  under
+       the heading "Variables and subroutines for processing a rule".
 
        Examples  of  their  use is given in the following examples, concerning
        multiple index files and glossaries.
@@ -4348,17 +4386,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                return system( "makeindex -o \"$_[0].nnd\" \"$_[0].ndx\"" );
            }
            push @generated_exts, 'ndx', 'nnd';
-
-
-
-                               20 November 2021                             66
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
 
        Notice  the  added line compared with earlier examples.  The extra line
        gets the extensions "ndx" and "nnd" added to the list of extensions for
@@ -4387,6 +4414,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
            push @generated_exts, 'ndx', 'nnd', 'adx', 'and';
 
        This  last example uses the command specification in $makeindex, and so
+
+
+
+                                 17 March 2022                              67
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        any customization you have made for the standard index also applies  to
        your extra indexes.
 
@@ -4415,17 +4454,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        item,  and the name of the subroutine for the custom dependency.  These
        were all defined above.
 
-
-
-                               20 November 2021                             67
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        An example of the old method of defining custom dependencies is as fol-
        lows.  It  is  the code in an RC file to ensure automatic conversion of
        .fig files to .eps files:
@@ -4451,8 +4479,20 @@ ADVANCED CONFIGURATION: Some extra resources and advanced tricks
 
        See  also the section DEALING WITH ERRORS, PROBLEMS, ETC.  See also the
        examples in the directory example_rcfiles in the latexmk distributions.
-       Even if none of the examples apply to your case, they may give you use-
-       ful ideas
+       Even  if  none  of  the  examples apply to your case, they may give you
+
+
+
+                                 17 March 2022                              68
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+       useful ideas
 
 
    Utility subroutines
@@ -4481,17 +4521,6 @@ ADVANCED CONFIGURATION: Some extra resources and advanced tricks
               invoked programs.
 
 
-
-
-                               20 November 2021                             68
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
    Variables and subroutines for processing a rule
        A step in the processing is called a rule. One possibility to implement
        the  processing  of a rule is by a Perl subroutine.  This is always the
@@ -4515,6 +4544,19 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        $$Psource
               This gives the name of the primary source file.  Note the double
               dollar signs.
+
+
+
+
+
+                                 17 March 2022                              69
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
 
        $$Pdest
               This gives the name of the main output file if  any.   Note  the
@@ -4546,18 +4588,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        rdb_set_source( $rule, file, ... )
 
-
-
-
-                               20 November 2021                             69
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        rdb_set_source( $rule, @files )
               This subroutine sets the dependency list for the given  rule  to
               be the specified files.  Files that are already in the list have
@@ -4582,6 +4612,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        pattern,  you  can  use one of the following subroutines, std_tex_cmds,
        alt_tex_cmds, and set_tex_cmds.
 
+
+
+
+                                 17 March 2022                              70
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        They work as follows
 
           &std_tex_cmds;
@@ -4599,8 +4641,8 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
          set_tex_cmds( CMD_SPEC );
 
        Here CMD_SPEC is the command line without the program  name.  This  re-
-       sults  in  $latex = 'CMD_SPEC', and similarly for $pdflatex, $lualatex,
-       and $xelatex. An example would be
+       sults  in  $latex = 'latex CMD_SPEC', and similarly for $pdflatex, $lu-
+       alatex, and $xelatex. An example would be
 
          set_tex_cmds( '--interaction=batchmode %O %S' );
 
@@ -4612,18 +4654,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
        Now the basic task of latexmk is to run  the  appropriate  programs  to
        make  a  viewable version of a LaTeX document.  However, the usual make
-
-
-
-                               20 November 2021                             70
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        program is not suited to this purpose for at least two reasons.   First
        is that the use of LaTeX involves circular dependencies (e.g., via .aux
        files), and these cannot be handled by the standard make program.  Sec-
@@ -4647,9 +4677,21 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        could be quite complicated, for example if some of the source files for
        a LaTeX document are generated by the project's software.
 
-       In this section, I give a couple of examples of how latexmk can be use-
-       fully invoked from a Makefile.  The examples use specific  features  of
-       current  versions  of  GNU make, which is the default on both linux and
+       In  this  section,  I  give  a couple of examples of how latexmk can be
+
+
+
+                                 17 March 2022                              71
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
+       usefully invoked from a Makefile.  The examples use  specific  features
+       of current versions of GNU make, which is the default on both linux and
        OS-X systems.  They may need modifications for other versions of make.
 
        The simplest method is simply to delegate all the relevant tasks to la-
@@ -4677,25 +4719,13 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        try.tex, but these aren't specified in the Makefile, so changes in them
        will not by themselves cause latexmk to be invoked.  Instead, the  pat-
        tern  rule is equipped with a "phony" prerequisite FORCE_MAKE; this has
-       the effect of causing the  rule  to  be  always  out-of-date,  so  that
-
-
-
-                               20 November 2021                             71
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
-       latexmk  is  always run.  It is latexmk that decides whether any action
-       is needed, e.g., a rerun of pdflatex.  Effectively the  Makefile  dele-
-       gates all decisions to latexmk, while make has no knowledge of the list
-       of source files except for primary LaTeX file for  the   document.   If
-       there  are,  for example, graphics files to be made, these must be made
-       by custom dependencies configured in latexmk.
+       the effect of causing the rule to be always out-of-date,  so  that  la-
+       texmk  is always run.  It is latexmk that decides whether any action is
+       needed, e.g., a rerun of pdflatex.  Effectively the Makefile  delegates
+       all  decisions  to  latexmk, while make has no knowledge of the list of
+       source files except for primary LaTeX file for the  document.  If there
+       are, for example, graphics files to be made, these must be made by cus-
+       tom dependencies configured in latexmk.
 
        But something better is needed in more complicated situations, for  ex-
        ample, when the making of graphics files needs to be specified by rules
@@ -4714,6 +4744,18 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
                    mkdir $@
             %.pdf : %.tex
                    if [ ! -e $(DEPS_DIR) ]; then mkdir $(DEPS_DIR); fi
+
+
+
+                                 17 March 2022                              72
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
                    $(LATEXMK) -pdf -dvi- -ps- -deps-out=$(DEPS_DIR)/$@P $<
             %.pdf : %.fig
                    fig2dev -Lpdf $< $@
@@ -4744,18 +4786,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
        and an xfig file "graph.fig" exists.  On a first run, pdflatex  reports
        a  missing  file, named "graph". Latexmk succeeds in making "graph.pdf"
        by calling "make graph.pdf", and after completion of its work, it lists
-
-
-
-                               20 November 2021                             72
-
-
-
-
-
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
-
-
        "fig.pdf" among the dependents of the file latexmk is making.  Then let
        "fig.fig" be updated, and then let make be  run.   Make  first  remakes
        "fig.pdf", and only then reruns latexmk.
@@ -4780,6 +4810,18 @@ BUGS
        manual  update (reopen); it views postscript and pdf.  Gsview under MS-
        Windows works for both postscript and pdf, but only reads  the  updated
        file  when  its  screen  is refreshed.  Acroread under UNIX/Linux views
+
+
+
+                                 17 March 2022                              73
+
+
+
+
+
+LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
+
+
        pdf, but the file needs to be closed and reopened to  view  an  updated
        version.   Under  MS-Windows,  acroread locks its input file and so the
        pdf file cannot be updated.  (Remedy: configure latexmk  to  use  suma-
@@ -4793,7 +4835,7 @@ THANKS TO
        dard form to avoid being harvested too easily.)
 
 AUTHOR
-       Current  version,  by  John Collins (Version 4.76).  Report bugs etc to
+       Current  version,  by  John Collins (Version 4.77).  Report bugs etc to
        his e-mail (jcc8 at psu.edu).
 
        Released     version     can      be      obtained      from      CTAN:
@@ -4813,13 +4855,11 @@ AUTHOR
 
 
 
-                               20 November 2021                             73
 
 
 
 
 
-LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
@@ -4839,46 +4879,6 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                               20 November 2021                             74
+                                 17 March 2022                              74
 
 
