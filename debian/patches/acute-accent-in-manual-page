@@ -4,10 +4,8 @@ Origin: Debian
 Forwarded: Yes.
 Last-Update: 2021-11-25
 
-Index: latexmk/latexmk.1
-===================================================================
---- latexmk.orig/latexmk.1	2021-11-25 23:12:42.660632363 +0100
-+++ latexmk/latexmk.1	2021-11-25 23:14:46.296619317 +0100
+--- latexmk.orig/latexmk.1
++++ latexmk/latexmk.1
 @@ -1714,7 +1714,7 @@
  variable \fI$aux_dir\fR).  A directory separation character ('/') is
  appended if \fI$aux_dir\fR is non-empty and does not end in a suitable
@@ -26,7 +24,7 @@ Index: latexmk/latexmk.1
  .PP
  If for some reason you need a literal % character in your string not
  subject to the above rules, use "%%".
-@@ -3545,7 +3545,7 @@
+@@ -3567,7 +3567,7 @@
  files are in a subdirectory and your operating system is Microsoft
  Windows.  Then the separator character for directory components can be
  either a forward slash '/' or Microsoft's more usual backward

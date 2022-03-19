@@ -5,7 +5,7 @@ Source: https://personal.psu.edu/~jcc8/software/latexmk/versions.html
 Files: *
 Copyright: 1992, David J. Musliner and The University of Michigan
            1998-2001, Evan McLean
-           1998-2020, John Collins <jcc8@psu.edu>
+           1998-2022, John Collins <jcc8@psu.edu>
            1998-2020, David Coppit <david@coppit.org>
 License: GPL-2+
 
@@ -13,7 +13,7 @@ Files: debian/*
 Copyright: 2006, Florian Ragwitz <rafl@debian.org>
            2006-2015, Ohura Makoto <ohura@debian.org>
            2018-2021, Norbert Preining <preining@debian.org>
-           2020-2021, Hilmar Preuße <hille42@web.de>
+           2020-2022, Hilmar Preuße <hille42@web.de>
 License: GPL-2+
 
 License: GPL-2+
