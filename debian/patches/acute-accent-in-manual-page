@@ -6,7 +6,7 @@ Last-Update: 2021-11-25
 
 --- latexmk.orig/latexmk.1
 +++ latexmk/latexmk.1
-@@ -1714,7 +1714,7 @@
+@@ -1732,7 +1732,7 @@
  variable \fI$aux_dir\fR).  A directory separation character ('/') is
  appended if \fI$aux_dir\fR is non-empty and does not end in a suitable
  character, with suitable characters being those appropriate to UNIX
@@ -15,7 +15,7 @@ Last-Update: 2021-11-25
  initialization,  \fI$out_dir\fR is set, but \fI$aux_dir\fR is not set
  (i.e., it is blank), then \fIlatexmk\fR sets \fI$aux_dir\fR to the
  same value \fI$out_dir\fR.
-@@ -1724,7 +1724,7 @@
+@@ -1742,7 +1742,7 @@
  variable \fI$out_dir\fR).  A directory separation character ('/') is
  appended if \fI$out_dir\fR is non-empty and does not end in a suitable
  character, with suitable characters being those appropriate to UNIX
@@ -24,7 +24,7 @@ Last-Update: 2021-11-25
  .PP
  If for some reason you need a literal % character in your string not
  subject to the above rules, use "%%".
-@@ -3567,7 +3567,7 @@
+@@ -3638,7 +3638,7 @@
  files are in a subdirectory and your operating system is Microsoft
  Windows.  Then the separator character for directory components can be
  either a forward slash '/' or Microsoft's more usual backward
