@@ -785,7 +785,8 @@ From v. 4.74b to 4.75
 
 From v. 4.75 to 4.76
   In fdb_latexmk file, sort generated file list by name.
-  If nothing is done in a rerun, don't do the unnecessary rewrite of fdb_latexmk file.
+  If nothing is done in a rerun, don't do the unnecessary rewrite of
+     fdb_latexmk file.
   Improve some diagnostics.
   Add /etc to list of locations for system rc files (with Unix-like OSs).
 
@@ -803,4 +804,17 @@ From v. 4.76 to 4.77
     log file according to whether latex/pdflatex, lualatex or xelatex is
     used, thereby reducing misparses of information in log file.
   Reinstate Windows batch file for running latexmk, now called latexmk.cmd.
+
+From v. 4.77 to 4.78
+  Option -dvilua to generate dvi file by lualatex
+  Option -xdv to generate xdv file by xelatex
+  To support these, change in definition of $dvi_mode, and new variables
+     $dvilualatex, $xdv_mode.
+  Bug corrections etc.
+  Configuration variable $bad_warnings_as_error to allow certain bad warnings
+     in log file (e.g., '\end inside ...') to be treated by latexmk as if
+     *latex had reported an actual error.
+  On MS-Windows, correctly handle non-ASCII names for file and directory
+    variables set in rc files.
+  Other improvements in treatment of non-ASCII characters in filenames.
 

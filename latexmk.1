@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "17 March 2022" ""
+.TH LATEXMK 1 "18 November 2022" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -172,11 +172,10 @@ Windows, and is accepted by \fIlatex\fR etc.
 
 .TP
 .B -auxdir=FOO \fRor\fB -aux-directory=FOO
-Sets the directory for auxiliary output files of *latex 
-(.aux, .log etc).  This
-achieves its effect by the \fB-aux-directory\fR option of *latex,
-which currently is only implemented on the MiKTeX version of
-*latex.
+Sets the directory for auxiliary output files of *latex (.aux, .log etc).
+See the description of the \fI$aux_dir\fR variable, the
+\fB-emulate-aux-dir\fR, and the \fI$emulate_aux\fR variables for some
+complications in using this option with the TeX Live distribution.
 
 See also the \fB-outdir\fR/\fB-output-directory\fR options, and the
 \fI$aux_dir\fR, \fI$out_dir\fR, and \fI$search_path_separator\fR
@@ -213,54 +212,46 @@ variable to 0 in a configuration file.
 
 .TP
 .B -bibtex-cond
-When the source file uses bbl file(s) for the bibliography, run
-\fIbibtex\fR or \fIbiber\fR as needed to regenerate the bbl files, but
-only if the 
-relevant bib file(s) exist.  Thus when the bib files are not
-available, \fIbibtex\fR or \fIbiber\fR is not run, thereby avoiding
-overwriting of 
-the bbl file(s).
-Also, always treat .bbl files as precious,
+When the source file uses a bbl file for the bibliography and \fIbibtex\fR
+is used to generate the bibliography, run \fIbibtex\fR as needed to
+regenerate the bbl files only if the relevant bib file(s) exist.  Thus when
+the bib file(s) are not available, \fIbibtex\fR is not run, thereby avoiding
+overwriting of the bbl file.  Also, always treat .bbl files as precious,
 i.e., do not delete them in a cleanup operation.
 
-This is the default setting.
-It can also be configured by setting the \fI$bibtex_use\fR
+This is the default setting.  It can also be configured by setting the
+\fI$bibtex_use\fR variable to 1 in a configuration file.
+
+The reason for using this setting is first to allow automatic switching
+between the use and non-use of \fIbibtex\fR depending on the existence or
+not of a bib file.  In addition, when submitting articles to a scientific
+journal, it is common to submit only .tex and .bbl files (plus graphics
+files), but not a .bib file.  Hence it is often useful to treat .bbl files
+as true source files, that should be preserved under a clean up operation.
+
+This property can also be configured by setting the \fI$bibtex_use\fR
 variable to 1 in a configuration file.
 
-The reason for using this setting is that sometimes a .bbl file is
-available containing the bibliography for a document, but the .bib
-file is not available.  An example would be for a scientific journal
-where authors submit .tex and .bbl files, but not the original .bib
-file.  In that case, running \fIbibtex\fR or \fIbiber\fR would not
-work, and the .bbl file should be treated as a user source file, and
-not as a file that can be regenerated on demand.
-
-(Note that it is possible for \fIlatexmk\fR to decide that the bib
-file does not exist, even though the bib file does exist and
-\fIbibtex\fR or \fIbiber\fR finds it.  The problem is that the bib
-file may not be in 
-the current directory but in some search path; the places
-\fIlatexmk\fR and \fIbibtex\fR or \fIbiber\fR cause to be searched need not be
-identical.  On modern installations of TeX and related programs this
-problem should not arise, since \fIlatexmk\fR uses the \fIkpsewhich\fR
-program to do the search, and \fIkpsewhich\fR should use the same
-search path as \fIbibtex\fR and \fIbiber\fR.  If this problem arises, use the
-\fB-bibtex\fR option when invoking \fIlatexmk\fR.)
-
-Note that this value does \fInot\fR work properly if the document uses
-\fIbiber\fR instead of \fIbibtex\fR.  (There's a long story why not.)
+\fBNote\fR that when \fBbiber\fR is used, and a bib file doesn't exist, this
+option does not currently prevent \fIbiber\fR from being run.  See the
+documentation on \fI$bibtex_use\fR for more details.  However, a bbl file
+is treated as precious. 
 
 .TP
 .B -bibtex-cond1
 The same as \fB-bibtex-cond\fR except that .bbl files are only
 treated as precious if one or more bibfiles fails to exist.
 
-Thus if all the bib files exist, \fIbibtex\fR or \fIbiber\fR is run to
-generate .bbl files as needed, and then it is appropriate to delete
-the bbl files in a cleanup operation since they can be re-generated.
+Thus if all the bib files exist, \fIbibtex\fR is run to generate .bbl files
+as needed, and then it is appropriate to delete the bbl files in a cleanup
+operation since they can be re-generated.
 
 This property can also be configured by setting the \fI$bibtex_use\fR
 variable to 1.5 in a configuration file.
+
+\fBNote\fR that when \fBbiber\fR is used, and a bib file doesn't exist, this
+option does not currently prevent \fIbiber\fR from being run.  See the
+documentation on \fI$bibtex_use\fR for more details.
 
 .TP
 .B -bibtexfudge\fR or\fB -bibfudge
@@ -477,7 +468,11 @@ Do not report the settings for aux and out directories.  (Default)
 
 .TP
 .B -dvi
-Generate dvi version of document.
+Generate dvi version of document using latex.
+
+.TP
+.B -dvilua
+Generate dvi version of document using lualatex instead of latex.
 
 .TP
 .B -dvi-
@@ -485,6 +480,16 @@ Turn off generation of dvi version of document.  (This may get
 overridden, if some other file is made (e.g., a .ps file) that is
 generated from the dvi file, or if no generated file at all is
 requested.) 
+
+.TP
+.B -dvilualatex="COMMAND"
+This sets the string specifying the command to run \fIdvi lualatex\fR.  It
+behaves like the \fB-pdflatex\fR option, but sets the variable
+\fI$dvilualatex\fR.  
+
+\fINote: This option when provided with the COMMAND argument only sets the
+command for invoking dvilualatex; it does not turn on the use of
+dvilualatex. That is done by other options or in an initialization file.\fR
 
 .TP
 .B -e <code>
@@ -872,7 +877,12 @@ applies.)  To configure
 
 .TP
 .B -pdfdvi
-Generate pdf version of document from the dvi file, by default using dvipdf.
+Generate dvi file and then pdf version of document from the dvi file, by
+default using dvipdf. 
+
+The program used to compile the document to dvi is \fIlatex\fR by default,
+but this can be changed to \fIdvilulatex\fR by the use of the \fB-dvilua\fR
+option or by setting \fI$dvi_mode\fR to 2.
 
 .TP
 .B -pdflua
@@ -880,8 +890,12 @@ Generate pdf version of document using \fIlualatex\fR.
 
 .TP
 .B -pdfps
-Generate pdf version of document from the .ps file, by default using
-\fIps2pdf\fR. 
+Generate dvi file, ps file from the dvi file,  and then pdf file from the
+ps file.
+
+The program used to compile the document to dvi is \fIlatex\fR by default,
+but this can be changed to \fIdvilulatex\fR by the use of the \fB-dvilua\fR
+option or by setting \fI$dvi_mode\fR to 2.
 
 .TP
 .B -pdfxe
@@ -1202,8 +1216,8 @@ To change the options used to make the commands run silently, you need
 to configure \fIlatexmk\fR with changed values of its configuration
 variables, the relevant ones being \fI$bibtex_silent_switch\fR,
 \fI$biber_silent_switch\fR, \fI$dvipdf_silent_switch\fR, 
-\fI$dvips_silent_switch\fR, \fI$latex_silent_switch\fR,
-\fI$lualatex_silent_switch\fR
+\fI$dvips_silent_switch\fR, \fI$dvilualatex_silent_switch\fR,
+\fI$latex_silent_switch\fR, \fI$lualatex_silent_switch\fR
 \fI$makeindex_silent_switch\fR, \fI$pdflatex_silent_switch\fR,
 and \fI$xelatex_silent_switch\fR
 
@@ -1299,6 +1313,10 @@ Thus \fB-Werror\fR causes \fIlatexmk\fR to treat such warnings as
 errors, but only when they occur on the last run of *latex and
 only after processing is complete.  Also can be set by the
 configuration variable \fI$warnings_as_errors\fR. 
+
+.TP
+.B -xdv
+Generate xdv version of document using xelatex.
 
 .TP
 .B -xelatex
@@ -1968,10 +1986,12 @@ written by a run of *latex.  If this variable is not set, but
 which is the directory to which general output files are to be
 written. 
 
-\fBImportant note\fR:  The effect of \fI$aux_dir\fR, if different from
-\fI$out_dir\fR, is achieved by giving \fI*latex\fR the
-\fB-aux-directory\fR.  Currently (Dec. 2011 and later) this only works on the
-MiKTeX version of \fI*latex\fR.
+\fBImportant note\fR:  The default implementation of the aux dir is to give 
+\fI*latex\fR the \fB-aux-directory\fR option.  But that only works with the
+MiKTeX distribution, not with the TeX Live distribution.  Latexmk has an
+alternative implementation that avoids this problem: See the description of 
+\fB-emulate-aux-dir\fR option and the \fI$emulate_aux\fR variable for
+details. 
 
 See also the documentation of \fI$out_dir\fR for some complications on
 what directory names are suitable.
@@ -1995,6 +2015,20 @@ normalization helps performance and cleans up output to the screen. It also
 avoids situations where a file in the current directory is referred to by
 different names, e.g., "file.aux" and "./file.aux", which can be annoying.
 
+
+.TP
+.B $bad_warning_is_error [0]
+Whether to treat bad warnings reported by *latex in log file as errors. The
+specifications of the warning messages are in \fI@bad_warnings\fR.
+
+.TP
+.B @bad_warnings
+Array of regular expressions specifying messages in log file that are
+officially treated as warnings rather than errors by *latex, but which a
+user may treat as errors: See \fI$bad_warning_is_error\fR.
+
+Currently the default set of these warnings is those about \\end occuring
+inside constructs.
 
 .TP
 .B $banner [0]
@@ -2100,21 +2134,24 @@ incorrect overwriting of the precious bbl files.  The variable
 whether or not .bbl files are deleted in a cleanup operation.
 
 The possible values of \fI$bibtex_use\fR are:
-  0: never use BibTeX or biber; 
-never delete .bbl files in a cleanup.
-  1: only use \fIbibtex\fR or \fIbiber\fR if the bib files exist;
-never delete .bbl files in a cleanup.
-  1.5: only use \fIbibtex\fR or \fIbiber\fR if the bib files exist;
-conditionally delete .bbl files in a cleanup (i.e., delete them only
-when the bib files all exist). 
+  0: never use \fIbibtex\fR or \fIbiber\fR; never delete .bbl files in a cleanup.
+  1: only use \fIbibtex\fR if the bib file(s) exist; never delete .bbl
+files in a cleanup. 
+  1.5: only use \fIbibtex\fR if the bib files exist; conditionally
+delete .bbl files in a cleanup (i.e., delete them only when the bib files
+all exist).  
   2: run \fIbibtex\fR or \fIbiber\fR whenever it appears necessary to
-update the bbl 
-files, without testing for the existence of the bib files;
-always delete .bbl files in a cleanup.
+update the bbl file(s), without testing for the existence of the bib 
+files; always delete .bbl files in a cleanup.
 
-Note that the value 1.5 does \fInot\fR work properly if the document
-uses \fIbiber\fR instead of \fIbibtex\fR.  (There's a long story why
-not.)
+\fBImportant note:\fR Currently, the values 1 and 1.5 do \fInot\fR work
+properly if the document uses \fIbiber\fR instead of \fIbibtex\fR. When
+\fIbiber\fR is used, the values 1 and 1.5 for \fI$bibtex_use\fR are
+equivalent to 2 as regards the running of \fIbiber\fR.  (There's a long
+story why not.  Basically, the problem is that when \fIbiber\fR is used,
+\fIlatexmk\fR only knows the names and status of the bibfiles after running
+\fIbiber\fR.  In contrast, when \fIbibtex\fR is used, the information is
+available after a run of *latex. It is a problem for the future to correct this.)
 
 .TP
 .B $cleanup_includes_cusdep_generated [0]
@@ -2176,7 +2213,7 @@ set, then in its initialization, \fIlatexmk\fR sets \fI$aux_dir\fR equal to
 \fI$out_dir\fR, which is the only case directly supported by TeXLive,
 unlike MiKTeX.  Note that even with TeXLive latexmk does now support
 different values for the directories -- see the explanation of the
-\fI$emulate_aux variable.
+\fI$emulate_aux\fR variable.
 
 If \fI$out_dir\fR and \fI$aux_dir\fR different, latexmk actually deletes
 any files of the specified names in both \fI$aux_dir\fR and \fI$out_dir\fR;
@@ -2353,15 +2390,42 @@ programs.  This variable is set by the \fB-cd\fR and
 .B $dvi_filter [empty]
 The dvi file filter to be run on the newly produced dvi file before
 other processing.  Equivalent to specifying the \fB-dF\fR option.
+
+.TP
+.B $dvilualatex ["dvilualatex %O %S"]
+Specifies the command line to invoke
+the dvilualatex program.  Note that as with other programs, you
+can use this variable not just to change the name of the program used,
+but also specify options to the program.  E.g.,
+
+	$dvilualatex = "dvilualatex --src-specials %O %S";
+
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
+"Advanced Configuration".
+
 .TP
 .B $dvi_mode [See below for default]
-If nonzero, generate a dvi version of the document.  
+If one, generate a dvi version of the document by use of latex.  
 Equivalent to the \fB-dvi\fR option.
+
+If 2, generate a dvi version of the document by use of dvilualatex.  
+Equivalent to the \fB-dvilua\fR option.
 
 The variable $dvi_mode defaults to 0, but if no explicit requests are
 made for other types of file (postscript, pdf), then $dvi_mode will be
 set to 1.  In addition, if a request for a file for which a .dvi file
-is a prerequisite, then $dvi_mode will be set to 1.  
+is a prerequisite and $dvi_mode is zero, then $dvi_mode is set to 1.
+
+
+.TP
+.B $dvilualatex_silent_switch  ["-interaction=batchmode"]
+Switch(es) for the \fIdvilualatex\fR program (specified in the variable
+\fI$dvilualatex\fR) when silent mode is on.
+
+See details of the \fI$latex_silent_switch\fR for other information
+that equally applies to \fI$dvilualatex_silent_switch\fR.
+
 .TP
 .B $dvi_previewer ["start xdvi %O %S" under UNIX]
 The command to invoke a dvi-previewer.
@@ -2461,7 +2525,9 @@ programs.  (MiKTeX supports -aux-directory, but TeXLive doesn't.)
 If you use a version of *latex that doesn't support -aux-directory, e.g.,
 TeXLive, latexmk will automatically switch aux_dir emulation on after the
 first run of *latex, because it will find the .log file in the wrong
-place.
+place.  But it is better to set \fI$emulate_aux\fR to 1 in an rc file, or
+equivalently to use the \fB-emulate-aux-dir\fR option. This emulation mode
+works equally well with MiKTeX.
 
 Aux_directory emulation means that when *latex is invoked, the \fIoutput\fR
 directory provided to *latex is set to be the aux_dir. After that, any
@@ -2704,9 +2770,9 @@ but also specify options to the program.  E.g.,
 
 	$latex = "latex --src-specials %O %S";
 
-To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
-\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
-Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
+"Advanced Configuration".
 
 .TP
 .B %latex_input_extensions
@@ -2790,9 +2856,9 @@ Specifies the command line for
 the LaTeX processing program that is to be used when the \fIlualatex\fR
 program is called for (e.g., by the option \fB-lualatex\fR.
 
-To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
-\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
-Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
+"Advanced Configuration".
 
 .TP
 .B %lualatex_input_extensions
@@ -2938,9 +3004,10 @@ instead of \fIpdflatex\fR.  There are now separate configuration
 variables for the use of \fIlualatex\fR or \fIxelatex\fR.  See
 \fI$lualatex\fR and \fI$xelatex\fR.)
 
-To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
-\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
-Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
+"Advanced Configuration".
+
 .TP
 .B %pdflatex_input_extensions
 This variable specifies the extensions tried by \fIlatexmk\fR when it finds
@@ -3195,7 +3262,7 @@ operating system in passing arguments to programs.)
 After initialization, whether to give a list of the RC files read.
 .TP
 .B $recorder [1]
-Whether to use the \fB-recorder\fR option to \fI(latex\fR
+Whether to use the \fB-recorder\fR option to \fI*latex\fR.
 Use of this option results in a file of extension
 \fI.fls\fR containing a list of the files that these programs have
 read and written.  \fILatexmk\fR will then use this file to improve
@@ -3356,6 +3423,10 @@ is set.  (The foregoing explanation is rather complicated, because
 commands isn't set.)
 
 .TP
+.B $xdv_mode [0]
+If one, generate an xdv version of the document by use of xelatex.  
+
+.TP
 .B $xdvipdfmx ["xdvipdfmx -E -o %D %O %S"]
 
 The program to make a pdf file from an xdv file (used in conjunction
@@ -3380,9 +3451,9 @@ yourself.  See the documentation for the \fB-pdfxe\fR option for why
 \fIlatexmk\fR makes a .xdv file rather than a .pdf file when \fIxelatex\fR
 is used.
 
-To do a coordinated setting of all of \fI$latex\fR, \fI$pdflatex\fR,
-\fI$lualatex\fR, and \fI$xelatex\fR, see the section "Advanced
-Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
+"Advanced Configuration".
 
 .TP
 .B %xelatex_input_extensions
@@ -3824,7 +3895,8 @@ printed to the screen unless \fIlatexmk\fR is running in silent mode.
 
 .SS Coordinated Setting of Commands for *latex
 
-To set all of \fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and
+To set all of \fI$dvilualatex\fR, \fI$latex\fR, \fI$pdflatex\fR,
+\fI$lualatex\fR, and 
 \fI$xelatex\fR to a common pattern, you can use one of the following
 subroutines, std_tex_cmds, alt_tex_cmds, and set_tex_cmds.
 
@@ -3833,16 +3905,16 @@ They work as follows
    &std_tex_cmds;
 
 This results in \fI$latex = 'latex %O %S'\fR, and similarly for
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.  Note the
-ampersand in the invocation; this indicates to Perl that a subroutine
-is being called.
+\fI$dvilualatex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.
+Note the ampersand in the invocation; this indicates to Perl that a
+subroutine is being called.
 
    &alt_tex_cmds;
 
 This results in \fI$latex = 'latex %O %P'\fR, and similarly for
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.  Note the
-ampersand in the invocation; this indicates to Perl that a subroutine
-is being called.
+\fI$dvilualatex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.
+Note the ampersand in the invocation; this indicates to Perl that a
+subroutine is being called.
 
   set_tex_cmds( CMD_SPEC );
 
@@ -3987,9 +4059,23 @@ then reruns \fIlatexmk\fR.
 Thus we now have a method by which all the subsidiary processing is
 delegated to \fImake\fR.  
 
+.SH NON_ASCII CHARACTERS IN FILENAMES, RC FILES, ETC
+
+Modern operating systems and file systems allow non-ASCII characters in
+the names of files and directories that encompass the full Unicode range.
+Mostly, \fIlatexmk\fR deals with these correctly.  However, there are some
+situations in which there are problems, notably on Microsoft Windows.
+Prior to version 4.77, \fIlatexmk\fR had problems with non-ASCII filenames
+on Windows, even though there were no corresponding problems on macOS and
+Linux.  These problems are corrected in the present version.  
+
+\fBDETAILS TO BE FILLED IN\fR
+
+
 .SH SEE ALSO
 latex(1), bibtex(1), lualatex(1), pdflatex(1), xelatex(1).
-.SH BUGS
+
+.SH BUGS (SELECTED)
 Sometimes a viewer (gv) tries to read an updated .ps or .pdf file
 after its creation is started but before the file is complete.  Work
 around: manually refresh (or reopen) display.  Or use one of the other
@@ -4018,7 +4104,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.77).
+(Version 4.78).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
