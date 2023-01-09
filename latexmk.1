@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "18 November 2022" ""
+.TH LATEXMK 1 "7 January 2023" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -173,19 +173,20 @@ Windows, and is accepted by \fIlatex\fR etc.
 .TP
 .B -auxdir=FOO \fRor\fB -aux-directory=FOO
 Sets the directory for auxiliary output files of *latex (.aux, .log etc).
-See the description of the \fI$aux_dir\fR variable, the
-\fB-emulate-aux-dir\fR, and the \fI$emulate_aux\fR variables for some
-complications in using this option with the TeX Live distribution.
+These are all the generated files, with the exception of final output files
+(.dvi, .ps, .pdf, .synctex.gz, .synctex).  See the
+\fB-outdir\fR/\fB-output-directory\fR option for directories for the final
+output files. 
 
-See also the \fB-outdir\fR/\fB-output-directory\fR options, and the
-\fI$aux_dir\fR, \fI$out_dir\fR, and \fI$search_path_separator\fR
-configuration variables of \fIlatexmk\fR.  In particular, see the
-documentation of \fI$out_dir\fR for some complications on what
-directory names are suitable.
+If the directory specified for the \fB-aux\fR/\fB-aux-directory\fR option
+is blank, then the default is used, which is to be the same as the output
+directory. 
 
 If you also use the \fB-cd\fR option, and the specified auxiliary output
 directory is a relative path, then the path is interpreted relative to
 the document directory.
+
+See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
 
 .TP
 .B -bibtex 
@@ -542,19 +543,19 @@ option with less problems in dealing with quoting.)
 
 .TP
 .B -emulate-aux-dir
-Emulate -aux-directory instead of leaving it to the *latex programs
-to do it.  (MiKTeX supports -aux-directory, but TeXLive doesn't.)
+Emulate the use of an aux directory instead of leaving it to the *latex
+programs to do it.  (MiKTeX supports -aux-directory, but TeXLive doesn't.)
 
-For more details see the explanation for the configuration variable
-\fI$emulate_aux\fR. 
+See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
 
 .TP
 .B -emulate-aux-dir-
-Turn off emulatation -aux-directory and leave it to the *latex program
-to handle the case that aux_dir is not equal to out_dir.  Note that if you
-use TeXLive, which doesn't support -aux-directory, latexmk will
-automatically switch aux_dir emulation on after the first run of *latex,
-because it will find the .log file in the wrong place.
+Turn off emulation to implement an aux directory and leave it to the *latex
+program to handle the case that the aux directory is different from the
+output directory.  Note that if you use TeXLive, which doesn't support
+-aux-directory, latexmk will automatically switch aux_dir emulation on
+after the first run of *latex, because it will find the .log file in the
+wrong place.
 
 .TP
 .B -f
@@ -811,21 +812,17 @@ no matter where it occurs on the command line.
 .TP
 .B -outdir=FOO \fRor\fB -output-directory=FOO
 
-Sets the directory for the output files of *latex.  This achieves
-its effect by the \fB-output-directory\fR option of *latex, which
-currently (Dec. 2011 and later) is implemented on the common versions of
-*latex, i.e., MiKTeX and TeXLive.  It may not be present in other
-versions. 
+Sets the directory for the output files of *latex.
 
-See also the \fB-auxdir\fR/\fB-aux-directory\fR options, and the
-\fI$aux_dir\fR, \fI$out_dir\fR, and \fI$search_path_separator\fR
-configuration variables of \fIlatexmk\fR.  In particular, see the
-documentation of \fI$out_dir\fR for some complications on what
-directory names are suitable.
+If the aux directory is not set or is the same as the output directory,
+then all output files of *latex are sent to the output directory.
 
-If you also use the \fB-cd\fR option, and the specified output
-directory is a relative path, then the path is interpreted relative to
-the document directory.
+If the aux directory is set, e.g., by the option \fB-auxdir\fR, and is not
+equal to the output directory, then only final output files
+(.dvi, .ps, .pdf, .synctex, .synctex.gz) are sent to the output
+directory. Other generated files are sent to the aux directory.
+
+See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
 
 .TP
 .B -output-format=FORMAT
@@ -1033,14 +1030,11 @@ of perl and the operating system on your computer.
 
 .TP
 .B -pv
-Run file previewer.  If the \fB-view\fR option is used, this will select
-the kind of file to be previewed (.dvi, .ps or .pdf).
-Otherwise the viewer views the "highest" kind of file selected, by the
-\fB-dvi\fR, \fB-ps\fR, \fB-pdf\fR, \fB-pdfps\fR options, in the
-order .dvi, .ps, .pdf (low to high).
-If no file type has been selected, the dvi previewer will be used.
-This option is incompatible with the \fB-p\fR and \fB-pvc\fR options,
-so it turns them off.
+Run file previewer.  If the \fB-view\fR option is used, that will select
+the kind of file to be previewed (.pdf, .ps or .dvi).  Otherwise the viewer
+views the "highest" kind of output file that is made, with the ordering
+being .pdf, .ps, .dvi (high to low).  This option is incompatible with the
+\fB-p\fR and \fB-pvc\fR options, so it turns them off.
 
 .TP
 .B -pv-
@@ -1233,12 +1227,13 @@ given that %O appears in the definition.)
 
 .TP
 .B -time
-Show CPU time used.
+Show time used.  (On MS Windows, what is shown is clock time; on other
+systems CPU time.)
 See also the configuration variable \fI$show_time\fR.
 
 .TP
 .B -time-
-Do not show CPU time used.
+Do not show time used.
 See also the configuration variable \fI$show_time\fR.
 
 .TP
@@ -1453,6 +1448,182 @@ i. Ask a question at tex.stackexchange.com.
 
 j. Or ask me (the author of \fIlatexmk\fR).  My e-mail is at the end
 of this documentation.
+
+
+.SH AUXILIARY AND OUTPUT DIRECTORIES
+
+Running *latex and the associated programs generate a number of files, it
+is often convenient to arrange for the generated files to be in a different
+directory than the source file(s) of a document.  For our purposes here, we
+identify two classes of generated file.
+
+One class is what one may term the final output files, for example,
+the .pdf file generated by running pdflatex, or the .dvi file from
+latex. Also in this class is the ps file generated by applying dvips to
+a .dvi file. There are also .synctec or .synctex.gz files that can be used
+by programs that display .pdf files and the like to relate positions in
+them to positions in source files.
+
+The second class of file is composed of all other generated files: These
+include notably .aux files that are used for implementing cross referencing,
+and are both generated on one run and read on a later run.  Many packages
+generate yet more such intermediate files, as well as programs like bibtex,
+makeindex, etc.  There are also .log files from *latex and corresponding
+files from other programs.
+
+Let us use the term "output directory" for the directory that receives the
+final output files, and "aux directory" for the directory for the other
+generated files.  If no special options are provided to the *latex
+programs, these directories default to the current directory, and then the
+generated files aren't segregated.  If the two directories are the same, as
+is the simplest situation, then all generated files are written to the same
+directory, and one often simply refers to the output directory, without
+mentioning a separate aux directory.
+
+Support for them is provided for them in the *latex programs: by the single
+option \fB-output-directory\fR for the TeXLive implementations, and by the
+options \fB-aux-directory\fR and \fB-output-directory\fR for the MiKTeX
+implementations.  Special support like this is needed for two reasons:
+First is that there are many packages that write files and it needs to be
+arranged that these are automatically written to the appropriate directory
+without any rewriting of the packages' code.  Second is that the files are
+often read in again on subsequent runs of *latex, and it is necessary that
+the program knows where to find the files.
+
+A complication is that the TeXLive implementation does not allow for
+separate aux and output directories.  Latexmk deals with this by being able
+to emulating a separate aux directory: In this method it invokes *latex
+with just an \fB-output-directory\fR option, with the directory set not to
+the desired output directory, but to the aux directory.  After running
+*latex, it moves the relevant final output file(s) to the intended output
+directory.  Emulation can be turned on by setting the configuration
+variable \fI$emulate_aux\fR to one in a configuration file or by using
+latexmk's \fB-emulate-aux-dir\fR option.  The emulation method works
+equally well if MiKTeX is used.
+
+Latexmk also turns emulation on if it is found to be needed, as follows.
+Suppose emulation is initially off, but the aux and output directories are
+different.  Then latexmk invokes *latex with an -aux-directory option and
+after the run finds that it hasn't been obeyed, notably because the .log
+file is in the output directory rather than the aux directory.  Latexmk
+then sets emulation on, and retries.  Conceivably, it could move all the
+appropriate generated files from the output directory to the aux directory;
+but there is such a large variety of possibilities for these files that
+this is hard to identify all of them reliably except for simple cases. 
+
+Note that the emulation issue only arises when the user has arranged for
+the the aux and output directories to be different.  When instead they are
+equal, e.g., because the user only set the \fI$out_dir\fR variable, then
+latexmk invokes *latex with only an \fB-output-directory\fR option, which
+works as intended with both TeXLive and MiKTeX.
+
+In addition, latexmk arranges the invocations of any auxiliary programs
+like bibtex and makeindex so that they will read and write the relevant
+files from and to the aux directory.  Programs like dvips, dvipdf, ps2pdf,
+and xdvipdfmx are invoked so that they read from the appropriate places and
+write their output to the output directory.
+
+\fIFiles considered as final output files, i.e., those that belong in the
+output directory rather than the aux directory\fR: These have the
+extensions .dvi, .ps., .pdf, .synctex, and .synctex.gz.
+A special case, because of compatibility issues, is of .fls files: See
+below.
+
+Note that xelatex when invoked with its \fB-no-pdf\fR option, as latexmk
+does, generates an .xdv file, which would appear to have the same status as
+a .dvi file generated by latex.  Nevertheless, latexmk treats .xdv as an
+intermediate file that is found in the aux directory.  This is to match
+MiKTeX's treatment of the \fB-aux-directory\fR option.  As further
+justification, one can say that under modern conditions an .xdv file is
+(almost) always an intermediate file.  Historically, the situation
+with .dvi files from latex was different, and currently dvi previewers do
+exist.
+
+
+\fIVariables and options for directories\fR: The variables for setting the
+aux and output directories are \fI$aux_dir\fR and \fI$out_dir\fR, with
+corresponding command line options \fB-auxdir\fR (or \fB-aux-directory\fR)
+and \fB-outdir\fR (or \fB-output-directory\fR).  When a value for these is
+blank (which is the default value), it implies the use of a default: For
+the aux directory, the default is to set it equal to the output directory.
+For the output directory, the default is to be the current directory.
+
+For the turning on and off of the emulation mode, there is the
+configuration variable \fI$emulate_aux\fR and the options
+\fB-emulate-aux-dir\fR, \fB-emulate-aux-dir-\fR, \fB-noemulate-aux-dir\fR.
+
+
+\fIInteraction with -cd option\fR: When the \fB-cd\fR option is used (or
+the equivalent setting of \fI$do_cd\fR variable), then latexmk changes the
+working directory to the document directory before invoking *latex.  If the
+aux and/or output directories are given by relative paths, e.g., by
+\fB-outdir=output\fR for a directory named "output", then the directories
+are relative to the document directory, rather than relative to the working
+directory that was in effect when latexmk was invoked. This matches the
+behavior of *latex as invoked with the provided command line directory
+argument(s) after the change of working directory to the document
+directory.
+
+\fIAutomatic creation of aux and output directories\fR: Unlike *latex, if
+latexmk finds the requested directory/ies don't exist, it creates it/them,
+thereby avoiding errors when *latex is invoked.
+
+If the document uses the \\include macro to read a .tex file from a
+subdirectory, *latex will attempt to write an extra aux file to the
+corresponding subdirectory of the aux directory.  If the subdirectory
+doesn't exist, then *latex will complain that it can't write the aux file.
+After the run of *latex, latexmk detects this situation, creates the
+necessary directory, and reruns *latex with the error situation corrected.
+
+\fIChoice of aux and output directories\fR: Often the aux
+and output directories are given as subdirectories of the document
+directory, e.g., by \fB-outdir=output\fR. But it is possible to provide,
+for example, an absolute path or a path relative to a parent directory,
+e.g., "/tmp/foo" or "../output".  Be aware that in general this can cause
+problems, notably with \fImakeindex\fR or \fIbibtex\fR.  This is because
+modern versions of these programs, by default, will refuse to work when
+they find that they are asked to write to a file in a directory that
+appears not to be the current working directory or one of its
+subdirectories.  This is part of security measures by the whole TeX system
+that try to prevent malicious or errant TeX documents from incorrectly
+messing with a user's files.
+
+By default, latexmk evades this issue: Before running bibtex and makeindex,
+latexmk changes working directory to the aux directory, with appropriate
+settings of search paths.  The use or non-use of this trick is governed by
+the variables \fI$bibtex_fudge\fR and \fI$makeindex_fudge\fR.
+Unfortunately, the trick sometimes makes bibtex and makeindex unable to
+find files.
+
+If necessary the trick can be turned off. But this is incompatible with an
+aux directory like, "/tmp/foo" of "../output").  If you really have to deal
+with this situation, and only if you have to deal with it, then you need to
+disable the security measures (and assume any risks).  One way of doing
+this is to temporarily set an operating system environment variable
+openout_any to "a" (as in "all"), to override the default "paranoid"
+setting.
+
+\fICertain names of aux and output directories not allowed on Microsoft
+Windows\fR: It is natural to want to use the name "aux" for the aux
+directory, e.g., by using the option \fB-auxdir=aux\fR.  But on Microsoft
+operating systems "aux" is one of the names that is not allowed for a file
+or directory.  I find it useful to standardize on a name like "auxdir"
+(e.g., by \fB-auxdir=auxdir\fR); this works independently of operating
+system.
+
+\fILocation of .fls file\fR: Much of the dependency information that
+latexmk uses comes from the .fls file generated when *latex is invoked with
+the \fB-recorder\fR option, which latexmk does by default.  It may seem
+rational that this is written to the aux directory.  But in fact versions
+of MiKTeX prior to Oct. 2020 wrote it to the output directory.  Later
+versions do write it to the aux directory.  To deal with this, latexmk does
+two things: First, if latexmk finds that the .fls file has only been
+generated in the "wrong" directory, then latexmk copies it to the expected
+directory, after which latexmk's operation continues correctly
+independently of the behavior of *latex. Second it allows its idea of the
+"correct" (or expected) directory to be configured by the variable
+\fI$fls_uses_aux_dir\fR.  This defaults to zero, to correspond to MiKTeX's
+current behavior.
 
 
 .SH ALLOWING FOR CHANGE OF OUTPUT FILE TYPE
@@ -1972,7 +2143,7 @@ $analyze_input_log_always to 1.
 Whether to automatically read the standard initialization (rc) files,
 which are the system RC file, the user's RC file, and the RC file in
 the current directory.  The command line option \fB-norc\fR can be
-used to turn this setting off.  Each RC file could also turn this
+used to turn this setting off.  Each RC file co2uld also turn this
 setting off, i.e., it could set \fI$auto_rc_use\fR to zero to prevent
 automatic reading of the later RC files.
 
@@ -1980,40 +2151,36 @@ This variable does not affect the reading of RC files specified on the
 command line by the \fB-r\fR option.
 .TP
 .B $aux_dir [""]
-The directory in which auxiliary files (aux, log, etc) are to be
-written by a run of *latex.  If this variable is not set, but 
-\fI$out_dir\fR is set, then \fI$aux_dir\fR is set to \fI$out_dir\fR,
-which is the directory to which general output files are to be
-written. 
+The aux directory, i.e., the directory in which auxiliary files (aux, log,
+etc) are to be written by a run of *latex.
 
-\fBImportant note\fR:  The default implementation of the aux dir is to give 
-\fI*latex\fR the \fB-aux-directory\fR option.  But that only works with the
-MiKTeX distribution, not with the TeX Live distribution.  Latexmk has an
-alternative implementation that avoids this problem: See the description of 
-\fB-emulate-aux-dir\fR option and the \fI$emulate_aux\fR variable for
-details. 
+If this variable is not set, but \fI$out_dir\fR is set, then latexmk takes
+the aux directory to equal the output directory which is the directory to
+which final output files are to be written.
 
-See also the documentation of \fI$out_dir\fR for some complications on
-what directory names are suitable.
+If neither variable is set, then the current directory when *latex is
+invoked is used both for the aux and output directories.
 
-If you also use the \fB-cd\fR option, and \fI$out_dir\fR (or \fI$aux_dir\fR) contains a
-relative path, then the path is interpreted relative to the document
-directory.
+If the aux and output directories are distinct, then the aux directory
+contains all generated files with the exception of "final output files",
+which are defined to be .dvi, .ps, .pdf, .synctex, and .synctex.gz files.
+
+See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
+
 
 .TP
 .B $aux_out_dir_report [0]
-For each .tex file processed, list the settings for aux and out
+For each primary .tex file processed, list the settings for aux and output
 directories, after they have been normalized from the settings specified
 during initialization.
 
-This report gives a reminder of where to look for output.
+This report gives a reminder of where to look for generated files.
 
-The report has to be done per file, because of possible directory changes
-for each file.  In the simplest cases, the result is the same as originally
-specified.  In general, e.g., with an absolute directory specified, the
-normalization helps performance and cleans up output to the screen. It also
-avoids situations where a file in the current directory is referred to by
-different names, e.g., "file.aux" and "./file.aux", which can be annoying.
+The report has to be done per primary .tex file, because of possible
+directory changes for each file (when the \fB-cd\fR option is used).  In
+the simplest cases, the directory names are the same as originally
+specified.  But in general some clean up/normalization is performed; this
+helps performance and cleans up output to the screen.
 
 
 .TP
@@ -2075,20 +2242,23 @@ this variable are:
         @BIBINPUTS = ( ".", "//server/bibfiles" );
         @BIBINPUTS = ( ".", "/usr/local/texmf/bibtex/bib" );
 
-Note that under MS Windows, either a forward slash "/" or a backward
-slash "\(rs" can be used to separate pathname components, so the first
-two and the second two examples are equivalent.  Each backward slash
-should be doubled to avoid running afoul of \fIPerl\fR's rules for writing
-strings. 
+Note that under MS Windows, either a forward slash "/" or a backward slash
+"\(rs" can be used to separate pathname components, so the first two and
+the second two examples are equivalent.  Each backward slash should be
+doubled to avoid running afoul of \fIPerl\fR's rules for writing
+strings. Generally, it is simplest always to use forward slashes instead of
+backward slashes.
 
-\fIImportant note:\fR This variable is now mostly obsolete in the
-current version of \fIlatexmk\fR, 
-since it has a better method of searching for files using the
-kpsewhich command.  However, if your system is an unusual one without
-the kpsewhich command, you may need to set the variable \fI@BIBINPUTS\fR.
+\fIImportant note:\fR This variable is now mostly obsolete in the current
+version of \fIlatexmk\fR, since it now uses a better method of searching
+for files using the kpsewhich command.  However, if your system is an
+unusual one without the kpsewhich command, you may need to set the variable
+\fI@BIBINPUTS\fR.
+
 .TP
 .B $biber ["biber %O %S"]
 The biber processing program.
+
 .TP
 .B $biber_silent_switch ["--onlylog"]
 Switch(es) for the biber processing program when silent mode is on.
@@ -2117,6 +2287,7 @@ prevents bibtex from finding certain bib or bst files. Then
 .TP
 .B $bibtex_silent_switch ["-terse"]
 Switch(es) for the BibTeX processing program when silent mode is on.
+
 .TP
 .B $bibtex_use [1]
 Under what conditions to run \fIbibtex\fR or \fIbiber\fR.  When
@@ -2144,15 +2315,6 @@ all exist).
 update the bbl file(s), without testing for the existence of the bib 
 files; always delete .bbl files in a cleanup.
 
-\fBImportant note:\fR Currently, the values 1 and 1.5 do \fInot\fR work
-properly if the document uses \fIbiber\fR instead of \fIbibtex\fR. When
-\fIbiber\fR is used, the values 1 and 1.5 for \fI$bibtex_use\fR are
-equivalent to 2 as regards the running of \fIbiber\fR.  (There's a long
-story why not.  Basically, the problem is that when \fIbiber\fR is used,
-\fIlatexmk\fR only knows the names and status of the bibfiles after running
-\fIbiber\fR.  In contrast, when \fIbibtex\fR is used, the information is
-available after a run of *latex. It is a problem for the future to correct this.)
-
 .TP
 .B $cleanup_includes_cusdep_generated [0]
 If nonzero, specifies that cleanup also deletes files that are
@@ -2160,6 +2322,7 @@ generated by custom dependencies.
 (When doing a clean up, e.g., by use of the \fB-C\fR option, custom
 dependencies are those listed in the \fI.fdb_latexmk\fR file from a
 previous run.)
+
 .TP
 .B $cleanup_includes_generated [0]
 If nonzero, specifies that cleanup also deletes files that are
@@ -2518,82 +2681,51 @@ updated by sending a signal -- see the information on the variable
 for \fIxdvi\fR on a UNIX system.
 .TP
 .B $emulate_aux [0]
-Whether to emulate the use of aux_dir when $aux_dir and $out_dir are
-different, rather than using the -aux-directory option for the *latex
-programs.  (MiKTeX supports -aux-directory, but TeXLive doesn't.)
+Whether to emulate the use of aux directory when $aux_dir and $out_dir are
+different, rather than using the \fB-aux-directory\fR option for the *latex
+programs.  (MiKTeX supports \fB-aux-directory\fR, but TeXLive doesn't.)
 
-If you use a version of *latex that doesn't support -aux-directory, e.g.,
-TeXLive, latexmk will automatically switch aux_dir emulation on after the
-first run of *latex, because it will find the .log file in the wrong
+If you use a version of *latex that doesn't support \fB-aux-directory\fR,
+e.g., TeXLive, latexmk will automatically switch aux_dir emulation on after
+the first run of *latex, because it will find the .log file in the wrong 
 place.  But it is better to set \fI$emulate_aux\fR to 1 in an rc file, or
 equivalently to use the \fB-emulate-aux-dir\fR option. This emulation mode
 works equally well with MiKTeX.
 
-Aux_directory emulation means that when *latex is invoked, the \fIoutput\fR
-directory provided to *latex is set to be the aux_dir. After that, any
-files that need to be in the output directory will be moved there. (These
-are the files with extensions .dvi, .ps, .pdf, .fls, .synctex, .synctex.gz.) 
+Aux directory emulation means that when *latex is invoked, the \fIoutput\fR
+directory provided to *latex is set to be the desired aux directory. After
+that, any files that need to be in the output directory will be moved
+there by latexmk. (These are the files with
+extensions .dvi, .ps, .pdf, .synctex, .synctex.gz, and, depending on the
+setting of the \fI$fls_uses_out_dir\fR variable, also the .fls file.)
 
 .TP
 .B $failure_cmd [undefined]
 See the documentation for \fI$compiling_cmd\fR.
+
 .TP
 .B $fdb_ext ["fdb_latexmk"]
 The extension of the file which \fIlatexmk\fR generates to contain a
 database of information on source files.  You will not normally need
 to change this.
+
 .TP
-.B $filetime_causality_threshold [5]; $filetime_offset_report_threshold [30]. \fR(Units of seconds.)
+.B $fls_uses_out_dir [0]
+This variable determines whether or not the .fls file should be in the
+output directory instead of the natural directory, which is the aux
+directory.  If the variable is nonzero, the .fls file is to be in the output
+directory.  See the section AUXILIARY AND OUTPUT DIRECTORIES for more
+details about these directories.  The rationale for the existence of the
+variable \fI$fls_uses_aux_dir\fR is explained there.
 
-These variables control how \fIlatexmk\fR deals with the following
-issue, which can affect the use of files that are on a remote
-filesystem (network share) instead of being on a file system local to
-the computer running \fIlatexmk\fR.  Almost users will not have to
-worry about these settings, and can ignore the following explanation.
-
-In almost all situations, \fIlatexmk\fR does not need to use the time
-stamps of the files it works with.  However, there are a couple of
-situations when it needs to know whether a certain file was created in
-the current run of a program (e.g., \fI*latex\fR) or is a leftover
-file from a previous run. It does this by comparing the modification
-time of the file with the system time just before the program was
-started. If the modification time is earlier than when the program was
-started, the file is a leftover file, which \fIlatexmk\fR treats as if
-it were not created.  If the filetime is at least the program start
-time, then it can be assumed that the file was created in the current
-run.
-
-Unfortunately, this test can fail if the file is on a remote system,
-since its system time is not necessarily synchronized with that of the
-local system; the timestamps on the remote files are set by the remote
-system, not the local system.  Generally, modern operating systems
-regularly synchronize their time with a server, so the
-non-synchronization is mostly small (a second or so, or a few
-seconds).  But even a small difference can mess up \fIlatexmk\fR's
-test.
-
-\fILatexmk\fR measures the time difference between the time on the two
-systems and compensates for this.  But the measurement (in a
-system-independent way) is only accurate to a second or two.  So
-\fIlatexmk\fR allows for a threshold on the difference between file
-and system time before it concludes that a file is a leftover file
-from a previous run. The configuration variable
-\fI$filetime_causality_theshhold\fR, which in units of seconds,
-specifies this threshold.  Luckily high precision is not needed.  The
-previous run is normally the previous run in a human run-edit-run
-cycle, and is at least many seconds back.  A few seconds is therefore
-appropriate for the threshold, \fI$filetime_causality_theshhold\fR; it
-should be non-negative always, and should be bigger than 2 if a remote
-filesystem or network share is used.
-
-If the difference in system times on the two systems is large, it
-normally indicates that at least one of the systems is misconfigured.
-The variable \fI$filetime_offset_report_threshold\fR specifies the
-smallest size of the difference (or offset) in seconds between the
-times of the local and remote system beyond which the offset is
-reported.  This is reported at the point in the \fIlatexmk\fR's
-progress that it measures the offset. The report is made if silent
-mode is used and diagnostic mode is not on.
+In all cases, if \fIlatexmk\fR finds that an .fls file has been generated in
+the opposite directory to the one specified by \fI$fls_uses_out_dir\fR, it
+copies the file to the other directory (aux or output directory as
+appropriate).  The file is copied rather than simply moved, to avoid
+potential clashes with other software that assumes the .fls file is
+generated in the directory it was written to by *latex. Thus the effect an
+incorrect setting of \fI$fls_uses_out_dir\fR is only to cause a superfluous
+copy of the .fls file to be generated.
 
 .TP
 .B $force_mode [0]
@@ -2939,36 +3071,20 @@ same file, and if one is running will not start a new one.  If
 \fIlatexmk\fR will behave as if no viewer is running.
 .TP
 .B $out_dir [""]
-If non-blank, this variable specifies the directory in which output
-files are to be written by a run of 
-*latex.  See also the variable \fI$aux_dir\fR.  
+If non-blank, this variable specifies the output directory.
 
-The effect of this variable (when non-blank) is achieved by using the
-\fB-output-directory\fR option of *latex.  This exists in the
-usual current (Dec. 2011 and later) implementations of TeX, i.e., MiKTeX and
-TeXLive. But it may not be present in other versions.
+This is the directory in which final output files are written (dvi, ps,
+pdf, synctex, synctex.gz).  In addition, if the aux directory equals the
+output directory, as is the case by default, then other generated files are
+in effect written to the output directory.
 
-If you also use the \fB-cd\fR option, and \fI$out_dir\fR (or \fI$aux_dir\fR) contains a
-relative path, then the path is interpreted relative to the document
-directory.
+If \fI$out_dir\fR is blank, the output directory is the current directory
+at the invocation of *latex; this is equivalent to setting \fI$out_dir\fR
+to '.'.
 
-Commonly, the directory specified for output files is a subdirectory
-of the current working directory.  However, if you specify some other
-directory, e.g., "/tmp/foo" or "../output", be aware that this could
-cause problems, e.g., with \fImakeindex\fR or \fIbibtex\fR.  This is
-because modern versions of these programs, by default, will refuse to
-work when they find that they are asked to write to a file in a
-directory that appears not to be the current working directory or one
-of its subdirectories.  This is part of security measures by the whole
-TeX system that try to prevent malicious or errant TeX documents from
-incorrectly messing with a user's files.  If for \fI$out_dir\fR or
-\fI$aux_dir\fR you really do need to specify an absolute pathname
-(e.g., "/tmp/foo") or a path (e.g., "../output") that includes a
-higher-level directory, and you need to use \fImakeindex\fR or
-\fIbibtex\fR, then you need to disable the security measures
-(and assume any risks).  One way of doing this is to temporarily set an
-operating system environment variable openout_any to "a" (as in
-"all"), to override the default "paranoid" setting.
+See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
+
+
 .TP
 .B $pdf_mode [0]
 If zero, do NOT generate a pdf version of the document.
@@ -3308,7 +3424,16 @@ for unusual operating systems that are not in the MSWin, Linux, OS-X,
 Unix collection.)
 .TP
 .B $show_time [0]
-Whether to show CPU time used.
+Whether to show time used, both the total and for individual steps.
+
+\fINote\fR: On MS Windows, this is clock time.  On other OSs it is the CPU
+time used (by latexmk and the child processes it invokes).  The
+OS-dependence is because of a limitation of Windows.  If you wish to force
+the use of clock instead of CPU time, you can set
+
+    $times_are_clock = 1;
+
+
 .TP
 .B $silence_logfile_warnings [0]
 Whether after a run of *latex to summarize warnings in the log
@@ -4104,7 +4229,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.78).
+(Version 4.79).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
