@@ -1,3 +1,10 @@
+latexmk (1:4.79-1) unstable; urgency=medium
+
+  * New upstream release, refresh patches.
+  * Bump Standards version, no changes needed.
+
+ -- Hilmar Preusse <hille42@web.de>  Mon, 09 Jan 2023 08:23:13 +0100
+
 latexmk (1:4.78-1) unstable; urgency=medium
 
   * New upstream release, refresh patches, remove / disable
