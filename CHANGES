@@ -818,3 +818,16 @@ From v. 4.77 to 4.78
     variables set in rc files.
   Other improvements in treatment of non-ASCII characters in filenames.
 
+From v. 4.78 to 4.79
+  Check rc files for valid UTF-8; remove initial BOM.
+  Improve some warnings and messages.
+  Correctly implement conditional use of biber, to be able to preserve bbl
+    file when bib file doesn't exist.  This behavior now matches the
+    conditional use of bibtex.
+  Solve problem that processing times under Windows were reported as zero.
+  Solve occasional problems caused by granularity of file times when detecting
+    files generated during a run of *latex
+  Configurably change default location of fls file to aux directory, to match
+    behavior of recent versions of MiKTeX.
+  Update documentation especially about aux and output directories.
+
