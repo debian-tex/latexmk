@@ -804,6 +804,12 @@ From v. 4.76 to 4.77
     log file according to whether latex/pdflatex, lualatex or xelatex is
     used, thereby reducing misparses of information in log file.
   Reinstate Windows batch file for running latexmk, now called latexmk.cmd.
+  Remove code that automatically measured a possible offset between clock
+    time for the system on which latexmk runs and the system on which files
+    are stored. (This was used to adjust a test for whether an expected
+    file is generated on the current run of *latex or is a relic from a
+    past time.) Modern OSs, by default, synchronize system time with a time
+    server. 
 
 From v. 4.77 to 4.78
   Option -dvilua to generate dvi file by lualatex
@@ -811,7 +817,7 @@ From v. 4.77 to 4.78
   To support these, change in definition of $dvi_mode, and new variables
      $dvilualatex, $xdv_mode.
   Bug corrections etc.
-  Configuration variable $bad_warnings_as_error to allow certain bad warnings
+  Configuration variable $bad_warning_is_error to allow certain bad warnings
      in log file (e.g., '\end inside ...') to be treated by latexmk as if
      *latex had reported an actual error.
   On MS-Windows, correctly handle non-ASCII names for file and directory
@@ -830,4 +836,26 @@ From v. 4.78 to 4.79
   Configurably change default location of fls file to aux directory, to match
     behavior of recent versions of MiKTeX.
   Update documentation especially about aux and output directories.
+  Add configuration variable (not yet documented) $filetime_slop, with
+    default value 2.  When a test for whether a file was generated on the
+    current run of *latex, the file modification time is permitted to be
+    $filetime_slop seconds older than the system time at the start of a
+    run of *latex while still being treated as a generated file.  This
+    allows for differences in granularity between the different times
+    involved, and especially the 2 sec granularity on FAT file systems.
+
+From v. 4.79 to 4.80
+  Improved treatment of detection of whether files (e.g., .log) have been
+    generated on current run or are leftover from an earlier run. Code now
+    compensates (and diagnoses) time offset between computer running
+    latexmk and file server.
+  Allow placeholder %C in argument to set_tex_cmds, to allow more flexible
+    construction of command lines for all *latex.
+  Fix problems of compatibility with the xr package.
+  Allow escaping of spaces in names of files in deps files, as needed by
+    make. Escaping can be unix-style or nmake-style.
+  Various bug fixes and corrections, improvements in error and warning
+    messages, and corrections to documentation.
+
+
 
