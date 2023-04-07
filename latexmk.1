@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "7 January 2023" ""
+.TH LATEXMK 1 "4 April 2023" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -429,6 +429,13 @@ default.)
 .TP
 .B -dependents-
 Equivalent to \fB-deps-\fR.
+
+.TP
+.B -deps-escape=<string>
+Set the kind of escaping used for spaces in the dependency list.  The
+possible values are "none", "unix", "nmake", corresponding respectively to
+no escaping, escaping with a "\\" suitable for standard Unix make, and
+escaping with "^", suitable for Microsoft's nmake.  
 
 .TP
 .B -deps-out=FILENAME  
@@ -2029,7 +2036,7 @@ specification starting with "internal", as in
      }
 .PP
 For some of the more exotic possibilities that then become available,
-see the section "ADVANCED CONFIGURATION: Some extra resources and
+see the section "Advanced configuration: Some extra resources and
 advanced tricks". Also see some of the examples in the directory
 \fIexample_rcfiles\fR in the \fIlatexmk\fR distribution.
 
@@ -2390,7 +2397,7 @@ if they are empty.  An example of an application is to pythontex, which
 creates files in a particular directory.  You can arrange to remove
 both the files and the directory by setting
 
-    $clean_ext = "pythontex-files-%R pythontex-files-%R";
+    $clean_ext = "pythontex-files-%R/* pythontex-files-%R";
 
 See also the (array) variable \fI@generated_exts\fR.  In the past, this
 variable had certain uses beyond that of \fI$clean_ext\fR.  But now, they
@@ -2536,10 +2543,26 @@ match.
 .TP
 .B $dependents_list [0]
 Whether to display a list(s) of dependencies at the end of a run.
+
+.TP
+.B $deps_escape ["none"]
+This variable determines which kind of escaping of space characters to use
+in dependency lists. The possible values are "none", "unix", "nmake",
+corresponding respectively to no escaping, escaping with a "\\" suitable
+for standard Unix make, and escaping with "^", suitable for Microsoft's
+nmake.
+
+Currently the only character escaped is a space, since that is particularly
+common in file names and directory names.  There are other characters that
+would need escaping if a dependency list is to be used as-is by a make
+program; but those characters (e.g., "$") commonly cause difficulties when
+used for .tex documents.  Moreover, the detailed rules for which characters
+need to be escaped depends on the version of make.
+
 .TP
 .B $deps_file ["-"]
 Name of file to receive list(s) of dependencies at the end of a run,
-to be used if \fI$dependesnt_list\fR is set.  If the filename is "-",
+to be used if \fI$dependents_list\fR is set.  If the filename is "-",
 then the dependency list is set to stdout (i.e., normally the screen).
 
 .TP
@@ -3903,7 +3926,7 @@ method doesn't delete any previous custom-dependency for the same
 conversion.  So the new method is preferable.
 
 
-.SH ADVANCED CONFIGURATION: Some extra resources and advanced tricks
+.SH Advanced configuration: Some extra resources and advanced tricks
 
 For most purposes, simple configuration for \fIlatexmk\fR along the
 lines of the examples given is sufficient.  But sometimes you need
@@ -4025,30 +4048,58 @@ To set all of \fI$dvilualatex\fR, \fI$latex\fR, \fI$pdflatex\fR,
 \fI$xelatex\fR to a common pattern, you can use one of the following
 subroutines, std_tex_cmds, alt_tex_cmds, and set_tex_cmds.
 
-They work as follows
+To get the standard commands, use
 
    &std_tex_cmds;
 
 This results in \fI$latex = 'latex %O %S'\fR, and similarly for
 \fI$dvilualatex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.
 Note the ampersand in the invocation; this indicates to Perl that a
-subroutine is being called.
+subroutine is being called.  (The use of this subroutine enables you to
+override previous redefinitions of the \fI$latex\fR, etc variables, which
+might have occurred in an earlier-read rc file.)
+
+To be able to use the string provided by the -pretex option (if any), you
+can use
 
    &alt_tex_cmds;
 
-This results in \fI$latex = 'latex %O %P'\fR, and similarly for
-\fI$dvilualatex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.
-Note the ampersand in the invocation; this indicates to Perl that a
-subroutine is being called.
+This results in \fI$latex = 'latex %O %P'\fR, etc.  Again note the
+ampersand in the invocation; this indicates to Perl that a subroutine is
+being called.
 
-  set_tex_cmds( CMD_SPEC );
+A more general way of specifying the variables is using
+
+  set_tex_cmds( 'CMD_SPEC' );
 
 Here CMD_SPEC is the command line without the program name. This
 results in \fI$latex = 'latex CMD_SPEC'\fR, and similarly for
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR. An example would
-be 
+\fI$pdflatex\fR, etc.  (An ampersand preceding the subroutine name is not
+necessary here, since the parentheses show Perl that a subroutine is being
+invoked.) 
+
+An example that provides the \fI--interaction=batchmode\fR option to the
+*latex commands would be
 
   set_tex_cmds( '--interaction=batchmode %O %S' );
+
+This results in \fI$latex = 'latex --interaction=batchmode %O %S '\fR, etc.
+Note that when '%O' appears after the added option, as here, options
+provided on the command line to \fIlatexmk\fR can override the supplied
+one.
+
+A more general command line can be set up by using the placeholder '%C' in
+CMD_SPEC.  The '%C' is substituted by the basic name of the command, i.e.,
+whichever of 'latex', 'pdflatex', etc is appropriate.  (More than one
+occurrence of '%C' is allowed.)  For example to use the
+development/pre-release versions of latex, etc, which have
+names, 'latex-dev', 'pdflatex-dev', etc, you could use
+
+  set_tex_cmds( '%C-dev %O %S' );
+
+This results in \fI$latex = 'latex-dev %O %S'\fR, etc.  (The pre-release
+programs latex-dev etc are provided in current distributions of TeXLive and
+MiKTeX.) 
 
 .PP
 
@@ -4182,7 +4233,23 @@ let \fImake\fR be run.  \fIMake\fR first remakes "fig.pdf", and only
 then reruns \fIlatexmk\fR.
 
 Thus we now have a method by which all the subsidiary processing is
-delegated to \fImake\fR.  
+delegated to \fImake\fR.
+
+\fBEscaping of characters in dependency lists\fR: There are certain special
+characters that need to be escaped when names of files and directories
+containing them appear in a dependency list used by a make program.
+Generally, such special characters are best avoided.
+
+By default, latexmk does no escaping of this kind, and the user will have
+to arrange to deal with the issue separately, if the relevant special
+characters are used.  Note that the rules for escaping depend on which make
+program is used, and on its version.
+
+One special case is of spaces, since those are particularly prevalent,
+notably in standard choices of name for a user's home directory.  So
+latexmk does provide an option to escape spaces.  See the option
+\fB-deps_escape=...\fR and the variable \fB$deps_escape\fR for details.
+
 
 .SH NON_ASCII CHARACTERS IN FILENAMES, RC FILES, ETC
 
@@ -4229,7 +4296,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.79).
+(Version 4.80).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
