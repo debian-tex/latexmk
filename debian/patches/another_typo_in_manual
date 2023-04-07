@@ -6,7 +6,7 @@ Last-Update: 2022-11-22
 
 --- latexmk.orig/latexmk.1
 +++ latexmk/latexmk.1
-@@ -2194,7 +2194,7 @@
+@@ -2201,7 +2201,7 @@
  officially treated as warnings rather than errors by *latex, but which a
  user may treat as errors: See \fI$bad_warning_is_error\fR.
  
