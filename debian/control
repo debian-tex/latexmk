@@ -7,7 +7,7 @@ Uploaders: Hilmar Preusse <hille42@web.de>,
            Norbert Preining <norbert@preining.info>
 Standards-Version: 4.6.2
 Rules-Requires-Root: no
-Homepage: https://personal.psu.edu/jcc8/software/latexmk-jcc/
+Homepage: https://www.cantab.net/users/johncollins/latexmk/index.html
 Vcs-Git: https://github.com/debian-tex/latexmk.git
 Vcs-Browser: https://github.com/debian-tex/latexmk
 

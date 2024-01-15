@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: latexmk
-Source: https://personal.psu.edu/~jcc8/software/latexmk/versions.html
+Source: https://www.cantab.net/users/johncollins/latexmk/versions.html
 
 Files: *
 Copyright: 1992, David J. Musliner and The University of Michigan
