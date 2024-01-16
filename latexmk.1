@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "4 April 2023" ""
+.TH LATEXMK 1 "10 January 2024" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -234,9 +234,11 @@ This property can also be configured by setting the \fI$bibtex_use\fR
 variable to 1 in a configuration file.
 
 \fBNote\fR that when \fBbiber\fR is used, and a bib file doesn't exist, this
-option does not currently prevent \fIbiber\fR from being run.  See the
+option does not prevent \fIbiber\fR from being run, with the bbl file then
+being incorrect. 
+See the
 documentation on \fI$bibtex_use\fR for more details.  However, a bbl file
-is treated as precious. 
+is treated as precious in a clean up operation.
 
 .TP
 .B -bibtex-cond1
@@ -251,8 +253,11 @@ This property can also be configured by setting the \fI$bibtex_use\fR
 variable to 1.5 in a configuration file.
 
 \fBNote\fR that when \fBbiber\fR is used, and a bib file doesn't exist, this
-option does not currently prevent \fIbiber\fR from being run.  See the
-documentation on \fI$bibtex_use\fR for more details.
+option does not prevent \fIbiber\fR from being run, with the bbl file then
+being incorrect. 
+See the
+documentation on \fI$bibtex_use\fR for more details.  However, a bbl file
+is treated as precious in a clean up operation.
 
 .TP
 .B -bibtexfudge\fR or\fB -bibfudge
@@ -475,6 +480,12 @@ during initialization. See the description of the variable
 Do not report the settings for aux and out directories.  (Default)
 
 .TP
+.B -dir-report-only
+After all initialization is complete, give the settings for the aux and out
+directories, and then halt.  This option is primarily used for debugging
+configuration issues.
+
+.TP
 .B -dvi
 Generate dvi version of document using latex.
 
@@ -605,6 +616,11 @@ Turn off \fB-g\fR.
 .TP
 .B -h \fRor\fB-non-help
 Print help information.
+
+.TP
+.B -hnt
+Generate hnt (HINT) version of document using hilatex.  (And turn off dvi,
+postscript, and pdf modes.)
 
 .TP
 .B -jobname=STRING
@@ -746,6 +762,10 @@ Turn on the change-directory fudge for makeindex.  See documentation of
 .B -makeindexfudge-
 Turn off the change-directory fudge for makeindex.  See documentation of
 \fI$makeindex_fudge\fR for details.
+
+.TP
+.B $min_sleep_time [0.01]
+This is the minimum nonzero value allowed for \fI$sleep_time\fR.
 
 .TP
 .B -MSWinBackSlash
@@ -2177,18 +2197,23 @@ See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
 
 .TP
 .B $aux_out_dir_report [0]
-For each primary .tex file processed, list the settings for aux and output
-directories, after they have been normalized from the settings specified
-during initialization.
+If this variable is set to 1, then prior to the processing of each
+primary .tex file, list the settings for aux and output directories, after
+they have been normalized from the settings specified during
+initialization.
 
 This report gives a reminder of where to look for generated files.
 
-The report has to be done per primary .tex file, because of possible
-directory changes for each file (when the \fB-cd\fR option is used).  In
-the simplest cases, the directory names are the same as originally
-specified.  But in general some clean up/normalization is performed; this
-helps performance and cleans up output to the screen.
+The report is done per primary .tex file, because of possible directory
+changes for each file (when the \fB-cd\fR option is used).  In the simplest
+cases, the directory names are the same as originally specified.  But in
+general some clean up/normalization is performed; this helps performance
+and cleans up output to the screen.
 
+If this variable is set to 2, then halt after reporting the settings for
+the aux and out directories, rather than continuing with processing of tex
+files.  This setting is primarily used for debugging configuration issues.
+See the \fB-dir-report-only\fR option.
 
 .TP
 .B $bad_warning_is_error [0]
@@ -2313,14 +2338,24 @@ whether or not .bbl files are deleted in a cleanup operation.
 
 The possible values of \fI$bibtex_use\fR are:
   0: never use \fIbibtex\fR or \fIbiber\fR; never delete .bbl files in a cleanup.
-  1: only use \fIbibtex\fR if the bib file(s) exist; never delete .bbl
-files in a cleanup. 
-  1.5: only use \fIbibtex\fR if the bib files exist; conditionally
-delete .bbl files in a cleanup (i.e., delete them only when the bib files
-all exist).  
+  1: only use \fIbibtex\fR or \fIbiber\fR if the bib file(s) exist; never
+  delete .bbl files in a cleanup.  
+  1.5: only use \fIbibtex\fR or \fIbiber\fR if the bib files exist;
+  conditionally delete .bbl files in a cleanup (i.e., delete them only when
+  the bib files all exist).  
   2: run \fIbibtex\fR or \fIbiber\fR whenever it appears necessary to
 update the bbl file(s), without testing for the existence of the bib 
 files; always delete .bbl files in a cleanup.
+
+\fINote\fR: When \fIbiber\fR is being used, conditional use of \fIbiber\fR
+can be problematic.  From \fIlatexmk\fR's point of view the problem is that
+because of how \fIbiber\fR works, a full knowledge of its source files can
+only be obtained after running \fIbiber\fR.  In contrast, for \fIbibtex\fR,
+full information on which bib files are used is obtained from the .aux
+file(s) after a run of *latex.  But for \fIbiber\fR, the corresponding
+information is somewhat incomplete; this the information obtained in
+the .bcf file that is generated by the biblatex package during a run of
+*latex.
 
 .TP
 .B $cleanup_includes_cusdep_generated [0]
@@ -2586,9 +2621,9 @@ but also specify options to the program.  E.g.,
 
 	$dvilualatex = "dvilualatex --src-specials %O %S";
 
-To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
-"Advanced Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$hilatex\fR,
+\fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the
+section "Advanced Configuration".
 
 .TP
 .B $dvi_mode [See below for default]
@@ -2733,6 +2768,62 @@ database of information on source files.  You will not normally need
 to change this.
 
 .TP
+.B @file_not_found
+This an array of Perl regular expressions that are patterns to find
+messages in the .log file from a run of *latex that indicate that a file
+was looked for and not found.  To see the current default set, you should
+look at the definition of \fI@file_not_found\fR in the latexmk.pl file.
+
+In the regular expression, the string for the name of the missing file
+should be enclosed in parentheses.  That carries the implication that after
+latexmk gets a succesful match to the pattern, the variable $1 is set to
+the filename, which is then picked up by latexmk.
+
+If you happen to encounter a package that gives a missing file message of a
+different form than one that matches one of the built-in patterns, you can
+add another pattern to the array.  An example would be
+
+    push @file_not_found, '^No file\\\\s+(.+)\\\\s*$';
+
+The regular expression itself is
+
+     ^Missing file\\s+(.+)\\s*$
+
+But the corresponding string specification in the push statement has to
+have the backslashes doubled.  
+
+This regular expression matches a line that starts with 'No file', then has
+one or more white space characters, then any number of characters forming
+the filename, then possible white space, and finally the end of the line.
+(See documentation on Perl regular expressions for details.)
+
+.TP
+.B $filetime_causality_threshold [5]
+The use of this variable is as follows:  At a number of places, latexmk
+needs to determine whether a particular file has been produced during a
+just-concluded run of some rule/program or is leftover from a previous
+run. (An example is the production of a .bcf file by the biblatex package
+during a run of *latex to provide bibliographic information to the biber
+program.  If a .bcf file is not produced during a current run of *latex,
+but is leftover from a previous run, then latexmk has to conclude that
+the .tex document has changed so that biber is no longer to be used.)
+
+Latexmk's criterion that a file has been produced during a run is that the
+modification time of the file is more recent than the system time at the
+beginning of the run.  Bascially, if the modification time is earlier than
+this, then it is a leftover from a previous run.  However, a naive use of
+the criterion can, among other things, run afoul of the granularity of how
+file times are stored in some file systems, which means it is possible that
+the filesystem's reported time for a file might be a second or more earlier
+than the actual modification time, the exact difference being quite random.
+
+The variable \fI$filetime_causality_threshold\fR allows an appopriate
+sloppiness in latexmk's use of file modification time.  It can be quite
+generous; it should merely be less than the time scale on which a human
+user makes changes to source files for a document (or to configuration
+files, etc).
+
+.TP
 .B $fls_uses_out_dir [0]
 This variable determines whether or not the .fls file should be in the
 output directory instead of the natural directory, which is the aux
@@ -2801,6 +2892,7 @@ example.)
 .B $go_mode [0]
 If nonzero, process files regardless of timestamps, and is then
 equivalent to the \fB-g\fR option.
+
 .TP
 .B %hash_calc_ignore_pattern
 \fB!!!This variable is for experts only!!!\fR
@@ -2849,6 +2941,15 @@ remove this in a file that is read later.  To do this, you use Perl's
 delete function, e.g.,
 
     delete $hash_calc_ignore_pattern{'eps'};
+
+.TP
+.B $hilatex ["hilatex %O %S"]
+specifies the command line for the hilatex program.  
+
+.TP
+.B $hnt_mode [0]
+Whether to generate a hnt version of the document by use of hilatex.  Can
+be turned on by the use of the \fB-hnt\fR option.
 
 .TP
 .B $jobname [""]
@@ -2903,6 +3004,7 @@ STDOUT of running the command is then piped to \fIlatexmk\fR.)
 See also the \fI@BIBINPUTS\fR variable for another way that \fIlatexmk\fR
 also uses to try to locate files; it applies only in the case of .bib
 files.
+
 .TP
 .B $kpsewhich_show [0]
 Whether to show diagnostics about invocations of \fIkpsewhich\fR: the
@@ -2911,11 +3013,13 @@ shown if \fI$kpsewhich_show\fR is non-zero or if diagnostics mode is
 on.  (But in the second case, lots of other diagnostics are also
 shown.)  Without these diagnostics there is nothing visible in
 \fIlatexmk\fR's screen output about invocations of \fIkpsewhich\fR.
+
 .TP
 .B $landscape_mode [0]
 If nonzero, run in landscape mode, using the landscape mode previewers and
 dvi to postscript converters.  Equivalent to the \fB-l\fR option.
 Normally not needed with current previewers.
+
 .TP
 .B $latex ["latex %O %S"]
 Specifies the command line for
@@ -2925,9 +3029,9 @@ but also specify options to the program.  E.g.,
 
 	$latex = "latex --src-specials %O %S";
 
-To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
-"Advanced Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$hilatex\fR,
+\fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the
+section "Advanced Configuration".
 
 .TP
 .B %latex_input_extensions
@@ -3011,9 +3115,9 @@ Specifies the command line for
 the LaTeX processing program that is to be used when the \fIlualatex\fR
 program is called for (e.g., by the option \fB-lualatex\fR.
 
-To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
-"Advanced Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$hilatex\fR,
+\fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the
+section "Advanced Configuration".
 
 .TP
 .B %lualatex_input_extensions
@@ -3143,9 +3247,9 @@ instead of \fIpdflatex\fR.  There are now separate configuration
 variables for the use of \fIlualatex\fR or \fIxelatex\fR.  See
 \fI$lualatex\fR and \fI$xelatex\fR.)
 
-To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
-"Advanced Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$hilatex\fR,
+\fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the
+section "Advanced Configuration".
 
 .TP
 .B %pdflatex_input_extensions
@@ -3472,18 +3576,29 @@ warnings.  The command line options
 
 Note that multiple occurrences for the same undefined object on the
 same page and same line will be compressed to a single warning.
+
 .TP
 .B $silent [0]
 Whether to run silently.  Setting $silent to 1 has the same effect as
 the \fB-quiet\fR of \fB-silent\fR options on the command line.
+
 .TP
 .B $sleep_time [2]
-The time to sleep (in seconds) between checking for source file
-changes when running with the \fB-pvc\fR option.  This is subject to a
-minimum of one second delay, except that zero delay is also allowed.
+The time to sleep (in seconds) between checking for source-file
+changes when running with the \fB-pvc\fR option.  If non-zero, it is subject to a
+minimum value give by the \fI$min_sleep_time\fR variable.  But a zero value
+is also allowed.  
 
-A value of exactly 0 gives no delay, and typically results in 100% CPU
-usage, which may not be desirable.
+A value of exactly 0 gives no delay between checks for source-file changes;
+it typically results in 100% CPU usage, which may not be desirable.
+
+In old versions of latexmk, the default value of \fI$sleep_time\fR of 2 was
+set to give a reasonable compromise between responsiveness in \rB-pvc\fR
+mode and the amount of CPU usage.  On modern computers with fast multi-core
+CPUs, a smaller value, e.g., 0.1 can give good results, especially when
+working with small documents whose compilation may take well under a
+second.
+
 .TP
 .B $texfile_search [""]
 This is an obsolete variable, replaced by the \fI@default_files\fR
@@ -3599,9 +3714,9 @@ yourself.  See the documentation for the \fB-pdfxe\fR option for why
 \fIlatexmk\fR makes a .xdv file rather than a .pdf file when \fIxelatex\fR
 is used.
 
-To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$latex\fR,
-\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the section
-"Advanced Configuration".
+To do a coordinated setting of all of \fI$dvilualatex\fR, \fI$hilatex\fR,
+\fI$latex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR, see the
+section "Advanced Configuration".
 
 .TP
 .B %xelatex_input_extensions
@@ -3995,9 +4110,49 @@ dollar signs.
 .B $$Pdest
 This gives the name of the main output file if any.  Note the double
 dollar signs.
+
+.TP
+.B pushd( path ), popd()
+These subroutines are used when it is needed to temporarily change the
+working directory, as in
+
+     pushd( 'some_directory' );
+     ... Processing done with 'some_directory' as the working directory
+     popd()
+
+They perform exactly the same function as the commands of the same names in
+operating system command shells like bash on Unix, and cmd.exe on the
+Windows.
+
+.TP
+.B rdb_add_generated( file, ... )
+This subroutine is to be used in the context of a rule, that is, from
+within a subroutine that is carrying out processing of a rule.  Such is the
+case for the subroutine implementing a custom dependency, or the subroutine
+invoked by using the "internal" keyword in the command specification like
+that in the variable \fI$latex\fR.
+
+Its arguments are a sequence of filenames which are generated during the
+running of the rule.  The names might arise from an analysis of the results
+of the run, e.g., in a log file, or from knowledge of properties of the
+specific rule.  Calling \fIrdb_add_generated\fR with these filenames
+ensures that these files are flagged as generated by the rule in
+\fIlatexmk\fR's internal data structures.  Basically, no action is taken if
+the files have already been flagged as generated.
+
+A main purpose of using this subroutine is for the situation when a
+generated file is also the source file for some rule, so that \fIlatexmk\fR
+can correctly link the dependency information in its network of rules.
+
+\fINote: Unlike some other subroutines in this section, there is no
+argument for a rule for \fRrdb_add_generated\fI. Instead, the subroutine is
+to be invoked during the processing of a rule when \fRlatexmk\fI has set up
+an appropriate context (i.e., appropriate variables).  In contrast,
+subroutines with a rule argument can be used also outside a rule context.\fR
+
 .TP
 .B rdb_ensure_file( $rule, file )
-This a subroutine that ensures that the given file is among the source
+This subroutine ensures that the given file is among the source
 files for the specified rule.  It is typically used when, during the
 processing of a rule, it is known that a particular extra file is
 among the dependencies that \fIlatexmk\fR should know, but its default
@@ -4010,17 +4165,34 @@ For examples of its use, see some of the files in the directory
 cases that use this subroutine are \fIbib2gls-latexmkrc\fR,
 \fIexceltex_latexmkrc\fR and \fItexinfo-latexmkrc\fR.  These
 illustrate typical cases where \fIlatexmk\fR's normal processing fails
-to detect certain extra source files. 
+to detect certain extra source files.
+
+\fINote that \fRrdb_ensure_file\fI only has one filename argument, unlike
+other subroutines in this section.  If you want to apply its action to
+multiple files, you will need one call to \fRrdb_ensure_file\fI for each
+file.\fR
+
 .TP
 .B rdb_remove_files( $rule, file, ... )
 This subroutine removes one or more files from the dependency list for
 the given rule. 
+
+.TP
+.B rdb_remove_generated( file, ... )
+This subroutine is to be used in the context of a rule, that is, from
+within a subroutine that is carrying out processing of a rule.  It performs
+the opposite action to \fIrdb_add_generated\fR.  Its effect is to ensure
+that the given filenames are not listed in \fIlatexmk\fR's internal data
+structures as being generated by the rule.
+
 .TP
 .B rdb_list_source( $rule )
 This subroutine returns the list of source files (i.e., the dependency
 list) for the given rule. 
+
 .TP
 .B rdb_set_source( $rule, file, ... )
+
 .TP
 .B rdb_set_source( $rule, @files )
 This subroutine sets the dependency list for the given rule to be the
@@ -4028,6 +4200,7 @@ specified files.  Files that are already in the list have unchanged
 information.  Files that were not in the list are added to it.  Files
 in the previous dependency list that are not in the newly specified
 list of files are removed from the dependency list.
+
 .TP
 .B Run_subst( command_spec )
 This subroutine runs the command specified by \fIcommand_spec\fR.  The
@@ -4043,21 +4216,21 @@ printed to the screen unless \fIlatexmk\fR is running in silent mode.
 
 .SS Coordinated Setting of Commands for *latex
 
-To set all of \fI$dvilualatex\fR, \fI$latex\fR, \fI$pdflatex\fR,
-\fI$lualatex\fR, and 
-\fI$xelatex\fR to a common pattern, you can use one of the following
-subroutines, std_tex_cmds, alt_tex_cmds, and set_tex_cmds.
+To set all of \fI$dvilualatex\fR, \fI$hilatex\fR, \fI$latex\fR,
+\fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR to a common pattern,
+you can use one of the following subroutines, std_tex_cmds, alt_tex_cmds,
+and set_tex_cmds.
 
 To get the standard commands, use
 
    &std_tex_cmds;
 
 This results in \fI$latex = 'latex %O %S'\fR, and similarly for
-\fI$dvilualatex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and \fI$xelatex\fR.
-Note the ampersand in the invocation; this indicates to Perl that a
-subroutine is being called.  (The use of this subroutine enables you to
-override previous redefinitions of the \fI$latex\fR, etc variables, which
-might have occurred in an earlier-read rc file.)
+\fI$dvilualatex\fR, \fI$hilatex\fR, \fI$pdflatex\fR, \fI$lualatex\fR, and
+\fI$xelatex\fR.  Note the ampersand in the invocation; this indicates to
+Perl that a subroutine is being called.  (The use of this subroutine
+enables you to override previous redefinitions of the \fI$latex\fR, etc
+variables, which might have occurred in an earlier-read rc file.)
 
 To be able to use the string provided by the -pretex option (if any), you
 can use
@@ -4296,12 +4469,12 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.80).
+(Version 4.82a).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
 <http://www.ctan.org/pkg/latexmk/>, and from the
-author's website <http://www.personal.psu.edu/jcc8/latexmk/>.
+author's website <https://www.cantab.net/users/johncollins/latexmk/>.
 .br
 Modifications and enhancements by Evan McLean (Version 2.0)
 .br

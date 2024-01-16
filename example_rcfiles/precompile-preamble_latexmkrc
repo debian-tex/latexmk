@@ -1,0 +1,234 @@
+print "Latexmk rc file for using precompiled headers.\n",
+      "John Collins.  V. 1.3. 3 Jan 2024.\n";
+# John Collins jcc8 at psu dot edu
+
+# To implement precompilation of preamble by the package mylatexformat.
+# See the documentation for the package mylatexformat for more information.  
+# Overall strategy:
+#  1. At start of each run of *latex rule, copy (relevant part of) preamble
+#     from the primary .tex file to a file with extension .hdr.
+#  2. The base name of the header file has -latex, or -pdflatex, etc
+#     appended to it.  That provides a flag as to which program is to be
+#     used to make the .fmt file, and what program can use the .fmt file.
+#  2. A cus-dep is defined to make a .fmt file from the corresponding .hdr
+#     file.  It uses mylatexformat, and whichever of the -latex, -pdflatex,
+#     etc strings appears at the end of its base name indicates which
+#     program to use to create it.  (The -ini option is given to the
+#     program to indicate that a .fmt file is to be made.)
+#  4. Compilation of document: use .fmt file if it exists.
+#     If not, inject a message into the log file, to indicate that the .fmt
+#     is missing.  After the analysis of the results of the compilationi,
+#     latexmk takes this as an indication that it should try to make the
+#     .fmt file.
+#
+# Note that on an initial round of compilation, before the format file has
+# been created, latexmk will do one round of compilation without a
+# precompiled preamble.  After that latexmk creates the format file for the
+# precompiled header.  Some trickery could be used to get the format file
+# to be made first, but since this is a one-time-only issue, it's simpler
+# not to do the trickery.
+#
+# Restriction: Doesn't work with spaces and/or non-ASCII characters in
+# name of .tex file.
+
+# STILL TO DO:
+#
+# 1. Get full dependency information for the step for making the format.
+#    Ideally that needs support from latexmk, so as to use its
+#    already existing tools.  (Complication: the usual way in which latexmk
+#    determines dependencies from a run of a *latex type program assumes
+#    that a correct run always generates an .aux file.  That's not the case
+#    for "pdflatex -ini" etc.
+#    I've done a sufficient job, I think, by using the -recorder option,
+#    analyzing the resulting .fls file and using latexmk's documented
+#    rdb_set_source subroutine.
+# 2. On make of .fmt file, need ideally to use jobname = $root, to avoid
+#    problems listed in
+# https://tex.stackexchange.com/questions/19403/tikzs-externalization-and-mylatex
+#   Then I would need to do some renaming; perhaps save fls and log files from
+#   main run, compile the header, rename the fls, log and fmt files from this
+#   run, and finally, put the original fls and log files in place.
+#   Better, perhaps: Use subdirectories of auxdir, e.g., named fmt-latex,
+#   fmt-pdflatex, etc, to contain .fmt file (and .hdr file), along with
+#   suitable setting of search path (in variable TEXFORMATS).
+
+# General settings 
+$out_dir = 'output';
+$aux_dir = 'auxdir';
+
+$emulate_aux = 1;   # Avoid any problems with TeXLive, which doesn't
+                    # natively support different aux and out directories.
+$show_time = 1;     # Show diagnostics on timings, so as to make visible
+                    # time savings due to use of preamble.
+
+# Sub-second sleep time will work in latexmk v. 4.82 upwards.
+# That gives excellent responsiveness when preview-continuous mode is used,
+# and helps to enhance any significant gain in compilation time from the
+# use of a precompiled preamble.
+$sleep_time = 0.05;
+
+$pdf_mode = 1;   # Use pdflatex.  Note that xelatex and lualatex don't work
+                 # with precompiled preambles.
+
+# Configuration for precompiled preamble:
+
+$make_fmt = '%C %O -ini -output-directory=%V -jobname=%B "&%C" mylatexformat.ltx %S';
+
+# I only arrange to use latex and pdflatex with precompiled preambles. 
+# None of  lualatex, xelatex, and hilatex can use precompiled headers (from
+# tests on 22 Dec 2023).  Each had different trouble, and this is a known
+# problem. 
+# But things did work for latex and pdflatex.
+
+# Therefore only set things up for latex and pdflatex.
+foreach my $engine ( 'latex', 'pdflatex' ) {
+    say "Setting rules for $engine";
+    ${$engine} = "internal mylatex %R $engine %O %S";
+    push @generated_exts, "%R-$engine.*";
+}
+
+add_cus_dep( 'hdr', 'fmt', 0, make_fmt_cus_dep );
+
+push @generated_exts, '%R-*.hdr', '%R-*.fmt';
+
+
+#=================================================
+
+sub make_fmt_cus_dep {
+   my $path_base = $_[0];
+   my ($base, $path) = fileparse($path_base);
+   my $source = "$path_base.hdr";
+   my $dest = "$path_base.fmt";
+   my $fls = "$path_base.fls";
+   my $engine = 'pdflatex';
+   if ( $base =~ /-([^-]+)$/ ) {
+      $engine = $1;
+   }
+   my $cmd = $make_fmt;
+   $cmd =~ s/%C/$engine/g;
+   my $options = '-recorder';
+   if ($silent) { $options .= ' -interaction=batchmode'; }
+   my $ret = Run_subst( $cmd, 2, $options, $source, $dest, $base  );
+   my @source_files = get_fls_inputs( $fls );
+   if (@source_files) { rdb_set_source( $rule, @source_files ); }
+   else { warn "Could not determine source files for '$rule'\n"; }
+   return $ret;
+}
+
+#=================================================
+
+sub make_hdrA {
+    use strict;
+    my ($source, $dest) = @_;
+    my $h_in = undef;
+    my $h_out = undef;
+    if ( ! open( $h_in, "<", $source )  ) {
+       print "make_header could not read source file '$source'\n";
+       return 1;
+    }
+    if (! open( $h_out, ">", $dest ) ) {
+       print "make_header could not write header file '$dest'\n";
+       return 2;
+    }
+    while (<$h_in>) {
+        if ( /^\s*\\begin\s*{document}/
+             || /^\s*\\endofdump/ 
+             || /^\s*\\csname\s+endofdump\\endcsname/
+           )
+        { last; }
+        print $h_out $_;
+    }
+    print $h_out "\\endofdump\n";
+    close $h_out;
+    close $h_in;
+    return 0;
+}
+
+#=================================================
+
+sub mylatex {
+    # Arguments are:
+    #   1. base name of the fmt file
+    #   2. the compilation program
+    #   then the arguments to be 
+    use strict;
+    our ($aux_dir1, $out_dir1, $emulate_aux, $Pbase, $Psource );
+
+    my ($fmt_base, $engine, @args) = @_;
+    $fmt_base .= "-$engine";
+    my $source = $$Psource;
+    my $ret = 0;
+
+    my $fmt_file = "$aux_dir1$fmt_base.fmt";
+    my $hdr_file = "$aux_dir1$fmt_base.hdr";
+    if ( make_hdrA( $source, $hdr_file ) > 0 ) {
+        die "I'm stopping, since I could not make '$hdr_file' from '$source'.\n";
+    }
+   
+    # Location of .fls file after running engine, before any fudge to
+    # emulate aux dir:
+    my $fls_file = ($emulate_aux ? $aux_dir1 : $out_dir1 ) . "$$Pbase.fls";
+    my $log_file = "$aux_dir1$$Pbase.log";
+
+    if ( -e $fmt_file ) {
+        @args = ("-fmt=$fmt_base", @args);
+    }
+    else {
+        print "Format file '$fmt_file' does not exist. I'll run without it.\n";
+    }
+
+    my @cmd = ($engine, @args);
+    print "Running '@cmd'\n";
+    $ret = system @cmd;
+    
+    # Add lines to fls file to add dependency information:
+    # (a) that a hdr file is generated.
+    # (b) dependency on fls file.
+    # Earlier I thought I needed to force a dependence on fls file. 
+    # (22 Dec 2023) I don't remember why, so I'll leave that in.
+    append( $fls_file,
+            "INPUT $fls_file\n".
+            "OUTPUT $hdr_file\n"
+     );
+    
+    # Ensure latexmk knows that the .fmt file needs to be made if it
+    # doesn't yet exist:
+    if ( !-e $fmt_file ) { append( $log_file, "No file $fmt_file.\n" ); }
+    return $ret;
+}
+
+#=================================================
+
+sub append {
+    use strict;
+    my ($file, $string) = @_;
+    if ( !-e $file ) { return 1; }
+    open( my $fh, ">>", $file )
+      or die "Cannot append to '$file'\n $_";
+    print $fh $string;
+    close $fh;
+    return 0;
+}
+
+#=================================================
+
+sub get_fls_inputs {
+    my $fls_file = shift;
+    my %inputs = ();
+    my $fh = undef;
+    if ( ! open( $fh, '<', $fls_file ) ) {
+        warn "Cannot read '$fls_file':\n$!";
+        return ();
+    }
+    while (my $line = <$fh>) {
+        if ( $line =~ /^INPUT\s+(.+)\s*$/ ) {
+           my $file = $1;
+           $inputs{$file} = 1;
+        }
+    }
+    close $fh;
+    return keys %inputs;
+}
+
+#=================================================
+

@@ -27,10 +27,6 @@
 #       or extra enhancements to latexmk.
 #    5. The code uses subroutines copy and fileparse that are loaded by
 #       latexmk from the Perl packages File::Copy and File::Basename.
-#    6. It also uses some not-yet-documented features of latexmk: an array
-#       variable @file_not_found and subroutines popd, pushd, and
-#       rdb_add_generated. 
-
 
 #--------------------
 # Configurable choices for compilation of external documents
@@ -72,14 +68,13 @@ sub makeexternaldocument {
                #    aux_dir rather than the one the cus dep is assumed by latexmk
                #    to produce, which is in the same directory as the .tex source
                #    file for this custom dependency.)
-               #    Use not-yet-documented latexmk subroutine rdb_add_generated
-               #    to do this:
+               #    Use the latexmk subroutine rdb_add_generated to do this.
                # 2. A copy of the .aux file must be in same directory as .tex file
                #    to satisfy latexmk's definition of a custom dependency.
              rdb_add_generated( "$sub_doc_output/$base_name.aux" );
              copy "$sub_doc_output/$base_name.aux", ".";
         }
-        popd;
+        popd();
         return $return;
    }
 }

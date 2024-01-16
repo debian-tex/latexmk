@@ -1,0 +1,6 @@
+# This shows how to configure latexmk to use pdflatex
+
+$pdf_mode = 1;
+$postscript_mode = $dvi_mode = 0;
+
+

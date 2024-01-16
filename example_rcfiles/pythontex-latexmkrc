@@ -15,6 +15,13 @@ $clean_ext .= " pythontex-files-%R/* pythontex-files-%R";
 push @generated_exts, 'pytxcode';
 
 $pythontex = 'pythontex %O %S';
+
+# Specify a rule for running the pythontex program.
+# Because of the unusual structure of input and output files, I've used
+# an internal hash variable %extra_rule_spec of latexmk to specify the
+# rule.  Currently the only documentation is in the latexmk source code.
+# Probably the following line is stable against future changes in latexmk,
+# but that isn't guaranteed.
 $extra_rule_spec{'pythontex'}  = [ 'internal', '', 'mypythontex', "%Y%R.pytxcode",  "%Ypythontex-files-%R/%R.pytxmcr",    "%R", 1 ];
 
 sub mypythontex {
