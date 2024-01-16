@@ -1,6 +1,6 @@
             INSTALLING latexmk
             ==================
-      (Version 4.80, 4 Apr. 2023)
+      (Version 4.82a, 10 Jan. 2024)
 
             John Collins
             Physics Department
@@ -9,8 +9,8 @@
             University Park PA 16802
             U.S.A.  
 
-            http://www.personal.psu.edu/jcc8/
-	    http://www.personal.psu.edu/jcc8/latexmk/
+            https://www.cantab.net/users/johncollins/
+            https://www.cantab.net/users/johncollins/latexmk/
             username jcc8 at node psu.edu
 
 Latexmk is a "make" tool for building latex documents. It runs latex

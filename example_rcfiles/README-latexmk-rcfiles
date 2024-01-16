@@ -26,7 +26,7 @@ NOTES:
 
    But it is preferable to leave the quotes in, since they provide
    safety against special characters in filenames.  The double quotes
-   appear not to cause problems in all situations that I have tried.
+   appear not to cause problems in all the situations that I have tried.
 
 5. Note that the files for exceltex and pythontex illustrate an answer
    to an issue that arises in the following generic situation:

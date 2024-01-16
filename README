@@ -1,5 +1,5 @@
-Latexmk, version 4.80, 4 Apr 2023
----------------------------------
+Latexmk, version 4.82a, 10 Jan 2024
+-----------------------------------
 
 Latexmk completely automates the process of generating a LaTeX
 document.  Essentially, it is a highly specialized cousin of the
@@ -36,7 +36,7 @@ written by David J. Musliner.  Now it is supported by
             University Park PA 16802
             U.S.A.  
 
-            http://www.personal.psu.edu/jcc8/
+            https://www.cantab.net/users/johncollins/
             username jcc8 at node psu.edu
 
 The start of the script file has copyright notices and disclaimers.  
@@ -56,7 +56,7 @@ NOTES:-
 
    b. On the CTAN tex archive --- see http://www.ctan.org/pkg/latexmk
 
-   c. From the author's site at http://www.personal.psu.edu/jcc8/latexmk/
+   c. From the author's site at https://www.cantab.net/users/johncollins/latexmk/
    This site also includes previous versions, and sometimes newer versions
    under development.
 

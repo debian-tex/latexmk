@@ -857,5 +857,41 @@ From v. 4.79 to 4.80
   Various bug fixes and corrections, improvements in error and warning
     messages, and corrections to documentation.
 
+From v. 4.80 to 4.81
+  Fix various problems when filenames contain non-ASCII characters,
+    especially when MSYS is used.
+  Fix problems with analyzing wrapped lines in log files, especially with
+    lualatex. 
+  With options like -dvi that set the kind of output file, turn off
+    settings corresponding to incompatible options.
+  Improved warning and error messages.
+  Fix problem when using the $use_make_for_missing_files, with the search
+    over possible extensions for a missing file.
+  Add .run.xml to the list of generated extensions in @generated_exts.
+  Correct the behavior after errors.  Previously force_mode didn't work as
+    documented, terminating processing too early, while in
+    preview_continuous_mode, incorrect extra runs were sometimes made. 
+  Other bug fixes.
 
+From v. 4.81 to 4.82
+  Fixed various anomalies in working with biber, especially under error conditions.
+  Fixed various anomalies with use of -bibtex- and -bibtex-cond options.
+  Fixed problem that -Werror worked only with bibtex and not biber. (This
+    is the option that causes latexmk to return a non-zero exit code to
+    flag an error when there are missing-citation messages in the .log
+    file.) 
+  Added -dir-report-only option.
+  Fixed lack of quoting on command line to kpsewhich.
+  Implemented support for hilatex (-hnt option, $hnt_mode configuration
+    variable).
+  Allow sleep times of under a second. (That gives very responsive
+    performance on fast computers.)
+  Support ^^ format in .log file for non-ASCII bytes/characters.
+  Document $filetime_causality_threshold configuration variable.
+  Other documentation improvements.
+  
+From v. 4.82 to 4.82a
+  Fixed problem that with the use of %hash_calc_ignore_pattern, warnings
+  about "Use of uninitialized value $_" were given, and some corresponding
+  dependencies were incorrectly treated. 
 
