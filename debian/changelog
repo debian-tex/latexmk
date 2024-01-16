@@ -1,3 +1,12 @@
+latexmk (1:4.82a-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Refresh, update, remove patches.
+  * Project moved to new page, update d/copyright, d/watch & d/control.
+    (Closes: #1060876).
+
+ -- Hilmar Preusse <hille42@web.de>  Tue, 16 Jan 2024 07:28:30 +0000
+
 latexmk (1:4.80-1) unstable; urgency=medium
 
   * New upstream release, refresh patches.
