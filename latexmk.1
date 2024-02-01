@@ -1,10 +1,10 @@
-.TH LATEXMK 1 "10 January 2024" ""
+.TH LATEXMK 1 "31 January 2024" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
 .B latexmk [options] [file ...] 
 .SH DESCRIPTION
-.I Latexmk
+.I Latexmk  
 completely automates the process of compiling a LaTeX document.
 Essentially, it is like a specialized relative of the general
 \fImake\fR utility, but one which determines dependencies
@@ -12,7 +12,7 @@ automatically and has some other very useful features.  In its basic
 mode of operation \fIlatexmk\fR is given the name of the primary
 source file for a document, and it issues the appropriate sequence of
 commands to generate a .dvi, .ps, .pdf and/or hardcopy version of the
-document.  
+document.
 .PP
 By default \fIlatexmk\fR will run the commands necessary to generate 
 a .dvi file, which copies the behavior of earlier versions when only
@@ -167,7 +167,7 @@ the behavior of \fIlatex\fR etc, and deals with problems that occasionally
 result from filenames that have been incorrectly quoted on the command
 line.  \fIIn addition\fR, under Microsoft Windows, the forward slash
 character "\\" is a directory separator, so \fIlatexmk\fR replaces it
-by a backward slash "/", which is also a legal directory separator in
+by a forward slash "/", which is also a legal directory separator in
 Windows, and is accepted by \fIlatex\fR etc.
 
 .TP
@@ -2226,7 +2226,7 @@ Array of regular expressions specifying messages in log file that are
 officially treated as warnings rather than errors by *latex, but which a
 user may treat as errors: See \fI$bad_warning_is_error\fR.
 
-Currently the default set of these warnings is those about \\end occuring
+Currently the default set of these warnings is those about \\end occurring
 inside constructs.
 
 .TP
@@ -2776,7 +2776,7 @@ look at the definition of \fI@file_not_found\fR in the latexmk.pl file.
 
 In the regular expression, the string for the name of the missing file
 should be enclosed in parentheses.  That carries the implication that after
-latexmk gets a succesful match to the pattern, the variable $1 is set to
+latexmk gets a successful match to the pattern, the variable $1 is set to
 the filename, which is then picked up by latexmk.
 
 If you happen to encounter a package that gives a missing file message of a
@@ -4469,7 +4469,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.82a).
+(Version 4.83).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
