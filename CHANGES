@@ -895,3 +895,14 @@ From v. 4.82 to 4.82a
   about "Use of uninitialized value $_" were given, and some corresponding
   dependencies were incorrectly treated. 
 
+From v. 4.82a to 4.83
+  Fix bug that sometimes biber is incorrectly run after a *latex run
+    results in an error, with biber then giving an error.
+  Fix problem that if -gg is used with multiple files specified on command
+    line, then generated files are deleted for all by the last file
+    compiled.  (So that -gg wasn't working as intended in this case.)
+  Fixed some bugs with incorrect variable scope.  (These bugs gave
+    incomprehensible error messages about undefined variables!)
+  Restrict warning diagnostics about ^^ constructs in aux file to those
+    involving non-trivial Unicode characters, as against things like ^^M.
+
