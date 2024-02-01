@@ -1,3 +1,9 @@
+latexmk (1:4.83-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+
+ -- Hilmar Preusse <hille42@web.de>  Thu, 01 Feb 2024 22:49:41 +0000
+
 latexmk (1:4.82a-1) unstable; urgency=medium
 
   * New upstream release.
