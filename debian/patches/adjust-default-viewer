@@ -1,6 +1,6 @@
 Description: Replace specific commands by Debian commands.
 Origin: Norbert Preining <preining@debian.org>
-Forwarded: No. Patch is specific to Debian.
+Forwarded: not-needed
 Author: Norbert Preining <preining@debian.org>
 Last-Update: 20210929
 

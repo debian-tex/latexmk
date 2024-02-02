@@ -1,7 +1,6 @@
 Description: Fix lintian complain "I: acute-accent-in-manual-page".
 Author: Hilmar Preuße <hille42@web.de>
 Origin: Debian
-Forwarded: Yes.
 Last-Update: 2021-11-25
 
 --- latexmk.orig/latexmk.1
