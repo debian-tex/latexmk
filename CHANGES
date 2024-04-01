@@ -906,3 +906,17 @@ From v. 4.82a to 4.83
   Restrict warning diagnostics about ^^ constructs in aux file to those
     involving non-trivial Unicode characters, as against things like ^^M.
 
+From v. 4.83 to 4.84
+  Update example_rcfiles/bib2gls_latexmkrc to deal with situation where
+    .glstex file has basename of .bib file rather than that of main .tex
+   file.
+  Update example_rcfiles/asymptote_latexmkrc.
+  Update example_rcfiles/splitindex_latexmkrc.
+  Add example_rcfiles/memoize_latexmkrc.
+  Improve detection of need to run makeindex (solves non-detection when
+    imakeidx package is used with splitindex option).
+  Implement final-output directory, with option -out2dir, variables
+    $out2_dir, @out2_exts.
+  Document hook mechanism.
+  Document $allow_subdir_creation variable.
+

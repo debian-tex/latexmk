@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "31 January 2024" ""
+.TH LATEXMK 1 "29 March 2024" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -175,8 +175,8 @@ Windows, and is accepted by \fIlatex\fR etc.
 Sets the directory for auxiliary output files of *latex (.aux, .log etc).
 These are all the generated files, with the exception of final output files
 (.dvi, .ps, .pdf, .synctex.gz, .synctex).  See the
-\fB-outdir\fR/\fB-output-directory\fR option for directories for the final
-output files. 
+\fB-outdir\fR/\fB-output-directory\fR option for directories for the main
+output files, and the \fB-out2dir\fR option for the final output files.
 
 If the directory specified for the \fB-aux\fR/\fB-aux-directory\fR option
 is blank, then the default is used, which is to be the same as the output
@@ -845,11 +845,35 @@ If the aux directory is not set or is the same as the output directory,
 then all output files of *latex are sent to the output directory.
 
 If the aux directory is set, e.g., by the option \fB-auxdir\fR, and is not
-equal to the output directory, then only final output files
+equal to the output directory, then only the primary output files
 (.dvi, .ps, .pdf, .synctex, .synctex.gz) are sent to the output
 directory. Other generated files are sent to the aux directory.
 
 See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
+
+.TP
+.B -out2dir=FOO
+
+(\fIExperimental new feature.\fR)
+
+Sets the directory for the final output files of a whole round of
+compilations.
+
+The use of this directory solves, among other things, the problem that when
+multiple runs of *latex and other programs are needed, files like the main
+pdf file from pdflatex, etc will be changed multiple times. A viewer like
+SumatraPDF that reloads the file whenever it detects changes will show a
+distracting sequence of intermediate states of the pdf file, rather than
+just the final version after all the repeated runs of *latex etc have been
+done.  Instead, when a distinct final-output directory is set, by the
+\fB-out2dir\fR option or the equivalent \fI$out2_dir\fR variable is set,
+the viewer will only see a changed pdf (etc) file after full sequence of
+repeated runs of *latex etc has finished.
+
+By default the final output directory is the same as the output directory
+(as specified by the \fB-outdir\fR option or the setting of the variable
+\fI$out_dir\fR configuration variable).
+
 
 .TP
 .B -output-format=FORMAT
@@ -1907,11 +1931,13 @@ If the variable \fI$pre_tex_code\fR is the empty string, then %P is
 equivalent to %S.
 .TP
 .B %R
-root filename.  This is the base name for the main tex file.
+root filename.
 
 By default this is the basename of the main tex file.  However the
 value can be changed by the use of the \fI-jobname\fR option or the
-\fI$jobname\fR configuration variable.
+\fI$jobname\fR configuration variable.  This is then the basename for files
+like the .aux and .log files produced by running *latex, as well for the
+main .dvi, .pdf, .ps and/or .xdvi files.
 .TP
 .B %S
 source file (e.g., the name of the dvi file when converting a .dvi file
@@ -2106,6 +2132,21 @@ indicates true, i.e., the behavior occurs, while a zero value
 indicates a false value, i.e., the behavior does not occur.
 
 .TP
+.B $allow_subdir_creation [1]
+
+Specify action to take when message(s) in the .log file indicate a failure
+of an attempt by a *latex compilation to write a file to a subdirectory of
+the output directory because the subdirectory didn't exist.
+
+If the value if \fI$allow_subdir_creation\fR is 0, no action is taken.  If
+it is 1, then the appropriate subdirectory is created and a rerun of *latex
+is triggered, but only if the file being written is an .aux file.  (This
+happens, for example, if the document includes a file from a subdirectory
+of the document directory, by the \\include command.  If the value of
+\fI$allow_subdir_creation\fR is 2, then the subdirectory creation is done
+independently of which type of file is in question.
+
+.TP
 .B $allow_switch [1]
 
 This controls what happens when the output extension of latex,
@@ -2170,7 +2211,7 @@ $analyze_input_log_always to 1.
 Whether to automatically read the standard initialization (rc) files,
 which are the system RC file, the user's RC file, and the RC file in
 the current directory.  The command line option \fB-norc\fR can be
-used to turn this setting off.  Each RC file co2uld also turn this
+used to turn this setting off.  Each RC file could also turn this
 setting off, i.e., it could set \fI$auto_rc_use\fR to zero to prevent
 automatic reading of the later RC files.
 
@@ -2738,7 +2779,7 @@ updated by sending a signal -- see the information on the variable
 \fI$dvi_update_method\fR.  The default value is the one appropriate
 for \fIxdvi\fR on a UNIX system.
 .TP
-.B $emulate_aux [0]
+.B $emulate_aux [1]
 Whether to emulate the use of aux directory when $aux_dir and $out_dir are
 different, rather than using the \fB-aux-directory\fR option for the *latex
 programs.  (MiKTeX supports \fB-aux-directory\fR, but TeXLive doesn't.)
@@ -3196,11 +3237,12 @@ continuous-preview mode.  If \fI$new_viewer_always\fR is 0,
 same file, and if one is running will not start a new one.  If
 \fI$new_viewer_always\fR is non-zero, this check will be skipped, and
 \fIlatexmk\fR will behave as if no viewer is running.
+
 .TP
 .B $out_dir [""]
 If non-blank, this variable specifies the output directory.
 
-This is the directory in which final output files are written (dvi, ps,
+This is the directory in which the main output files are written (dvi, ps,
 pdf, synctex, synctex.gz).  In addition, if the aux directory equals the
 output directory, as is the case by default, then other generated files are
 in effect written to the output directory.
@@ -3210,6 +3252,37 @@ at the invocation of *latex; this is equivalent to setting \fI$out_dir\fR
 to '.'.
 
 See the section AUXILIARY AND OUTPUT DIRECTORIES for more details.
+
+
+.TP
+.B $out2_dir [""]
+(\fIExperimental new feature.\fR)
+
+If non-blank, this variable specifies the final-output directory, i.e., the
+directory for the final output files.  If this variable is blank (its
+default value), the final-output directory is the same as the output
+directory.
+
+See the description of the option \fB-out2dir\fR for an explanation of the
+rationale for the idea of separate output and final-output directories.
+
+If the final-output directory is different from the output directory, then
+after a full round of compilations of the document, the relevant set of
+files is copied here from the output directory.  The files copied are
+specified by the \fI@out2_exts\fR variable, and by default are those with
+extensions 'hnt', 'pdf', 'ps', 'synctex', 'synctex.gz', and a basename the
+same as for the main *latex compilation.
+
+.TP
+.B @out2_exts [( 'hnt', 'pdf', 'ps', 'synctex', 'synctex.gz' )]
+
+This variable lists the extensions of the files to be copied to the
+final-output directory. The basename of the files is that for the main
+*latex compilation (corresponding to the value specified by the placeholder
+%R).  More general names may be specified in the same way as for the
+\fI@generated_exts\fR variable, by inclusion of %R in a pattern, e.g.,
+
+    push @out2_exts, '%R-2up.pdf';
 
 
 .TP
@@ -4041,20 +4114,113 @@ method doesn't delete any previous custom-dependency for the same
 conversion.  So the new method is preferable.
 
 
-.SH Advanced configuration: Some extra resources and advanced tricks
+.SH ADVANCED CONFIGURATION: SOME EXTRA RESOURCES AND ADVANCED TRICKS
 
-For most purposes, simple configuration for \fIlatexmk\fR along the
-lines of the examples given is sufficient.  But sometimes you need
-something harder.  In this section, I indicate some extra
-possibilities.  Generally to use these, you need to be fluent in the
-Perl language, since this is what is used in the rc files.
+For most purposes, simple configuration for \fIlatexmk\fR along the lines
+of the examples given is sufficient.  But sometimes you need something
+harder.  In this section, I indicate some extra possibilities.  Generally
+to use these, you need to be fluent in the Perl language, since this is
+what is used in the rc files.
+
+In this section, I include first, a description of a number of variables
+and subroutines that provide, among other things, access to latexmk's
+internal data structures for handling dependencies.  Then I describe the
+hook mechanism whereby at certain points in the processing, latexmk can
+call user-defined subroutines.
 
 See also the section DEALING WITH ERRORS, PROBLEMS, ETC.  See
 also the examples in the directory \fIexample_rcfiles\fR in the
 \fIlatexmk\fR distributions.  Even if none of the examples apply to
 your case, they may give you useful ideas
 
-.SS Utility subroutines
+
+
+.SS Variables and subroutines for processing a rule
+
+A step in the processing is called a rule. One possibility to
+implement the processing of a rule is by a Perl subroutine.  This is
+always the case for custom dependencies. Also, for any other rule, you
+can use a subroutine by prefixing the command specification by the
+word "internal" -- see the section FORMAT OF COMMAND SPECIFICATIONS.
+
+When you use a subroutine for processing a rule, all the possibilities
+of Perl programming are available, of course.  In addition, some of
+\fIlatexmk\fR's internal variables and subroutines are available.
+The ones listed below are intended to be available to (advanced)
+users, and their specifications will generally have stability under
+upgrades. Generally, the variables should be treated as read-only:
+Changing their values can have bad consequences, since it is liable to
+mess up the consistency of what \fIlatexmk\fR is doing.
+.TP
+.B $rule
+This variable has the name of the rule, as known to
+\fIlatexmk\fR. Note that the exact contents of this variable for a
+given rule may be dependent on the version of \fIlatexmk\fR
+.TP
+.B $$Pbase
+This gives the basename for the rule.  Generally, it determines the names
+of generated files.  E.g., for a run of *latex, the name of the .log file
+is the aux directory concatenated with the basename and then `.log'.
+
+For a *latex rule, the basename is without a directory component.  For
+other rules, it includes the directory component (if any is used).
+
+This (annoying) difference is associated with the different ways in which
+the commands invoked by latexmk work when the command line includes a name
+for a source file that includes a directory component.  For the *latex
+commands, the directory of the source file is irrelevant to the directory
+component the generated files, which instead is determined by the values in
+the -aux-directory and/or -output-directory options.
+
+In contrast, many other programs (e.g., biber, bibtex) put their generated
+files in the same directory as the source file, merely with a changed extension.
+
+Note the double dollar signs: In Perl terms, the variable \fI$Pbase\fR is a
+\fIreference\fR to a variable that contains the basename.  The second
+dollar sign derefences the reference to give the actual value.  (A
+reference is is used rather like a pointer, and the `P' (for `pointer') at
+the start of the variable name is a convention used in latexmk to indicate
+that the variable is a reference variable.)
+
+.TP
+.B $$Pdest
+This gives the name of the main output file if any.  Note the double
+dollar signs.
+
+.TP
+.B $$Psource
+This gives the name of the primary source file.  Note the double
+dollar signs.
+
+.TP
+.B add_hook( <stack_name>, <subroutine> )
+See the section `Hooks' for more details.
+
+This adds the subroutine specified in the second argument to latexmk's
+stack of hooks specified by the stack name.  It returns 1 on sucess, and
+zero otherwise (e.g., if the specified hook stack doesn't exist).
+
+The subroutine can be specified by a reference to the subroutine, as in
+
+    add_hook( 'after_xlatex_analysis', \&mmz_analyze )
+
+Given that the subroutine mmz_analyze has been defined in the rc file.
+
+The subroutine can be specified by a string whose value is the name of the
+subroutine, e.g., 
+
+    add_hook( 'after_xlatex_analysis', 'mmz_analyze' )
+
+In simple cases, the subroutine can be an anonymous subroutine defined in
+the call to add_hooks, 
+
+    add_hook( 'after_main_pdf', sub{ print \"TEST\\n\"; return 0; } );
+
+Observe that on success, the subroutine should return 0 (like a call to
+Perl's system subroutine), so normally this should be coded explicitly.  If
+a hook subroutine returns a non-zero value, latexmk treats that as an error
+condition. 
+
 
 .TP
 .B ensure_path( var, values ...)
@@ -4080,36 +4246,6 @@ Technically \fIensure_path\fR works by setting Perl's variable
 \fI$ENV{var}\fR, where \fIvar\fR is the name of the target variable.
 The changed value is then passed as an environment variable to any
 invoked programs.
-
-.SS Variables and subroutines for processing a rule
-
-A step in the processing is called a rule. One possibility to
-implement the processing of a rule is by a Perl subroutine.  This is
-always the case for custom dependencies. Also, for any other rule, you
-can use a subroutine by prefixing the command specification by the
-word "internal" -- see the section FORMAT OF COMMAND SPECIFICATIONS.
-
-When you use a subroutine for processing a rule, all the possibilities
-of Perl programming are available, of course.  In addition, some of
-\fIlatexmk\fR's internal variables and subroutines are available.
-The ones listed below are intended to be available to (advanced)
-users, and their specifications will generally have stability under
-upgrades. Generally, the variables should be treated as read-only:
-Changing their values can have bad consequences, since it is liable to
-mess up the consistency of what \fIlatexmk\fR is doing.
-.TP
-.B $rule
-This variable has the name of the rule, as known to
-\fIlatexmk\fR. Note that the exact contents of this variable for a
-given rule may be dependent on the version of \fIlatexmk\fR
-.TP
-.B $$Psource
-This gives the name of the primary source file.  Note the double
-dollar signs.
-.TP
-.B $$Pdest
-This gives the name of the main output file if any.  Note the double
-dollar signs.
 
 .TP
 .B pushd( path ), popd()
@@ -4173,6 +4309,12 @@ multiple files, you will need one call to \fRrdb_ensure_file\fI for each
 file.\fR
 
 .TP
+.B rdb_ensure_files_here( file, ... )
+Like subroutine \fIrdb_ensure_files\fR, except that (a) it assumes the
+context is of a rule, and the files are to be added to the source list for
+that rule; (b) multiple files are allowed.
+
+.TP
 .B rdb_remove_files( $rule, file, ... )
 This subroutine removes one or more files from the dependency list for
 the given rule. 
@@ -4211,8 +4353,28 @@ of Command Specifications".  An important action of the
 command is run.  In addition, the command after substitution is
 printed to the screen unless \fIlatexmk\fR is running in silent mode.
 
-.PP
+.TP
+.B test_gen_file_time ( <file> )
+This subroutine is used in the context of a rule.  It returns true or
+false according to whether or not a file of the given name both exists
+and was generated in the latest run of the rule.  If the subroutine returns
+false, but the file exists, then the file is a leftover from a previous
+run.
 
+The test for a file being generated on the current run is whether the
+modification time of the file is at least as recent as the time that the
+run of the rule was started.  An allowance for the granularity of the
+values of modification time on file systems is made.  See the description
+of the variable \fB$filetime_causality_threshold\fR for details.
+
+In addition, latexmk makes allowance for the possiblity that files are
+hosted on a different computer than that running latexmk and that the
+system clock times on the two computers are mismatched.  Latexmk
+automatically detects (and reports) any significant mismatch and corrects
+for it.  
+
+
+.PP
 
 .SS Coordinated Setting of Commands for *latex
 
@@ -4273,6 +4435,93 @@ names, 'latex-dev', 'pdflatex-dev', etc, you could use
 This results in \fI$latex = 'latex-dev %O %S'\fR, etc.  (The pre-release
 programs latex-dev etc are provided in current distributions of TeXLive and
 MiKTeX.) 
+
+.PP
+
+.SS Hooks
+
+Latexmk provides a way to arrange for user-defined subroutines to be called
+at certain points in the processing.  These can be used to configure
+appropriate behavior and actions beyond latexmk's normal behavior.  For a
+good example of how they can be used to accommodate latexmk's behavior to
+particular packages, see the file memoize_latexmkrc in the example_rcfiles
+subdirectory of the latexmk distribution.  (In a standard TeXLive
+installation, that subdirectory is to be found in
+texmf-dist/doc/support/latexmk/)
+
+The hook mechanism is complementary to the method of redefining command
+strings like \fB$pdflatex\fR etc.  The two methods have overlapping domains
+of usefulness.
+
+Note that the hook mechanism is newly made public in v. 4.84 of latexmk.
+It is subject to change and improvement as experience is gained.
+
+The hooks are arranged in named hook stacks, and a hook subroutine is added
+to a given stack by latexmk's add_hook subroutine (documented above).  The
+currently available stacks are as follows, listed in the approximate order
+in which they are encountered in processing a document:
+
+.TP 2
+  before_xlatex
+  The subroutines in this hook stack are called just before a
+  *latex programs is run.  
+
+.TP 2
+  after_xlatex
+  The subroutines in this hook stack are called after a *latex programs is
+  run.  Before the subroutines are called, latexmk has done some immediate
+  postprocessing, e.g., to move the generated pdf file from the aux
+  directory to the output directory when \fB$emulate_aux\fR is set to 1.
+
+.TP 2
+  after_xlatex_analysis
+  The subroutines in this hook stack are called after latexmk has done its
+  dependency analysis after a *latex programs is run.  Subroutines in this
+  stack provide a useful way of adding items to the dependency information
+  associated with particular packages and that latexmk doesn't
+  automatically deal with.
+
+.TP 2
+  after_main_pdf
+  The subroutines in this hook stack are called after one of the rules that
+  creates the document's pdf file. (This covers any of pdflatex, lualatex,
+  dvipdf, ps2pdf, xdvipdfmx.)
+
+.TP 2
+  cleanup
+  The subroutines in this hook stack are called whenever latexmk is about
+  to do a cleanup operation.  They can be used, for example, to tailor the
+  deleted files to the pecularities of particular packages when latexmk's
+  general mechanisms for specifying files to be deleted are too inflexible. 
+
+  These subroutines are called before latexmk does any of its own file
+  deletion; thus the hook subroutines have access to all the generated
+  files that give package-specific information.
+
+.TP 2
+  cleanup_extra_full
+  The subroutines in this hook stack are called in addition to the ones in
+  the cleanup stack, whenever a full cleanup operation is to be done (i.e.,
+  one that includes the pdf, ps etc files).  They are called immediately
+  after those in the cleanup stack, but still before latexmk does any of
+  its own file deletion.
+
+.PP
+
+(Any other stacks defined in latexmk.pl but not listed above are to be
+regarded as experimental and subject to change.)
+
+Each subroutine should return 0 on success and a non-zero value on failure.
+This matches the convention used for running programs, e.g., by Perl's
+system subroutine, and the matching convention used for subroutines for
+custom dependencies in latexmk. 
+
+For most of the hook stacks, the subroutines are called in the context of a
+rule, with variables like \fB$rule\fR defined.  However, some hook stacks,
+like the cleanup ones, are called from outside any rule; and latexmk
+adjusts the relevant variables to refer to the overall task (i.e., of
+processing a particular main .tex file). 
+
 
 .PP
 
@@ -4469,7 +4718,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.83).
+(Version 4.84).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
