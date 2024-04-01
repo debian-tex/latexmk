@@ -2,32 +2,13 @@
 # or http://www.ctan.org/pkg/asymptote/)
 # with latexmk.  Asymptote is a vector graphics language with a
 # processing program that generates graphics files that can be used in
-# a LaTex file.  
+# a LaTex file.
 #
-# A standard method of using it is with the asymptote LaTeX style file
-# (http://mirror.ctan.org/graphics/asymptote/doc/asymptote.sty)
-# The graphics drawing code is in the tex file, and applying pdflatex to
-# the tex file produces one or more files with a base name the same as
-# or related to the main tex file, but with the extension 'asy'.  The
-# .asy is processed by the program asy (part of the asymptote
-# software) to produce graphics files (which may be eps, tex, or pdf
-# files) that are used the next time pdflatex is run on the main tex
-# file.    
-#
-# Latexmk can be arranged to run asymptote (i.e., the program asy)
-# when needed, by defining the following custom dependency.  (The code
-# is to be put in one of latexmk's rc files, e.g., ~/.latexmkrc.)
-#
-
-## OLD simple method (taken from the documentation for V. 2.03 of
-## asymptote).  These definitions are simple, but they may not always
-## give the desired type of output file, and they do not ensure that
-## latexmk has dependency information about files imported from the
-## asy file.
-#OLD sub asy {return system("asy \"$_[0]\"");}
-#OLD add_cus_dep("asy","eps",0,"asy");
-#OLD add_cus_dep("asy","pdf",0,"asy");
-#OLD add_cus_dep("asy","tex",0,"asy");
+# The definitions in this file enable automatic compilation of .asy files
+# containing asymptote code to be compiled to graphics files.  The .asy files
+# may be created as stand-alone files or may be created during a *latex
+# run by the use of the asymptote package with a document that contains
+# sections of asymptote code.  
 
 
 # The following definitions arrange to run asy with the correct output
@@ -47,17 +28,28 @@ sub asy2pdf { return asy2x( $_[0], 'pdf' ); }
 sub asy2tex { return asy2x( $_[0], 'tex' ); }
 
 sub asy2x   {
-   my $ret = system("asy -vv -f '$_[1]' '$_[0]' >& '$_[0].log'");
-   open( my $FH, "<", "$_[0].log" );
-   %imp = ();
-
+   my ($base, $fmt ) = @_;
+   my $log_file = "$base.log";
+   my $cmd = "asy -vv -noV -f \"$fmt\" -o \"$base.$fmt\" \"$base\" > '$log_file' 2>&1";
+   print "asy2x: Running '$cmd'\n";
+   my $ret = system($cmd);
+   my $FH = undef;
+   if (! open(  $FH, "<", $log_file ) ) {
+      warn "asy2x: Couldn't read log file '$log_file':\n $!";
+      return $ret;
+   }
+   
+   my %imports = ("$base.asy" => 1);
    while (<$FH>) {
-       if (/^(Including|Loading) .* from (.*)\s*$/) {
+       s/\s*$//;
+       if (/^(Including|Loading) .* from (.*)$/) {
           my $import = $2;
-	  $imp{$import} = 1;
+          # Convert MSWin directory separator to /
+          $import =~ s(\\)(/)g;
+	  $imports{$import} = 1;
        }
        elsif ( /^error/ || /^.*\.asy: \d/ ) {
-           warn "==Message from asy: $_";
+           warn "==Message from asy: $_\n";
 	   $ret = 1;
        }
        elsif ( /^kpsewhich / || /^Processing / || /^Using /
@@ -65,11 +57,11 @@ sub asy2x   {
 	     ) {
        }
        else {
-           warn "==Message from asy: $_";
+#           warn "==Message from asy: $_\n";
        }
    }
    close $FH;
-# For latexmk 4.48
-   rdb_set_source( $rule, keys %imp );
+   show_hash( '', \%imports );
+   rdb_set_source( $rule, keys %imports );
    return $ret;
 }
