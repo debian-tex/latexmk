@@ -920,3 +920,9 @@ From v. 4.83 to 4.84
   Document hook mechanism.
   Document $allow_subdir_creation variable.
 
+From v. 4.84 to 4.85
+  Correct bug that if $out_dir and $out2_dir referred to the same
+    directory, but latexmk didn't detect that, then the subroutine copy
+    reported an error, and latexmk treated that incorrectly as a fatal
+    error.
+
