@@ -2,8 +2,6 @@
 use warnings;
 use strict;
 
-
-
 ## Copyright John Collins 1998-2024
 ##           (username jcc8 at node psu.edu)
 ##      (and thanks to David Coppit (username david at node coppit.org) 
@@ -49,8 +47,8 @@ BEGIN {
     # blocks.
     $my_name = 'latexmk';
     $My_name = 'Latexmk';
-    $version_num = '4.84';
-    $version_details = "$My_name, John Collins, 29 Mar. 2024. Version $version_num";
+    $version_num = '4.85';
+    $version_details = "$My_name, John Collins, 7 Apr. 2024. Version $version_num";
 }
 
 use Config;
@@ -747,10 +745,6 @@ our ( $pdf_previewer, $ps_previewer, $ps_previewer_landscape, $dvi_previewer,
       $dvi_previewer_landscape, $hnt_previewer );
 $pdf_previewer = $ps_previewer  = $ps_previewer_landscape  = $dvi_previewer  = $dvi_previewer_landscape = $hnt_previewer = "NONE";
 
-# The following variables are assigned once and then used in symbolic 
-#     references, so we need to avoid warnings 'name used only once':
-our ( $aux_dir_requested, $out_dir_requested, $out2_dir_requested );
-
 our $dvi_update_signal = undef;
 our $ps_update_signal = undef;
 our $pdf_update_signal = undef;
@@ -1297,6 +1291,11 @@ our $aux_dir = '';      # Directory for aux files (log, aux, etc).
 our $aux_dir1 = '';
 our $out_dir1 = '';
 our $out2_dir1 = '';
+
+# Use the following for saving original values, before directories are normalized.
+our ( $aux_dir_requested, $out_dir_requested, $out2_dir_requested );
+
+
 
 # Extensions for files to be copied to $out2_dir.
 # Specify as for @generated_exts: I.e., extension w/o period
@@ -2351,6 +2350,13 @@ print "$My_name: This is $version_details.\n",
 
 &config_to_mine;
 
+# Save original values for use in diagnositics.
+# We may change $aux_dir and $out_dir after a detection
+#  of results of misconfiguration.
+$aux_dir_requested = $aux_dir;
+$out_dir_requested = $out_dir;
+$out2_dir_requested = $out2_dir;
+
 if ($out_dir eq '' ){
     # Default to cwd
     $out_dir = '.';
@@ -2363,12 +2369,6 @@ if ( $aux_dir eq '' ){
     # Default to out_dir
     $aux_dir = $out_dir;
 }
-# Save original values for use in diagnositics.
-# We may change $aux_dir and $out_dir after a detection
-#  of results of misconfiguration.
-$aux_dir_requested = $aux_dir;
-$out_dir_requested = $out_dir;
-$out2_dir_requested = $out2_dir;
 
 if ($bibtex_use > 1) {
     push @generated_exts, 'bbl';
@@ -3288,7 +3288,7 @@ sub normalize_aux_out_ETC {
         if ( $out_dir ) {
             $ret1 = make_path_mod( $out_dir,  'output' );
         }
-        if ( $out_dir ) {
+        if ( $out2_dir ) {
             $ret2 = make_path_mod( $out2_dir,  'final output' );
         }
         if ( $aux_dir && ($aux_dir ne $out_dir) ) {
@@ -3301,7 +3301,9 @@ sub normalize_aux_out_ETC {
     }
 
     if ($normalize_names) {
-        foreach ( $aux_dir, $out_dir ) { $_ = normalize_filename_abs($_); }
+        foreach ( $aux_dir, $out_dir, $out2_dir ) {
+            $_ = normalize_filename_abs($_);
+        }
     }
     $aux_dir1 = $aux_dir;
     $out_dir1 = $out_dir;
@@ -3358,7 +3360,7 @@ sub normalize_aux_out_ETC {
         print "$My_name: Cwd: '", good_cwd(), "'\n";
         print "$My_name: Normalized aux dir and out dirs:\n",
               " '$aux_dir', '$out_dir', '$out2_dir'\n";
-        print "$My_name: and combining forms: '$aux_dir1', '$out_dir1', '$out2_dir1'\n";
+        print "$My_name: and combining forms:\n '$aux_dir1', '$out_dir1', '$out2_dir1'\n";
         if ($aux_out_dir_report == 2) {
             exit 0;
         }
@@ -5539,7 +5541,7 @@ sub do_moves_aux_to_out {
             if ( ! $ret ) { die "  That failed, with message '$!'\n";}
         }
     }
-}
+} #END do_moves_aux_to_out
 
 #*************************************************************************
 
@@ -5552,18 +5554,60 @@ sub do_copies_out_to_out2 {
     # Assume rule context, which is normally global context.
     # Directory names should end in /, so that concatenation OK.
     my ($source1, $dest1) = @_;
+
+    # Ideally, guard against source and destination being same.
+    # Easy case:
+    my $absSource = abs_path($source1);
+    my $absDest = abs_path($dest1);
+    if ( defined($absSource) && defined($absDest) && ($absSource eq $absDest) ) {
+        # Directories are same.  Nothing to do.
+        # Note that abs_path can return undef under certain error conditions.
+        # I'll leave the diagnosis to the copy subroutine.
+        return;
+    }
+    # !!! HOWEVER: !!
+    # There can be multiple ways of referring to the same directories
+    # without that being detectable by the use of abs_path
+    # on the names: E.g., on Windows one directory is referred to via a
+    # drive letter that is used for files on a server, and the second
+    # uses the '\\...' (or '//...'construction to refer to the server directly.
+    # Also, on a OS/FS combination that is insensitive to case, the
+    # abs_paths can differ in case while referring to the same entity
+    # On UNIX, I can use a dev and inode test for equality, from the
+    # results of stat.
+    # But that doesn't work on Windows (where the inode numbers
+    # returned by stat are always zero).
+    # Easiest is to let the copy subroutine do the work, and just
+    # diagnose the situation when it fails 
+    
+    say "$My_name: Copying final output files from '$source1' to '$dest1'";
+
     foreach ( @out2_exts ) {
         my $name = ( /%R/ ? $_ : "%R.$_" );
         $name =~ s/%R/$$Pbase/;
         my $from =  "$source1$name";
-        my $to = "$dest1$name" ;
+        my $to = "$dest1$name";
         if ( test_gen_file_time( $from ) ) {
             if (! $silent) { print "$My_name: Copying '$from' to '$to'\n"; }
+            # Work around problem that if $from and $to refer to the same
+            # file, then copy returns zero, for error, but does **not** set
+            # $!.  (This is surely a bug, since copy (i.e.,
+            # File::Copy::copy) is documented to set $! when it encounters
+            # an error.) So in this situation $! contains whatever error
+            # code was set by something else earlier.
+            # I'll reset $! to 0 here, which corresponds to no error.
+            # If after running copy, it's still zero, but copy reports
+            # failure, then that indicates that $from and $to are the same
+            # file, and we didn't actually need a copy; for latexmk it's a
+            # non-error.
+            local $! = 0;
             my $ret = copy( $from, $to );
-            if ( ! $ret ) { die "  That failed, with message '$!'\n";}
+            if ( $ret ) { } # Success
+            elsif ($!) { warn "$My_name: Failure of copy from '$from' to '$to', error =\n $!\n"; }
+            else { }  # Non-error.
         }
     }
-}
+} #END do_copies_out_to_out2
 
 #*************************************************************************
 
@@ -5582,8 +5626,8 @@ sub correct_locations {
     # Assumes rule context.
     
     my $where_log = &find_set_log;
-    
-    if ( $emulate_aux && ($aux_dir ne $out_dir) ) {
+
+    if ( ($aux_dir_requested ne '') && $emulate_aux && ($aux_dir ne $out_dir) ) {
         do_moves_aux_to_out( $aux_dir1, $out_dir1 );
     }
 
@@ -9351,10 +9395,8 @@ sub rdb_make {
                       }
                     ); 
     }
-
     rdb_for_some( [@unusual_one_time], \&rdb_make1 );
-    if ( $out_dir ne $out2_dir ) {
-        print "================='$out_dir', '$out2_dir' '$out_dir1', '$out2_dir1'\n";
+    if ( ($out2_dir_requested ne '') && ($out_dir ne $out2_dir) ) {
         do_copies_out_to_out2( $out_dir1, $out2_dir1 );
     }
     

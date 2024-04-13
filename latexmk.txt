@@ -61,7 +61,7 @@ DESCRIPTION
 
 
 
-                                 29 March 2024                               1
+                                 7 April 2024                                1
 
 
 
@@ -127,7 +127,7 @@ LATEXMK OPTIONS AND ARGUMENTS ON COMMAND LINE
 
 
 
-                                 29 March 2024                               2
+                                 7 April 2024                                2
 
 
 
@@ -193,7 +193,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                               3
+                                 7 April 2024                                3
 
 
 
@@ -259,7 +259,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                               4
+                                 7 April 2024                                4
 
 
 
@@ -325,7 +325,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                               5
+                                 7 April 2024                                5
 
 
 
@@ -391,7 +391,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                               6
+                                 7 April 2024                                6
 
 
 
@@ -457,7 +457,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                               7
+                                 7 April 2024                                7
 
 
 
@@ -523,7 +523,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                               8
+                                 7 April 2024                                8
 
 
 
@@ -589,7 +589,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                               9
+                                 7 April 2024                                9
 
 
 
@@ -655,7 +655,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              10
+                                 7 April 2024                               10
 
 
 
@@ -721,7 +721,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              11
+                                 7 April 2024                               11
 
 
 
@@ -787,7 +787,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              12
+                                 7 April 2024                               12
 
 
 
@@ -853,7 +853,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              13
+                                 7 April 2024                               13
 
 
 
@@ -919,7 +919,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              14
+                                 7 April 2024                               14
 
 
 
@@ -985,7 +985,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              15
+                                 7 April 2024                               15
 
 
 
@@ -1051,7 +1051,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              16
+                                 7 April 2024                               16
 
 
 
@@ -1117,7 +1117,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              17
+                                 7 April 2024                               17
 
 
 
@@ -1183,7 +1183,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              18
+                                 7 April 2024                               18
 
 
 
@@ -1249,7 +1249,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              19
+                                 7 April 2024                               19
 
 
 
@@ -1315,7 +1315,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              20
+                                 7 April 2024                               20
 
 
 
@@ -1381,7 +1381,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              21
+                                 7 April 2024                               21
 
 
 
@@ -1447,7 +1447,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              22
+                                 7 April 2024                               22
 
 
 
@@ -1513,7 +1513,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              23
+                                 7 April 2024                               23
 
 
 
@@ -1579,7 +1579,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              24
+                                 7 April 2024                               24
 
 
 
@@ -1645,7 +1645,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              25
+                                 7 April 2024                               25
 
 
 
@@ -1711,7 +1711,7 @@ DEALING WITH ERRORS, PROBLEMS, ETC
 
 
 
-                                 29 March 2024                              26
+                                 7 April 2024                               26
 
 
 
@@ -1777,7 +1777,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              27
+                                 7 April 2024                               27
 
 
 
@@ -1843,7 +1843,7 @@ AUXILIARY AND OUTPUT DIRECTORIES
 
 
 
-                                 29 March 2024                              28
+                                 7 April 2024                               28
 
 
 
@@ -1909,7 +1909,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              29
+                                 7 April 2024                               29
 
 
 
@@ -1975,7 +1975,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              30
+                                 7 April 2024                               30
 
 
 
@@ -2041,7 +2041,7 @@ ALLOWING FOR CHANGE OF OUTPUT FILE TYPE
 
 
 
-                                 29 March 2024                              31
+                                 7 April 2024                               31
 
 
 
@@ -2107,7 +2107,7 @@ CONFIGURATION/INITIALIZATION (RC) FILES
 
 
 
-                                 29 March 2024                              32
+                                 7 April 2024                               32
 
 
 
@@ -2173,7 +2173,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              33
+                                 7 April 2024                               33
 
 
 
@@ -2239,7 +2239,7 @@ FORMAT OF COMMAND SPECIFICATIONS
 
 
 
-                                 29 March 2024                              34
+                                 7 April 2024                               34
 
 
 
@@ -2305,7 +2305,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              35
+                                 7 April 2024                               35
 
 
 
@@ -2371,7 +2371,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              36
+                                 7 April 2024                               36
 
 
 
@@ -2437,7 +2437,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              37
+                                 7 April 2024                               37
 
 
 
@@ -2503,7 +2503,7 @@ LIST OF CONFIGURATION VARIABLES USABLE IN INITIALIZATION FILES
 
 
 
-                                 29 March 2024                              38
+                                 7 April 2024                               38
 
 
 
@@ -2569,7 +2569,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              39
+                                 7 April 2024                               39
 
 
 
@@ -2635,7 +2635,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              40
+                                 7 April 2024                               40
 
 
 
@@ -2701,7 +2701,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              41
+                                 7 April 2024                               41
 
 
 
@@ -2767,7 +2767,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              42
+                                 7 April 2024                               42
 
 
 
@@ -2833,7 +2833,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              43
+                                 7 April 2024                               43
 
 
 
@@ -2899,7 +2899,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              44
+                                 7 April 2024                               44
 
 
 
@@ -2965,7 +2965,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              45
+                                 7 April 2024                               45
 
 
 
@@ -3031,7 +3031,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              46
+                                 7 April 2024                               46
 
 
 
@@ -3097,7 +3097,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              47
+                                 7 April 2024                               47
 
 
 
@@ -3163,7 +3163,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              48
+                                 7 April 2024                               48
 
 
 
@@ -3229,7 +3229,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              49
+                                 7 April 2024                               49
 
 
 
@@ -3295,7 +3295,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              50
+                                 7 April 2024                               50
 
 
 
@@ -3361,7 +3361,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              51
+                                 7 April 2024                               51
 
 
 
@@ -3427,7 +3427,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              52
+                                 7 April 2024                               52
 
 
 
@@ -3493,7 +3493,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              53
+                                 7 April 2024                               53
 
 
 
@@ -3559,7 +3559,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              54
+                                 7 April 2024                               54
 
 
 
@@ -3625,7 +3625,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              55
+                                 7 April 2024                               55
 
 
 
@@ -3691,7 +3691,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              56
+                                 7 April 2024                               56
 
 
 
@@ -3757,7 +3757,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              57
+                                 7 April 2024                               57
 
 
 
@@ -3823,7 +3823,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              58
+                                 7 April 2024                               58
 
 
 
@@ -3889,7 +3889,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              59
+                                 7 April 2024                               59
 
 
 
@@ -3955,7 +3955,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              60
+                                 7 April 2024                               60
 
 
 
@@ -4021,7 +4021,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              61
+                                 7 April 2024                               61
 
 
 
@@ -4087,7 +4087,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              62
+                                 7 April 2024                               62
 
 
 
@@ -4153,7 +4153,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              63
+                                 7 April 2024                               63
 
 
 
@@ -4219,7 +4219,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              64
+                                 7 April 2024                               64
 
 
 
@@ -4285,7 +4285,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              65
+                                 7 April 2024                               65
 
 
 
@@ -4351,7 +4351,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              66
+                                 7 April 2024                               66
 
 
 
@@ -4417,7 +4417,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              67
+                                 7 April 2024                               67
 
 
 
@@ -4483,7 +4483,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              68
+                                 7 April 2024                               68
 
 
 
@@ -4549,7 +4549,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              69
+                                 7 April 2024                               69
 
 
 
@@ -4615,7 +4615,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              70
+                                 7 April 2024                               70
 
 
 
@@ -4681,7 +4681,7 @@ CUSTOM DEPENDENCIES
 
 
 
-                                 29 March 2024                              71
+                                 7 April 2024                               71
 
 
 
@@ -4747,7 +4747,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              72
+                                 7 April 2024                               72
 
 
 
@@ -4813,7 +4813,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              73
+                                 7 April 2024                               73
 
 
 
@@ -4879,7 +4879,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              74
+                                 7 April 2024                               74
 
 
 
@@ -4945,7 +4945,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              75
+                                 7 April 2024                               75
 
 
 
@@ -5011,7 +5011,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              76
+                                 7 April 2024                               76
 
 
 
@@ -5077,7 +5077,7 @@ ADVANCED CONFIGURATION: SOME EXTRA RESOURCES AND ADVANCED TRICKS
 
 
 
-                                 29 March 2024                              77
+                                 7 April 2024                               77
 
 
 
@@ -5143,7 +5143,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              78
+                                 7 April 2024                               78
 
 
 
@@ -5209,7 +5209,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              79
+                                 7 April 2024                               79
 
 
 
@@ -5275,7 +5275,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              80
+                                 7 April 2024                               80
 
 
 
@@ -5341,7 +5341,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              81
+                                 7 April 2024                               81
 
 
 
@@ -5407,7 +5407,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              82
+                                 7 April 2024                               82
 
 
 
@@ -5473,7 +5473,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              83
+                                 7 April 2024                               83
 
 
 
@@ -5539,7 +5539,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              84
+                                 7 April 2024                               84
 
 
 
@@ -5605,7 +5605,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              85
+                                 7 April 2024                               85
 
 
 
@@ -5671,7 +5671,7 @@ LATEXMK(1)                  General Commands Manual                 LATEXMK(1)
 
 
 
-                                 29 March 2024                              86
+                                 7 April 2024                               86
 
 
 
@@ -5737,7 +5737,7 @@ BUGS (SELECTED)
 
 
 
-                                 29 March 2024                              87
+                                 7 April 2024                               87
 
 
 
@@ -5766,7 +5766,7 @@ THANKS TO
        dard form to avoid being harvested too easily.)
 
 AUTHOR
-       Current version, by John Collins (Version 4.84).  Report  bugs  etc  to
+       Current version, by John Collins (Version 4.85).  Report  bugs  etc  to
        his e-mail (jcc8 at psu.edu).
 
        Released      version      can      be      obtained     from     CTAN:
@@ -5803,6 +5803,6 @@ AUTHOR
 
 
 
-                                 29 March 2024                              88
+                                 7 April 2024                               88
 
 
