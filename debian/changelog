@@ -1,3 +1,11 @@
+latexmk (1:4.85-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Install documentation latexmk.pdf & latexmk.txt
+  * Bump Standards version, no changes needed.
+
+ -- Hilmar Preusse <hille42@web.de>  Sun, 14 Apr 2024 23:25:23 +0200
+
 latexmk (1:4.84-1) unstable; urgency=medium
 
   * New upstream release, refresh patches.

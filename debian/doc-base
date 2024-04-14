@@ -1,5 +1,5 @@
-Document: latexmk-readme
-Title: README for latexmk
+Document: latexmk
+Title: README / Documents for latexmk
 Author: John Collins
 Abstract: Latexmk completely automates the process of generating a LaTeX
  document.  Essentially, it is a highly specialized cousin of the
@@ -13,3 +13,7 @@ Section: Typesetting
 
 Format: Text
 Files: /usr/share/doc/latexmk/README
+Files: /usr/share/doc/latexmk/latexmk.txt.gz
+
+Format: PDF
+Files: /usr/share/doc/latexmk/latexmk.pdf
