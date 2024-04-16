@@ -2,25 +2,34 @@ Description: Fix typo in manual page.
 Author: Hilmar Preuße <hille42@web.de>
 Origin: Debian
 Forwarded: No.
-Last-Update: 2022-11-22
+Last-Update: 2024-04-16
 
 --- latexmk.orig/latexmk.1
 +++ latexmk/latexmk.1
-@@ -2226,7 +2226,7 @@
- officially treated as warnings rather than errors by *latex, but which a
- user may treat as errors: See \fI$bad_warning_is_error\fR.
+@@ -4197,7 +4197,7 @@
+ See the section `Hooks' for more details.
  
--Currently the default set of these warnings is those about \\end occuring
-+Currently the default set of these warnings is those about \\end occurring
- inside constructs.
+ This adds the subroutine specified in the second argument to latexmk's
+-stack of hooks specified by the stack name.  It returns 1 on sucess, and
++stack of hooks specified by the stack name.  It returns 1 on success, and
+ zero otherwise (e.g., if the specified hook stack doesn't exist).
  
- .TP
-@@ -2776,7 +2776,7 @@
+ The subroutine can be specified by a reference to the subroutine, as in
+@@ -4367,7 +4367,7 @@
+ values of modification time on file systems is made.  See the description
+ of the variable \fB$filetime_causality_threshold\fR for details.
  
- In the regular expression, the string for the name of the missing file
- should be enclosed in parentheses.  That carries the implication that after
--latexmk gets a succesful match to the pattern, the variable $1 is set to
-+latexmk gets a successful match to the pattern, the variable $1 is set to
- the filename, which is then picked up by latexmk.
+-In addition, latexmk makes allowance for the possiblity that files are
++In addition, latexmk makes allowance for the possibility that files are
+ hosted on a different computer than that running latexmk and that the
+ system clock times on the two computers are mismatched.  Latexmk
+ automatically detects (and reports) any significant mismatch and corrects
+@@ -4491,7 +4491,7 @@
+   cleanup
+   The subroutines in this hook stack are called whenever latexmk is about
+   to do a cleanup operation.  They can be used, for example, to tailor the
+-  deleted files to the pecularities of particular packages when latexmk's
++  deleted files to the peculiarities of particular packages when latexmk's
+   general mechanisms for specifying files to be deleted are too inflexible. 
  
- If you happen to encounter a package that gives a missing file message of a
+   These subroutines are called before latexmk does any of its own file
