@@ -12,8 +12,7 @@ Abstract: Latexmk completely automates the process of generating a LaTeX
 Section: Typesetting
 
 Format: Text
-Files: /usr/share/doc/latexmk/README
-Files: /usr/share/doc/latexmk/latexmk.txt.gz
+Files: /usr/share/doc/latexmk/README /usr/share/doc/latexmk/latexmk.txt.gz
 
 Format: PDF
 Files: /usr/share/doc/latexmk/latexmk.pdf
