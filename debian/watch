@@ -4,6 +4,7 @@ version=4
 # version number in the debian packages, the upstream uses this dotted
 # form in the changelog but removes the dot in the file names.
 #https://personal.psu.edu/~jcc8/software/latexmk/versions.html \
+opts=repack,repacksuffix=+ds,compression=xz,dversionmangle=s/\+ds// \
 https://www.cantab.net/users/johncollins/latexmk/versions.html \
   latexmk-([\d])([\d]+[a-z]*).zip \
   debian uupdate
