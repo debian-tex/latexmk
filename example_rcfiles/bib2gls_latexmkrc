@@ -1,51 +1,61 @@
 # Implements use of bib2gls with glossaries-extra.
-# Version of 4 Feb 2024.
+# Version of 14 Oct 2024.
 # Thanks to Marcel Ilg for a suggestion.
 
-# !!! ONLY WORKS WITH VERSION 4.54 or higher of latexmk
-
-push @generated_exts, 'glstex', 'glg';
+push @generated_exts, 'glg', '%R*.glstex';
 
 # For case that \GlsXtrLoadResources is used and so glstex file (first one)
 # has same name as .aux file.
-add_cus_dep('aux', 'glstex', 0, 'run_bib2gls');
+add_cus_dep( 'aux', 'glstex', 0, 'run_bib2gls' );
 
 # For case that \glsxtrresourcefile is used and so glstex file (first one)
 # has same name as .bib file.
-add_cus_dep('bib', 'glstex', 0, 'run_bib2gls_alt');
+add_cus_dep( 'bib', 'glstex', 0, 'run_bib2gls_alt' );
 
 sub run_bib2gls {
     my $ret = 0;
-    if ( $silent ) {
-        $ret = system "bib2gls --silent --group '$_[0]'";
-    } else {
-        $ret = system "bib2gls --group '$_[0]'";
-    };
-
-    # bib2gls puts output files in current directory.
-    # At least put main glstex in same directory as aux file to satisfy
-    # definition of custom dependency.
     my ($base, $path) = fileparse( $_[0] );
-    if ($path && -e "$base.glstex") {
-        rename "$base.glstex", "$path$base.glstex";
-    }
-
+    # Default encoding assumed by bib2gls is the system CS, which on
+    # Windows is normally *not* CP65001 (aka UTF-8).  But the aux and log
+    # files are UTF-8, at least with the default settings of TeX Live.
+    # So we tell bib2gls about this.
+    # With the options as given here, the .glg will be encoded in the system
+    # CS, which will be suitable for latexmk's use, since that is the CS for
+    # communicating with the file system.
+    # (**Warning**, it is simpler to do this rather than using, the option
+    #  --default-encoding to set everything to UTF-8, for then that would
+    #  apply also to the .glg, which would entail having to convert filenames
+    #  in the .glg file to the system CS.)
+    my @bib2gls_cmd = (
+         "--tex-encoding", "UTF-8",
+         "--log-encoding", "UTF-8",
+         "--group",
+         "--dir",
+         $path,
+         $base
+    );
+    if ($silent) { unshift @bib2gls_cmd, "--silent"; }
+    unshift @bib2gls_cmd, "bib2gls";
+    print "Running '@bib2gls_cmd'...\n";
+    $ret = system @bib2gls_cmd;
+    
     if ($ret) {
         warn "Run_bib2gls: Error, so I won't analyze .glg file\n";
         return $ret;
     }
-    # Analyze log file.
-    my $log = "$_[0].glg";
-    if ( open( my $log_fh, '<', $log) ) {
-        while (<$log_fh>) {
+    # Analyze bib2gls's log file:
+    my $glg = "$_[0].glg";
+    if ( open( my $glg_fh, '<', $glg) ) {
+        rdb_add_generated( $glg ); 
+        while (<$glg_fh>) {
             s/\s*$//;
             if (/^Reading\s+(.+)$/) { rdb_ensure_file( $rule, $1 ); }
             if (/^Writing\s+(.+)$/) { rdb_add_generated( $1 ); }
         }
-        close $log_fh;
+        close $glg_fh;
     }
     else {
-        warn "Run_bib2gls: Cannot read log file '$log': $!\n";
+        warn "Run_bib2gls: Cannot read log file '$glg': $!\n";
     }
     return $ret;
 }

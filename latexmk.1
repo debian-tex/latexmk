@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "7 April 2024" ""
+.TH LATEXMK 1 "11 December 2024" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -488,10 +488,12 @@ configuration issues.
 .TP
 .B -dvi
 Generate dvi version of document using latex.
+(And turn off any incompatible requests.)
 
 .TP
 .B -dvilua
 Generate dvi version of document using lualatex instead of latex.
+(And turn off any incompatible requests.)
 
 .TP
 .B -dvi-
@@ -619,8 +621,8 @@ Print help information.
 
 .TP
 .B -hnt
-Generate hnt (HINT) version of document using hilatex.  (And turn off dvi,
-postscript, and pdf modes.)
+Generate hnt (HINT) version of document using hilatex.
+(And turn off any incompatible requests.)
 
 .TP
 .B -jobname=STRING
@@ -716,7 +718,7 @@ See also the \fI$silence_logfile_warnings\fR configuration variable.
 .TP
 .B -lualatex
 Use \fIlualatex\fR.  That is, use \fIlualatex\fR to process the source file(s) to
-pdf.  The generation of dvi and postscript files is turned off.
+pdf.  The generation of dvi, hnt, postscript and xdv files is turned off.
 
 This option is equivalent to using the following set of options
 
@@ -882,13 +884,13 @@ This option is one that is allowed for \fIlatex\fR, \fIlualatex\fR, and
 \fIlatexmk\fR emulates it in a way suitable for the context of
 \fIlatexmk\fR and its workflows.
 
-If FORMAT is dvi, then dvi output is turned on, and postscript and pdf
+-If FORMAT is dvi, then dvi output is turned on, and postscript, pdf and xdv
 output are turned off. This is equivalent to using the options \fB-dvi -ps-
--pdf-\fR.
+-pdf- -xdv-\fR.
 
-If FORMAT is pdf, then pdf output is turned on, and dvi and postscript
+If FORMAT is pdf, then pdf output is turned on, and dvi, postscript and xdv
 output are turned off. This is equivalent to using the options \fB-pdf -ps-
--dvi-\fR.
+-dvi- -xdv-\fR.
 
 If FORMAT is anything else, \fIlatexmk\fR gives an error.
 
@@ -916,7 +918,10 @@ so it turns them off.
 
 .TP
 .B -pdf
-Generate pdf version of document using \fIpdflatex\fR.  (If you wish
+Generate pdf version of document using \fIpdflatex\fR.
+(And turn off any incompatible requests.)
+
+(If you wish
 to use \fIlualatex\fR or \fIxelatex\fR, you can use whichever of the
 options \fB-pdflua\fR, \fB-pdfxe\fR, \fB-lualatex\fR or \fB-xelatex\fR
 applies.)  To configure 
@@ -927,6 +932,7 @@ applies.)  To configure
 .B -pdfdvi
 Generate dvi file and then pdf version of document from the dvi file, by
 default using dvipdf. 
+(And turn off any incompatible requests.)
 
 The program used to compile the document to dvi is \fIlatex\fR by default,
 but this can be changed to \fIdvilulatex\fR by the use of the \fB-dvilua\fR
@@ -935,11 +941,13 @@ option or by setting \fI$dvi_mode\fR to 2.
 .TP
 .B -pdflua
 Generate pdf version of document using \fIlualatex\fR.
+(And turn off any incompatible requests.)
 
 .TP
 .B -pdfps
 Generate dvi file, ps file from the dvi file,  and then pdf file from the
 ps file.
+(And turn off any incompatible requests.)
 
 The program used to compile the document to dvi is \fIlatex\fR by default,
 but this can be changed to \fIdvilulatex\fR by the use of the \fB-dvilua\fR
@@ -947,7 +955,10 @@ option or by setting \fI$dvi_mode\fR to 2.
 
 .TP
 .B -pdfxe
-Generate pdf version of document using \fIxelatex\fR.  Note that to
+Generate pdf version of document using \fIxelatex\fR.
+(And turn off any incompatible requests.)
+
+Note that to
 optimize processing time, \fIlatexmk\fR uses \fIxelatex\fR to generate
 an .xdv file rather than a pdf file directly.  Only after possibly
 multiple runs to generate a fully up-to-date .xdv file does \fIlatexmk\fR
@@ -977,8 +988,8 @@ precisely, whatever program is configured to be used in the
 
 .TP
 .B -pdflatex
-This sets the generation of pdf files by \fIpdflatex\fR, and turns off the
-generation of dvi and ps files.
+Set the generation of pdf files by \fIpdflatex\fR.
+(And turn off any incompatible requests.)
 
 \fINote: to set the \fRcommand\fI used when pdflatex is specified, see the
 \fB-pdflatex="COMMAND"\fI option.\fR
@@ -1052,6 +1063,7 @@ used for print out.
 .TP
 .B -ps
 Generate postscript version of document.
+(And turn off any incompatible requests.)
 
 .TP
 .B -ps-
@@ -1338,10 +1350,10 @@ Print version number of \fIlatexmk\fR.
 Opposite of \fB-silent\fR.  This is the default setting.
 
 .TP
-.B -view=default\fR,\fB -view=dvi\fR,\fB -view=ps\fR,\fB -view=pdf\fR,\fB -view=none
+.B -view=default\fR,\fB -view=dvi\fR,\fB -view=hnt\fR,\fB -view=ps\fR,\fB -view=pdf\fR,\fB -view=none
 Set the kind of file used when previewing is requested (e.g., by the
 \fB-pv\fR or \fB-pvc\fR switches).  The default is to view the "highest"
-kind of requested file (in the low-to-high order .dvi, .ps, .pdf).  
+kind of requested file (in the low-to-high order .dvi, .hnt, .ps, .pdf).  
 
 Note the possibility \fB-view=none\fR where no viewer is opened at
 all.  One example of is use is in conjunction with the \fB-pvc\fR
@@ -1363,15 +1375,18 @@ configuration variable \fI$warnings_as_errors\fR.
 .TP
 .B -xdv
 Generate xdv version of document using xelatex.
+(And turn off any incompatible requests.)
 
 .TP
 .B -xelatex
-Use \fIxelatex\fR.  That is, use \fIxelatex\fR to process the source file(s) to
-pdf.  The generation of dvi and postscript files is turned off.
+Use \fIxelatex\fR.  That is, use \fIxelatex\fR to process the source
+file(s).  This will cause generation of a pdf (but indirectly through a xdv
+file). 
+(And turn off any incompatible requests.)
 
-This option is equivalent to using the following set of options
+This option is equivalent to using the following option
 
-     -pdfxe -dvi- -ps-
+     -pdfxe
 
 [\fINote\fR: Note that the method of implementation of this option,
 but not its intended primary effect, differ from some earlier versions
@@ -1393,12 +1408,12 @@ specification, this will be done automatically.  See the documentation for
 the \fB-pdfxe\fR option for why \fIlatexmk\fR makes a .xdv file rather than
 a .pdf file when \fIxelatex\fR is used.
 
-An example of the use of the \fB-pdfxelatex\fR option:
+An example of the use of the \fB-xelatex\fR option:
 
-     latexmk -pdfxe -pdfxelatex="xelatex --shell-escape %O %S"  foo.tex
+     latexmk -pdfxe -xelatex="xelatex --shell-escape %O %S"  foo.tex
 
 \fINote: This option when provided with the COMMAND argument only sets the
-command for invoking lualatex; it does not turn on the use of
+command for invoking xelatex; it does not turn on the use of
 lualatex. That is done by other options or in an initialization file.\fR
 
 .PP
@@ -3695,6 +3710,7 @@ environment variables TMPDIR or TEMP exists, otherwise to the current
 directory.  Under other operating systems (expected to be UNIX/Linux,
 including OS-X), the default is the value of the system environment
 variable TMPDIR if it exists, otherwise "/tmp".
+
 .TP
 .B $use_make_for_missing_files [0]
 Whether to use \fImake\fR to try and make files that are missing after
@@ -3709,12 +3725,29 @@ the file.  Handling this problem is the job of a suitably defined
 Makefile.  See the section "USING \fIlatexmk\fR WITH \fImake\fR" for
 how to do this.  The intent of calling \fImake\fR from \fIlatexmk\fR
 is merely to detect dependencies.
+
+.TP
+.B $user_deleted_file_treated_as_changed [0]
+Whether when testing for changed files, a user file that changes status
+from existing to non-existing should be regarded as changed.
+
+The default value is 0, which implies that if a user file (as opposed to a
+generated file) has been deleted since the previous run, then no
+recompilation should be done.  The reasoning is that a rerun would simply
+produce an error.
+
+If the value is 1, then disappearance of a user file is treated as
+triggering a rerun, but only in non-preview-continuous mode.
+
+If the value is 2, then disappearance of a user file is treated as
+triggering a rerun, always.
+
 .TP
 .B $view ["default"]
 Which kind of file is to be previewed if a previewer is used.  The
-possible values are "default", "dvi", "ps", "pdf".  The value 
+possible values are "default", "dvi", "hnt", "ps", "pdf", "none".  The value 
 of "default" means that the "highest" of the kinds of file generated is
-to be used (among .dvi, .ps and .pdf).
+to be used (among .dvi, .hnt, .ps and .pdf).
 
 .TP
 .B $warnings_as_errors [0]
@@ -4214,7 +4247,7 @@ subroutine, e.g.,
 In simple cases, the subroutine can be an anonymous subroutine defined in
 the call to add_hooks, 
 
-    add_hook( 'after_main_pdf', sub{ print \"TEST\\n\"; return 0; } );
+    add_hook( 'after_main_pdf', sub{ print "TEST\\n"; return 0; } );
 
 Observe that on success, the subroutine should return 0 (like a call to
 Perl's system subroutine), so normally this should be coded explicitly.  If
@@ -4718,7 +4751,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.85).
+(Version 4.86).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:
