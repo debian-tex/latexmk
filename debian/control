@@ -1,7 +1,9 @@
 Source: latexmk
 Section: tex
 Priority: optional
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13),
+	groff-base,
+	ghostscript
 Maintainer: Debian TeX Task Force <debian-tex-maint@lists.debian.org>
 Uploaders: Hilmar Preuße <hille42@debian.org>,
            Norbert Preining <norbert@preining.info>

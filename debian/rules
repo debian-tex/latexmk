@@ -6,6 +6,11 @@
 %:
 	dh $@
 
+execute_before_dh_auto_install:
+	groff -Tps -man -rcR=0 latexmk.1 > latexmk.ps
+	ps2pdf latexmk.ps latexmk.pdf
+	groff -Tascii -man -rcR=0 latexmk.1 > latexmk.txt
+
 override_dh_install:
 	dh_install
 	install -m755 $(CURDIR)/latexmk.pl    $(CURDIR)/debian/latexmk/usr/bin/latexmk
