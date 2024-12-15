@@ -926,3 +926,23 @@ From v. 4.84 to 4.85
     reported an error, and latexmk treated that incorrectly as a fatal
     error.
 
+From v. 4.85 to 4.86
+  Document variable $user_deleted_file_treated_as_changed.
+  Correct problems when main pdf output file is detected as an INPUT file in
+    the .fls file.  (That sometimes affected dependency detection of
+    included graphics files with the same basename as the main .tex
+    document.)
+  Updates to example_rcfiles/xr_latexmkrc, example_rcfiles/pythontex_latexmkrc,
+    example_rcfiles/splitindex_latexmkrc, example_rcfiles/bib2gls_latexmkrc.
+  Correct detection of graphics includes in .log file.
+  Apply autoflush to STDOUT, so that when STDERR and STDOUT are redirected
+    to the same place, the output is correctly ordered.
+  Add base name to the list of items reported with the -dir-report and
+    -dir-report-only options.
+  With -dir-report-only make report for each tex file to be processed.
+  Fix failure of -c and -C with $cleanup_includes_generated = 1; when
+    engine is lualatex or hilatex.
+  Documentation updates.
+  Correct problem that necessary necessary directory/ies not created in aux
+    dir when \include'd file has more than one level of subdirectory.
+  Correct message about up-to-date files when $max_repeat runs exceeded.
