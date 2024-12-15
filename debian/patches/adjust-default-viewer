@@ -8,9 +8,9 @@ Last-Update: 20210929
  latexmk.pl |   14 ++++++++------
  1 file changed, 8 insertions(+), 6 deletions(-)
 
---- latexmk-4.85.orig/latexmk.pl
-+++ latexmk-4.85/latexmk.pl
-@@ -1121,13 +1121,15 @@
+--- latexmk.orig/latexmk.pl
++++ latexmk/latexmk.pl
+@@ -1127,13 +1127,15 @@
      #         cannot be updated.  (acroread under MSWIN)
      #    4 => Run command to update.  Command in $dvi_update_command, 
      #    $ps_update_command, $pdf_update_command.
@@ -28,7 +28,7 @@ Last-Update: 20210929
  #    if ( defined $ps_update_signal ) { 
  #        $ps_update_method = 2;  # gv responds to signal to update
  #        $ps_previewer  = 'start gv -nowatch';
-@@ -1140,10 +1142,10 @@
+@@ -1146,10 +1148,10 @@
      # Turn off the fancy options for gv.  Regular gv likes -watch etc
      #   GNU gv likes --watch etc.  User must configure
      $ps_update_method = 0;  # gv -watch watches the ps file
