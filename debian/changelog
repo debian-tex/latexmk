@@ -1,4 +1,4 @@
-latexmk (1:4.86~ds-1) UNRELEASED; urgency=medium
+latexmk (1:4.85~ds-1) UNRELEASED; urgency=medium
 
   * Repack the orig.tar.gz, remove the pre-generated manual in pdf
     and txt, regenerate it from the manual page.
