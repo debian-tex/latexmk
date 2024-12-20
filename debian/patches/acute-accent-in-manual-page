@@ -1,5 +1,6 @@
 Description: Fix lintian complain "I: acute-accent-in-manual-page".
 Author: Hilmar Preuße <hille42@web.de>
+Forwarded: in private mail, got rejected
 Origin: Debian
 Last-Update: 2021-11-25
 
