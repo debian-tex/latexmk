@@ -1,12 +1,13 @@
-latexmk (1:4.86~ds-1) UNRELEASED; urgency=medium
+latexmk (1:4.86~ds-1) unstable; urgency=medium
 
   * New upstream version; refresh patches.
     - Repack the orig.tar.gz, remove the pre-generated manual in pdf
       and txt, regenerate it from the manual page.
   * Fix doc-base integration.
   * Fix typos in manual.
+  * Little lintian stuff.
 
- -- Hilmar Preuße <hille42@debian.org>  Tue, 16 Apr 2024 23:31:07 +0200
+ -- Hilmar Preuße <hille42@debian.org>  Tue, 24 Dec 2024 08:54:52 +0100
 
 latexmk (1:4.85-1) unstable; urgency=medium
 

@@ -1,8 +1,8 @@
 Description: Replace specific commands by Debian commands.
-Origin: Norbert Preining <preining@debian.org>
-Forwarded: not-needed
 Author: Norbert Preining <preining@debian.org>
-Last-Update: 20210929
+Forwarded: not-needed
+Origin: Debian
+Last-Update: 2021-09-29
 
 ---
  latexmk.pl |   14 ++++++++------
