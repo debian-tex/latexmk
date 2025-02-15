@@ -6,6 +6,15 @@ Last-Update: 2024-04-16
 
 --- latexmk.orig/latexmk.1
 +++ latexmk/latexmk.1
+@@ -970,7 +970,7 @@
+ especially .png files, the production of a .pdf file can be quite time
+ consuming, even when the creation of the .xdv file by \fIxelatex\fR is
+ fast.  So the use of the intermediate .xdv file can result in substantial
+-gains in procesing time, since the .pdf file is produced once rather than
++gains in processing time, since the .pdf file is produced once rather than
+ on every run of \fIxelatex\fR.)
+ 
+ .TP
 @@ -4230,7 +4230,7 @@
  See the section `Hooks' for more details.
  
