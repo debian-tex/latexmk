@@ -1,9 +1,9 @@
-latexmk (1:4.87~ds-1) UNRELEASED; urgency=medium
+latexmk (1:4.87~ds-1) unstable; urgency=medium
 
   * Fix another typo in manual (PR #11).
   * New upstream release, refresh patches.
 
- -- Hilmar Preuße <hille42@debian.org>  Wed, 18 Jun 2025 06:36:26 +0200
+ -- Hilmar Preuße <hille42@debian.org>  Wed, 18 Jun 2025 08:19:12 +0200
 
 latexmk (1:4.86~ds-1) unstable; urgency=medium
 
