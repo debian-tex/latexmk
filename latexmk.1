@@ -1,4 +1,4 @@
-.TH LATEXMK 1 "11 December 2024" ""
+.TH LATEXMK 1 "15 June 2025" ""
 .SH NAME
 latexmk \- generate LaTeX document
 .SH SYNOPSIS
@@ -600,11 +600,17 @@ configuration file.
 
 .TP
 .B -g
-Force \fIlatexmk\fR to process document fully, even under situations
-where \fIlatexmk\fR would normally decide that no changes in the
-source files have occurred since the previous run. 
-This option is useful, for example, if you change some options and
-wish to reprocess the files.
+Go mode:
+Force \fIlatexmk\fR to run each rule at least once, even under situations
+whre \fIlatexmk\fR would normally decide that no changes in the source
+files have occurred since the previous run.  This option is useful, for
+example, if you change the configuration and wish to reprocess all files.
+
+Equivalently: all rules are initially to be regarded as out of date. This
+option has the disadvantage that if, for example, there are very many
+custom dependencies for making graphics files, all of them will be run,
+which could be very time consuming.  See also the \fB-gt\fI option, which
+only forces a rerun of *latex.
 
 .TP
 .B -g-
@@ -616,7 +622,23 @@ Turn off \fB-g\fR.
 \fB-C\fR had been given, and then do a regular make.
 
 .TP
-.B -h \fRor\fB-non-help
+.B -gt
+Require at least one run of *latex.  I.e., process as normal, except that
+at least one run of the *latex rule is to be made, even when
+\fIlatexmk\fR's normal methods lead it to conclude that a run of *latex is
+not needed.
+
+Equivalently, treat the *latex rule as initially out-of-date.  Note that
+\fIlatexmk\fR may separately detect that other rules are out-of-date by its
+normal methods.  If these are normally run before *latex, then this will
+still be done
+
+This option is particularly useful when some changes in configuration have
+been made or under certain error conditions, where \fIlatexmk\fR would not
+correctly detect the need to run *latex, but where the run is needed.
+
+.TP
+.B -h \fRor\fB -help
 Print help information.
 
 .TP
@@ -970,7 +992,7 @@ as follows: When the document includes large graphics files,
 especially .png files, the production of a .pdf file can be quite time
 consuming, even when the creation of the .xdv file by \fIxelatex\fR is
 fast.  So the use of the intermediate .xdv file can result in substantial
-gains in procesing time, since the .pdf file is produced once rather than
+gains in processing time, since the .pdf file is produced once rather than
 on every run of \fIxelatex\fR.)
 
 .TP
@@ -2946,8 +2968,26 @@ example.)
 
 .TP
 .B $go_mode [0]
-If nonzero, process files regardless of timestamps, and is then
-equivalent to the \fB-g\fR option.
+If this variable equals zero, process files as usual, only running rules
+when they are determined to be out-of-date.
+This is equivalent to the \fB-g-\fR option.
+
+If this variable equals one, force \fIlatexmk\fR to run each rule at least
+once, even under situations whre \fIlatexmk\fR would normally decide that
+no changes in the source files have occurred since the previous run.  This
+behavior is useful, for example, if you change the configuration and wish
+to reprocess all files.
+This is equivalent to the \fB-g\fR option.
+
+If this variable equals two, perform a full clean up, as if the \fB-C\fR
+had been given, and then process normally from a clean initial situation.
+This is equivalent to the \fB-gg\fR option for "super go mode" or "clean
+make".
+
+If this variable equals three, require at least one run of *latex.  I.e.,
+process as normal, except that initially, the *latex rule that is in use is
+set to be out-of-date, independently of the state of the files.
+This is equivalent to the \fB-gt\fR option.
 
 .TP
 .B %hash_calc_ignore_pattern
@@ -4751,7 +4791,7 @@ e-mail addresses are not written in their standard form to avoid being
 harvested too easily.)
 .SH AUTHOR
 Current version, by John Collins 
-(Version 4.86).
+(Version 4.87).
 Report bugs etc to his e-mail (jcc8 at psu.edu).
 
 Released version can be obtained from CTAN:

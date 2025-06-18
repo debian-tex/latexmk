@@ -1,5 +1,5 @@
 # Implements use of bib2gls with glossaries-extra.
-# Version of 14 Oct 2024.
+# Version of 5 May 2025.
 # Thanks to Marcel Ilg for a suggestion.
 
 push @generated_exts, 'glg', '%R*.glstex';
@@ -8,9 +8,26 @@ push @generated_exts, 'glg', '%R*.glstex';
 # has same name as .aux file.
 add_cus_dep( 'aux', 'glstex', 0, 'run_bib2gls' );
 
-# For case that \glsxtrresourcefile is used and so glstex file (first one)
-# has same name as .bib file.
-add_cus_dep( 'bib', 'glstex', 0, 'run_bib2gls_alt' );
+
+# The (commented-out) definition below ONLY WORKS if (a) aux_dir is
+#   cwd, and (b) document uses only \glsxtrresourcefile, so that
+#   glstex files have the same basenames as the corresponding .bib files.
+#   and (c) does not use \GlsXtrLoadResources.
+# It fails nastily if the document uses both of \glsxtrresourcefile and
+#   \GlsXtrLoadResources.
+# Note that the previous definition works fine if the document uses both of
+#   \glsxtrresourcefile and  \GlsXtrLoadResources.  It only fails if the
+#   document exclusively uses \glsxtrresourcefile.
+#
+# **Important:***
+# ********* The use of \glsxtrresourcefile is now deprecated, as of  **********
+# ********* v. 1.55 of the glossaries-extra package, which writes a  **********
+# ********* warning message to the .log file if \glsxtrresourcefile  **********
+# ********* is used.                                                 ********** 
+# **** Therefore the following line is commented out, but the commented-out ****
+# **** line is left in here, since it gives information that is relevant    ****
+# **** for (certain) legacy documents.                                      ****
+### add_cus_dep( 'bib', 'glstex', 0, 'run_bib2gls_alt' );
 
 sub run_bib2gls {
     my $ret = 0;
