@@ -946,3 +946,21 @@ From v. 4.85 to 4.86
   Correct problem that necessary necessary directory/ies not created in aux
     dir when \include'd file has more than one level of subdirectory.
   Correct message about up-to-date files when $max_repeat runs exceeded.
+
+From v. 4.86 to 4.86a
+  Correct instructions for remaking the documentation files in INSTALL.
+
+From v. 4.86a to 4.867
+  Update documentation for go mode.
+  Update installation instructions and latexmk.cmd.
+  Correct/improve some items in example_rcfiles/.
+  Update detection of missing files reported by index package.
+  Correct detection of .bbl and index files after change of aux_dir.
+  --pdflatex no longer sets $pdflatex, so its behavior matchex --lualatex etc.
+  Removed banner options from on-line help; they are essentially obsolete.
+  Correct some informational and warning messages.
+  Add -cnf-line=STRING to set of allowed options passed to *latex.
+  Correct method of detection of need for biber or bibtex:
+   In some cases, latexmk would incorrectly run bibtex and get an error.
+   (E.g., with beamer package and its option 'show only notes'.)
+

@@ -1,38 +1,20 @@
-# For the minted package (which does nice formatting of source code):
-#
-# 1. Need to use -shell-escape on *latex command.
-# 2. Need to arrange passing of the output dir (actually aux dir if it
-#    differs from out dir) to minted.  Then this directory information does
-#    not have to be specified  in the .tex file itself.
-# 3. In some cases, latexmk does an extra run of *latex than is
-#    needed.  This is solved by getting latexmk to ignore certain lines in
-#    the aux file when latexmk looks for changes.  These lines are written
-#    by minted and are irrelevant to the output file from *latex.
-#
-#    The reason for the extra run of *latex that may happen is because
-#    after minted runs pygmentize to make the nicely formatted source code,
-#    minted saves cached information about the run(s) of pygmentize. This
-#    information is  put in the aux file. So latexmk sees the changed aux
-#    file, and knows that may affect the output of *latex, which it
-#    therefore reruns. However the minted-written lines do not affect the
-#    output of *latex.
-#
-# The method works if the aux dir's name contains a string of MORE than one 
-# space That's a problem in minted's calls to pygmentize.
-# Single spaces in the name are OK.
-# Generally it helps to  use only aux_dir and out_dir names  without spaces,
-# to avoid trouble. 
+# For the minted package (which does nice formatting of source code).
+# This rc file is correct for minted of version at least 3.6.0 (2025/03/06).
+# Previous versions needed a special configuration when out_dir/aux_dir were used.
 
-&set_tex_cmds( '-shell-escape %O '
-        . '\'\PassOptionsToPackage{outputdir={%Y}}{minted}\input{%S}\''
-        );
-# (Here the outer level of single quotes is for Perl.  The dot is for
-# Perl's string concatenation. The \' tell Perl to put actual single
-# quotes in the string (given to the shell).  In Unix, the shell is sh (or
-# equivalent), so the string inside the single quotes is a single argument
-# to the command is not changed at all.) 
-#
-$hash_calc_ignore_pattern{aux} = '^\\\\gdef\\\\minted@oldcachelist\{,'.
-                                 '|^\s*default\.pygstyle,'.
-                                 '|^\s*[[:xdigit:]]+\.pygtex';
+# Need to use -shell-escape on *latex command.
+set_tex_cmds( '%C -shell-escape %O %S' );
+push @generated_exts, 'nav', 'snm', 'vrb', 'pyg', 'listing';
+
+#====================================
+# --------OPTIONAL----------
+# By default, minted's cache files are in a directory _minted, with names unrelated
+# lexically to jobname, so latexmk can't do a clean up of these files
+# without a lot of work and/or enhancements to latexmk.  However, you can
+# make minted use a cache directory with a name containing \jobname.
+# Then latexmk can do the deletion of files (but not the cache directory).
+# E.g., with 
+#   \usepackage[cachedir=_minted-\jobname]{minted}
+# you can do:
+push @generated_exts, '_minted-%R/*';
 
